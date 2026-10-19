@@ -210,6 +210,28 @@ footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid
 .course.live{border-color:var(--red)}
 .course.live .go{color:var(--red)}
 .course.live:hover{background:var(--red-soft)}
+.feature .course.live{min-height:210px;border-width:3px}
+.feature .course.live .code{font-size:46px}
+.smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
+.smallbtn:hover{border-color:var(--red);color:var(--red)}
+/* suggested syllabus, drawn in the CUD syllabus template */
+.doc{position:relative;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:26px 18px 18px;font-family:Calibri,Carlito,"Segoe UI",Arial,sans-serif;font-size:14.5px;line-height:1.35}
+.doc .sticker{position:absolute;top:-13px;right:14px;transform:rotate(3deg);background:#1e8a4f;color:#fff;font:800 12px/1 var(--mono);letter-spacing:.12em;padding:7px 12px;border-radius:4px;box-shadow:0 2px 0 #145f36;border:2px dashed rgba(255,255,255,.55)}
+.doc .h{font-weight:700;text-transform:uppercase;margin:0 0 8px;display:flex;gap:18px}
+.doc .h2{font-weight:700;margin:10px 0 6px;display:flex;gap:18px}
+.doc p{margin:0 0 8px;text-align:justify}
+.doc .dt{overflow-x:auto}
+.doc table{border-collapse:collapse;width:100%;font-size:13.5px;margin:4px 0 8px}
+.doc th,.doc td{border:1px solid #111;padding:4px 6px;vertical-align:top;text-align:left;color:#111;background:#fff;text-transform:none;letter-spacing:0;font-family:inherit;font-size:13.5px}
+.doc th{background:#c00000;color:#fff;font-weight:700;text-align:center}
+.doc td.c{text-align:center}
+.doc td:first-child{white-space:nowrap}
+.doc td b{font-weight:700}
+.doc ul{margin:2px 0 0;padding-left:16px}
+.doc ol{margin:0 0 8px;padding-left:20px}
+.doc ol li{margin:3px 0}
+.doc .lbl{font-weight:700}
+.doc .fn{font-style:italic;font-size:12.5px}
 .course.soon{opacity:.62;cursor:default}
 .courses.three{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:900px){.courses.three{grid-template-columns:minmax(0,1fr)}}
@@ -366,7 +388,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   if(push){try{history.replaceState(null,'','#'+id);}catch(e){}}}
  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.v,true);window.scrollTo({top:0});});});
  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true);window.scrollTo({top:0});});});
- var h=(location.hash||'').slice(1); show(tabs.some(function(t){return t.dataset.v===h;})?h:tabs[0].dataset.v,false);
+ var h=((window.__hash)||location.hash||'').slice(1); show(tabs.some(function(t){return t.dataset.v===h;})?h:tabs[0].dataset.v,false);
 })();
 
 (function(){
