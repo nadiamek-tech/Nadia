@@ -211,6 +211,8 @@ footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid
 .course.live .go{color:var(--red)}
 .course.live:hover{background:var(--red-soft)}
 .feature .course.live{min-height:210px;border-width:3px}
+.feature .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.feature .courses{grid-template-columns:minmax(0,1fr)}}
 .feature .course.live .code{font-size:46px}
 .smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
 .smallbtn:hover{border-color:var(--red);color:var(--red)}
@@ -336,7 +338,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   .endcta{padding:24px}
 }
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
-</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · General Education · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
+</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
 <main class="wrap">
  <div class="dhero" style="padding-bottom:0"><a class="eyebrow" href="index.html">← 4 Years From Now</a></div>
  <div class="tabs" role="tablist"><button role="tab" data-v="solve" aria-selected="false">Solve It board</button><button role="tab" data-v="day" aria-selected="false">4 Years From Now Day</button></div>
@@ -381,7 +383,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
    <div class="ok-msg" id="rmsg" aria-live="polite"></div></div>
   <p class="tip" style="margin-top:24px">Inspired by 4YFN (4 Years From Now), the startup event of Mobile World Congress in Barcelona.</p>
  </section>
-</main><footer class="wrap">Proposal for discussion · General Education Department, Canadian University Dubai · Eng. Nadia Mek</footer><script>
+</main><footer class="wrap">Proposal for discussion · Canadian University Dubai · ENT 141–142: General Education · ENT 241–242: Business · Eng. Nadia Mek</footer><script>
 (function(){
  var tabs=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
  function show(id,push){tabs.forEach(function(t){var on=t.dataset.v===id;t.setAttribute('aria-selected',on);document.getElementById(t.dataset.v).hidden=!on;});

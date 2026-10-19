@@ -63,6 +63,8 @@ footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid
 .course.live .go{color:var(--red)}
 .course.live:hover{background:var(--red-soft)}
 .feature .course.live{min-height:210px;border-width:3px}
+.feature .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.feature .courses{grid-template-columns:minmax(0,1fr)}}
 .feature .course.live .code{font-size:46px}
 .smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
 .smallbtn:hover{border-color:var(--red);color:var(--red)}
@@ -189,7 +191,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 }
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
 </style>
-<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · General Education · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
+<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
 <main class="wrap">
  <section class="hero">
   <div class="big4" aria-hidden="true">4</div>
@@ -200,15 +202,15 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
    <p class="note">Name and idea inspired by <b>4YFN</b> (4 Years From Now), the startup event of Mobile World Congress in Barcelona.</p>
   </div>
  </section>
- <div class="track"><div class="yr on"><div class="eyebrow">Year 1</div><div class="code">ENT 141</div><h3>Notice</h3><p>See real problems around us and understand the people behind them.</p></div><div class="yr "><div class="eyebrow">Year 2</div><div class="code">ENT 142</div><h3>Validate</h3><p>Test the problem with data, build an MVP, pitch it.</p></div><div class="yr "><div class="eyebrow">Year 3</div><div class="code">ENT 241</div><h3>Launch</h3><p>Turn the best concepts into a venture with incubator mentors.</p><span class="tag">proposed · to review</span></div><div class="yr "><div class="eyebrow">Year 4</div><div class="code">ENT 242</div><h3>Grow</h3><p>Scale, fund or hand over; graduate with a venture or a portfolio.</p><span class="tag">proposed · to review</span></div>
+ <div class="track"><div class="yr on"><div class="eyebrow">Year 1 · General Education (GED)</div><div class="code">ENT 141</div><h3>Notice</h3><p>See real problems around us and understand the people behind them.</p></div><div class="yr "><div class="eyebrow">Year 2 · General Education (GED)</div><div class="code">ENT 142</div><h3>Validate</h3><p>Test the problem with data, build an MVP, pitch it.</p></div><div class="yr "><div class="eyebrow">Year 3 · Business Department</div><div class="code">ENT 241</div><h3>Launch</h3><p>Turn the best concepts into a venture with incubator mentors.</p><span class="tag">proposed · to review</span></div><div class="yr "><div class="eyebrow">Year 4 · Business Department</div><div class="code">ENT 242</div><h3>Grow</h3><p>Scale, fund or hand over; graduate with a venture or a portfolio.</p><span class="tag">proposed · to review</span></div>
   <div class="grad"><b>Graduation</b><span>Founder-ready, or job-ready with real venture evidence.</span></div>
  </div>
 
  <section class="sec feature">
-  <div class="eyebrow">Syllabus reviews</div>
-  <h2>Before and after, course by course</h2>
+  <div class="eyebrow">Syllabus reviews · General Education (GED)</div>
+  <h2>Before and after: ENT 141 and ENT 142</h2>
   <p class="lead">Each review sets the current syllabus beside the suggested one, part by part, and ends with a demo of the new course.</p>
-  <div class="courses"><a class="course live" href="ent141.html"><span class="code">ENT 141</span><span class="t">Fundamentals of Innovation & Entrepreneurship 1</span><span class="go">Review + course demo →</span></a><a class="course live" href="ent142.html"><span class="code">ENT 142</span><span class="t">Fundamentals of Innovation & Entrepreneurship 2</span><span class="go">Review + course demo →</span></a><div class="course soon" aria-disabled="true"><span class="code">ENT 241</span><span class="t">Year 3 course</span><span class="go">Review coming</span></div><div class="course soon" aria-disabled="true"><span class="code">ENT 242</span><span class="t">Year 4 course</span><span class="go">Review coming</span></div></div>
+  <div class="courses"><a class="course live" href="ent141.html"><span class="code">ENT 141</span><span class="t">Fundamentals of Innovation & Entrepreneurship 1</span><span class="go">Review + course demo →</span></a><a class="course live" href="ent142.html"><span class="code">ENT 142</span><span class="t">Fundamentals of Innovation & Entrepreneurship 2</span><span class="go">Review + course demo →</span></a></div>
  </section>
 
  <section class="sec">
@@ -240,7 +242,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   <text x="836" y="154" fill="var(--ink)">ENT 242</text>
  </g>
  <g font-size="13" text-anchor="middle" fill="var(--muted)">
-  <text x="299" y="176">Notice</text><text x="475" y="176">Validate</text><text x="651" y="176">Launch</text><text x="836" y="176">Grow</text>
+  <text x="299" y="174">Notice</text><text x="475" y="174">Validate</text><text x="651" y="174">Launch</text><text x="836" y="174">Grow</text></g><g font-size="11" text-anchor="middle" fill="var(--muted)" font-family="var(--mono)"><text x="299" y="190">GED</text><text x="475" y="190">GED</text><text x="651" y="190">BUSINESS</text><text x="836" y="190">BUSINESS</text>
  </g>
  <text x="466" y="276" text-anchor="middle" font-size="13.5" fill="var(--muted)">Demo Day winners enter the incubator · solved problems become new cases</text>
 </svg></div>
@@ -250,4 +252,4 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   </div>
  </section>
 </main>
-<footer class="wrap">Proposal for discussion · General Education Department, Canadian University Dubai · Eng. Nadia Mek</footer>
+<footer class="wrap">Proposal for discussion · Canadian University Dubai · ENT 141–142: General Education · ENT 241–242: Business · Eng. Nadia Mek</footer>

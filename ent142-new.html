@@ -146,6 +146,174 @@ ol.steps li::before{content:counter(s);font-family:var(--mono);font-weight:700;b
  .card141{position:static}
 }
 @media (max-width:520px){.ex{grid-template-columns:minmax(0,1fr)}.board .bar{grid-template-columns:100px minmax(0,1fr) 80px}}
+
+/* easy view (students of determination) */
+.sth{font-size:22px;font-weight:800;font-stretch:110%;margin:4px 0 6px}
+.easybar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.toggle{display:inline-flex;align-items:center;gap:10px;font:700 14px var(--body);border:2px solid var(--green);color:var(--green);background:var(--card);border-radius:999px;padding:7px 14px;cursor:pointer}
+.toggle .sw{width:34px;height:18px;border-radius:9px;background:var(--line);position:relative;transition:background .2s}
+.toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--card);transition:left .2s}
+body.easy .toggle .sw{background:var(--green)}
+body.easy .toggle .sw::after{left:18px}
+body.easy{font-family:"Lexend",var(--body);font-size:19px;line-height:1.75;letter-spacing:.01em}
+body.easy .std{display:none!important}
+body:not(.easy) .ez{display:none!important}
+.ez{color:var(--ink)}
+.pics{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pic{display:flex;flex-direction:column;align-items:center;gap:6px;border:2px solid var(--green);background:var(--green-soft);border-radius:10px;padding:10px 12px;min-width:92px;font-weight:700;font-size:15px;text-align:center}
+.pic svg{width:34px;height:34px}
+.arrow{font-size:22px;color:var(--green);font-weight:700}
+/* lecture player */
+.player{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.pbar{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.dots{display:flex;gap:6px;flex:1;min-width:120px}
+.dots button{flex:1;height:8px;border-radius:4px;border:none;background:var(--line);cursor:pointer;padding:0;min-width:10px}
+.dots button.on{background:var(--red)}
+.dots button.done{background:var(--ink)}
+.pbtn{font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer}
+.pbtn.solid{background:var(--ink);color:var(--paper)}
+.pbtn[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.sc2{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px;align-items:center;padding:28px;min-height:380px}
+.sc2 .k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.sc2 h3{font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin-top:6px}
+.sc2 p{margin:12px 0 0;font-size:18px}
+.sc2 .src{font-size:12.5px;color:var(--muted);margin-top:12px}
+.sc2 .src a{color:var(--muted)}
+.sc2 .vis{background:var(--paper)}
+.quote3{display:grid;gap:10px}
+.quote3 div{border-left:5px solid var(--ink);background:var(--card);padding:10px 14px;border-radius:0 8px 8px 0}
+.quote3 div.hl{border-color:var(--red)}
+.quote3 b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.quote3 q{font-size:14.5px;color:var(--muted)}
+.vcard{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;aspect-ratio:16/9;max-width:100%;border-radius:10px;background:var(--ink);color:var(--paper);text-decoration:none;padding:20px;text-align:center}
+.vcard .play{width:64px;height:64px;border-radius:50%;background:var(--red);display:grid;place-items:center}
+.vcard b{font-family:var(--display);font-size:20px;font-stretch:110%}
+.vcard span{font-size:13px;opacity:.75}
+.vframe{aspect-ratio:16/9;width:100%;border:0;border-radius:10px}
+.tl{display:flex;flex-direction:column;gap:6px}
+.tl .row{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center}
+.tl .yr2{font-family:var(--mono);font-weight:700;color:var(--red)}
+.tl .bx{border:1.5px solid var(--ink);border-radius:8px;padding:10px 12px;background:var(--card);font-weight:600}
+.tl .bx.hl{border-color:var(--red);background:var(--red-soft)}
+.cut{display:flex;flex-wrap:wrap;gap:8px}
+.cut span{border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:600;text-decoration:line-through;color:var(--muted)}
+.cut span.keep{text-decoration:none;color:var(--ink);border-color:var(--red);background:var(--red-soft)}
+/* session timeline */
+.sbar{display:flex;border-radius:10px;overflow:hidden;border:2px solid var(--ink);margin-top:8px}
+.sbar button{border:none;border-right:2px solid var(--ink);padding:14px 4px;cursor:pointer;font:700 13px var(--body);color:var(--ink);display:flex;flex-direction:column;gap:2px;align-items:center;justify-content:center;min-width:0;overflow:hidden}
+.sbar button:last-child{border-right:none}
+.sbar button .m{font-family:var(--mono);font-size:11px;font-weight:500}
+.sbar button[aria-pressed="true"]{outline:3px solid var(--red);outline-offset:-5px}
+.seg-a{background:var(--amber-soft)}.seg-b{background:var(--red-soft)}.seg-c{background:var(--green-soft)}.seg-d{background:var(--card)}
+.spanel{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+.spanel div{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:14px}
+.spanel .lab2{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:6px;align-items:center}
+.spanel .lab2 svg{width:18px;height:18px}
+.spanel p{margin:6px 0 0;font-size:15px}
+.spanel div.inc{border-color:var(--green);background:var(--green-soft)}
+/* studio */
+.stepnav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.stepnav button{font:700 14px var(--body);border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer}
+.stepnav button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.stepnav button .num{font-family:var(--mono);margin-right:6px;color:var(--red)}
+.stepnav button[aria-selected="true"] .num{color:var(--paper)}
+.roles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.role{border:2px solid var(--ink);border-radius:10px;background:var(--card);padding:14px;display:flex;flex-direction:column;gap:6px}
+.role svg{width:36px;height:36px}
+.role b{font-family:var(--display);font-size:19px;font-stretch:110%}
+.role .who{font-weight:700;color:var(--red);min-height:1.4em}
+.role span{font-size:14px;color:var(--muted)}
+.names{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.names input{font:15px var(--body);padding:8px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);width:150px}
+.chcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.chcards button{all:unset;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden;display:flex;flex-direction:column}
+.chcards button[aria-pressed="true"]{border-color:var(--red);box-shadow:0 0 0 2px var(--red)}
+.chcards .band{background:var(--ink);color:var(--paper);padding:10px 12px;font-family:var(--display);font-weight:700;font-stretch:110%}
+.chcards .body{padding:12px;font-weight:600}
+.chcards .tag2{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;margin-top:6px;font-weight:500}
+.hmw{font-size:clamp(20px,2.4vw,28px);font-family:var(--display);font-weight:700;font-stretch:108%;line-height:1.35;background:var(--card);border:2px dashed var(--red);border-radius:10px;padding:18px}
+.hmw select,.hmw input{font:inherit;font-size:.8em;border:none;border-bottom:3px solid var(--red);background:var(--red-soft);color:var(--ink);padding:2px 6px;border-radius:4px;max-width:100%}
+.board2{display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:16px;align-items:start}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;min-height:120px}
+.note{background:#fff3b0;color:#222;border-radius:4px;padding:12px;box-shadow:0 2px 0 rgba(0,0,0,.15);display:flex;flex-direction:column;gap:8px;font-size:15px;min-height:110px}
+.note.ex{background:#e8f0ff}
+.note button{align-self:flex-start;font:700 13px var(--body);border:1.5px solid #222;background:transparent;color:#222;border-radius:999px;padding:3px 10px;cursor:pointer}
+.note .v{font-family:var(--mono);font-weight:700}
+.addrow{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.addrow input{flex:1;min-width:180px;font:15px var(--body);padding:9px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink)}
+.timer{display:flex;flex-direction:column;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;background:var(--card);padding:14px}
+.timer svg{width:120px;height:120px}
+.timer .tt{font-family:var(--mono);font-size:26px;font-weight:700}
+.tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.tool{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:14px}
+.tool b{display:block;font-size:16px}
+.tool span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.tool i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--green);font-weight:700}
+.wiz{display:grid;gap:14px}
+.wiz .q{font-weight:700}
+.wiz .opts button.sel{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.rec{border:2px solid var(--green);background:var(--green-soft);border-radius:10px;padding:16px;min-height:60px}
+.rec b{font-family:var(--display);font-size:22px;font-stretch:110%;display:block}
+.tlog input{width:100%;font:14px var(--body);padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink)}
+.reveal{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:14px;margin-bottom:10px}
+.reveal summary{cursor:pointer;font-weight:700}
+.reveal p{margin:8px 0 0}
+/* project guide */
+.proj{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.proj button{all:unset;cursor:pointer;border:2px solid var(--line);border-radius:10px;background:var(--card);padding:16px;display:flex;flex-direction:column;gap:4px}
+.proj button[aria-pressed="true"]{border-color:var(--red);background:var(--red-soft)}
+.proj .an{font-family:var(--mono);font-weight:700;color:var(--red)}
+.proj b{font-family:var(--display);font-size:19px;font-stretch:110%}
+.proj span{font-size:13px;color:var(--muted)}
+.pdetail{margin-top:14px;border:2px solid var(--ink);border-radius:10px;background:var(--card);padding:20px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.pdetail h3{font-size:24px;font-stretch:112%}
+.ask{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.ask button{font:600 13px var(--body);border:1.5px solid var(--green);color:var(--green);background:var(--card);border-radius:999px;padding:5px 11px;cursor:pointer}
+/* assistant */
+.asst-btn{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;font:700 15px var(--body);background:var(--ink);color:var(--paper);border:none;border-radius:999px;padding:12px 18px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.asst{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:20;width:min(360px,calc(100vw - 36px));max-height:70vh;display:flex;flex-direction:column;background:var(--card);border:2px solid var(--ink);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.asst .msgs{overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.asst .me{align-self:flex-end;background:var(--ink);color:var(--paper);border-radius:10px 10px 2px 10px;padding:8px 12px;max-width:85%}
+.asst .bot{align-self:flex-start;background:var(--paper);border-radius:10px 10px 10px 2px;padding:8px 12px;max-width:90%}
+.asst .bot a{color:var(--red);font-weight:700}
+.asst form{display:flex;gap:6px;padding:10px;border-top:1px solid var(--line)}
+.asst input{flex:1;font:15px var(--body);padding:8px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);min-width:0}
+.asst .chips{display:flex;flex-wrap:wrap;gap:6px}
+.asst .chips button{font:600 12.5px var(--body);border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer}
+/* inclusive */
+.udl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:22px}
+.udl div{border-top:5px solid var(--green);background:var(--card);border-radius:0 0 8px 8px;padding:14px}
+.udl b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.udl span{font-size:14px;color:var(--muted)}
+.inc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.itile{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:18px}
+.itile h3{font-size:20px;font-stretch:110%;display:flex;gap:10px;align-items:center}
+.itile h3 .n{font-family:var(--mono);font-size:13px;color:var(--green)}
+.itile p{margin:6px 0 10px;color:var(--muted);font-size:14.5px}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cmp2 div{border-radius:8px;padding:12px;font-size:14.5px}
+.cmp2 .a{background:var(--paper);border:1px solid var(--line)}
+.cmp2 .b{background:var(--green-soft);border:2px solid var(--green);font-family:"Lexend",var(--body);font-size:16px}
+.vsched{display:flex;gap:6px;flex-wrap:wrap}
+.vsched span{display:flex;flex-direction:column;align-items:center;gap:4px;border:1.5px solid var(--line);border-radius:8px;padding:8px;min-width:70px;font-size:12.5px;font-weight:600}
+.vsched span.now{border-color:var(--green);background:var(--green-soft)}
+.vsched svg{width:26px;height:26px}
+.chunk label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:6px;margin-bottom:6px;font-weight:600;cursor:pointer}
+.chunk input{width:20px;height:20px;accent-color:var(--green)}
+.choose{display:flex;gap:8px;flex-wrap:wrap}
+.choose button{font:700 15px var(--body);border:2px solid var(--green);background:var(--card);color:var(--green);border-radius:8px;padding:10px 16px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.choose button svg{width:22px;height:22px}
+.choose button[aria-pressed="true"]{background:var(--green);color:#fff}
+.starters{display:flex;gap:6px;flex-wrap:wrap}
+.starters button{font:600 14px var(--body);border:1.5px dashed var(--green);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.itile textarea{width:100%;min-height:70px;font:15px var(--body);padding:8px 10px;border:1.5px solid var(--line);border-radius:6px;background:var(--card);color:var(--ink);margin-top:8px}
+@media (max-width:900px){
+ .sc2,.board2,.pdetail,.inc-grid,.udl{grid-template-columns:minmax(0,1fr)}
+ .roles,.tools,.proj,.spanel{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .chcards{grid-template-columns:minmax(0,1fr)}
+ .sc2{padding:18px;min-height:0}
+}
+@media (max-width:520px){.roles,.tools,.proj,.spanel,.cmp2{grid-template-columns:minmax(0,1fr)}.sbar button .m{display:none}.sbar button{font-size:11px}}
 </style><title>ENT 142 Course Demo</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"><style>
 /* Layout: a single reading column; the course journey runs left to right as four year columns; reviews are two-up (current | proposed). */
 :root{
@@ -211,6 +379,8 @@ footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid
 .course.live .go{color:var(--red)}
 .course.live:hover{background:var(--red-soft)}
 .feature .course.live{min-height:210px;border-width:3px}
+.feature .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.feature .courses{grid-template-columns:minmax(0,1fr)}}
 .feature .course.live .code{font-size:46px}
 .smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
 .smallbtn:hover{border-color:var(--red);color:var(--red)}
@@ -336,18 +506,19 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   .endcta{padding:24px}
 }
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
-</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · General Education · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
+</style><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap"></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
 <main class="wrap">
  <div class="dhero">
   <a class="eyebrow" href="ent142.html">← ENT 142 syllabus review</a>
   <h1>ENT 142 · Validate</h1>
-  <p class="support">Course demo. Interactive course support: it does not replace classes, attendance or class activities. Eng. Nadia Mek</p>
+  <p class="support">General Education (GED) · Course demo. Interactive course support: it does not replace classes, attendance or class activities. Eng. Nadia Mek</p>
+  <div class="easybar"><button class="toggle" type="button" id="easyBtn" aria-pressed="false"><span class="sw"></span>Easy view</button><span class="tip">Simpler words, pictures, bigger spacing and read-aloud for students of determination. Anyone can use it.</span></div>
  </div>
- <div class="tabs" role="tablist"><button role="tab" data-v="home" aria-selected="false">Course home</button><button role="tab" data-v="class" aria-selected="false">Class demo</button><button role="tab" data-v="lab" aria-selected="false">Lab demo</button></div>
+ <div class="tabs" role="tablist"><button role="tab" data-v="home" aria-selected="false">Course home</button><button role="tab" data-v="session" aria-selected="false">Guided session</button><button role="tab" data-v="lecture" aria-selected="false">Lecture</button><button role="tab" data-v="lab" aria-selected="false">Lab</button><button role="tab" data-v="project" aria-selected="false">Project guide</button><button role="tab" data-v="inclusive" aria-selected="false">Inclusive learning</button></div>
  
 <section class="view" id="home">
  <div class="bigbtns">
-  <button type="button" data-go="class"><b>Lectures</b><span>Class demo · one week, scene by scene</span></button>
+  <button type="button" data-go="lecture"><b>Lectures</b><span>Class demo · one week, scene by scene</span></button>
   <button type="button" data-go="lab"><b>Labs</b><span>Hands-on demo · done in class</span></button>
   <button type="button" onclick="document.getElementById('assess').scrollIntoView({behavior:'smooth'})"><b>Assignments</b><span>4 × 25% · Weeks 4, 7, 11, 14</span></button>
  </div>
@@ -372,40 +543,48 @@ show(4);})();
  </div>
 </section>
  
-<section class="view" id="class" hidden>
- <div class="eyebrow">Class demo · Week 8</div>
- <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin-top:6px">MVP types · learn from a real one first</h2>
- <div class="lect">
- <div class="scene"><div><div class="k">Definition</div><h3>Minimum viable product</h3><p>The version of a new product that gives the most validated learning about customers for the least effort.</p><div class="src">Ries, <i>The Lean Startup</i> (2011)</div></div><div class="vis"><svg viewBox="0 0 420 260" role="img" aria-label="Build, measure, learn loop">
-<defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
-<g fill="none" stroke="var(--muted)" stroke-width="1.6">
-<path d="M250 62 Q330 70 335 150" marker-end="url(#m2)"/><path d="M300 210 Q210 250 120 210" marker-end="url(#m2)"/><path d="M85 150 Q90 70 170 62" marker-end="url(#m2)"/></g>
-<g font-family="var(--display)" font-weight="800" font-size="17" text-anchor="middle" fill="var(--ink)">
-<rect x="150" y="30" width="120" height="50" rx="25" fill="var(--red-soft)" stroke="var(--red)" stroke-width="2"/><text x="210" y="61">Build</text>
-<rect x="290" y="160" width="120" height="50" rx="25" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.4"/><text x="350" y="191">Measure</text>
-<rect x="10" y="160" width="120" height="50" rx="25" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.4"/><text x="70" y="191">Learn</text></g>
-<g font-size="12.5" fill="var(--muted)" text-anchor="middle"><text x="345" y="95">MVP</text><text x="210" y="252">data</text><text x="75" y="95">ideas</text></g>
-</svg></div></div>
- <div class="scene"><div><div class="k">Real examples</div><h3>Two famous first MVPs</h3><p>Neither team built the full product first. They tested demand.</p><div class="src">Sources: <a href="https://www.indiehackers.com/post/read-the-story-of-drew-houston-the-ceo-of-dropbox-and-how-a-video-can-save-you-from-failure-e387b5161e" target="_blank" rel="noopener">Indie Hackers</a> · <a href="https://fortune.com/2012/09/05/nick-swinmurn-zappos-silent-founder/" target="_blank" rel="noopener">Fortune</a></div></div><div class="vis"><div class="ex"><div><i>Dropbox</i><b>A 3-minute demo video</b><span>The waiting list went from 5,000 to 75,000 overnight.</span></div><div><i>Zappos</i><b>Photos of a store's shoes</b><span>Listed online; bought from the store at full price only after an order.</span></div></div></div></div>
- <div class="scene"><div><div class="k">Framework</div><h3>Choose your MVP in five steps</h3><p>Work from your riskiest assumption, not from the features you like.</p></div><div class="vis"><ol class="steps"><li><span><b>Riskiest assumption:</b> what must be true for this to work?</span></li><li><span><b>MVP type:</b> video, landing page, concierge or one feature.</span></li><li><span><b>Success metric</b>, set before the test.</span></li><li><span><b>Test</b> with five real users from the partner.</span></li><li><span><b>Decide:</b> persevere, change or stop.</span></li></ol></div></div>
- <div class="scene"><div><div class="k">Interpret</div><h3>Effort vs learning</h3><p>A cheap MVP that answers the key question beats an expensive one that answers nothing.</p></div><div class="vis"><svg viewBox="0 0 420 260" role="img" aria-label="MVP types from low to high effort">
-<line x1="40" y1="220" x2="400" y2="220" stroke="var(--ink)" stroke-width="1.4"/>
-<text x="40" y="244" font-size="12.5" fill="var(--muted)">less effort</text><text x="400" y="244" text-anchor="end" font-size="12.5" fill="var(--muted)">more effort</text>
-<g font-size="13" fill="var(--ink)" font-weight="600">
-<rect x="40" y="170" width="70" height="40" rx="6" fill="var(--paper)" stroke="var(--ink)"/><text x="75" y="195" text-anchor="middle">Video</text>
-<rect x="115" y="140" width="80" height="70" rx="6" fill="var(--paper)" stroke="var(--ink)"/><text x="155" y="180" text-anchor="middle">Landing</text>
-<rect x="200" y="110" width="88" height="100" rx="6" fill="var(--paper)" stroke="var(--ink)"/><text x="244" y="165" text-anchor="middle">Concierge</text>
-<rect x="293" y="60" width="100" height="150" rx="6" fill="var(--red-soft)" stroke="var(--red)" stroke-width="2"/><text x="343" y="140" text-anchor="middle">One feature</text>
-</g>
-<text x="40" y="30" font-size="12.5" fill="var(--muted)">Start with the cheapest test that answers your riskiest question.</text>
-</svg></div></div>
- <div class="scene"><div><div class="k">Teardown</div><h3>Your turn: take one apart</h3><p>In the lab, each team studies an incubator startup's first MVP: what they built, what they left out, what they learned.</p></div><div class="vis"><button class="btn" type="button" data-go="lab">Open the lab demo →</button></div></div>
- </div>
+<section class="view" id="session" hidden>
+ <div class="eyebrow">Guided session</div>
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin-top:6px">Week 8 · MVP: learn from a real one first</h2>
+ <p class="tip std" style="margin-top:6px">120 minutes in class. Tap a block.</p>
+ <p class="ez" style="margin-top:6px">Our class today. One block at a time.</p>
+ <div class="sbar" role="group" aria-label="Session plan"><button type="button" class="seg-a" style="flex:10" data-i="0" aria-pressed="false"><span>Fun fact</span><span class="m">0–10</span></button><button type="button" class="seg-b" style="flex:20" data-i="1" aria-pressed="false"><span>Concept</span><span class="m">10–30</span></button><button type="button" class="seg-d" style="flex:10" data-i="2" aria-pressed="false"><span>Video</span><span class="m">30–40</span></button><button type="button" class="seg-c" style="flex:15" data-i="3" aria-pressed="false"><span>Teardown</span><span class="m">40–55</span></button><button type="button" class="seg-c" style="flex:45" data-i="4" aria-pressed="false"><span>Build plan</span><span class="m">55–100</span></button><button type="button" class="seg-a" style="flex:15" data-i="5" aria-pressed="false"><span>Feedback</span><span class="m">100–115</span></button><button type="button" class="seg-d" style="flex:5" data-i="6" aria-pressed="false"><span>Exit</span><span class="m">115–120</span></button></div>
+ <div class="spanel" id="spanel" aria-live="polite"></div>
 </section>
+<script>window.SEGS=[{"n": "Fun fact", "t": "0\u201310", "w": 10, "c": "a", "teacher": "Instagram story: what would you cut?", "students": "Each team names one feature to cut from their idea.", "tool": "Lecture scene 1", "inc": "Visual schedule; question shown in Easy view."}, {"n": "Concept", "t": "10\u201330", "w": 20, "c": "b", "teacher": "MVP and build\u2013measure\u2013learn from the textbook.", "students": "Draw the loop for their own project.", "tool": "Board + scenes 2\u20134", "inc": "Read-aloud; picture chain."}, {"n": "Video", "t": "30\u201340", "w": 10, "c": "d", "teacher": "Plays the Eric Ries clip.", "students": "Write one sentence: what does \u201cship it skinny\u201d mean for us?", "tool": "Stanford eCorner", "inc": "Captions; sentence starter given."}, {"n": "Teardown", "t": "40\u201355", "w": 15, "c": "c", "teacher": "Gives each team an incubator startup's first MVP.", "students": "Answer: built? left out? learned?", "tool": "Teardown card", "inc": "Three questions, revealed one at a time."}, {"n": "Build plan", "t": "55\u2013100", "w": 45, "c": "c", "teacher": "Coaches teams; checks each riskiest assumption.", "students": "Pick the assumption \u2192 MVP type \u2192 plan 5 user tests.", "tool": "Canva \u00b7 Figma \u00b7 Microsoft Forms", "inc": "Roles; MVP picker with two questions; timer."}, {"n": "Feedback", "t": "100\u2013115", "w": 15, "c": "a", "teacher": "Runs \u201ctwo stars and a wish\u201d between teams.", "students": "Give and get feedback.", "tool": "Paper cards", "inc": "Feedback starters."}, {"n": "Exit", "t": "115\u2013120", "w": 5, "c": "d", "teacher": "Exit ticket.", "students": "Our riskiest assumption is\u2026", "tool": "Microsoft Forms", "inc": "Draw, say or write."}];</script>
+ 
+<section class="view" id="lecture" hidden>
+ <div class="eyebrow">Class demo</div>
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin:6px 0 14px">Week 8 · Minimum viable product</h2>
+ <div class="player">
+  <div class="pbar"><button class="pbtn" type="button" id="prev">←</button><div class="dots" id="dots"></div><button class="pbtn" type="button" id="listen" aria-pressed="false">Listen</button><button class="pbtn solid" type="button" id="next">Next →</button></div>
+  <div id="stage"></div>
+ </div>
+ <p class="tip" style="margin-top:8px">Eng. Nadia Mek · one idea per scene</p>
+</section>
+<script>window.SCENES=[{"k": "Fun fact", "h": "Instagram began by cutting almost everything", "p": "Burbn, a check-in app, had about 100 users. The team kept only photos. Instagram launched in October 2010.", "e": "They removed most features. People loved what was left.", "v": "<div class=\"cut\"><span>Check-ins</span><span>Plans</span><span>Points</span><span>Badges</span><span class=\"keep\">Photo</span><span class=\"keep\">Caption</span><span class=\"keep\">Comment</span><span class=\"keep\">Like</span></div><p style=\"margin-top:14px;font-family:var(--display);font-size:22px;font-weight:800\">~100 users \u2192 25,000 downloads on day one</p>", "pics": "<div class=\"pics ez\"><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>Big app</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12l5 5L20 6\"/></svg>Cut</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z\"/></svg>Loved</span></div>", "src": "Source: <a href=\"https://stratnotes.substack.com/p/the-app-that-deleted-itself\" target=\"_blank\" rel=\"noopener\">Stratnotes</a>"}, {"k": "Textbook", "h": "Minimum viable product", "p": "Your textbook defines the MVP and the loop that improves it.", "e": "Make a small test version. Ask users. Improve. Repeat.", "v": "<div class=\"quote3\"><div class=\"hl\"><b>Minimum viable product</b><q>a very early prototype of a product</q></div><div><b>Build\u2013measure\u2013learn</b><q>a prototype is built, or at least the idea is written down</q> \u2192 feedback \u2192 change \u2192 repeat</div></div>", "pics": "<div class=\"pics ez\"><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>Build</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>Measure</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z\"/></svg>Learn</span></div>", "src": "Laverty &amp; Littel, <i>Entrepreneurship</i> (OpenStax, 2020), <a href=\"https://openstax.org/books/entrepreneurship/pages/10-1-launching-the-imperfect-business-lean-startup\" target=\"_blank\" rel=\"noopener\">\u00a710.1</a>"}, {"k": "Framework", "h": "Build, measure, learn", "p": "Each loop should be fast and cheap.", "e": "Go round the circle again and again.", "v": "<svg viewBox=\"0 0 420 260\" role=\"img\" aria-label=\"Build, measure, learn loop\">\n<defs><marker id=\"m2\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0L10 5L0 10z\" fill=\"var(--muted)\"/></marker></defs>\n<g fill=\"none\" stroke=\"var(--muted)\" stroke-width=\"1.6\">\n<path d=\"M250 62 Q330 70 335 150\" marker-end=\"url(#m2)\"/><path d=\"M300 210 Q210 250 120 210\" marker-end=\"url(#m2)\"/><path d=\"M85 150 Q90 70 170 62\" marker-end=\"url(#m2)\"/></g>\n<g font-family=\"var(--display)\" font-weight=\"800\" font-size=\"17\" text-anchor=\"middle\" fill=\"var(--ink)\">\n<rect x=\"150\" y=\"30\" width=\"120\" height=\"50\" rx=\"25\" fill=\"var(--red-soft)\" stroke=\"var(--red)\" stroke-width=\"2\"/><text x=\"210\" y=\"61\">Build</text>\n<rect x=\"290\" y=\"160\" width=\"120\" height=\"50\" rx=\"25\" fill=\"var(--paper)\" stroke=\"var(--ink)\" stroke-width=\"1.4\"/><text x=\"350\" y=\"191\">Measure</text>\n<rect x=\"10\" y=\"160\" width=\"120\" height=\"50\" rx=\"25\" fill=\"var(--paper)\" stroke=\"var(--ink)\" stroke-width=\"1.4\"/><text x=\"70\" y=\"191\">Learn</text></g>\n<g font-size=\"12.5\" fill=\"var(--muted)\" text-anchor=\"middle\"><text x=\"345\" y=\"95\">MVP</text><text x=\"210\" y=\"252\">data</text><text x=\"75\" y=\"95\">ideas</text></g>\n</svg>", "src": "Ries, <i>The Lean Startup</i> (2011)"}, {"k": "Real examples", "h": "Two first MVPs from your textbook", "p": "Neither team built the full product first.", "e": "Test first. Build later.", "v": "<div class=\"ex\"><div><i>Dropbox</i><b>A short demo video</b><span>Waiting list: 5,000 \u2192 75,000 overnight.</span></div><div><i>Zappos</i><b>Photos of a shop's shoes</b><span>Bought from the shop only after an order.</span></div></div>", "src": "OpenStax \u00a710.1 \u00b7 <a href=\"https://www.indiehackers.com/post/read-the-story-of-drew-houston-the-ceo-of-dropbox-and-how-a-video-can-save-you-from-failure-e387b5161e\" target=\"_blank\" rel=\"noopener\">Indie Hackers</a> \u00b7 <a href=\"https://fortune.com/2012/09/05/nick-swinmurn-zappos-silent-founder/\" target=\"_blank\" rel=\"noopener\">Fortune</a>"}, {"k": "Video", "h": "\u201cShip it skinny\u201d", "p": "Eric Ries on building the minimum viable product (Stanford eCorner, 4-minute clip).", "e": "Watch: start small, add more later.", "v": "<a class=\"vcard\" href=\"https://stvp.stanford.edu/clips/building-the-minimum-viable-product\" target=\"_blank\" rel=\"noopener\"><span class=\"play\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 5l11 7-11 7z\"/></svg></span><b>Building the Minimum Viable Product</b><span>Stanford eCorner \u00b7 Eric Ries \u00b7 opens in a new tab</span></a>"}, {"k": "Step by step", "h": "Choose your MVP", "p": "Start from your riskiest assumption, not your favourite feature.", "e": "Five steps. One at a time.", "v": "<ol class=\"steps\"><li><span><b>Riskiest assumption</b></span></li><li><span><b>MVP type</b>: video, landing page, concierge, one feature</span></li><li><span><b>Success metric</b>, set first</span></li><li><span><b>Test</b> with 5 real users</span></li><li><span><b>Decide</b>: keep, change or stop</span></li></ol>", "pics": "<div class=\"pics ez\"><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 21V4M5 4h11l-2 4 2 4H5\"/></svg>Risk</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>Type</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z\"/></svg>Goal</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"9\" cy=\"8\" r=\"3\"/><path d=\"M3 20a6 6 0 0 1 12 0\"/><path d=\"M16 11a3 3 0 1 0 0-6M17 20h4a5 5 0 0 0-4-5\"/></svg>Test</span><span class=\"arrow\" aria-hidden=\"true\">\u2192</span><span class=\"pic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"var(--green)\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12l5 5L20 6\"/></svg>Decide</span></div>"}, {"k": "Interpret", "h": "Effort vs learning", "p": "The cheapest test that answers your key question wins.", "e": "Small test, big learning.", "v": "<svg viewBox=\"0 0 420 260\" role=\"img\" aria-label=\"MVP types from low to high effort\">\n<line x1=\"40\" y1=\"220\" x2=\"400\" y2=\"220\" stroke=\"var(--ink)\" stroke-width=\"1.4\"/>\n<text x=\"40\" y=\"244\" font-size=\"12.5\" fill=\"var(--muted)\">less effort</text><text x=\"400\" y=\"244\" text-anchor=\"end\" font-size=\"12.5\" fill=\"var(--muted)\">more effort</text>\n<g font-size=\"13\" fill=\"var(--ink)\" font-weight=\"600\">\n<rect x=\"40\" y=\"170\" width=\"70\" height=\"40\" rx=\"6\" fill=\"var(--paper)\" stroke=\"var(--ink)\"/><text x=\"75\" y=\"195\" text-anchor=\"middle\">Video</text>\n<rect x=\"115\" y=\"140\" width=\"80\" height=\"70\" rx=\"6\" fill=\"var(--paper)\" stroke=\"var(--ink)\"/><text x=\"155\" y=\"180\" text-anchor=\"middle\">Landing</text>\n<rect x=\"200\" y=\"110\" width=\"88\" height=\"100\" rx=\"6\" fill=\"var(--paper)\" stroke=\"var(--ink)\"/><text x=\"244\" y=\"165\" text-anchor=\"middle\">Concierge</text>\n<rect x=\"293\" y=\"60\" width=\"100\" height=\"150\" rx=\"6\" fill=\"var(--red-soft)\" stroke=\"var(--red)\" stroke-width=\"2\"/><text x=\"343\" y=\"140\" text-anchor=\"middle\">One feature</text>\n</g>\n<text x=\"40\" y=\"30\" font-size=\"12.5\" fill=\"var(--muted)\">Start with the cheapest test that answers your riskiest question.</text>\n</svg>"}, {"k": "Practice", "h": "Now, the lab", "p": "Take apart a startup's first MVP, then plan yours.", "e": "Now we build in teams.", "v": "<button class=\"btn\" type=\"button\" data-go=\"lab\">Open the lab \u2192</button>"}];</script>
  
 <section class="view" id="lab" hidden>
- <div class="eyebrow">Lab demo · Week 14</div>
- <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin-top:6px">Accelerator Day: invest your CUD Coins</h2>
+ <div class="eyebrow">Lab demo · Weeks 8–11 and 14</div>
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin:6px 0 14px">MVP Lab</h2>
+ <div class="stepnav" role="tablist"><button type="button" data-st="l1"><span class="num">1</span>Team roles</button><button type="button" data-st="l2"><span class="num">2</span>Teardown</button><button type="button" data-st="l3"><span class="num">3</span>MVP picker</button><button type="button" data-st="l4"><span class="num">4</span>Test log</button><button type="button" data-st="l5"><span class="num">5</span>Accelerator Day</button><button type="button" data-st="l6"><span class="num">6</span>Tools</button></div>
+ <div id="l1"><h3 class="sth">Team roles</h3><p class="tip">Four roles, rotated every week. Everyone talks, everyone builds.</p>
+<div class="names" id="names"><input aria-label="Team member 1" value="Aisha"><input aria-label="Team member 2" value="Omar"><input aria-label="Team member 3" value="Lina"><input aria-label="Team member 4" value="Yousef"><button class="pbtn solid" type="button" id="rotate">Assign / rotate roles</button></div>
+<div class="roles"><div class="role"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><b>Leader</b><div class="who" data-role="0"></div><span>Keeps the team on the task.</span><span><i>“Our goal now is…”</i></span></div><div class="role"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><b>Timekeeper</b><div class="who" data-role="1"></div><span>Watches the timer.</span><span><i>“We have 3 minutes left.”</i></span></div><div class="role"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg><b>Recorder</b><div class="who" data-role="2"></div><span>Writes the team's ideas.</span><span><i>“Let me write that down.”</i></span></div><div class="role"><svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><b>Speaker</b><div class="who" data-role="3"></div><span>Shares with the class.</span><span><i>“Our team found…”</i></span></div></div><p style="margin-top:14px"><button class="pbtn solid" type="button" data-next="1">Next: teardown →</button></p></div>
+ <div id="l2" hidden><h3 class="sth">Teardown: ReCup's first MVP</h3><p><span class="demo-flag">DEMO · fictional incubator partners</span> ReCup solved Bean There Café's cup-waste challenge.</p>
+  <details class="reveal"><summary>1 · What did they build first?</summary><p>A QR sticker on 50 reusable cups and a Microsoft Form to log returns. No app.</p></details>
+  <details class="reveal"><summary>2 · What did they leave out?</summary><p>Payments, a mobile app, rewards, other branches.</p></details>
+  <details class="reveal"><summary>3 · What did users teach them?</summary><p>Customers returned cups only when the drop box was by the door. They moved it and returns doubled.</p></details>
+  <button class="pbtn solid" type="button" data-next="2">Next: choose your MVP →</button></div>
+ <div id="l3" hidden><h3 class="sth">MVP picker</h3><div class="wiz">
+  <div><div class="q">1. What is your riskiest assumption?</div><div class="opts" data-q="a"><button type="button" data-v="want">Will people want it?</button><button type="button" data-v="pay">Will they pay?</button><button type="button" data-v="do">Can we deliver it?</button></div></div>
+  <div><div class="q">2. How much time do you have before testing?</div><div class="opts" data-q="b"><button type="button" data-v="1">One week</button><button type="button" data-v="3">Three weeks</button></div></div>
+  <div class="rec" id="rec"><span class="tip">Answer both questions.</span></div></div></div>
+ <div id="l4" hidden><h3 class="sth">Test log · 5 users</h3><p class="tip">One row per user. One change after each test.</p><div class="tw tlog"><table><thead><tr><th>#</th><th>User</th><th>What happened</th><th>What we changed</th></tr></thead><tbody><tr><td class="w">1</td><td><input aria-label="User 1"></td><td><input aria-label="What happened 1"></td><td><input aria-label="Change 1"></td></tr><tr><td class="w">2</td><td><input aria-label="User 2"></td><td><input aria-label="What happened 2"></td><td><input aria-label="Change 2"></td></tr><tr><td class="w">3</td><td><input aria-label="User 3"></td><td><input aria-label="What happened 3"></td><td><input aria-label="Change 3"></td></tr><tr><td class="w">4</td><td><input aria-label="User 4"></td><td><input aria-label="What happened 4"></td><td><input aria-label="Change 4"></td></tr><tr><td class="w">5</td><td><input aria-label="User 5"></td><td><input aria-label="What happened 5"></td><td><input aria-label="Change 5"></td></tr></tbody></table></div><p id="logp" class="tip" style="margin-top:6px">0 / 5 tests logged</p></div>
+ <div id="l5" hidden>
+<div>
+ 
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin-top:6px">Accelerator Day (Week 14)</h2>
  <p class="tip" style="margin-top:6px">Teams are fictional. Other investors' coins are simulated. Coins are not graded.</p>
  <div class="acc blk" style="margin-top:20px">
   <div>
@@ -419,8 +598,45 @@ show(4);})();
   </div>
   <div><h2 style="font-size:22px">Live funding board</h2><div class="board" id="board"></div></div>
  </div>
+</div></div>
+ <div id="l6" hidden><h3 class="sth">Tools for this lab</h3><div class="tools"><div class="tool"><i>FREE EDUCATION PLAN</i><b>Canva</b><span>Explainer video or landing page mock-up.</span></div><div class="tool"><i>FREE EDUCATION PLAN</i><b>Figma</b><span>Clickable app screens.</span></div><div class="tool"><i>CUD MICROSOFT 365</i><b>Microsoft Forms</b><span>Sign-ups, surveys, test logs.</span></div><div class="tool"><i>CHECK CUD LICENCE</i><b>AI assistant</b><span>Draft research; every number checked at the source.</span></div></div></div>
 </section>
-</main><footer class="wrap">Proposal for discussion · General Education Department, Canadian University Dubai · Eng. Nadia Mek</footer><script>
+ 
+<section class="view" id="project" hidden>
+ <div class="eyebrow">Project guide</div>
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin:6px 0 6px">Four assignments, one path</h2>
+ <p class="tip" style="margin-bottom:14px">Each assignment follows a block of labs and is created in class. Tap one.</p>
+ <div class="proj"><button type="button" data-p="0" aria-pressed="false"><span class="an">A1 · Wk 4</span><b>Customer discovery</b><span>CLO 1 · 25%</span></button><button type="button" data-p="1" aria-pressed="false"><span class="an">A2 · Wk 7</span><b>Market analysis</b><span>CLO 3 · 25%</span></button><button type="button" data-p="2" aria-pressed="false"><span class="an">A3 · Wk 11</span><b>MVP + test log</b><span>CLO 1, 3 · 25%</span></button><button type="button" data-p="3" aria-pressed="false"><span class="an">A4 · Wk 14</span><b>Demo Day pitch + reflection</b><span>CLO 2, 4 · 25%</span></button></div>
+ <div class="pdetail" id="pdetail"></div>
+</section>
+<script>window.PROJ=[{"id": "A1", "wk": 4, "t": "Customer discovery", "who": "Team", "clo": "CLO 1", "what": "Interviews and a short survey with your partner's customers; two personas; top three pains.", "steps": ["Write 6 interview questions.", "Interview 5 customers at the partner site.", "Run a 5-question Microsoft Form.", "Build two personas from quotes."], "tool": "Microsoft Forms \u00b7 interview template", "rubric": "Evidence 8 \u00b7 Personas 8 \u00b7 Pains 6 \u00b7 Clarity 3", "ask": ["How many interviews?", "How do I write survey questions?", "What is a persona?"]}, {"id": "A2", "wk": 7, "t": "Market analysis", "who": "Team", "clo": "CLO 3", "what": "Market size, competitors and impact: every number traced to a source.", "steps": ["Ask an AI assistant for sources, not answers.", "Open each source and check the number.", "Estimate TAM, SAM, SOM.", "Build a competition matrix."], "tool": "AI assistant + UAE open data + Dubai Statistics Center", "rubric": "Sources 8 \u00b7 Size 6 \u00b7 Competitors 6 \u00b7 Impact 5", "ask": ["Can I use AI for research?", "What is TAM SAM SOM?", "Where do I find UAE data?"]}, {"id": "A3", "wk": 11, "t": "MVP + test log", "who": "Team", "clo": "CLO 1, 3", "what": "A working MVP tested with five users, the changes you made, and a Lean Canvas.", "steps": ["Pick the riskiest assumption.", "Choose the MVP type.", "Test with 5 users; log each.", "Fill the Lean Canvas."], "tool": "Canva \u00b7 Figma \u00b7 Microsoft Forms", "rubric": "MVP 8 \u00b7 Tests 8 \u00b7 Canvas 6 \u00b7 Clarity 3", "ask": ["What is an MVP?", "Which MVP type should we build?", "What is a Lean Canvas?"]}, {"id": "A4", "wk": 14, "t": "Demo Day pitch + reflection", "who": "Team + individual", "clo": "CLO 2, 4", "what": "A 3-minute pitch with Q&A at Accelerator Day, plus a one-page founder reflection.", "steps": ["Build the story: problem \u2192 customer \u2192 MVP \u2192 ask.", "Rehearse twice with mentors.", "Pitch and answer questions.", "Write your reflection."], "tool": "Canva slides \u00b7 timer", "rubric": "Evidence 5 \u00b7 Market 5 \u00b7 MVP 5 \u00b7 Delivery 5 \u00b7 Reflection 5", "ask": ["How does Accelerator Day work?", "Are CUD Coins graded?", "What goes in the reflection?"]}];</script>
+ 
+<section class="view" id="inclusive" hidden>
+ <div class="eyebrow">Inclusive learning · students of determination</div>
+ <h2 style="font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%;margin:6px 0 6px">Same course, more ways in</h2>
+ <p class="tip" style="margin-bottom:16px">Built on the three UDL principles (CAST, UDL Guidelines 3.0). Adjustments for individual students follow CUD's student-support process.</p>
+ <div class="udl"><div><b>Engagement</b><span>Why learn: real problems, team roles, choice.</span></div><div><b>Representation</b><span>How to see it: pictures, simple words, read-aloud.</span></div><div><b>Action &amp; expression</b><span>How to show it: draw, say or write.</span></div></div>
+ <div class="inc-grid">
+  <div class="itile"><h3><span class="n">01</span>Same idea, simpler</h3><p>Every key concept has an Easy-view version: short words and a picture chain.</p>
+   <div class="cmp2"><div class="a"><b>Standard</b><br><i>MVP</i>: a very early prototype of a product, used to learn from customers.</div><div class="b"><b>Easy view</b><br>MVP = a small test version. We show it to users and learn.</div></div>
+   <div class="pics"><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Small version</span><span class="arrow" aria-hidden="true">→</span><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 11a3 3 0 1 0 0-6M17 20h4a5 5 0 0 0-4-5"/></svg>Users try it</span><span class="arrow" aria-hidden="true">→</span><span class="pic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>We learn</span></div></div>
+  <div class="itile"><h3><span class="n">02</span>Visual schedule</h3><p>The session plan as pictures, shown at the start, so nothing is a surprise.</p>
+   <div class="vsched"><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Fun fact</span><span class="now"><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg>Idea</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg>Video</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 11a3 3 0 1 0 0-6M17 20h4a5 5 0 0 0-4-5"/></svg>Team work</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Share</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>Exit ticket</span></div></div>
+  <div class="itile"><h3><span class="n">03</span>Small steps, with a timer</h3><p>Big tasks are cut into ticks. A visual timer shows time left.</p>
+   <div class="chunk"><label><input type="checkbox">1. Read the challenge card</label><label><input type="checkbox">2. Write one problem</label><label><input type="checkbox">3. Share it with your team</label></div></div>
+  <div class="itile"><h3><span class="n">04</span>Choose how to show it</h3><p>The same learning outcome, three ways to show it. The rubric marks the idea, not the format.</p>
+   <div class="choose" id="choose"><button type="button" data-c="0" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c3-6 6 2 9-4s5-2 9-6"/></svg>Draw</button><button type="button" data-c="1" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Say</button><button type="button" data-c="2" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Write</button></div>
+   <p id="chooseOut" style="margin-top:10px;color:var(--ink)"></p></div>
+  <div class="itile"><h3><span class="n">05</span>Teamwork with clear roles</h3><p>Fixed roles with one-line scripts mean every student knows what to do and say. Roles rotate weekly.</p>
+   <div class="vsched"><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Leader</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Timekeeper</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg>Recorder</span><span><svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Speaker</span></div></div>
+  <div class="itile"><h3><span class="n">06</span>Sentence starters</h3><p>Tap a starter to begin. It helps students who freeze on a blank page.</p>
+   <div class="starters" id="starters"><button type="button">Our customers are…</button><button type="button">Our riskiest assumption is…</button><button type="button">We will test it by…</button><button type="button">We learned that…</button></div>
+   <textarea id="startOut" aria-label="Your answer"></textarea></div>
+ </div>
+</section>
+</main><button class="asst-btn" type="button" id="asstBtn" aria-expanded="false">Ask me</button>
+<div class="asst" id="asst" hidden role="dialog" aria-label="Course assistant"><div class="msgs" id="msgs"></div>
+<form id="askf"><input id="askq" placeholder="Ask about the course" aria-label="Your question"><button class="pbtn solid" type="submit">Ask</button></form></div><footer class="wrap">Proposal for discussion · Canadian University Dubai · ENT 141–142: General Education · ENT 241–242: Business · Eng. Nadia Mek</footer><script>window.KB=[{"q": "What is an MVP?", "k": "mvp minimum viable product define", "a": "\u201cA very early prototype of a product\u201d (OpenStax \u00a710.1): the smallest test that teaches you the most.", "go": "lecture", "gl": "the lecture"}, {"q": "Which MVP type should we build?", "k": "which mvp type choose video landing concierge", "a": "Start from your riskiest assumption. The MVP picker in the lab suggests a type in two questions.", "go": "lab", "gl": "the lab"}, {"q": "How does Accelerator Day work?", "k": "accelerator day demo day coins invest investors", "a": "Week 14: teams pitch for 3 minutes. Students invest 100,000 CUD Coins, partners 500,000. Max 40% in one team, none in your own.", "go": "lab", "gl": "the lab"}, {"q": "Are CUD Coins graded?", "k": "coins graded grade money raised", "a": "No. The pitch is graded on the rubric. The most-funded team wins an incubator fast-track.", "go": "project", "gl": "the project guide"}, {"q": "How many interviews?", "k": "interview how many customers", "a": "Five customers at the partner site, plus a short Microsoft Form survey.", "go": "project", "gl": "the project guide"}, {"q": "How do I write survey questions?", "k": "survey questions form write bias", "a": "Short, one idea per question, no leading words. Pilot your form with another team first (Week 3).", "go": "home", "gl": "the calendar"}, {"q": "What is a persona?", "k": "persona personas customer profile", "a": "A profile of a typical customer, built only from what real customers told you.", "go": "", "gl": ""}, {"q": "Can I use AI for research?", "k": "ai chatgpt copilot research use allowed", "a": "Yes, to find and summarise sources. Every number must be checked at its original source. No source, no number.", "go": "project", "gl": "the project guide"}, {"q": "What is TAM SAM SOM?", "k": "tam sam som market size", "a": "Total market, the part you can serve, and the part you can realistically win. Taught in Week 6.", "go": "home", "gl": "the calendar"}, {"q": "Where do I find UAE data?", "k": "uae data statistics source open data dubai", "a": "UAE open data, the Dubai Statistics Center, company reports and your partner's own data via the incubator.", "go": "", "gl": ""}, {"q": "What is a Lean Canvas?", "k": "lean canvas business model", "a": "A one-page business model: problem, customers, solution, channels, costs, revenue. Week 11 (Byers Ch. 5).", "go": "project", "gl": "the project guide"}, {"q": "What goes in the reflection?", "k": "reflection founder career skills", "a": "One page: the skills you built, what you would do differently, and your next step. Part of A4.", "go": "project", "gl": "the project guide"}, {"q": "Where do challenges come from?", "k": "challenge partner solve it incubator", "a": "From CUD partners on the incubator's Solve It board. Teams pick one in Week 1.", "go": "", "gl": ""}, {"q": "What is Easy view?", "k": "easy view simple sen determination accessibility read aloud", "a": "A simpler version of every scene: short words, pictures and read-aloud. Switch it on at the top.", "go": "inclusive", "gl": "inclusive learning"}, {"q": "I missed a class", "k": "missed absent absence class", "a": "Email the professor within 48 hours. A make-up slot is arranged for accepted absences.", "go": "home", "gl": "the FAQ"}, {"q": "Which tools do we use?", "k": "tool tools canva figma forms software", "a": "Canva and Figma (free education plans), Microsoft Forms (CUD account), and an AI assistant for research.", "go": "lab", "gl": "the lab"}];window.CHOOSE=["Draw: sketch your MVP on one page and label what you left out.", "Say: a 60-second voice note: our riskiest assumption and how we will test it.", "Write: three sentences: assumption, MVP type, success metric."];</script><script>
 (function(){
  var tabs=[].slice.call(document.querySelectorAll('.tabs [role=tab]'));
  function show(id,push){tabs.forEach(function(t){var on=t.dataset.v===id;t.setAttribute('aria-selected',on);document.getElementById(t.dataset.v).hidden=!on;});
@@ -428,6 +644,83 @@ show(4);})();
  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.v,true);window.scrollTo({top:0});});});
  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go,true);window.scrollTo({top:0});});});
  var h=((window.__hash)||location.hash||'').slice(1); show(tabs.some(function(t){return t.dataset.v===h;})?h:tabs[0].dataset.v,false);
+})();
+
+(function(){
+ var body=document.body;
+ function show(id){var t=document.querySelector('.tabs [data-v="'+id+'"]'); if(t) t.click();}
+ window.goTab=show;
+ // easy view
+ var eb=document.getElementById('easyBtn');
+ try{if(localStorage.getItem('easyView')==='1'){body.classList.add('easy');eb.setAttribute('aria-pressed','true');}}catch(e){}
+ eb.addEventListener('click',function(){var on=!body.classList.contains('easy');body.classList.toggle('easy',on);eb.setAttribute('aria-pressed',on);try{localStorage.setItem('easyView',on?'1':'0');}catch(e){} render();});
+ // session timeline
+ var S=window.SEGS||[], sp=document.getElementById('spanel');
+ var ICON={teacher:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"7\" r=\"3.5\"/><path d=\"M5 21v-3a7 7 0 0 1 14 0v3\"/></svg>",students:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"8\" r=\"3\"/><circle cx=\"16\" cy=\"8\" r=\"3\"/><path d=\"M2 20a6 6 0 0 1 12 0M10 20a6 6 0 0 1 12 0\"/></svg>",tool:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 21h8M12 17v4\"/></svg>",heart:"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z\"/></svg>"};
+ function seg(i){var s=S[i];document.querySelectorAll('.sbar button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.i==i);});
+  sp.innerHTML='<div><div class="lab2">'+ICON.teacher+'Teacher</div><p>'+s.teacher+'</p></div><div><div class="lab2">'+ICON.students+'Students</div><p>'+s.students+'</p></div><div><div class="lab2">'+ICON.tool+'Tool</div><p>'+s.tool+'</p></div><div class="inc"><div class="lab2">'+ICON.heart+'Inclusion</div><p>'+s.inc+'</p></div>';}
+ document.querySelectorAll('.sbar button').forEach(function(b){b.addEventListener('click',function(){seg(+b.dataset.i);});});
+ if(S.length) seg(0);
+ // lecture player
+ var SC=window.SCENES||[], cur=0, stage=document.getElementById('stage'), dots=document.getElementById('dots'), lis=document.getElementById('listen');
+ dots.innerHTML=SC.map(function(_,i){return '<button type="button" aria-label="Scene '+(i+1)+'" data-s="'+i+'"></button>';}).join('');
+ function render(){ if(!SC.length) return; var s=SC[cur], easy=body.classList.contains('easy');
+  stage.innerHTML='<div class="sc2"><div><div class="k">'+(cur+1)+' / '+SC.length+' · '+s.k+'</div><h3>'+s.h+'</h3><p class="std">'+s.p+'</p><p class="ez">'+s.e+'</p>'+(s.pics||'')+(s.src?'<div class="src">'+s.src+'</div>':'')+'</div><div class="vis">'+s.v+'</div></div>';
+  dots.querySelectorAll('button').forEach(function(d,i){d.className=i===cur?'on':(i<cur?'done':'');});
+  document.getElementById('prev').disabled=cur===0; document.getElementById('next').textContent=cur===SC.length-1?'Done':'Next →';
+  stage.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){show(b.dataset.go);});});
+  var vf=stage.querySelector('[data-yt]'); if(vf){var embed=!/claude|anthropic/.test(location.hostname)&&location.protocol.indexOf('http')===0; if(embed){vf.outerHTML='<iframe class="vframe" src="https://www.youtube-nocookie.com/embed/'+vf.dataset.yt+'" title="'+vf.dataset.t+'" allowfullscreen></iframe>';}}
+ }
+ window.renderScene=render;
+ dots.addEventListener('click',function(e){var b=e.target.closest('button');if(b){cur=+b.dataset.s;stop();render();}});
+ document.getElementById('prev').addEventListener('click',function(){if(cur>0){cur--;stop();render();}});
+ document.getElementById('next').addEventListener('click',function(){if(cur<SC.length-1){cur++;stop();render();}});
+ function stop(){try{speechSynthesis.cancel();}catch(e){} lis.setAttribute('aria-pressed','false');}
+ lis.addEventListener('click',function(){ if(!('speechSynthesis' in window)){lis.textContent='No audio here';return;}
+  if(lis.getAttribute('aria-pressed')==='true'){stop();return;}
+  var s=SC[cur], u=new SpeechSynthesisUtterance(s.h+'. '+(body.classList.contains('easy')?s.e:s.p.replace(/<[^>]+>/g,'')));u.lang='en-GB';u.rate=body.classList.contains('easy')?0.85:1;
+  u.onend=function(){lis.setAttribute('aria-pressed','false');}; lis.setAttribute('aria-pressed','true'); speechSynthesis.speak(u);});
+ render();
+ // studio step nav
+ document.querySelectorAll('.stepnav').forEach(function(nav){var btns=[].slice.call(nav.querySelectorAll('button'));
+  function go(i){btns.forEach(function(b,k){b.setAttribute('aria-selected',k===i);document.getElementById(b.dataset.st).hidden=k!==i;});}
+  btns.forEach(function(b,k){b.addEventListener('click',function(){go(k);});}); go(0);
+  document.querySelectorAll('[data-next]').forEach(function(n){n.addEventListener('click',function(){go(+n.dataset.next);nav.scrollIntoView({behavior:'smooth'});});});});
+ // roles
+ var rot=document.getElementById('rotate'), shift=0;
+ if(rot) rot.addEventListener('click',function(){var n=[].slice.call(document.querySelectorAll('#names input')).map(function(i){return i.value||'—';});
+  document.querySelectorAll('.who').forEach(function(w){w.textContent=n[(+w.dataset.role+shift)%n.length];}); shift++; rot.textContent='Rotate for next week';});
+ // timers
+ document.querySelectorAll('.timer').forEach(function(t){var total=+t.dataset.mins*60,left=total,iv=null,ring=t.querySelector('.ring'),tt=t.querySelector('.tt');
+  function draw(){tt.textContent=Math.floor(left/60)+':'+('0'+left%60).slice(-2);ring.setAttribute('stroke-dashoffset',326.7*(1-left/total));}
+  t.querySelector('.tstart').addEventListener('click',function(){if(iv){clearInterval(iv);iv=null;this.textContent='Start';return;} this.textContent='Pause';var me=this;iv=setInterval(function(){if(left>0){left--;draw();}else{clearInterval(iv);iv=null;me.textContent='Start';}},1000);});
+  t.querySelector('.treset').addEventListener('click',function(){left=total;draw();});});
+ // project guide
+ var P=window.PROJ||[], pd=document.getElementById('pdetail');
+ function proj(i){var p=P[i];document.querySelectorAll('.proj button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.p==i);});
+  pd.innerHTML='<div><span class="demo-flag" style="color:var(--red);background:var(--red-soft)">'+p.id+' · Week '+p.wk+' · '+p.who+'</span><h3 style="margin-top:8px">'+p.t+'</h3><p>'+p.what+'</p><ol class="steps">'+p.steps.map(function(s){return '<li><span>'+s+'</span></li>';}).join('')+'</ol></div>'+
+  '<div><div class="lab2" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">Tool</div><p><b>'+p.tool+'</b></p><div class="lab2" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px">Rubric /25</div><p>'+p.rubric+'</p>'+
+  '<div class="lab2" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px">Stuck? Ask the assistant</div><div class="ask">'+p.ask.map(function(q){return '<button type="button">'+q+'</button>';}).join('')+'</div>'+
+  '<div style="margin-top:14px"><a class="smallbtn solid" href="#" onclick="return false" title="Moodle link added when the course opens">Submit on Moodle</a></div></div>';
+  pd.querySelectorAll('.ask button').forEach(function(b){b.addEventListener('click',function(){openA();ask(b.textContent);});});}
+ document.querySelectorAll('.proj button').forEach(function(b){b.addEventListener('click',function(){proj(+b.dataset.p);});});
+ if(P.length) proj(0);
+ // assistant
+ var KB=window.KB||[], box=document.getElementById('asst'), msgs=document.getElementById('msgs'), ab=document.getElementById('asstBtn'), greeted=false;
+ function add(cls,h){var d=document.createElement('div');d.className=cls;d.innerHTML=h;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+ function chips(list){var d=add('bot','<div class="chips">'+list.map(function(q){return '<button type="button">'+q+'</button>';}).join('')+'</div>');d.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){ask(b.textContent);});});}
+ function openA(){box.hidden=false;ab.setAttribute('aria-expanded','true');if(!greeted){greeted=true;add('bot',"Hi! I'm your course assistant. Not smarter than you, but taller: I can see the whole course from the top. 😄 I won't do the work for you, but I'll make your life easier.");chips(KB.slice(0,4).map(function(k){return k.q;}));}}
+ ab.addEventListener('click',function(){if(box.hidden)openA();else{box.hidden=true;ab.setAttribute('aria-expanded','false');}});
+ function norm(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,' ');}
+ function ask(q){add('me',q.replace(/</g,'&lt;'));var w=norm(q).split(/\s+/).filter(function(x){return x.length>2;}),best=null,bs=0;
+  KB.forEach(function(k){var sc=0,hay=norm(k.q+' '+k.k);w.forEach(function(x){if(hay.indexOf(x)>=0)sc++;});if(sc>bs){bs=sc;best=k;}});
+  if(best&&bs>0){var d=add('bot',best.a+(best.go?' <a href="#" data-g="'+best.go+'">Open '+best.gl+' →</a>':''));var l=d.querySelector('[data-g]');if(l)l.addEventListener('click',function(e){e.preventDefault();show(l.dataset.g);});}
+  else{add('bot',"I'm tall, but not that tall 😄 Try one of these:");chips(KB.slice(0,5).map(function(k){return k.q;}));}}
+ window.askAssistant=ask;
+ document.getElementById('askf').addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('askq');if(i.value.trim()){ask(i.value.trim());i.value='';}});
+ // inclusive tiles
+ var CH=window.CHOOSE||[];document.querySelectorAll('#choose button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('#choose button').forEach(function(x){x.setAttribute('aria-pressed',x===b);});document.getElementById('chooseOut').textContent=CH[+b.dataset.c];});});
+ document.querySelectorAll('#starters button').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById('startOut');t.value+=(t.value?'\n':'')+b.textContent+' ';t.focus();});});
 })();
 
 (function(){
@@ -450,5 +743,14 @@ show(4);})();
   inputs.forEach(function(r){var i=r.querySelector('input');total[r.dataset.t]+=(+i.value||0);i.value=0;});check();board();err.textContent='';});
  document.getElementById('reset').addEventListener('click',function(){total=JSON.parse(JSON.stringify(seed));inputs.forEach(function(r){r.querySelector('input').value=0;});check();board();});
  check();board();
+})();
+
+(function(){
+ var ans={};var REC={want:{1:['Explainer video','Show the idea in 60 seconds and count sign-ups, like Dropbox.'],3:['Landing page','A one-page site with a “join” button. Measure clicks.']},pay:{1:['Pre-order test','Take small deposits or pledges before you build.'],3:['Concierge MVP','Deliver the service by hand to 5 paying customers.']},do:{1:['Wizard of Oz','Customers see a product; your team does the work behind it.'],3:['One-feature MVP','Build only the core feature and test it with 5 users.']}};
+ document.querySelectorAll('.wiz .opts').forEach(function(g){g.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){g.querySelectorAll('button').forEach(function(x){x.classList.toggle('sel',x===b);});ans[g.dataset.q]=b.dataset.v;
+  if(ans.a&&ans.b){var r=REC[ans.a][ans.b];document.getElementById('rec').innerHTML='<span class="tip">Try this MVP</span><b>'+r[0]+'</b><span>'+r[1]+'</span>';}});});});
+ var rows=[].slice.call(document.querySelectorAll('.tlog tbody tr'));
+ function cnt(){var n=rows.filter(function(r){return [].slice.call(r.querySelectorAll('input')).every(function(i){return i.value.trim();});}).length;document.getElementById('logp').textContent=n+' / 5 tests logged'+(n===5?' · ready for the Lean Canvas':'');}
+ rows.forEach(function(r){r.querySelectorAll('input').forEach(function(i){i.addEventListener('input',cnt);});});
 })();
 </script></body></html>
