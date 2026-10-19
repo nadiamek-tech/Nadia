@@ -1,0 +1,315 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style><title>ENT 142 Syllabus Review</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"><style>
+/* Layout: a single reading column; the course journey runs left to right as four year columns; reviews are two-up (current | proposed). */
+:root{
+  --paper:#f4f4f2; --card:#ffffff; --ink:#16171a; --muted:#5b5e66; --line:#dcdcd7;
+  --red:#b0141f; --red-soft:#f8e4e5; --green:#1c6a50; --green-soft:#e1f1e9; --amber:#8a5a00; --amber-soft:#f8ecd6;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none}
+.by{font-size:14px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-stretch:110%;text-decoration:none;border-radius:6px;padding:14px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-size:17px}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:64px}
+
+/* concept page */
+.hero{padding-block:56px 32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end}
+.big4{font-family:var(--display);font-weight:900;font-stretch:62%;font-size:clamp(150px,24vw,280px);line-height:.78;color:var(--red)}
+.hero h1{font-size:clamp(40px,6.4vw,84px);font-weight:800;font-stretch:125%;letter-spacing:-.01em}
+.hero p{max-width:58ch;color:var(--muted);margin:14px 0 0;font-size:19px}
+.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:0;margin-top:24px;border-top:2px solid var(--ink)}
+.yr{padding:18px 18px 22px 0;border-right:1px solid var(--line);position:relative;min-width:0}
+.yr+.yr{padding-left:18px}
+.yr::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.yr+.yr::before{left:18px}
+.yr.on::before{background:var(--red);border-color:var(--red)}
+.yr .code{font-family:var(--mono);font-weight:700;font-size:15px;margin-top:10px}
+.yr h3{font-size:30px;font-weight:800;font-stretch:115%;margin-top:6px}
+.yr p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.yr .tag{display:inline-block;margin-top:10px;font-size:12px;font-family:var(--mono);color:var(--amber);background:var(--amber-soft);padding:2px 8px;border-radius:4px}
+.grad{padding:18px 0 22px 18px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;max-width:170px}
+.grad b{font-family:var(--display);font-stretch:115%;font-size:22px;line-height:1.1}
+.grad span{color:var(--muted);font-size:14px;margin-top:6px}
+.sec{margin-top:72px}
+.sec h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;font-stretch:112%}
+.sec .lead{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.eco{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+.eco svg{display:block;width:100%;min-width:640px;height:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.pill{border-left:4px solid var(--red);padding:4px 0 4px 16px}
+.pill h3{font-size:21px;font-stretch:110%}
+.pill p{margin:6px 0 0;color:var(--muted)}
+.courses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
+.course{display:flex;flex-direction:column;gap:6px;text-decoration:none;border:2px solid var(--line);border-radius:8px;padding:20px;background:var(--card);min-height:180px}
+.course .code{font-family:var(--display);font-weight:900;font-stretch:90%;font-size:38px;line-height:1}
+.course .t{color:var(--muted);font-size:15px}
+.course .go{margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:700}
+.course.live{border-color:var(--red)}
+.course.live .go{color:var(--red)}
+.course.live:hover{background:var(--red-soft)}
+.course.soon{opacity:.62;cursor:default}
+.courses.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.courses.three{grid-template-columns:minmax(0,1fr)}}
+
+/* review page */
+.rhead{padding-block:40px 8px}
+.rhead h1{font-size:clamp(36px,5.4vw,64px);font-weight:800;font-stretch:120%}
+.rhead p{color:var(--muted);max-width:60ch;margin:10px 0 0}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+nav.parts{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:20px}
+nav.parts .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+nav.parts a{flex:none;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:5px;border:1px solid var(--line);background:var(--card);white-space:nowrap}
+nav.parts a:hover{border-color:var(--ink)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.part{padding-top:48px;scroll-margin-top:60px}
+.ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ph .n{font-family:var(--mono);font-weight:700;color:var(--muted)}
+.ph h2{font-size:clamp(24px,3vw,34px);font-weight:800;font-stretch:112%}
+.verdict{font-family:var(--mono);font-size:12px;font-weight:700;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em}
+.v-keep{color:var(--green);background:var(--green-soft)}
+.v-change{color:var(--red);background:var(--red-soft)}
+.v-move{color:var(--amber);background:var(--amber-soft)}
+.why{margin:10px 0 0;color:var(--muted);max-width:75ch}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.side{min-width:0}
+.side .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-top:3px solid}
+.old .lab{color:var(--red);border-color:var(--red)}
+.new .lab{color:var(--green);border-color:var(--green)}
+.shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+.zoomhint{font-size:13px;color:var(--muted);margin-top:6px}
+.newbox{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+.newbox p{margin:0 0 10px}
+.newbox p:last-child{margin-bottom:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td.w{font-family:var(--mono);font-weight:700;width:2.5em}
+td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+.chip{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:1px}
+.c-new{color:var(--green);background:var(--green-soft)}
+.c-due{color:var(--card);background:var(--red)}
+tr.due td{background:var(--red-soft)}
+.sub{font-size:13px;color:var(--muted);margin-top:2px}
+.note{font-size:14px!important;margin-top:10px!important;font-style:italic}
+.strip{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;margin-bottom:6px}
+.sc{border:1px solid var(--line);border-radius:4px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4px 0;font-size:11px;min-width:0}
+.sc .sw{font-family:var(--mono);color:var(--muted)}
+.sc.due{background:var(--red);border-color:var(--red);color:var(--card)}
+.sc.due .sw{color:var(--card);opacity:.85}
+td.nw{white-space:nowrap}
+@media (max-width:520px){.sc .sp{display:none}.sc{min-height:44px}td.who{display:none}th.who{display:none}}
+.sc b{font-family:var(--mono);font-size:12px;margin-top:4px}
+.sc .sp{font-size:10.5px}
+.striplab{font-size:13px;color:var(--muted);margin-bottom:14px}
+.c-move{color:var(--amber);background:var(--amber-soft)}
+.studio{color:var(--muted)}
+.moved{margin-top:12px;font-size:15px;padding:10px 12px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
+.moved b{color:var(--amber)}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:4px 0}
+.tick{color:var(--green);font-weight:700;text-align:center}
+.endcta{margin-top:72px;padding:36px;border-radius:10px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.endcta h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;font-stretch:115%}
+.endcta p{margin:8px 0 0;opacity:.75}
+.endcta .btn{background:var(--red);border-color:var(--red);color:#fff}
+.endcta .btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+dialog{border:none;padding:0;max-width:min(96vw,1000px);max-height:92vh;border-radius:8px;background:#fff}
+dialog img{display:block;width:100%;height:auto}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+dialog form{position:sticky;top:0;display:flex;justify-content:flex-end;padding:8px;background:#fff;border-bottom:1px solid #ddd}
+dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;border:1px solid #333;background:#fff;color:#111;cursor:pointer}
+
+/* simulation placeholder */
+.simbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.simbtns div{border:2px solid var(--line);border-radius:8px;padding:22px;background:var(--card)}
+.simbtns b{font-family:var(--display);font-stretch:115%;font-size:24px;display:block}
+.simbtns span{color:var(--muted);font-size:14px}
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.wk{border:1px solid var(--line);border-radius:6px;padding:12px;background:var(--card);min-width:0}
+.wk .w{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red)}
+.wk b{display:block;font-size:15px;margin-top:4px;line-height:1.25}
+.wk span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.wk.key{border-color:var(--red)}
+
+@media (max-width:900px){
+  .track{grid-template-columns:1fr}
+  .yr{border-right:none;border-bottom:1px solid var(--line);padding-left:30px!important}
+  .yr::before,.yr+.yr::before{left:0;top:24px}
+  .grad{max-width:none;padding-left:30px}
+  .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cmp,.pair{grid-template-columns:minmax(0,1fr)}
+  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .simbtns{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  .hero{grid-template-columns:1fr;gap:6px}
+  .courses{grid-template-columns:minmax(0,1fr)}
+  .endcta{padding:24px}
+}
+@media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
+</style></head><body>
+<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="by">Eng. Nadia Mek</span></header>
+<div class="wrap rhead">
+ <a class="eyebrow" href="index.html">← 4 Years From Now</a>
+ <h1>ENT 142 · Year 2: Validate</h1>
+ <p>Part-by-part review of the current syllabus. The left column shows the current syllabus; the right column shows the proposed version.</p>
+ <div class="legend"><span><i class="dot" style="background:var(--green)"></i>Keep / new</span><span><i class="dot" style="background:var(--red)"></i>Change</span></div>
+</div>
+<nav class="parts" aria-label="Syllabus parts"><div class="wrap"><a href="#solveit">Solve It</a><a href="#description">Description</a><a href="#clos">CLOs</a><a href="#weeks1">Weeks 1–8</a><a href="#weeks2">Weeks 9–16</a><a href="#mvp">MVP</a><a href="#market">Market</a><a href="#pitch">Pitching</a><a href="#textbook">Textbook</a><a href="#weights">Weights</a><a href="#rubric">Rubric</a></div></nav>
+<main class="wrap">
+<section class="part" id="solveit">
+ <div class="ph"><span class="n">00</span><h2>Solve It @ CUD</h2><span class="verdict v-keep">New</span></div>
+ <p class="why">CUD partners (cafés, shops, companies) post real problems on the incubator's Solve It board. ENT 142 teams pick one and solve it, step by step.</p>
+ <div class="eco">
+<svg viewBox="0 0 960 170" role="img" aria-label="A partner posts a challenge, students solve it, the partner can pilot the result">
+ <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+ <g fill="none" stroke="var(--muted)" stroke-width="1.4">
+  <path d="M184 62H214" marker-end="url(#ar2)"/><path d="M374 62H404" marker-end="url(#ar2)"/><path d="M564 62H594" marker-end="url(#ar2)"/><path d="M754 62H784" marker-end="url(#ar2)"/>
+  <path d="M864 98V140H104V98" marker-end="url(#ar2)"/>
+ </g>
+ <g font-family="var(--display)" font-weight="800" font-size="16" text-anchor="middle" fill="var(--ink)">
+  <rect x="24" y="26" width="160" height="72" rx="8" fill="var(--card)" stroke="var(--ink)" stroke-width="1.4"/><text x="104" y="56">Partner</text>
+  <rect x="214" y="26" width="160" height="72" rx="8" fill="var(--card)" stroke="var(--ink)" stroke-width="1.4"/><text x="294" y="56">Incubator</text>
+  <rect x="404" y="26" width="160" height="72" rx="8" fill="var(--red-soft)" stroke="var(--red)" stroke-width="2"/><text x="484" y="56">ENT 142 teams</text>
+  <rect x="594" y="26" width="160" height="72" rx="8" fill="var(--card)" stroke="var(--ink)" stroke-width="1.4"/><text x="674" y="56">MVP</text>
+  <rect x="784" y="26" width="160" height="72" rx="8" fill="var(--card)" stroke="var(--ink)" stroke-width="1.4"/><text x="864" y="56">Accelerator Day</text>
+ </g>
+ <g font-size="13" text-anchor="middle" fill="var(--muted)">
+  <text x="104" y="78">café, shop, company</text><text x="294" y="78">posts the challenge</text><text x="484" y="78">customers · market</text><text x="674" y="78">built and tested</text><text x="864" y="78">simulated funding</text>
+  <text x="484" y="160">best solutions go back to the partner as a pilot, with the incubator</text>
+ </g>
+</svg></div>
+ <p class="note" style="color:var(--muted)">Inspired by Soolvit, an open-innovation platform that turns company challenges into guided hackathons with prizes.</p>
+</section>
+
+<section class="part" id="description">
+ <div class="ph"><span class="n">01</span><h2>Course description</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">From a sector-wide social venture to one real challenge from a real partner.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-description.png" aria-label="Enlarge: Old ENT 142 course description"><img src="img/e142-description.png" alt="Old ENT 142 course description"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><p>ENT 142 turns a real problem into a tested solution. Teams take a challenge posted by a CUD partner business on the incubator's Solve It board, meet its customers, analyse the market with AI tools and verified UAE data, then build and test an MVP.</p><p>The course ends at Accelerator Day, where teams pitch to student, partner and incubator investors.</p></div></div>
+ </div>
+</section>
+<section class="part" id="clos">
+ <div class="ph"><span class="n">02</span><h2>Learning outcomes</h2><span class="verdict v-keep">Keep</span></div>
+ <p class="why">The CLOs stay word for word. Each one is assessed by a clear assignment.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-clos.png" aria-label="Enlarge: Old ENT 142 CLO table"><img src="img/e142-clos.png" alt="Old ENT 142 CLO table"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><div class="tw"><table><thead><tr><th>CLO</th><th>Assessed by</th><th>Due</th></tr></thead><tbody><tr><td class='w'>1</td><td>A1 Customer discovery · A3 MVP</td><td class='nw'>Wk 4, 11</td></tr><tr><td class='w'>3</td><td>A2 Market analysis · A3 MVP</td><td class='nw'>Wk 7, 11</td></tr><tr><td class='w'>2</td><td>A4 Demo Day pitch</td><td class='nw'>Wk 14</td></tr><tr><td class='w'>4</td><td>A4 Founder reflection</td><td class='nw'>Wk 14</td></tr></tbody></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="weeks1">
+ <div class="ph"><span class="n">03</span><h2>Schedule · weeks 1–8</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">No more recapping ENT 141. Customers and the market are now taught as real skills, with field work at the partner site and AI-assisted research.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-weeks1.png" aria-label="Enlarge: Old ENT 142 schedule weeks 1 to 8"><img src="img/e142-weeks1.png" alt="Old ENT 142 schedule weeks 1 to 8"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><div class="tw"><table><thead><tr><th>Wk</th><th>Concept (30 min)</th><th>Lab, in class</th></tr></thead><tbody><tr><td class="w">1</td><td>Solve It @ CUD: real partner challenges from the incubator <span class="chip c-new">new</span></td><td class="studio">Read the challenge board · form teams · pick one challenge</td></tr><tr><td class="w">2</td><td>Customers: who has the problem? Jobs, pains, gains <span class="chip c-new">new</span></td><td class="studio">Interview script · first partner visit</td></tr><tr><td class="w">3</td><td>Interviews and short surveys</td><td class="studio">Interview at the partner site · launch a Microsoft Form</td></tr><tr class="due"><td class="w">4</td><td>Personas built from evidence</td><td class="studio"><span class="chip c-due">A1</span> Create A1: Customer discovery</td></tr><tr><td class="w">5</td><td>Market analysis with AI: sources, prompts, checking every number <span class="chip c-new">new</span></td><td class="studio">AI desk-research lab with UAE open data</td></tr><tr><td class="w">6</td><td>Market size (TAM, SAM, SOM) and competitors</td><td class="studio">Size the market · competition matrix</td></tr><tr class="due"><td class="w">7</td><td>Impact: triple bottom line and SDGs for the venture</td><td class="studio"><span class="chip c-due">A2</span> Create A2: Market analysis</td></tr><tr><td class="w">8</td><td>MVP types · teardown of an incubator startup's first MVP <span class="chip c-new">new</span></td><td class="studio">Take one real MVP apart, then plan your own</td></tr></tbody></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="weeks2">
+ <div class="ph"><span class="n">04</span><h2>Schedule · weeks 9–16</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">Five pitching weeks and four reflection weeks become a real MVP build and test, then proper pitch training ending at Accelerator Day.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-weeks2.png" aria-label="Enlarge: Old ENT 142 schedule weeks 9 to 16"><img src="img/e142-weeks2.png" alt="Old ENT 142 schedule weeks 9 to 16"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><div class="tw"><table><thead><tr><th>Wk</th><th>Concept (30 min)</th><th>Lab, in class</th></tr></thead><tbody><tr><td class="w">9</td><td>Build the MVP: no-code, Canva, Figma, landing page <span class="chip c-new">new</span></td><td class="studio">Build session</td></tr><tr><td class="w">10</td><td>Test with users: build, measure, learn</td><td class="studio">Five user tests · test log</td></tr><tr class="due"><td class="w">11</td><td>Iterate · Lean Canvas</td><td class="studio"><span class="chip c-due">A3</span> Create A3: MVP + test log</td></tr><tr><td class="w">12</td><td>Pitch structure and storytelling</td><td class="studio">Draft a 3-minute pitch</td></tr><tr><td class="w">13</td><td>Pitch training: delivery, slides, Q&A <span class="chip c-new">new</span></td><td class="studio">Rehearsal rounds · mentor and partner feedback</td></tr><tr class="due"><td class="w">14</td><td>Accelerator Day: investors, stickers, simulated funding</td><td class="studio"><span class="chip c-due">A4</span> Create A4: Demo Day pitch + founder reflection</td></tr><tr><td class="w">15</td><td>Results, partner feedback, hand-over to ENT 241</td><td class="studio">No graded work</td></tr><tr><td class="w">16</td><td>No new work (exam period for other courses)</td><td class="studio">Optional consultation</td></tr></tbody></table></div><div class="moved"><b>Removed:</b> the Week 1 design thinking recap, the separate reflection weeks (now one page inside A4), and the "Project 3" listed in the schedule, which does not exist.</div></div></div>
+ </div>
+</section>
+<section class="part" id="mvp">
+ <div class="ph"><span class="n">05</span><h2>MVP: learn from a real one first</h2><span class="verdict v-keep">New</span></div>
+ <p class="why">The MVP is the hardest step, so students first take apart the first MVP of a startup from the incubator, then plan their own.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-prototyping.png" aria-label="Enlarge: Old ENT 142 Week 5: prototyping"><img src="img/e142-prototyping.png" alt="Old ENT 142 Week 5: prototyping"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><ul class='clean'><li><b>Teardown (Wk 8):</b> what did they build first, what did they leave out, what did they learn from users?</li><li><b>Rebuild (Wk 9):</b> the same MVP type applied to the team's own challenge.</li><li><b>Test (Wk 10):</b> five real users from the partner, one change after each test.</li><li><b>Cases:</b> MVPs supplied by the CUD Incubator.</li></ul></div></div>
+ </div>
+</section>
+<section class="part" id="market">
+ <div class="ph"><span class="n">06</span><h2>Market and customers</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">"Market analysis" was one line in the report. It becomes taught and practised: AI tools for speed, primary sources for truth.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-methodology.png" aria-label="Enlarge: Old ENT 142 assessment methodology"><img src="img/e142-methodology.png" alt="Old ENT 142 assessment methodology"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><ul class='clean'><li><b>Customers:</b> interviews at the partner site plus a short Microsoft Form; personas built only from what customers said.</li><li><b>AI research lab:</b> students use AI assistants to find and summarise sources, then check each number against the original (UAE open data, Dubai Statistics Center, company reports).</li><li><b>Rule:</b> no source, no number.</li><li><b>Output:</b> market size, competition matrix and social and economic impact (CLO 3).</li></ul></div></div>
+ </div>
+</section>
+<section class="part" id="pitch">
+ <div class="ph"><span class="n">07</span><h2>Pitching: an accelerator simulation</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">A pitch to the instructor becomes Accelerator Day: proper training first, then real-feeling investors.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-presentation.png" aria-label="Enlarge: Old ENT 142 presentation rubric"><img src="img/e142-presentation.png" alt="Old ENT 142 presentation rubric"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><ul class='clean'><li><b>Training (Wk 12–13):</b> structure, storytelling, slides, timing, and Q&amp;A drills with mentors.</li><li><b>Investors:</b> every student and guest gets 100,000 CUD Coins as stickers; partners and incubator judges get 500,000.</li><li><b>Rules:</b> no investing in your own team; at most 40% of your coins in one team.</li><li><b>Live board:</b> funds raised per team, shown on screen.</li><li><b>Prize:</b> the most-funded team gets an incubator fast-track. Coins are not graded.</li></ul></div></div>
+ </div>
+</section>
+<section class="part" id="textbook">
+ <div class="ph"><span class="n">08</span><h2>Textbook and readings</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">Byers stays, because ENT 142 is where its venture content belongs. Practical MVP and testing books are added; the generic international-business journal list goes.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-textbook.png" aria-label="Enlarge: Old ENT 142 textbook list"><img src="img/e142-textbook.png" alt="Old ENT 142 textbook list"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><ul class='clean'><li><b>Core (kept):</b> Byers, Dorf &amp; Nelson (2019), <i>Technology Ventures</i>, 5th ed.</li><li><b>MVP and testing:</b> Bland &amp; Osterwalder (2019), <i>Testing Business Ideas</i>, Wiley</li><li><b>CUD reading:</b> Chabani, Askri &amp; Kweh (eds.), <i>Sustainable Innovation in the MENA Region</i>, IGI Global, 2025</li><li><b>Data:</b> UAE open data, Dubai Statistics Center, partner data</li><li><b>Kept:</b> Liedtka et al. (2017); Traifeh et al. (2021)</li></ul></div></div>
+ </div>
+</section>
+<section class="part" id="weights">
+ <div class="ph"><span class="n">09</span><h2>Assessment weights</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">Now: 40% due in Week 9 and 30% in Week 16. Proposed: four equal assignments spread through the semester, with nothing graded after Week 14.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-weights.png" aria-label="Enlarge: Old ENT 142 assessment weights"><img src="img/e142-weights.png" alt="Old ENT 142 assessment weights"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><div class="strip" role="img" aria-label="Four assignments of 25% each, due in weeks 4, 7, 11, 14"><div class="sc"><span class="sw">1</span></div><div class="sc"><span class="sw">2</span></div><div class="sc"><span class="sw">3</span></div><div class="sc due"><span class="sw">4</span><b>A1</b><span class="sp">25%</span></div><div class="sc"><span class="sw">5</span></div><div class="sc"><span class="sw">6</span></div><div class="sc due"><span class="sw">7</span><b>A2</b><span class="sp">25%</span></div><div class="sc"><span class="sw">8</span></div><div class="sc"><span class="sw">9</span></div><div class="sc"><span class="sw">10</span></div><div class="sc due"><span class="sw">11</span><b>A3</b><span class="sp">25%</span></div><div class="sc"><span class="sw">12</span></div><div class="sc"><span class="sw">13</span></div><div class="sc due"><span class="sw">14</span><b>A4</b><span class="sp">25%</span></div><div class="sc"><span class="sw">15</span></div><div class="sc"><span class="sw">16</span></div></div><div class="striplab">Semester weeks · one assignment every 3–4 weeks · nothing due in Weeks 15–16</div><div class="tw"><table><thead><tr><th>Assignment</th><th class="who">Who</th><th>CLO</th><th>Due</th><th style="text-align:right">%</th></tr></thead><tbody><tr><td><b>A1</b> · Customer discovery<div class='sub'>Interviews and a short survey with the partner's customers; two personas; top three pains.</div></td><td class='who'>Team</td><td class='nw'>CLO 1</td><td class='nw'>Wk 4</td><td class='num'>25</td></tr><tr><td><b>A2</b> · Market analysis<div class='sub'>AI-assisted research with every number traced to a source: market size, competitors, social and economic impact.</div></td><td class='who'>Team</td><td class='nw'>CLO 3</td><td class='nw'>Wk 7</td><td class='num'>25</td></tr><tr><td><b>A3</b> · MVP + test log<div class='sub'>A working MVP tested with five users, what changed after each test, and a Lean Canvas.</div></td><td class='who'>Team</td><td class='nw'>CLO 1, 3</td><td class='nw'>Wk 11</td><td class='num'>25</td></tr><tr><td><b>A4</b> · Demo Day pitch + reflection<div class='sub'>A 3-minute pitch with Q&A at Accelerator Day, plus a one-page founder reflection on skills and career.</div></td><td class='who'>Team + individual</td><td class='nw'>CLO 2, 4</td><td class='nw'>Wk 14</td><td class='num'>25</td></tr><tr><th colspan='3'>Total</th><td class='who'></td><td class='num'>100</td></tr></tbody></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="rubric">
+ <div class="ph"><span class="n">10</span><h2>Demo Day rubric</h2><span class="verdict v-change">Change</span></div>
+ <p class="why">The 45-second video pitch is dropped. The Demo Day rubric grades evidence and delivery, not how many coins a team raised.</p>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" data-src="img/e142-activity2.png" aria-label="Enlarge: Old ENT 142 video pitch rubric"><img src="img/e142-activity2.png" alt="Old ENT 142 video pitch rubric"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Proposed</div><div class="newbox"><div class="tw"><table><thead><tr><th>A4 · criterion</th><th style="text-align:right">Marks</th></tr></thead><tbody><tr><td>Problem and customer evidence</td><td class='num'>5</td></tr><tr><td>Market, with sourced numbers</td><td class='num'>5</td></tr><tr><td>MVP and test results</td><td class='num'>5</td></tr><tr><td>Delivery, timing and Q&amp;A</td><td class='num'>5</td></tr><tr><td>Founder reflection (individual)</td><td class='num'>5</td></tr><tr><th>Total</th><td class='num'>25</td></tr></tbody></table></div></div></div>
+ </div>
+</section>
+ <section class="endcta">
+  <div><h2>See the new ENT 142</h2><p>A simulation of the course built on the new syllabus.</p></div>
+  <a class="btn" href="ent142-new.html">Open the new course →</a>
+ </section>
+</main>
+<footer class="wrap">Proposal for discussion · School of Management, Canadian University Dubai · Eng. Nadia Mek</footer>
+<dialog id="zoom"><form method="dialog"><button>Close</button></form><img id="zoomimg" alt=""></dialog>
+<script>
+(function(){var d=document.getElementById('zoom'),im=document.getElementById('zoomimg');
+document.querySelectorAll('.shot').forEach(function(b){b.addEventListener('click',function(){im.src=b.dataset.src;im.alt=b.querySelector('img').alt;if(d.showModal)d.showModal();});});
+d.addEventListener('click',function(e){if(e.target===d)d.close();});})();
+</script></body></html>
