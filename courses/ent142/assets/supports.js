@@ -5,6 +5,7 @@
   const KEY='learning-supports', root=document.documentElement;
   /* [key, label, what changes, why (evidence), method?] method = changes how practice works (page reloads) */
   const SW=[
+    ['easy','Easy version','Short steps with numbers, a sentence starter for each task, read-aloud, and worksheets one part at a time.','Explicit step-by-step instruction, worked starters and less on screen support students with learning differences (Universal Design for Learning).'],
     ['guided','Guided steps','Each practice question becomes a short step-by-step routine, with the model answer shown one step at a time.','Problem-solving routines (Montague, 2008) and step-by-step worked examples with “which rule is this?” prompts (Atkinson, Renkl & Merrill, 2003).',1],
     ['single','One question at a time','Practice shows one question, a progress count and a short self-check before moving on.','Smaller chunks reduce working-memory load; self-monitoring helps students stay on task (Scheithauer & Kelley, 2017).',1],
     ['calmstart','Calm start','A 2-minute “write your worries” box before practice; answers become “compare with model working”.','Expressive writing before a test raised anxious students’ scores (Ramirez & Beilock, 2011); low-stakes retrieval practice lowers test anxiety (Agarwal et al., 2014).',1],
@@ -24,6 +25,7 @@
   ];
   /* one tap = one need; each card turns on a few settings */
   const PRESETS=[
+    ['Easy version','Short steps, starters, read aloud',['easy','words','catchup','voice','font','space']],
     ['Step by step','Guided solving',['guided','numbers']],
     ['One thing at a time','Less on screen',['single','focus','motion']],
     ['Calm mode','No scores, calm start',['calmstart','calm','motion']],
@@ -110,7 +112,7 @@ body.full .ls-btn{display:none}`;
     else if(dimEl) dimEl.remove(); }
   let fontLink=null;
   function apply(){ tint();
-    SW.forEach(([k])=>{ if(st[k]) root.setAttribute('data-sup-'+k,''); else root.removeAttribute('data-sup-'+k); });
+    SW.forEach(([k])=>{ if(st[k]) root.setAttribute('data-sup-'+k,''); else root.removeAttribute('data-sup-'+k); }); if(window.__ezlast!==undefined&&window.__ezlast!==!!st.easy){ setTimeout(()=>location.reload(),150); } window.__ezlast=!!st.easy;
     if(st.font&&!fontLink){ fontLink=document.createElement('link'); fontLink.rel='stylesheet'; fontLink.href='https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap'; document.head.appendChild(fontLink); }
     const b=document.querySelector('.ls-btn'); if(b){ if(SW.some(([k])=>st[k])||(st.rate&&st.rate!==1)||(st.tint&&st.tint!=='none')||+st.dim) b.setAttribute('data-on',''); else b.removeAttribute('data-on'); }
   }

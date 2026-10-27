@@ -68,6 +68,14 @@ textarea.sf{min-height:64px}
 .rsec{counter-increment:rs}
 .report .sz .no{content:counter(rs)}
 @media (max-width:720px){.spaper{grid-template-columns:minmax(0,1fr);padding:14px}.sw{padding:0 0 70px}.sw h1,.sw .lead,.sw .eb,.sbar,.sexnote{margin-left:16px;margin-right:16px}.sbar{top:50px}.sprog{margin-left:0;width:100%}.stbl,.stbl tbody,.stbl tr{display:block}.stbl thead{display:none}.stbl td{display:block;padding:2px 0}.stbl td.rl{padding-top:8px}}
+.spaper.ezmode .sz:not(.ezcur){display:none}
+.spaper.ezmode{grid-template-columns:minmax(0,1fr)}
+.spaper.ezmode .sz{font-size:17px;border-color:#1d4ed8}
+.spaper.ezmode .sf{font-size:17px;padding:10px 12px}
+.spaper .say{border:1.5px solid #1d4ed8;background:#fff;color:#1d4ed8;border-radius:999px;padding:3px 9px;font:700 11px var(--f-display);cursor:pointer;margin-left:8px;text-transform:none;letter-spacing:0}
+.ezstart{grid-column:1/-1;margin:0;font-size:16px}.ezstart span{background:#EEF6FF;border:1.5px dashed #1d4ed8;border-radius:8px;padding:3px 8px}
+.eznav{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;font:700 14px var(--f-display)}
+.eznav button[disabled]{opacity:.4}
 @media print{
   @page{size:A4 portrait;margin:10mm}
   body>*:not(#sprint){display:none!important}

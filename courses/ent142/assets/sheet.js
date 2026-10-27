@@ -60,6 +60,22 @@ function mount(spec){
       return '<section class="sz '+(b.span||spec.layout==='report'?'span':'')+(b.keyz?' key':'')+'" data-k="'+b.key+'"><span class="no">'+n+'</span>'+(b.type!=='timer'?'<span class="tick">✓</span>':'')+'<h4>'+esc(b.title)+'</h4>'+q+body(b,D[b.key],ed)+'</section>'; }).join('')+'</div>';
     if(ed) wire(el);
     counts(el,D);
+    if(el===root&&window.Easy&&Easy.on()) easy(el);
+  }
+  /* Easy version: one part at a time, read aloud, sentence starter */
+  let cur=0;
+  function easy(el){
+    const zs=[...el.querySelectorAll('.sz')]; if(!zs.length) return;
+    el.querySelector('.spaper').classList.add('ezmode');
+    zs.forEach((z,i)=>{ const h=z.querySelector('h4'), q=z.querySelector('.sq'); const b=document.createElement('button'); b.type='button'; b.className='say'; b.textContent='Listen';
+      b.onclick=()=>Easy.say(h.textContent+'. '+(q?q.textContent:'')); h.appendChild(b); });
+    if(spec.starter){ const s=document.createElement('p'); s.className='ezstart'; s.innerHTML='Sentence starter: <span>'+esc(spec.starter)+'</span>'; el.querySelector('.shd').after(s); }
+    const nav=document.createElement('div'); nav.className='eznav';
+    nav.innerHTML='<button type="button" class="ubtn ghost" data-ez="-1">← Back</button><span></span><button type="button" class="ubtn" data-ez="1">Next part →</button>';
+    el.querySelector('.spaper').appendChild(nav);
+    const show=()=>{ cur=Math.max(0,Math.min(zs.length-1,cur)); zs.forEach((z,i)=>z.classList.toggle('ezcur',i===cur)); nav.querySelector('span').textContent='Part '+(cur+1)+' of '+zs.length; nav.querySelector('[data-ez="-1"]').disabled=cur===0; nav.querySelector('[data-ez="1"]').textContent=cur===zs.length-1?'Done ✓':'Next part →'; };
+    nav.addEventListener('click',e=>{ const b=e.target.closest('[data-ez]'); if(!b) return; cur+=+b.dataset.ez; show(); window.scrollTo({top:el.offsetTop-80,behavior:'smooth'}); });
+    show();
   }
   function counts(el,D){
     spec.blocks.forEach(b=>{

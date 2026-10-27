@@ -30,7 +30,7 @@ body{font-family:var(--f-display);background:var(--bg);color:var(--ink);margin:0
 .pz .no{cursor:pointer}
 @media (max-width:720px){.pw{padding:0 0 60px}.pw h1,.pw .lead,.bar,.exnote{margin-left:16px;margin-right:16px}.bar{top:50px}.prog{margin-left:0;width:100%}}
 </style>
-</head>
+<script src="assets/easy.js"></script></head>
 <body>
 <div id="hub" data-cur="project"></div>
 <main class="pw" id="pw">
@@ -77,5 +77,5 @@ draw();
 function hl(){ const m=location.hash.match(/^#z([1-8])$/); if(!m) return; const z=document.getElementById('z'+m[1]); if(!z) return; z.classList.add('hl'); z.scrollIntoView({block:'center'}); const f=z.querySelector('.pf'); if(f) setTimeout(()=>f.focus({preventScroll:true}),300); setTimeout(()=>z.classList.remove('hl'),2600); }
 window.addEventListener('hashchange',hl); hl();
 </script>
-<link rel="stylesheet" href="assets/extras.css"><div class="sugbar" style="position:fixed;bottom:0;left:0;right:0;z-index:5">Suggested course preview · <a href="index.html">course home</a></div></body>
+<link rel="stylesheet" href="assets/extras.css"><link rel="stylesheet" href="assets/easy.css"><div class="sugbar" style="position:fixed;bottom:0;left:0;right:0;z-index:5">Suggested course preview · <a href="index.html">course home</a></div></body>
 </html>
