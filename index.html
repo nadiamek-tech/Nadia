@@ -25,6 +25,21 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
 .btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{color:var(--paper)}
+.stamp{display:inline-block;font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:3px double var(--green);border-radius:6px;padding:6px 10px;transform:rotate(-4deg);background:var(--card);white-space:nowrap}
+.stamp.big{font-size:14px;padding:10px 14px;transform:rotate(-6deg)}
+.cmt{margin-top:56px;border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:clamp(18px,3vw,30px);position:relative}
+.cmt .stamp.big{position:absolute;top:-16px;right:18px}
+.cmt h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%}
+.fmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.fmt div{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.fmt b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.fmt span{font-size:13.5px;color:var(--muted)}
+.fmt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+table.jt td{font-size:14px}
+table.jt td:first-child{white-space:nowrap;font-weight:700}
+.sylbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:900px){.fmt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.fmt{grid-template-columns:minmax(0,1fr)}}
 footer .sig{display:block;margin-top:6px;font-size:11px;opacity:.7}
 footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:64px}
 
@@ -192,7 +207,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 }
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
 </style>
-<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a></header>
+<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="stamp" title="Updated after the committee feedback">Updated · 27 Oct 2026</span></header>
 <main class="wrap">
  <section class="hero">
   <div class="big4" aria-hidden="true">4</div>
@@ -207,10 +222,31 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   <div class="grad"><b>Graduation</b><span>Founder-ready, or job-ready with real venture evidence.</span></div>
  </div>
 
+
+ <section class="cmt" id="committee">
+  <span class="stamp big">Updated · 27 Oct 2026</span>
+  <div class="eyebrow">Committee feedback · applied</div>
+  <h2>What the Dean and the committee decided</h2>
+  <p class="lead">The committee kept the four-year journey and the problem-first approach, named each stage, and set a hands-on activity for every week.</p>
+  <div class="fmt">
+   <div><i>ENT 141 · GED</i><b>Discover &amp; Design</b><span>1-hour lecture + 1-hour lab</span></div>
+   <div><i>ENT 142 · GED</i><b>Build &amp; Test</b><span>2-hour lab (unchanged)</span></div>
+   <div><i>ENT 241 · Business</i><b>Analyze &amp; Plan</b><span>Theory and strategic planning</span></div>
+   <div><i>ENT 242 · Business</i><b>Validate &amp; Launch</b><span>Lab and market application</span></div>
+  </div>
+  <div class="tw"><table class="jt"><thead><tr><th>Course</th><th>Venture journey</th><th>Key experiential activities</th><th>Guest speakers and workshops</th></tr></thead><tbody>
+   <tr><td>ENT 141</td><td>Mindset → Observe → Question → Discover problems → Ideate → Associate / Biomimicry → Open innovation → Select → Prototype</td><td>Problem Hunt; brainstorming; biomimicry and associating; rapid prototyping; Innovation Challenge</td><td>Young founder talk; creativity, brainstorming and biomimicry workshop; Gallery Walk</td></tr>
+   <tr><td>ENT 142</td><td>MVP → Experiment → Real users → Feedback → Learn → Iterate → Desirability / Feasibility / Viability</td><td>MVP Build Sprint; user-testing workshop; live Innovation Exhibition; Build–Measure–Learn; pitch practice</td><td>Product designer / founder talk; rapid prototyping and MVP workshop; live exhibition</td></tr>
+   <tr><td>ENT 241</td><td>Opportunity → VPC → PESTLE → Competition → Business models → IP → Business plan</td><td>Futures thinking; business model innovation; franchising; IP workshop; business-plan clinic</td><td>Franchisor, IP specialist, investor; investor-readiness workshops</td></tr>
+   <tr><td>ENT 242</td><td>Validate → License → Commercialize → Scale → Demo Day → Investor pitch → Continue / Pivot / Incubate</td><td>Startup setup workshop; scaling simulation; market-testing Demo Day; incubation decision</td><td>Licensing expert, serial entrepreneur; Demo Day with external investor panel</td></tr>
+  </tbody></table></div>
+  <p class="tip" style="margin-top:10px">External engagement in every course: hackathons, innovation challenges and competitions at CUD and UAE level.</p>
+  <div class="sylbtns"><a class="btn" href="ent141-syllabus.html">Open the full ENT 141 syllabus →</a><a class="btn ghost" href="ent142-syllabus.html">Open the full ENT 142 syllabus →</a></div>
+ </section>
  <section class="sec feature">
   <div class="eyebrow">Syllabus reviews · General Education (GED)</div>
   <h2>Before and after: ENT 141 and ENT 142</h2>
-  <p class="lead">Each review sets the current syllabus beside the suggested one, part by part, and ends with a demo of the new course.</p>
+  <p class="lead">Each review sets the current syllabus beside the suggested one, part by part, with the full new syllabus and a demo of the new course.</p>
   <div class="courses"><a class="course live" href="ent141.html"><span class="code">ENT 141</span><span class="t">Fundamentals of Innovation & Entrepreneurship 1</span><span class="go">Review + course demo →</span></a><a class="course live" href="ent142.html"><span class="code">ENT 142</span><span class="t">Fundamentals of Innovation & Entrepreneurship 2</span><span class="go">Review + course demo →</span></a></div>
  </section>
 

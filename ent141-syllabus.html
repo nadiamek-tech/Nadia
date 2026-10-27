@@ -1,0 +1,301 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}
+.paper{background:#fff;color:#111;font-family:Calibri,Carlito,"Segoe UI",Arial,sans-serif;font-size:14.5px;line-height:1.4;max-width:900px;margin:24px auto;padding:48px 56px;border:1px solid #ccc;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.paper h1{font-size:22px;text-align:center;margin:0 0 4px;font-family:inherit;font-stretch:normal}
+.paper .sub{text-align:center;margin:0 0 18px}
+.paper h2{font-size:15.5px;text-transform:uppercase;margin:22px 0 8px;display:flex;gap:22px;font-family:inherit;font-stretch:normal;font-weight:700}
+.paper h3{font-size:15px;margin:14px 0 6px;display:flex;gap:22px;font-family:inherit;font-stretch:normal;font-weight:700}
+.paper p{margin:0 0 8px;text-align:justify}
+.paper table{border-collapse:collapse;width:100%;margin:6px 0 10px;font-size:13.5px}
+.paper th,.paper td{border:1px solid #111;padding:4px 6px;vertical-align:top;text-align:left;color:#111;background:#fff;font-family:inherit;text-transform:none;letter-spacing:0;font-size:13.5px}
+.paper th{background:#c00000;color:#fff;text-align:center;font-weight:700}
+.paper td.c{text-align:center}
+.paper td.k{font-weight:700;width:30%;background:#fff}
+.paper ul,.paper ol{margin:2px 0 8px;padding-left:22px}
+.paper tr.due td{background:#fdf0f0}
+.paper .hl{background:#fff4c2;padding:0 3px}
+.paper .chg{font-size:12px;color:#1e8a4f;font-weight:700}
+.paper [contenteditable="true"]{outline:none}
+.editing .paper{box-shadow:0 0 0 3px #1e8a4f}
+.dbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);border-bottom:1px solid var(--line)}
+.dbar .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-block:10px}
+.dbar .sp{flex:1}
+.dbar .msg{font-size:13px;color:var(--muted)}
+.dbtn{font:700 14px var(--body);border:1.5px solid var(--ink);background:var(--card);color:var(--ink);border-radius:6px;padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-flex}
+.dbtn.solid{background:var(--ink);color:var(--paper)}
+.dbtn[aria-pressed="true"]{background:#1e8a4f;border-color:#1e8a4f;color:#fff}
+@media (max-width:700px){.paper{padding:22px 16px;margin:12px 0}.paper table{display:block;overflow-x:auto}}
+@media print{.dbar,header.top,footer,.noprint{display:none!important}.paper{border:none;box-shadow:none;margin:0;padding:0;max-width:none}body{background:#fff}}
+</style><title>ENT 141 Suggested Syllabus</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"><style>
+/* Layout: a single reading column; the course journey runs left to right as four year columns; reviews are two-up (current | proposed). */
+:root{
+  --paper:#f4f4f2; --card:#ffffff; --ink:#16171a; --muted:#5b5e66; --line:#dcdcd7;
+  --red:#b0141f; --red-soft:#f8e4e5; --green:#1c6a50; --green-soft:#e1f1e9; --amber:#8a5a00; --amber-soft:#f8ecd6;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none}
+.by{font-size:14px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-stretch:110%;text-decoration:none;border-radius:6px;padding:14px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-size:17px}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.stamp{display:inline-block;font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:3px double var(--green);border-radius:6px;padding:6px 10px;transform:rotate(-4deg);background:var(--card);white-space:nowrap}
+.stamp.big{font-size:14px;padding:10px 14px;transform:rotate(-6deg)}
+.cmt{margin-top:56px;border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:clamp(18px,3vw,30px);position:relative}
+.cmt .stamp.big{position:absolute;top:-16px;right:18px}
+.cmt h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%}
+.fmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.fmt div{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.fmt b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.fmt span{font-size:13.5px;color:var(--muted)}
+.fmt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+table.jt td{font-size:14px}
+table.jt td:first-child{white-space:nowrap;font-weight:700}
+.sylbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:900px){.fmt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.fmt{grid-template-columns:minmax(0,1fr)}}
+footer .sig{display:block;margin-top:6px;font-size:11px;opacity:.7}
+footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:64px}
+
+/* concept page */
+.hero{padding-block:56px 32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end}
+.big4{font-family:var(--display);font-weight:900;font-stretch:62%;font-size:clamp(150px,24vw,280px);line-height:.78;color:var(--red)}
+.hero h1{font-size:clamp(40px,6.4vw,84px);font-weight:800;font-stretch:125%;letter-spacing:-.01em}
+.hero p{max-width:58ch;color:var(--muted);margin:14px 0 0;font-size:19px}
+.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:0;margin-top:24px;border-top:2px solid var(--ink)}
+.yr{padding:18px 18px 22px 0;border-right:1px solid var(--line);position:relative;min-width:0}
+.yr+.yr{padding-left:18px}
+.yr::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.yr+.yr::before{left:18px}
+.yr.on::before{background:var(--red);border-color:var(--red)}
+.yr .code{font-family:var(--mono);font-weight:700;font-size:15px;margin-top:10px}
+.yr h3{font-size:30px;font-weight:800;font-stretch:115%;margin-top:6px}
+.yr p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.yr .tag{display:inline-block;margin-top:10px;font-size:12px;font-family:var(--mono);color:var(--amber);background:var(--amber-soft);padding:2px 8px;border-radius:4px}
+.grad{padding:18px 0 22px 18px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;max-width:170px}
+.grad b{font-family:var(--display);font-stretch:115%;font-size:22px;line-height:1.1}
+.grad span{color:var(--muted);font-size:14px;margin-top:6px}
+.sec{margin-top:72px}
+.sec h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;font-stretch:112%}
+.sec .lead{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.eco{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+.eco svg{display:block;width:100%;min-width:640px;height:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.pill{border-left:4px solid var(--red);padding:4px 0 4px 16px}
+.pill h3{font-size:21px;font-stretch:110%}
+.pill p{margin:6px 0 0;color:var(--muted)}
+.courses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
+.course{display:flex;flex-direction:column;gap:6px;text-decoration:none;border:2px solid var(--line);border-radius:8px;padding:20px;background:var(--card);min-height:180px}
+.course .code{font-family:var(--display);font-weight:900;font-stretch:90%;font-size:38px;line-height:1}
+.course .t{color:var(--muted);font-size:15px}
+.course .go{margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:700}
+.course.live{border-color:var(--red)}
+.course.live .go{color:var(--red)}
+.course.live:hover{background:var(--red-soft)}
+.feature .course.live{min-height:210px;border-width:3px}
+.feature .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.feature .courses{grid-template-columns:minmax(0,1fr)}}
+.feature .course.live .code{font-size:46px}
+.smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
+.smallbtn:hover{border-color:var(--red);color:var(--red)}
+/* suggested syllabus, drawn in the CUD syllabus template */
+.doc{position:relative;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:26px 18px 18px;font-family:Calibri,Carlito,"Segoe UI",Arial,sans-serif;font-size:14.5px;line-height:1.35}
+.doc .sticker{position:absolute;top:-13px;right:14px;transform:rotate(3deg);background:#1e8a4f;color:#fff;font:800 12px/1 var(--mono);letter-spacing:.12em;padding:7px 12px;border-radius:4px;box-shadow:0 2px 0 #145f36;border:2px dashed rgba(255,255,255,.55)}
+.doc .h{font-weight:700;text-transform:uppercase;margin:0 0 8px;display:flex;gap:18px}
+.doc .h2{font-weight:700;margin:10px 0 6px;display:flex;gap:18px}
+.doc p{margin:0 0 8px;text-align:justify}
+.doc .dt{overflow-x:auto}
+.doc table{border-collapse:collapse;width:100%;font-size:13.5px;margin:4px 0 8px}
+.doc th,.doc td{border:1px solid #111;padding:4px 6px;vertical-align:top;text-align:left;color:#111;background:#fff;text-transform:none;letter-spacing:0;font-family:inherit;font-size:13.5px}
+.doc th{background:#c00000;color:#fff;font-weight:700;text-align:center}
+.doc td.c{text-align:center}
+.doc td:first-child{white-space:nowrap}
+.doc td b{font-weight:700}
+.doc ul{margin:2px 0 0;padding-left:16px}
+.doc ol{margin:0 0 8px;padding-left:20px}
+.doc ol li{margin:3px 0}
+.doc .lbl{font-weight:700}
+.doc .fn{font-style:italic;font-size:12.5px}
+.course.soon{opacity:.62;cursor:default}
+.courses.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.courses.three{grid-template-columns:minmax(0,1fr)}}
+
+/* review page */
+.rhead{padding-block:40px 8px}
+.rhead h1{font-size:clamp(36px,5.4vw,64px);font-weight:800;font-stretch:120%}
+.rhead p{color:var(--muted);max-width:60ch;margin:10px 0 0}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+nav.parts{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:20px}
+nav.parts .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+nav.parts a{flex:none;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:5px;border:1px solid var(--line);background:var(--card);white-space:nowrap}
+nav.parts a:hover{border-color:var(--ink)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.part{padding-top:48px;scroll-margin-top:60px}
+.ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ph .n{font-family:var(--mono);font-weight:700;color:var(--muted)}
+.ph h2{font-size:clamp(24px,3vw,34px);font-weight:800;font-stretch:112%}
+.verdict{font-family:var(--mono);font-size:12px;font-weight:700;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em}
+.v-keep{color:var(--green);background:var(--green-soft)}
+.v-change{color:var(--red);background:var(--red-soft)}
+.v-move{color:var(--amber);background:var(--amber-soft)}
+.why{margin:10px 0 0;color:var(--muted);max-width:75ch}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.side{min-width:0}
+.side .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-top:3px solid}
+.old .lab{color:var(--red);border-color:var(--red)}
+.new .lab{color:var(--green);border-color:var(--green)}
+.shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+.zoomhint{font-size:13px;color:var(--muted);margin-top:6px}
+.newbox{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+.newbox p{margin:0 0 10px}
+.newbox p:last-child{margin-bottom:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td.w{font-family:var(--mono);font-weight:700;width:2.5em}
+td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+.chip{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:1px}
+.c-new{color:var(--green);background:var(--green-soft)}
+.c-due{color:var(--card);background:var(--red)}
+tr.due td{background:var(--red-soft)}
+.sub{font-size:13px;color:var(--muted);margin-top:2px}
+.note{font-size:14px!important;margin-top:10px!important;font-style:italic}
+.strip{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;margin-bottom:6px}
+.sc{border:1px solid var(--line);border-radius:4px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4px 0;font-size:11px;min-width:0}
+.sc .sw{font-family:var(--mono);color:var(--muted)}
+.sc.due{background:var(--red);border-color:var(--red);color:var(--card)}
+.sc.due .sw{color:var(--card);opacity:.85}
+td.nw{white-space:nowrap}
+@media (max-width:520px){.sc .sp{display:none}.sc{min-height:44px}td.who{display:none}th.who{display:none}}
+.sc b{font-family:var(--mono);font-size:12px;margin-top:4px}
+.sc .sp{font-size:10.5px}
+.striplab{font-size:13px;color:var(--muted);margin-bottom:14px}
+.c-move{color:var(--amber);background:var(--amber-soft)}
+.studio{color:var(--muted)}
+.moved{margin-top:12px;font-size:15px;padding:10px 12px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
+.moved b{color:var(--amber)}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:4px 0}
+.tick{color:var(--green);font-weight:700;text-align:center}
+.endcta{margin-top:72px;padding:36px;border-radius:10px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.endcta h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;font-stretch:115%}
+.endcta p{margin:8px 0 0;opacity:.75}
+.endcta .btn{background:var(--red);border-color:var(--red);color:#fff}
+.endcta .btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+dialog{border:none;padding:0;max-width:min(96vw,1000px);max-height:92vh;border-radius:8px;background:#fff}
+dialog img{display:block;width:100%;height:auto}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+dialog form{position:sticky;top:0;display:flex;justify-content:flex-end;padding:8px;background:#fff;border-bottom:1px solid #ddd}
+dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;border:1px solid #333;background:#fff;color:#111;cursor:pointer}
+
+/* simulation placeholder */
+.simbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.simbtns div{border:2px solid var(--line);border-radius:8px;padding:22px;background:var(--card)}
+.simbtns b{font-family:var(--display);font-stretch:115%;font-size:24px;display:block}
+.simbtns span{color:var(--muted);font-size:14px}
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.wk{border:1px solid var(--line);border-radius:6px;padding:12px;background:var(--card);min-width:0}
+.wk .w{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red)}
+.wk b{display:block;font-size:15px;margin-top:4px;line-height:1.25}
+.wk span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.wk.key{border-color:var(--red)}
+
+@media (max-width:900px){
+  .track{grid-template-columns:1fr}
+  .yr{border-right:none;border-bottom:1px solid var(--line);padding-left:30px!important}
+  .yr::before,.yr+.yr::before{left:0;top:24px}
+  .grad{max-width:none;padding-left:30px}
+  .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cmp,.pair{grid-template-columns:minmax(0,1fr)}
+  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .simbtns{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  .hero{grid-template-columns:1fr;gap:6px}
+  .courses{grid-template-columns:minmax(0,1fr)}
+  .endcta{padding:24px}
+}
+@media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
+</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="stamp" title="Updated after the committee feedback">Updated · 27 Oct 2026</span></header><div class="dbar"><div class="wrap">
+ <a class="dbtn" href="ent141.html">← ENT 141 review</a>
+ <span class="sp"></span>
+ <button class="dbtn" type="button" id="editBtn" aria-pressed="false">Edit text</button>
+ <a class="dbtn" href="files/ENT141-Syllabus-Suggested.docx" download>Download Word (.docx)</a>
+ <a class="dbtn solid" href="files/ENT141-Syllabus-Suggested.pdf" download>Download PDF</a>
+</div><div class="wrap"><p class="msg" id="emsg" style="margin:0 0 8px">Suggested syllabus, assembled from the committee's activities (27 Oct 2026). Use Edit text to try changes on screen; download the Word file to keep editing.</p></div></div><main class="wrap"><article class="paper" id="paper">
+<h1>COURSE SYLLABUS</h1>
+<p class="sub">Academic Year 2026 - 27, Semester – Spring<br><b>ENT 141 – Fundamentals of Innovation and Entrepreneurship 1</b><br><span class="chg">Suggested version · updated 27 October 2026 · for department review</span></p>
+<h2><span>1.</span>Course Information</h2><table><tr><td class="k">Course Title:</td><td>Fundamentals of Innovation and Entrepreneurship 1</td></tr><tr><td class="k">Course Code:</td><td>ENT 141</td></tr><tr><td class="k">Course Identity:</td><td>Discover &amp; Design (Year 1 of the four-course ENT journey)</td></tr><tr><td class="k">Course Credit:</td><td>2-0-2 <span class="hl">credit split to be confirmed by the department</span></td></tr><tr><td class="k">Contact Hours:</td><td>Lec [15 Hrs], Lab/Non-Lec [15 Hrs] Total: 30 Hrs <span class="chg">(1-hour lecture + 1-hour lab weekly)</span></td></tr><tr><td class="k">Course Pre-requisite(s):</td><td>None</td></tr><tr><td class="k">Course Co-requisite(s):</td><td>None</td></tr><tr><td class="k">Course Category:</td><td>University Requirement (GE), General Education</td></tr><tr><td class="k">Course Type:</td><td>Compulsory</td></tr></table>
+<h2><span>2.</span>Faculty Information</h2>
+<table><tr><td class="k">Instructor Name:</td><td>This section will be filled at the time of offering of course.</td></tr><tr><td class="k">Lecture/Lab Timings:</td><td></td></tr><tr><td class="k">Office Location:</td><td></td></tr><tr><td class="k">Office Hours:</td><td></td></tr><tr><td class="k">E-mail:</td><td></td></tr><tr><td class="k">Office Telephone:</td><td></td></tr><tr><td class="k">Course Website:</td><td>Course Website on Moodle</td></tr></table>
+<h2><span>3.</span>Course Details</h2>
+<h3><span>3.1</span>Course Description</h3><p>The course builds an entrepreneurial mindset and the skills to discover and design. Students find real problems on campus, in the UAE and through the CUD Incubator's challenge cards, research them through observation and interviews, and build evidence-based personas. They use design thinking, associating, biomimicry and open innovation to generate and select ideas, turn one concept into a paper prototype, and present it at the Innovation Challenge Final with a 90-day roadmap. Each week has a 1-hour lecture and a 1-hour lab. Business models and market analysis follow in ENT 241.</p>
+<h3><span>3.2</span>Course Learning Outcomes (CLOs) and Alignment to GE Learning Outcomes (GELOs)</h3>
+<p>On successful completion of this course, the student will be able to:</p><table><tr><th colspan="2" style="text-align:left">Course Learning Outcomes (CLOs)</th><th>PLOs</th></tr><tr><td>CLO 1</td><td>Explain the basic concepts of innovation, entrepreneurship, and sustainability, and their value to the society and economy.</td><td class="c"><b>6</b></td></tr><tr><td>CLO 2</td><td>Demonstrate skills of effective teamwork and presentation.</td><td class="c"><b>2</b></td></tr><tr><td>CLO 3</td><td>Evaluate ideas and viable opportunities using the design thinking process.</td><td class="c"><b>1,6</b></td></tr><tr><td>CLO 4</td><td>Identify key elements of the sustainability framework in the proposed innovative opportunities.</td><td class="c"><b>6</b></td></tr></table>
+<h2><span>4.</span>Teaching Schedule</h2><h3><span>4.1</span>Lecture and Lab Schedule</h3><table><tr><th>Week No.</th><th>Topic Covered in Class</th><th>In-Class Activity / Experiential Component (Lab)</th><th>CLOs</th><th>Reference/ Course Material</th><th>Course Assessment</th></tr><tr><td class="c"><b>1</b></td><td><b>Entrepreneurship & Entrepreneurial Mindset</b></td><td>Entrepreneurial Mindset Challenge · guest founder talk</td><td class="c">1</td><td>Laverty &amp; Littel (2020) Ch. 1</td><td class="c"><b></b></td></tr><tr><td class="c"><b>2</b></td><td><b>Innovation & Creativity</b></td><td>Innovation Discovery Skills Challenge · Alternative Uses warm-up</td><td class="c">1</td><td>Laverty &amp; Littel (2020) §4.2</td><td class="c"><b></b></td></tr><tr><td class="c"><b>3</b></td><td><b>Sustainability, Triple Bottom Line & SDGs</b></td><td>SDG Problem Hunt (incubator challenge cards)</td><td class="c">1, 4</td><td>Laverty &amp; Littel (2020) Ch. 3; UN SDGs; Chabani et al. (2025)</td><td class="c"><b></b></td></tr><tr class="due"><td class="c"><b>4</b></td><td><b>Problem Identification & Interview Techniques</b></td><td>Good Interview / Bad Interview role play · Create A1</td><td class="c">3</td><td>Laverty &amp; Littel (2020) Ch. 6</td><td class="c"><b>A1 Innovation &amp; SDG Problem Card</b></td></tr><tr><td class="c"><b>5</b></td><td><b>Primary Research</b></td><td>Get Out of the Classroom Challenge</td><td class="c">3</td><td>Laverty &amp; Littel (2020) Ch. 6</td><td class="c"><b></b></td></tr><tr><td class="c"><b>6</b></td><td><b>Research Analysis</b></td><td>Evidence Wall: pains, behaviours, needs, insights</td><td class="c">3</td><td>Laverty &amp; Littel (2020) Ch. 6</td><td class="c"><b></b></td></tr><tr><td class="c"><b>7</b></td><td><b>User Persona</b></td><td>Persona Evidence Challenge</td><td class="c">3</td><td>Laverty &amp; Littel (2020) Ch. 5</td><td class="c"><b></b></td></tr><tr class="due"><td class="c"><b>8</b></td><td><b>Market Research & Persona</b></td><td>Research Defense · Create A2</td><td class="c">2, 3</td><td>Laverty &amp; Littel (2020) Ch. 5</td><td class="c"><b>A2 Research Defense</b></td></tr><tr><td class="c"><b>9</b></td><td><b>Design Thinking: Define & Ideate</b></td><td>Real Brainstorming Session: HMW → 20–30 ideas</td><td class="c">3</td><td>Stanford d.school; Laverty &amp; Littel (2020) Ch. 6</td><td class="c"><b></b></td></tr><tr><td class="c"><b>10</b></td><td><b>Associating, Biomimicry & Open Innovation</b></td><td>Innovation Inspiration Workshop · open-innovation mini-challenge</td><td class="c">3</td><td>Laverty &amp; Littel (2020) Ch. 4; Sergio &amp; Tariq (cases)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>11</b></td><td><b>Idea Evaluation & Convergent Thinking</b></td><td>Idea Tournament: select and defend one concept</td><td class="c">3, 4</td><td>Traifeh et al. (2021); Laverty &amp; Littel (2020) Ch. 5</td><td class="c"><b></b></td></tr><tr><td class="c"><b>12</b></td><td><b>Paper Prototyping</b></td><td>Rapid Prototyping Workshop · Break My Prototype</td><td class="c">3</td><td>Stanford d.school</td><td class="c"><b></b></td></tr><tr class="due"><td class="c"><b>13</b></td><td><b>Poster + Prototype</b></td><td>Innovation Gallery Walk · Create A3</td><td class="c">2, 3</td><td>Stanford d.school</td><td class="c"><b>A3 Prototype Poster + Gallery Walk</b></td></tr><tr><td class="c"><b>14</b></td><td><b>Idea Refinement</b></td><td>Pivot or Persevere Challenge</td><td class="c">3</td><td>Laverty &amp; Littel (2020) §10.1</td><td class="c"><b></b></td></tr><tr><td class="c"><b>15</b></td><td><b>Implementation Planning</b></td><td>90-Day Venture Roadmap Workshop</td><td class="c">2</td><td>Laverty &amp; Littel (2020) Ch. 2</td><td class="c"><b></b></td></tr><tr class="due"><td class="c"><b>16</b></td><td><b>Final Venture Presentation</b></td><td>Innovation Challenge Final · A4</td><td class="c">2</td><td>Laverty &amp; Littel (2020) Ch. 7</td><td class="c"><b>A4 Innovation Challenge Final</b></td></tr></table><p><i>*Due dates will be included at the time of the offering of the course. All assessments are completed in class.</i></p>
+<h2><span>5.</span>Teaching Pedagogy</h2><p>The course is taught as a weekly 1-hour lecture followed by a 1-hour lab. Each lecture introduces one concept from the textbook through definitions, real UAE examples and a framework applied step by step; each lab is a named, hands-on experiential activity (see Section 4.1). Students work in teams with rotating roles (leader, timekeeper, recorder, speaker) and keep a teamwork log.</p><p><b>Experiential learning:</b> Entrepreneurial Mindset Challenge, Innovation Discovery Skills Challenge, SDG Problem Hunt, Get Out of the Classroom Challenge, Evidence Wall, Research Defense, Real Brainstorming Session, Innovation Inspiration Workshop (biomimicry and open innovation), Idea Tournament, Rapid Prototyping Workshop, Innovation Gallery Walk, Pivot or Persevere Challenge, 90-Day Venture Roadmap Workshop and the Innovation Challenge Final.</p><p><b>Guest speakers and workshops:</b> a founder or young entrepreneur talk; a creativity, brainstorming and biomimicry workshop; the Innovation Challenge and Gallery Walk.</p><p><b>External engagement:</b> students are encouraged to take part in hackathons, innovation challenges and competitions at CUD and UAE level, including challenges published by the CUD Incubator.</p><p><b>Inclusive learning:</b> materials follow Universal Design for Learning: an Easy view with simplified concepts and pictures, read-aloud, step-by-step task cards with visual timers, and a choice of how to show learning (draw, say or write). Individual adjustments follow CUD's student-support process.</p>
+<h2><span>6.</span>Textbook/Reference Book/Course Material</h2><p><b>Textbooks (TB):</b></p><ol type="a"><li>Laverty, M., &amp; Littel, C. (2020). <i>Entrepreneurship</i>. OpenStax. (Free, open textbook.)</li></ol><p><b>Reference Books (RB):</b></p><ol type="a"><li>Neck, H. M., Neck, C. P., &amp; Murray, E. L. <i>Entrepreneurship: The Practice and Mindset</i> (3rd ed.). SAGE.</li><li>Tidd, J., &amp; Bessant, J. <i>Managing Innovation</i>. Wiley.</li><li>Chabani, Z., Askri, S., &amp; Kweh, Q. L. (Eds.) (2025). <i>Sustainable Innovation in the Middle East and North Africa (MENA) Region</i>. IGI Global.</li></ol><p><b>Suggested Readings (SR):</b></p><ol type="a"><li>Sergio, R. P., &amp; Tariq, M. U. <i>Emerging Innovation: Business Transformation in the New Normal, 111 Compact Case Studies</i>.</li><li>Traifeh, H., Abou Refaei, R., von Thienen, J., von Schmieden, K., Mayer, L., Osman, S., &amp; Meinel, C. (2021). Mapping Design Thinking in the Arab World. In <i>Design Thinking Research</i>. Springer, Cham. p. 41-60.</li><li>Stanford d.school design thinking resources.</li></ol>
+<h2><span>7.</span>Learning Resources</h2>
+<p>Course website on Moodle contains class announcements, lecture notes, assignments and submission links. An interactive course website supports the classes with lecture scenes, lab guides and a course assistant; it does not replace classes, attendance or class activities. The CUD Incubator challenge board publishes partner challenges.</p>
+<h2><span>8.</span>Course Assessment and Evaluation</h2>
+<p>The information concerning the appropriate distribution of grade weight amongst various assessment items and their corresponding linkage with the stated CLOs is provided in the following table.</p><table><tr><th colspan="2" rowspan="2">Assessment Items</th><th rowspan="2">Grade Weight (%)</th><th colspan="4">Course Learning Outcomes</th></tr><tr><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><td>A1</td><td>Innovation & SDG problem card (Individual, Week 4)</td><td class="c">25</td><td class="c">✓</td><td class="c"></td><td class="c"></td><td class="c">✓</td></tr><tr><td>A2</td><td>Research defense (Team, Week 8)</td><td class="c">25</td><td class="c"></td><td class="c"></td><td class="c">✓</td><td class="c"></td></tr><tr><td>A3</td><td>Prototype poster + gallery walk (Team, Week 13)</td><td class="c">25</td><td class="c"></td><td class="c"></td><td class="c">✓</td><td class="c"></td></tr><tr><td>A4</td><td>Innovation Challenge Final (Team, Week 16)</td><td class="c">25</td><td class="c"></td><td class="c">✓</td><td class="c"></td><td class="c"></td></tr><tr><td colspan="2"><b>Total</b></td><td class="c"><b>100</b></td><td colspan="4"></td></tr></table>
+<h2><span>9.</span>Assessment Methodology</h2>
+<p>All four assignments follow a block of study and are created in class, so every student practises with the instructor present.</p><p><b>A1 – Innovation & SDG problem card (Individual, Week 4, 25%):</b> One innovation you admire (what changed, which of the 4Ps) and one real problem from the SDG Problem Hunt, mapped to the triple bottom line.</p><p><b>A2 – Research defense (Team, Week 8, 25%):</b> Interview evidence, Evidence Wall insights and an evidence-based persona, defended in class.</p><p><b>A3 – Prototype poster + gallery walk (Team, Week 13, 25%):</b> HMW question, idea tournament result and a paper prototype on a poster, shown at the Gallery Walk.</p><p><b>A4 – Innovation Challenge Final (Team, Week 16, 25%):</b> Problem → evidence → user → ideas → prototype → feedback → 90-day roadmap, presented with the teamwork log.</p>
+
+<h2><span>10.</span>Course Requirements and Policies</h2>
+<p>The students are required to fully understand and observe the following policies of the university.</p>
+<h3><span>10.1</span>Attendance Policy</h3>
+<p>Attending classes is compulsory in all courses. CUD Students will not be allowed to take the final examination if they are absent for 25% or more of the classes in a course. (Students should refer to their respective Department or School/Faculty for additional specific program-related information.)</p>
+<ol type="a"><li>When a student has been absent for 10% of the course an absence reminder would be sent by email.</li><li>When a student has been absent for 20% of the course a second absence reminder would be sent by e-mail</li><li>When a student has been absent for 25% of the course a notice of Failure for Non-Attendance will be sent by email and grade “FA” with Grade Point of 0.0 will be awarded.</li></ol>
+<p>A student with a verifiable and legitimate reason for missing a class (e.g., hospitalization) may request his instructor not to count such an absence towards the 25%. Such excusable absences must be noted in the Course File Attendance Report.</p>
+<p>Should an acceptable explanation for a student’s absenteeism be available, the Dean/Designated Representative of the Faculty concerned may consider the student’s withdrawal without penalty from the particular course. A withdrawal without penalty or any other alpha grade under these circumstances may only be considered with the consent of the Registrar.</p>
+<h3><span>10.2</span>Incomplete Work Policy</h3>
+<p>Students whose course work is at a passing level but who for verifiable reasons beyond their control are unable to finish course work by the end of a term (or the specified end of a course) may be granted a grade of "Incomplete".</p>
+<p>The “I” is not intended to be a permanent grade. It is only a temporary acknowledgment of a legitimate reason for granting a one-time, limited extension to the time normally allowed to complete all course requirements.</p>
+<p>Students have up to 12 calendar months after the scheduled end of the course to complete required additional work as determined by the teacher who assigned the “I”, and to thereby qualify for a passing grade.</p>
+<p>After 12 calendar months, outstanding “I” grades are converted to “F”.</p>
+<p>Thereafter, the student must repeat the course in order to achieve a passing grade.</p>
+<p>The number of “Incomplete” courses allowed per semester is established by the School. Please contact the School for further information.</p>
+<p>NOTE: An Incomplete grade for a pre-requisite course must be completed before the student is allowed to proceed to the higher-level course unless otherwise approved by the appropriate Academic Administrator (Dean or Designate).</p>
+<h3><span>10.3</span>Academic Integrity</h3>
+<p>Cheating refers to attempting or using unauthorized materials or obtaining unauthorized assistance in an academic activity, including all types of examinations or evaluations. This may include impersonating another student; looking at another student’s materials; using unauthorized notes/books/calculators; talking to other students; using communication devices such as mobile phones or any Bluetooth devices.</p>
+<p>Plagiarism includes, but is not limited to, representation of others’ work, lending unauthorized assistance, and using strategies or processes with the aim of attaining dishonest grades on tests or examinations. Students may not submit any material created by or acquired from another person or business. Plagiarizing any type of course work will not be tolerated. All instances of plagiarizing shall be documented, presented to the Head/Dean of the program and to the Registrar, and recorded in the student’s file. The maximum permissible similarity index limit is 20% for the assignments required to be submitted through Turnitin.</p>
+<p>Any violation of the academic integrity policy is a serious offence which will be sanctioned as per the Academic Integrity Policy published in the Student Handbook. Please refer to the Catalogue for further information on student Academic Integrity.</p>
+<h2><span>11.</span>Grading System</h2>
+<p>The University uses the relative grading system which is based on a four-point scale. An overall grade will be assigned on the following grading scale.</p>
+<table><tr><th>Percentage Score</th><th>Alpha Grade</th><th>GPA Points</th><th>Percentage Score</th><th>Alpha Grade</th><th>GPA Points</th></tr>
+<tr><td>90-100</td><td>A+</td><td>4.0</td><td>60-64</td><td>C</td><td>2.0</td></tr>
+<tr><td>80-89</td><td>A</td><td>3.8</td><td>55-59</td><td>D+</td><td>1.5</td></tr>
+<tr><td>75-79</td><td>B+</td><td>3.5</td><td>50-54</td><td>D</td><td>1.0</td></tr>
+<tr><td>70-74</td><td>B</td><td>3.0</td><td>0-49</td><td>F</td><td>0.0</td></tr>
+<tr><td>65-69</td><td>C+</td><td>2.5</td><td></td><td></td><td></td></tr></table>
+<p>The students must also read and comprehend the full version of the “Grading System” of the University which is published in the relevant Catalogue.</p>
+
+<h2><span>12.</span>Grading Rubrics for Assessed Elements</h2><p style="text-align:center"><b>Grading Rubric for A1: Innovation & SDG problem card</b></p><table><tr><th>Criteria</th><th>Excellent (100–81%)</th><th>Good (80–51%)</th><th>Weak (50–0%)</th></tr><tr><td><b>Innovation and what changed</b> (7 marks)</td><td>Names one clear change, precisely.</td><td>The change is named but vague.</td><td>No clear change.</td></tr><tr><td><b>Innovation type (4Ps)</b> (6 marks)</td><td>Correct type, justified against the other three.</td><td>Correct type, weak reason.</td><td>Wrong type or no reason.</td></tr><tr><td><b>Real problem with evidence</b> (6 marks)</td><td>Problem seen or heard in the Problem Hunt.</td><td>Problem stated, little evidence.</td><td>No real problem.</td></tr><tr><td><b>Triple bottom line and SDG</b> (6 marks)</td><td>People, planet, profit and a fitting SDG.</td><td>Partly mapped.</td><td>Not mapped.</td></tr><tr><td colspan="4" style="text-align:right"><b>Total: /25</b></td></tr></table><p style="text-align:center"><b>Grading Rubric for A2: Research defense</b></p><table><tr><th>Criteria</th><th>Excellent (100–81%)</th><th>Good (80–51%)</th><th>Weak (50–0%)</th></tr><tr><td><b>Evidence</b> (8 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Insights</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Persona</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Defense</b> (5 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td colspan="4" style="text-align:right"><b>Total: /25</b></td></tr></table><p style="text-align:center"><b>Grading Rubric for A3: Prototype poster + gallery walk</b></p><table><tr><th>Criteria</th><th>Excellent (100–81%)</th><th>Good (80–51%)</th><th>Weak (50–0%)</th></tr><tr><td><b>Ideas</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Selection</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Prototype</b> (7 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Feedback used</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td colspan="4" style="text-align:right"><b>Total: /25</b></td></tr></table><p style="text-align:center"><b>Grading Rubric for A4: Innovation Challenge Final</b></p><table><tr><th>Criteria</th><th>Excellent (100–81%)</th><th>Good (80–51%)</th><th>Weak (50–0%)</th></tr><tr><td><b>Story</b> (7 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Evidence</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Roadmap</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td><b>Teamwork</b> (6 marks)</td><td>Fully meets the criterion, with clear evidence.</td><td>Mostly meets it; some gaps.</td><td>Little or no evidence.</td></tr><tr><td colspan="4" style="text-align:right"><b>Total: /25</b></td></tr></table>
+
+<h2><span>13.</span>Verification</h2>
+<table class="ver"><tr><td>(i) I verify that the contents of this document are up to date.</td></tr>
+<tr><td style="height:46px;vertical-align:bottom">Instructor’s Name and Signature &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date</td></tr>
+<tr><td>(ii) I have reviewed this course syllabus and state that it complies with CUD policies and guidelines.</td></tr>
+<tr><td style="height:46px;vertical-align:bottom">Name and Signature of Department Chair/Program Coordinator &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date</td></tr></table>
+<p><i>Note: This page of the course syllabus is only for the purpose of documentation and therefore it should not be distributed to the students.</i></p>
+</article></main><footer class="wrap">Proposal for discussion · Canadian University Dubai · ENT 141–142: General Education · ENT 241–242: Business<span class="sig">Eng. Nadia Mek</span></footer><script>(function(){var b=document.getElementById('editBtn'),p=document.getElementById('paper');
+b.addEventListener('click',function(){var on=p.getAttribute('contenteditable')!=='true';p.setAttribute('contenteditable',on);b.setAttribute('aria-pressed',on);document.body.classList.toggle('editing',on);
+document.getElementById('emsg').textContent=on?'Editing on screen. Changes are not saved here; download the Word file to keep a copy.':'Suggested syllabus, assembled from the committee\'s activities (27 Oct 2026).';});})();</script></body></html>

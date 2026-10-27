@@ -246,6 +246,21 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
 .btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .btn.ghost{background:transparent;color:var(--ink)}
 .btn.ghost:hover{color:var(--paper)}
+.stamp{display:inline-block;font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:3px double var(--green);border-radius:6px;padding:6px 10px;transform:rotate(-4deg);background:var(--card);white-space:nowrap}
+.stamp.big{font-size:14px;padding:10px 14px;transform:rotate(-6deg)}
+.cmt{margin-top:56px;border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:clamp(18px,3vw,30px);position:relative}
+.cmt .stamp.big{position:absolute;top:-16px;right:18px}
+.cmt h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%}
+.fmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.fmt div{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.fmt b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.fmt span{font-size:13.5px;color:var(--muted)}
+.fmt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+table.jt td{font-size:14px}
+table.jt td:first-child{white-space:nowrap;font-weight:700}
+.sylbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:900px){.fmt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.fmt{grid-template-columns:minmax(0,1fr)}}
 footer .sig{display:block;margin-top:6px;font-size:11px;opacity:.7}
 footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:64px}
 
@@ -412,7 +427,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   .endcta{padding:24px}
 }
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
-</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a></header>
+</style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="stamp" title="Updated after the committee feedback">Updated · 27 Oct 2026</span></header>
 <main class="wrap">
  <div class="dhero" style="padding-bottom:0"><a class="eyebrow" href="index.html">← 4 Years From Now</a></div>
  <div class="tabs" role="tablist"><button role="tab" data-v="solve" aria-selected="false">Solve It challenges</button><button role="tab" data-v="day" aria-selected="false">4 Years From Now Day</button></div>
