@@ -130,6 +130,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .v-change{color:var(--red);background:var(--red-soft)}
 .v-move{color:var(--amber);background:var(--amber-soft)}
 .why{margin:10px 0 0;color:var(--muted);max-width:75ch}
+.whyrow{display:flex;gap:10px 18px;align-items:flex-start;flex-wrap:wrap}.whyrow .why{flex:1 1 420px}
+.srcs{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:12px;flex:0 0 auto}
+.src{font:600 11px/1 var(--mono);letter-spacing:.04em;border-radius:999px;padding:5px 9px;white-space:nowrap;border:1.5px solid}
+.src.c{color:#6d28d9;border-color:#6d28d9;background:rgba(109,40,217,.07)}
+.src.p{color:#57534e;border-color:#a8a29e;background:rgba(120,113,108,.08)}
+.src.g{color:#047857;border-color:#047857;background:rgba(4,120,87,.07)}
 .cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
 .side{min-width:0}
 .side .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-top:3px solid}
@@ -220,6 +226,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
   <a class="btn ghost" href="ent142-syllabus.html">Open the full suggested syllabus →</a>
   <a class="btn ghost" href="ent142-new.html">Classroom demo →</a>
   <div class="legend" style="margin:0"><span><i class="dot" style="background:var(--green)"></i>Keep / new</span><span><i class="dot" style="background:var(--red)"></i>Change</span><span><i class="dot" style="background:var(--amber)"></i>Move to ENT 241</span><span><i class="dot" style="background:#1d4ed8"></i>Updated 27/10/2026</span></div>
+  <div class="legend" style="margin:0;width:100%"><span>Source of each change:</span><span class="src c">Committee</span><span class="src p">Previous syllabus</span><span class="src g">GED suggestion · approved</span></div>
  </div>
 </div>
 <nav class="parts" aria-label="Syllabus parts"><div class="wrap"><a href="#solveit">Solve It</a><a href="#info">Course info <i class='dot' style='background:#1d4ed8'></i></a><a href="#description">Description <i class='dot' style='background:#1d4ed8'></i></a><a href="#clos">CLOs</a><a href="#weeks1">Weeks 1–8 <i class='dot' style='background:#1d4ed8'></i></a><a href="#weeks2">Weeks 9–16 <i class='dot' style='background:#1d4ed8'></i></a><a href="#pedagogy">Pedagogy <i class='dot' style='background:#1d4ed8'></i></a><a href="#mvp">MVP <i class='dot' style='background:#1d4ed8'></i></a><a href="#testing">Testing <i class='dot' style='background:#1d4ed8'></i></a><a href="#pitch">Pitching <i class='dot' style='background:#1d4ed8'></i></a><a href="#textbook">Textbook</a><a href="#weights">Weights <i class='dot' style='background:#1d4ed8'></i></a><a href="#rubric">Rubric</a></div></nav>
@@ -227,7 +234,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 
 <section class="part" id="solveit">
  <div class="ph"><span class="n">00</span><h2>Solve It @ CUD</h2><span class="verdict v-keep">New</span></div>
- <p class="why">CUD partners (cafés, shops, companies) post real problems on the incubator's Solve It board. ENT 142 teams pick one and solve it, step by step.</p>
+ <div class="whyrow"><p class="why">CUD partners (cafés, shops, companies) post real problems on the incubator's Solve It board. ENT 142 teams pick one and solve it, step by step.</p><div class="srcs" aria-label="Source"><span class="src g">GED suggestion · approved</span></div></div>
  <div class="eco">
 <svg viewBox="0 0 960 170" role="img" aria-label="A partner posts a challenge, students solve it, the partner can pilot the result">
  <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
@@ -252,7 +259,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 
 <section class="part" id="info">
  <div class="ph"><span class="n">01</span><h2>Course information</h2><span class="verdict v-keep">Keep</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">Credits and hours stay: one 2-hour lab every week. The course gets its place in the journey: Build &amp; Test.</p>
+ <div class="whyrow"><p class="why">Credits and hours stay: one 2-hour lab every week. The course gets its place in the journey: Build &amp; Test.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span><span class="src c">Committee</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 course information"><img src="img/e142-info.png" alt="Old ENT 142 course information"></button>
@@ -262,7 +269,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="description">
  <div class="ph"><span class="n">02</span><h2>Course description</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">Year 2 becomes Build &amp; Test: from the ENT 141 prototype to a tested MVP and a pitch.</p>
+ <div class="whyrow"><p class="why">Year 2 becomes Build &amp; Test: from the ENT 141 prototype to a tested MVP and a pitch.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 course description"><img src="img/e142-description.png" alt="Old ENT 142 course description"></button>
@@ -272,7 +279,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="clos">
  <div class="ph"><span class="n">03</span><h2>Learning outcomes</h2><span class="verdict v-keep">Keep</span></div>
- <p class="why">The CLOs stay word for word. Each one is assessed by a clear assignment.</p>
+ <div class="whyrow"><p class="why">The CLOs stay word for word. Each one is assessed by a clear assignment.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 CLO table"><img src="img/e142-clos.png" alt="Old ENT 142 CLO table"></button>
@@ -282,7 +289,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="weeks1">
  <div class="ph"><span class="n">04</span><h2>Schedule · weeks 1–8</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">From prototype to MVP, then a live exhibition with real users and feedback analysis. Market analysis moves to ENT 241.</p>
+ <div class="whyrow"><p class="why">From prototype to MVP, then a live exhibition with real users and feedback analysis. Market analysis moves to ENT 241.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 schedule weeks 1 to 8"><img src="img/e142-weeks1.png" alt="Old ENT 142 schedule weeks 1 to 8"></button>
@@ -292,7 +299,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="weeks2">
  <div class="ph"><span class="n">05</span><h2>Schedule · weeks 9–16</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">Desirability, feasibility and viability, open innovation, then pitch training and two pitch events. The "Project 3" in the old schedule does not exist.</p>
+ <div class="whyrow"><p class="why">Desirability, feasibility and viability, open innovation, then pitch training and two pitch events. The "Project 3" in the old schedule does not exist.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 schedule weeks 9 to 16"><img src="img/e142-weeks2.png" alt="Old ENT 142 schedule weeks 9 to 16"></button>
@@ -302,7 +309,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="pedagogy">
  <div class="ph"><span class="n">06</span><h2>Teaching pedagogy</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">A generic lab becomes one named activity every week. Entrepreneurs may contribute inside the lab hours, never as extra sessions.</p>
+ <div class="whyrow"><p class="why">A generic lab becomes one named activity every week. Entrepreneurs may contribute inside the lab hours, never as extra sessions.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 teaching pedagogy"><img src="img/e142-pedagogy.png" alt="Old ENT 142 teaching pedagogy"></button>
@@ -312,7 +319,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="mvp">
  <div class="ph"><span class="n">07</span><h2>MVP: learn from a real one first</h2><span class="verdict v-keep">New</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">The MVP is the hardest step, so students first take apart the first MVP of a startup from the incubator, then build their own.</p>
+ <div class="whyrow"><p class="why">The MVP is the hardest step, so students first take apart the first MVP of a startup from the incubator, then build their own.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 Week 5: prototyping"><img src="img/e142-prototyping.png" alt="Old ENT 142 Week 5: prototyping"></button>
@@ -322,7 +329,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="testing">
  <div class="ph"><span class="n">08</span><h2>Testing with real users</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">Testing becomes a live exhibition with real users, and evidence is sorted by desirability, feasibility and viability. Market analysis moves to ENT 241.</p>
+ <div class="whyrow"><p class="why">Testing becomes a live exhibition with real users, and evidence is sorted by desirability, feasibility and viability. Market analysis moves to ENT 241.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 assessment methodology"><img src="img/e142-methodology.png" alt="Old ENT 142 assessment methodology"></button>
@@ -332,7 +339,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="pitch">
  <div class="ph"><span class="n">09</span><h2>Pitching: training and pitch events</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">A pitch to the instructor becomes pitch training and two pitch events with a panel and peer investors.</p>
+ <div class="whyrow"><p class="why">A pitch to the instructor becomes pitch training and two pitch events with a panel and peer investors.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 presentation rubric"><img src="img/e142-presentation.png" alt="Old ENT 142 presentation rubric"></button>
@@ -342,7 +349,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="textbook">
  <div class="ph"><span class="n">10</span><h2>Textbook and readings</h2><span class="verdict v-change">Change</span></div>
- <p class="why">Byers stays as core text for feasibility and pitching. Practical MVP and testing books are added; the generic international-business journal list goes.</p>
+ <div class="whyrow"><p class="why">Byers stays as core text for feasibility and pitching. Practical MVP and testing books are added; the generic international-business journal list goes.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 textbook list"><img src="img/e142-textbook.png" alt="Old ENT 142 textbook list"></button>
@@ -352,7 +359,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="weights">
  <div class="ph"><span class="n">11</span><h2>Assessment weights</h2><span class="verdict v-change">Change</span><span class="upd">Updated 27/10/2026</span></div>
- <p class="why">Now: 40% due in Week 9 and 30% in Week 16. Suggested: four equal assignments, due in Weeks 4, 8, 11 and 15.</p>
+ <div class="whyrow"><p class="why">Now: 40% due in Week 9 and 30% in Week 16. Suggested: four equal assignments, due in Weeks 4, 8, 11 and 15.</p><div class="srcs" aria-label="Source"><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 assessment weights"><img src="img/e142-weights.png" alt="Old ENT 142 assessment weights"></button>
@@ -362,7 +369,7 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
 <section class="part" id="rubric">
  <div class="ph"><span class="n">12</span><h2>Pitch rubric</h2><span class="verdict v-change">Change</span></div>
- <p class="why">The 45-second video pitch is dropped. The pitch rubric grades evidence and delivery, not how many coins a team raised.</p>
+ <div class="whyrow"><p class="why">The 45-second video pitch is dropped. The pitch rubric grades evidence and delivery, not how many coins a team raised.</p><div class="srcs" aria-label="Source"><span class="src g">GED suggestion · approved</span></div></div>
  <div class="cmp">
   <div class="side old"><div class="lab">Current syllabus</div>
    <button class="shot" type="button" aria-label="Enlarge: Old ENT 142 video pitch rubric"><img src="img/e142-activity2.png" alt="Old ENT 142 video pitch rubric"></button>
