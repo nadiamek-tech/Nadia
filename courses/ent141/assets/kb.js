@@ -37,7 +37,7 @@ window.ENT141_KB=[
 {"q": "Where do problems come from?", "k": "problem hunt challenge incubator where partner", "a": "From the SDG Problem Hunt in Week 3. The CUD Incubator's challenge cards are one source.", "l": "lab.html"},
 {"q": "How many interviews?", "k": "interview how many guide", "a": "Pilot your guide in Week 4, then interview real people in Week 5. Your instructor sets the number. No surveys in ENT 141.", "l": "assignments.html"},
 {"q": "What is a persona?", "k": "persona user evidence", "a": "A profile of a typical user, built only from interview evidence. Weeks 7–8.", "l": "assignments.html"},
-{"q": "What is the Research Defense?", "k": "research defense defend evidence wall", "a": "In Week 8 teams present findings and persona; each member answers questions linking claims to evidence. It is A2.", "l": "assignments.html"},
+{"q": "What is the research evidence pack?", "k": "research evidence pack a2 persona evidence wall", "a": "A2, in Week 8: your interview notes, Evidence Wall insights and persona, completed in writing in class. No presentation.", "l": "assignments.html"},
 {"q": "What is an HMW question?", "k": "hmw how might we question brainstorm", "a": "“How might we [action] for [who] so that [need]?” Week 9 starts the brainstorm from it.", "l": "lab.html"},
 {"q": "What is biomimicry?", "k": "biomimicry nature associating open innovation", "a": "Borrowing solutions from nature. In Week 10 teams ask how nature, or another industry, solves a similar problem.", "l": "index.html"},
 {"q": "What is a prototype?", "k": "prototype paper low fidelity break my prototype", "a": "A quick, cheap model: paper, cardboard or Canva. In Week 12 another team tests it before you explain it.", "l": "assignments.html"},
