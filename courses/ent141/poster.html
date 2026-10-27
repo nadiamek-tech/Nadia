@@ -38,7 +38,7 @@ body{font-family:var(--f-display);background:var(--bg);color:var(--ink);margin:0
   <p class="lead">Type on each part. It saves in this browser. Stuck on a part? Click its number to see how to make it.</p>
   <div class="bar">
     <div class="seg" role="group" aria-label="Show"><button type="button" data-m="edit" aria-pressed="true">Our poster</button><button type="button" data-m="ex" aria-pressed="false">Example</button></div>
-    <a class="bbtn" href="project-1.html">Project guide</a>
+    <a class="bbtn" href="lab.html#lab-13">Lab guide</a>
     <button type="button" class="bbtn pri" id="print">Print or save PDF</button>
     <button type="button" class="bbtn" id="share" title="Save a file to send to your team">Save file</button>
     <label class="bbtn" title="Open a file from your team">Open file<input type="file" id="open" accept=".json,application/json" hidden></label>
@@ -60,14 +60,14 @@ body{font-family:var(--f-display);background:var(--bg);color:var(--ink);margin:0
 <script src="assets/portal.js"></script>
 <script src="assets/poster.js"></script>
 <script>
-Portal.header('project');
+Portal.header('labs');
 const P=Poster, el=document.getElementById('poster'), pw=document.getElementById('pw');
 let S=P.load(), mode='edit';
 const prog=()=>{ const n=P.ZONES.filter(z=>P.DONE[z.key](S)).length; document.getElementById('prog').textContent=mode==='edit'?`${n} of 8 parts filled`:''; };
 function draw(){
   P.render(el,{mode:mode==='edit'?'edit':'view',data:mode==='edit'?S:P.EX,onchange:prog});
   pw.classList.toggle('exmode',mode==='ex'); prog();
-  el.querySelectorAll('.pz .no').forEach(b=>{ b.title='How to make this part'; b.setAttribute('role','link'); b.addEventListener('click',()=>{ location.href='project-1.html#s'+(+b.textContent+2); }); });
+  el.querySelectorAll('.pz .no').forEach(b=>{ b.title='How to make this part'; b.setAttribute('role','link'); b.addEventListener('click',()=>{ location.href='lab.html#lab-13'; }); });
 }
 document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.m; document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b)); draw(); }));
 document.getElementById('print').addEventListener('click',()=>{ P.render(document.getElementById('print-root'),{mode:'view',data:mode==='edit'?S:P.EX}); window.print(); draw(); });

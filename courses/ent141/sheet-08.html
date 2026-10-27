@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ENT 141 · Week 8 worksheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/extras.css">
+<style>:root{--wk:#B4521E;--wk-soft:rgba(180,82,30,.09);--wk-d:#F2A06B;--wk-soft-d:rgba(242,160,107,.14)}</style>
+</head>
+<body>
+<div class="sugbar">Suggested course · Spring 2027 preview · <a href="../../ent141.html">back to the syllabus review</a></div>
+<div id="hub" data-cur="labs"></div>
+<main class="sw" id="sw">
+  <span class="eb">Week 8 · Lab worksheet</span>
+  <h1>Research Defense prep</h1>
+  <p class="lead">Link every claim to evidence. Each member defends one part. Type on each part. It saves in this browser.</p>
+  <div class="sbar">
+    <div class="sseg" role="group" aria-label="Show"><button type="button" data-m="edit" aria-pressed="true">Ours</button><button type="button" data-m="ex" aria-pressed="false">Example</button></div>
+    <a class="sbtn" href="lab.html#lab-08">Lab guide</a>
+    <button type="button" class="sbtn pri" id="sprintbtn">Print or save PDF</button>
+    <button type="button" class="sbtn" id="ssave" title="Save a file to send to your team">Save file</button>
+    <label class="sbtn" title="Open a file from your team">Open file<input type="file" id="sopen" accept=".json,application/json" hidden></label>
+    <span class="sprog" id="sprog"></span>
+  </div>
+  <p class="sexnote"><b>Example:</b> a made-up team (Team Morning), to show what a finished worksheet looks like. Use your own project.</p>
+  <div id="sheet"></div>
+</main>
+<div id="sprint"></div>
+<footer class="pt-foot">This website is interactive course support. It does not replace classes, attendance or class activities.<br> <b>Eng. Nadia Mek</b></footer>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script src="assets/professor.js"></script>
+<script src="assets/course-info.js"></script>
+<script src="assets/portal.js"></script>
+<link rel="stylesheet" href="assets/sheet.css"><script src="assets/sheet.js"></script>
+<script>Portal.header('labs'); Sheet.mount({"title": "Research Defense prep", "lead": "Link every claim to evidence. Each member defends one part.", "blocks": [{"key": "claims", "type": "table", "title": "Claims and evidence", "cols": ["Claim", "Evidence", "Who presents"], "q": null, "n": 4, "span": true}, {"key": "qa", "type": "table", "title": "Questions we expect", "cols": ["Question", "Our answer + evidence"], "q": null, "n": 3, "span": true}, {"key": "a2", "type": "area", "title": "A2 · One-line summary", "q": "Our research shows that … for … because …", "keyz": true, "span": true}], "ex": {"claims": [["Students skip breakfast because of time", "4 of 5 interviews, observation", "Student A"], ["The queue is the pain point", "Timed 7 and 9 minutes", "Student B"], ["", "", ""], ["", "", ""]], "qa": [["Is five interviews enough?", "Patterns repeated from the third interview; we added two observations."], ["Is it only first-years?", "Mostly: second-years have fewer 9 am classes."], ["", ""]], "a2": "Our research shows that first-year students skip breakfast because the café queue makes them late."}, "id": "ent141-w08", "week": 8, "lab": "Research Defense", "course": "ENT 141", "layout": "card"});</script>
+</body>
+</html>
