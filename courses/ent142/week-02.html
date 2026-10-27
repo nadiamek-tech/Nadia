@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 2 · Lean Startups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#2F55C8;--wk-soft:rgba(47,85,200,.10);--wk-d:#8AA6FF;--wk-soft-d:rgba(138,166,255,.14)}
+.pv{display:grid;gap:10px;font-family:var(--f-display);font-size:.92rem}
+.pv .r{display:grid;grid-template-columns:minmax(0,1fr) 90px;gap:8px;align-items:center}
+.pv input{width:90px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+.pv .verdict{font-size:1.2rem;font-weight:800}
+.pv svg{width:100%;height:auto}
+</style>
+</head>
+<body>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W,B} = Lecture;
+const KEY = html=>`<div class="box exam"><b class="lbl">Remember for your project</b>${html}</div>`;
+
+const MVP={
+ 'Test demand':[
+  ['Landing page','One web page that describes the product as if it exists, with a “Join the waiting list” button. Count sign-ups.<br><br><b>Student example:</b> a free Google Sites or Canva page for a surplus-meal app, shared in 3 class groups; target: 50 sign-ups in a week.'],
+  ['Explainer video','A short video showing how the product would work.<br><br><b>Real case:</b> Dropbox founder Drew Houston made a short demo video; he said the beta waiting list grew from 5,000 to 75,000 people overnight (TechCrunch, 2011).']],
+ 'Deliver by hand':[
+  ['Concierge','You deliver the service personally to a few customers. No technology.<br><br><b>Real case:</b> in 2007 Airbnb\'s founders rented air mattresses in their San Francisco apartment to design-conference visitors when the city\'s hotels were full: “Air Bed and Breakfast” (Wharton, Knowledge@Wharton).'],
+  ['Wizard of Oz','Customers think it is automated; a person does the work behind the screen.<br><br><b>Real case:</b> Zappos\' founder posted photos of shoes from local stores online; when someone ordered, he bought the pair and shipped it himself (Ries, 2011).']],
+ 'Ship the smallest product':[
+  ['Single-feature product','Build only the one feature that solves the core problem.<br><br><b>Real case:</b> Buffer launched on 30 November 2010 “in the most lean and minimal way possible”, supporting only Twitter; the first customer paid four days later (Buffer, 2013).']]
+};
+
+function pivot(el){
+  el.innerHTML=`<div class="pv"><div class="r"><label for="pv-t">Target (e.g. sign-ups you need)</label><input id="pv-t" type="number" value="50"></div>
+   <div class="r"><label for="pv-r">Result of your MVP</label><input id="pv-r" type="number" value="31"></div>
+   <div id="pv-svg"></div><div class="feedback" id="pv-o"></div></div>`;
+  const t=el.querySelector('#pv-t'), r=el.querySelector('#pv-r');
+  const upd=()=>{ const T=+t.value||0, R=+r.value||0, ratio=T?R/T:0; const mx=Math.max(T,R,1);
+    el.querySelector('#pv-svg').innerHTML=`<svg viewBox="0 0 400 90" role="img" aria-label="Result versus target"><rect x="70" y="10" width="${T/mx*320}" height="24" rx="4" fill="var(--line)"/><text x="0" y="27" font-family="Schibsted Grotesk,Arial" font-size="13" fill="var(--ink)">Target</text><text x="${76+T/mx*320}" y="27" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--muted)">${T}</text><rect x="70" y="50" width="${R/mx*320}" height="24" rx="4" fill="${ratio>=1?'var(--good)':ratio>=.5?'var(--warn)':'var(--bad)'}"/><text x="0" y="67" font-family="Schibsted Grotesk,Arial" font-size="13" fill="var(--ink)">Result</text><text x="${76+R/mx*320}" y="67" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--muted)">${R}</text></svg>`;
+    el.querySelector('#pv-o').innerHTML= ratio>=1?`<span class="verdict" style="color:var(--good)">Persevere</span><br>The hypothesis held. Run the next, riskier experiment.`:ratio>=.5?`<span class="verdict" style="color:var(--warn)">Iterate</span><br>Partly confirmed (${Math.round(ratio*100)}% of target). Change one thing (message, price, customer) and test again.`:`<span class="verdict" style="color:var(--bad)">Pivot</span><br>Far below target (${Math.round(ratio*100)}%). Change a core assumption: the customer, the problem or the solution.`; };
+  t.addEventListener('input',upd); r.addEventListener('input',upd); upd();
+}
+
+Lecture.mount({
+  id:'ent142-w3', week:2, clo:'1, 3', course:'ENT 142', short:'Week 2 · Lean Startups',
+  title:'Lean Startups', meta:'Bland & Osterwalder (2019) · 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'How do we learn what customers want before time runs out?', minutes:5,
+    narration:[`Plan the cheapest experiment that shows whether people want your idea. <span class="mono">Topics: Lean Startups · Introduction to Lean Startups · Minimum Viable Product (MVP). CLO 1 · CLO 3.</span>`],
+    src:`Reading: Byers et al (2019). Ch. 4 · Blank, S. (2013). Why the lean start-up changes everything. <em>Harvard Business Review</em>, 91(5).`,
+    fig:{label:`Today's lab · 120 minutes`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`Lean startup`,15,'l'],[`MVP`,15,'l'],[`Pivot or persevere`,10,'l'],[`Design your MVP`,75,'a']])} },
+
+  { nav:'Lean startup', cert:{name:'Be an Entrepreneur',by:'IBM SkillsBuild with NFTE',what:'free digital badge (Credly) · quizzes ≥ 80%',url:'https://www.credly.com/org/ibm/badge/be-an-entrepreneur'}, title:'Introduction to lean startups', minutes:15,
+    narration:[`A lean startup tests its guesses with real customers before building, in short <b>Build → Measure → Learn</b> loops (Ries, 2011; Blank, 2013).`],
+    src:`Ries, E. (2011). <em>The lean startup</em>. Crown Business. · Blank, S. (2013). <em>Harvard Business Review</em>.`,
+    fig:{label:`Build → Measure → Learn`, flow:[
+      {t:'Hypothesis',s:'the guess',d:'We believe [customer] will [behaviour] because [reason].'},
+      {t:'Build',s:'the MVP',d:'The smallest thing that tests the guess.'},
+      {t:'Measure',s:'one metric',d:'Sign-ups, orders, repeat use: a number decided in advance.'},
+      {t:'Learn',s:'decide',d:'Persevere, iterate or pivot. Then start the next loop.'}]} },
+
+  { nav:'MVP', title:'Minimum Viable Product (MVP)', minutes:15, wide:true,
+    narration:[`An <b>MVP</b> gives the most validated learning with the least effort (Ries, 2011). UAE examples: The Entertainer sold printed two-for-one voucher books before launching its app in 2013; Careem launched in Dubai in 2012 as a corporate car-booking service before serving everyone. Click each MVP type for more cases.`],
+    src:`Gulf Business (2013, November 6). Dubai's The Entertainer launches mobile app. · Arabian Business. In the driving seat: Careem. · Ries, E. (2011). <em>The lean startup</em>.`,
+    fig:{label:`MVP types · click for a case`, build:el=>W.picker(el,MVP,'Select an MVP type.')} },
+
+  { nav:'Pivot or persevere', title:'Pivot, iterate or persevere?', minutes:10,
+    narration:[`Set a target number <b>before</b> the test, then compare. Try different results.`],
+    fig:{label:`Try different numbers`, build:pivot, caption:`Rule of thumb for this course: ≥100% persevere, 50–99% iterate, below 50% pivot.`} },
+
+  { nav:'Design your MVP', title:'Activity · Design your MVP experiment', kind:'activity', minutes:75,
+    narration:[`<b>Next week:</b> read the UN SDGs, Qian et al., (2024) and Bridge et al 2020 Ch1.`,`Fill in your experiment card. You use it in the Week 3 MVP Build Sprint.`],
+    fig:{label:`Experiment card · saves in your browser`, build:el=>W.worksheet(el,{id:'ent142-w3-mvp',title:'ENT 142 · Week 3 · MVP experiment',fields:[
+      {l:'We believe [customer]…',rows:1},{l:'…will [behaviour]…',rows:1},{l:'…because [reason]',rows:2},
+      {l:'MVP type and what we will build',hint:'Landing page, explainer video, concierge, Wizard of Oz or single feature',rows:2},
+      {l:'Metric and target number',hint:'Decide before the test',rows:1},{l:'Result',rows:1},{l:'Decision: persevere, iterate or pivot? Why?',rows:2}]})} },
+
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "Bland &amp; Osterwalder (2019)", "kw": [["Lean startup", "Build, measure, learn, fast.", "§10.1"], ["Riskiest assumption", "What must be true for the venture to work.", "Bland"], ["Pivot", "Change direction based on evidence.", "§10.1"]], "lab": "lab.html#lab-02", "labName": "Riskiest Assumption Challenge", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

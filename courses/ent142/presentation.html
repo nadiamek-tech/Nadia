@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Presentation · ENT 142</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#7A3E9D;--wk-soft:rgba(122,62,157,.10);--wk-d:#C9A2E6;--wk-soft-d:rgba(201,162,230,.14)}
+.rub details{border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px 12px;margin-bottom:6px;font-family:var(--f-display);font-size:.9rem}
+.rub summary{cursor:pointer;font-weight:700}
+.rub dl{margin:8px 0 0;display:grid;grid-template-columns:130px minmax(0,1fr);gap:6px 10px}
+.rub dt{font-family:var(--f-mono);font-size:.74rem;color:var(--wk)}
+.rub dd{margin:0}
+.tm{display:grid;gap:12px;font-family:var(--f-display)}
+.tm .clock{font-size:3rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--wk);line-height:1}
+.tm .bar{display:flex;height:18px;border-radius:6px;overflow:hidden;background:var(--sunk)}
+.tm .bar i{display:block;height:100%;border-right:2px solid var(--surface);opacity:.35;background:var(--wk)}
+.tm .bar i.on{opacity:1}
+.tm .now{font-size:1.1rem;font-weight:700}
+.tm .now small{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+@media (max-width:560px){.rub dl{grid-template-columns:minmax(0,1fr)}}
+.toc .kind{display:none}
+</style>
+</head>
+<body>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture;
+const RUB_PRES={bands:['Exemplary (4 Marks)','Proficient (3 Marks)','Novice (2 Marks)','Poor (1-0 Marks)'],rows:[
+ ['Content (4 Marks)','',[`Information is completely presented, and content is strongly supported and laid out`,`A good amount of information is presented, and content is well supported and laid out`,`Lack of information and content is not well supported`,`Presentation lacks any important information and lacks any content`]],
+ ['Thinking and Communication (4 Marks)','',[`The presentation shows extensive work, preparation and thought in development. Presentation is excellently communicated to the audience`,`The presentation shows a good amount of work, thought and time was put into it Presentation was well communicated to the audience`,`The presentation shows a barely adequate time or thought was placed Audience not convinced by presentation`,`Very little or no real effort placed Presentation lacks form. Points are confusing`]],
+ ['Illustration (4 Marks)','',[`Presentation supported by many aids and information`,`Presentation was supported by an adequate amount of material`,`Presentation not real supported by many aids at all`,`No aids were utilized in the presentation`]],
+ ['Presentation (4 Marks)','',[`Excellent presentation. Clear and confident. Points clearly expressed and grasped audience attention`,`Good presentation. Clear and confident. Points are well expressed and grasped audience attention for a period of time`,`Presentation lacks substance, but points are presented. Audience somewhat bored or lost`,`Poor presentation skill. Unclear and not confident in what is being expressed. Audience uninterested`]],
+ ['Question & Answers (4 Marks)','',[`Excellent response to question. Clear and confident while answering. Points clearly elaborate with logical evidence. Additional examples given in response to questions`,`Very good response to question. Clear and confident while answering. Points clearly elaborate with logical evidence.`,`Response lacking evidence to question. Not so much clear and confident while answering. Points are somewhat elaborate with reasons.`,`Poor response to question. Unclear and not confident in what is being expressed. Audience is uninterested.`]]],
+ foot:'Maximum Marks (20) · Marks Adjusted to 10%'};
+const rubHTML=r=>`<div class="rub">${r.rows.map(([t,d,cells],i)=>`<details ${i===0?'open':''}><summary>${t}</summary>${d?`<p class="desc">${d}</p>`:''}<dl>${cells.map((c,j)=>`<dt>${r.bands[j]}</dt><dd>${c}</dd>`).join('')}</dl></details>`).join('')}<p class="mono" style="color:var(--muted)">${r.foot}</p></div>`;
+
+/* 60-second practice timer: one minute per student */
+const PH=[['Hook',5,'One sentence that makes them listen: a number or a question.'],['Problem',10,'Who has it, and one verified fact.'],['Your part',30,'The section you led: what you found or built.'],['Evidence',10,'What testers did or what the data shows.'],['Hand over',5,'Name the next speaker and their topic.']];
+function timer(el){
+  el.innerHTML=`<div class="tm"><div class="clock" id="tm-c">60</div><div class="bar">${PH.map((p,i)=>`<i data-i="${i}" style="width:${p[1]/60*100}%"></i>`).join('')}</div><div class="now" id="tm-n">Press Start and speak your minute.</div><div class="row"><button type="button" class="btn" id="tm-go">Start</button><button type="button" class="btn ghost" id="tm-r">Reset</button></div></div>`;
+  let t=60,iv=null; const c=el.querySelector('#tm-c'),n=el.querySelector('#tm-n'),bars=[...el.querySelectorAll('.bar i')];
+  const show=()=>{ c.textContent=t; let el2=60-t,acc=0,k=PH.length-1; for(let i=0;i<PH.length;i++){ acc+=PH[i][1]; if(el2<acc){k=i;break;} } bars.forEach((b,i)=>b.classList.toggle('on',i<=k)); n.innerHTML=t>0?`${PH[k][0]}<small>${PH[k][2]}</small>`:'Time. Stop here, even mid-sentence: the panel will.'; };
+  el.querySelector('#tm-go').addEventListener('click',()=>{ if(iv) return; iv=setInterval(()=>{ t--; show(); if(t<=0){ clearInterval(iv); iv=null; } },1000); show(); });
+  el.querySelector('#tm-r').addEventListener('click',()=>{ clearInterval(iv); iv=null; t=60; c.textContent=60; bars.forEach(b=>b.classList.remove('on')); n.textContent='Press Start and speak your minute.'; });
+}
+
+Lecture.mount({
+  id:'ent142-pres', week:'P1', course:'ENT 142', short:'Presentation', eyebrow:'A4 · Pitch · 25%', endLabel:'End',
+  title:'Presentation and oral skills', meta:'Tuesday 27 October · graded individually',
+  scenes:[
+  { nav:'Format', title:'7 minutes per team, 1 minute each', minutes:0,
+    narration:[`Each member presents for <b>1 minute</b>, then the team answers <b>2 minutes</b> of questions. You are graded <b>individually</b> on 20 marks, adjusted to 10%. Slides in PowerPoint, on the same day as the report: <b>Tuesday 27 October</b>.`],
+    fig:{label:'A team of five, drawn to scale', build:el=>W.agenda(el,[['Member 1',1,'l'],['Member 2',1,'l'],['Member 3',1,'l'],['Member 4',1,'l'],['Member 5',1,'l'],['Questions and answers',2,'a']])} },
+  { nav:'Your minute', title:'Plan your 60 seconds', kind:'activity', minutes:0,
+    narration:[`Practise with the timer until you finish inside the minute. The bar shows where you should be.`],
+    fig:{label:'60-second practice timer', build:timer} },
+  { nav:'Slides', title:'One idea, one visual per slide', minutes:0,
+    narration:[`Use one message per slide, shown with a number, photo or chart, and a short title that states the point. Your prototype photo and your verified data are your strongest slides.`],
+    fig:{label:'Weak slide vs strong slide', html:`<svg viewBox="0 0 640 230" style="width:100%;height:auto" role="img" aria-label="A text-heavy slide next to a slide with one number and a photo">
+      <rect x="10" y="10" width="300" height="190" rx="8" fill="var(--surface)" stroke="var(--line)"/><text x="24" y="38" font-family="Schibsted Grotesk,Arial" font-weight="700" font-size="14" fill="var(--ink)">Market Analysis</text>
+      ${[0,1,2,3,4,5,6].map(i=>`<rect x="24" y="${54+i*18}" width="${260-(i%3)*40}" height="7" rx="3" fill="var(--line)"/>`).join('')}
+      <text x="160" y="222" text-anchor="middle" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--bad)">Weak: a paragraph to read</text>
+      <rect x="330" y="10" width="300" height="190" rx="8" fill="var(--surface)" stroke="var(--wk)" stroke-width="2"/><text x="344" y="38" font-family="Schibsted Grotesk,Arial" font-weight="700" font-size="14" fill="var(--ink)">4,580 students in year 1</text>
+      <text x="344" y="100" font-family="Schibsted Grotesk,Arial" font-weight="800" font-size="44" fill="var(--wk)">3.3M</text><text x="344" y="122" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--muted)">AED yearly spending (illustrative)</text>
+      <rect x="500" y="56" width="110" height="110" rx="8" fill="var(--wk-soft)" stroke="var(--wk)"/><text x="555" y="116" text-anchor="middle" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--wk)">prototype photo</text>
+      <text x="480" y="222" text-anchor="middle" font-family="Schibsted Grotesk,Arial" font-size="12" fill="var(--good)">Strong: one number, one picture</text></svg>`} },
+  { nav:'Voice and body', cert:{name:'Effective Presentations',by:'HP LIFE',what:'free certificate of completion · search the course at life-global.org',url:'https://www.life-global.org/'}, title:'Speak to the panel, not the screen', minutes:0,
+    narration:[`Face the panel, glance at the slide only to point. Slow down, pause after each number, and stand still. Rehearse aloud at least three times; the third run is usually the first one inside time.`],
+    fig:{label:'Before you speak', flow:[{t:'Stand',s:'still, facing panel',d:'Feet planted, slide behind you.'},{t:'Breathe',s:'one slow breath',d:'Start after the breath, not during it.'},{t:'Look',s:'one panel member',d:'Speak each sentence to one person.'},{t:'Pause',s:'after numbers',d:'Let each number land before moving on.'}]} },
+  { nav:'Questions', title:'Prepare for the questions', kind:'activity', minutes:0,
+    narration:[`Any member can be asked about any part of the report. Prepare a 20-second answer to each question below, using your own data and test results.`],
+    fig:{label:'Likely questions · reveal where to find your answer', build:el=>W.practice(el,[
+      {q:'How do you know customers want this?',hint:'Your verified data and what testers did (Lab Steps 2, 4, 8).'},
+      {q:'How big is the market?',hint:'TAM → SAM → SOM with sources (Lab Step 5).'},
+      {q:'Who are your competitors and why would people choose you?',hint:'Positioning map and your gap (Lab Step 6).'},
+      {q:'How does the venture make money and stay sustainable?',hint:'Revenue vs costs, people and planet indicators (Lab Step 7).'},
+      {q:'What did your prototype test change?',hint:'Version 1 → test → version 2 (Lab Step 8).'},
+      {q:'What did you personally learn?',hint:'Your own lines in Learning and Adaptation (Lab Step 9).'}],{label:'Where to look',prefix:''})} },
+  { nav:'Marking', title:'How you are marked', minutes:0,
+    narration:[`Five criteria, 4 marks each, as written in the syllabus.`],
+    fig:{label:'Presentation rubric · syllabus', html:rubHTML(RUB_PRES)} }
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css"><div class="sugbar" style="position:fixed;bottom:0;left:0;right:0;z-index:5">Suggested course preview · <a href="index.html">course home</a></div></body>
+</html>

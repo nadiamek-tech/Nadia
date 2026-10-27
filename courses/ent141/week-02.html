@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 2 · Introduction to Innovation and Creativity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#2F55C8;--wk-soft:rgba(47,85,200,.10);--wk-d:#8AA6FF;--wk-soft-d:rgba(138,166,255,.14)}
+</style>
+</head>
+<body>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/ent141.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture; const {store,esc} = ENT141;
+const TYPES={'Types of innovation':[
+  ['Product','Pure Harvest (Abu Dhabi, 2016) grows tomatoes year-round in climate-controlled desert greenhouses, using about one-seventh of the water of lower-tech greenhouses.'],
+  ['Process','Enviroserve (Dubai, 2019) recovers 96% of the material in e-waste with a chemical-free mechanical separation process.'],
+  ['Business model','Kitopi (Dubai, 2018) runs shared delivery kitchens that cook for many restaurant brands, so a brand can grow without opening new branches.'],
+  ['Social','The UAE Food Bank (2017) collects surplus food from hotels, restaurants, supermarkets and farms and distributes it to people in need.']]};
+
+function burst(el){
+  const key='ent141-w2-burst'; const txt=store.get(key)||'';
+  el.innerHTML=`<div class="ins"><label for="b-t">One idea per line. Goal: 20 ideas in 8 minutes. Do not judge yet.</label><textarea id="b-t" rows="10" placeholder="e.g. A WhatsApp tutor line for first-year maths">${esc(txt)}</textarea><div class="tm"><div class="bar" id="b-bar"></div></div><div class="feedback" id="b-o"></div></div>`;
+  const t=el.querySelector('#b-t'), o=el.querySelector('#b-o'), bar=el.querySelector('#b-bar');
+  const upd=()=>{ const n=t.value.split('\n').filter(x=>x.trim()).length; store.set(key,t.value);
+    bar.innerHTML=Array.from({length:20},(_,i)=>`<i style="width:5%" class="${i<n?'on':''}"></i>`).join('');
+    o.innerHTML=n<20?`<b>${n} / 20.</b> Keep going: quantity first. Try “What if it were free?”, “…for older people?”, “…without a phone?”`:`<b>${n} ideas.</b> Now star the 3 that are both <b>new</b> and <b>useful</b>: that is creativity.`; };
+  t.addEventListener('input',upd); upd();
+}
+
+Lecture.mount({
+  id:'ent141-w2', week:2, clo:'2', course:'ENT 141', short:'Week 2 · Innovation and Creativity',
+  title:'Introduction to Innovation · Introduction to Creativity', meta:'OpenStax §4.2 · Creativity, Innovation, and Invention · 1-hour lecture + 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'Is every new idea an innovation?', minutes:5,
+    narration:[`An idea becomes an innovation only when people use it and it creates value. <span class="mono">Topics: What is Innovative Thinking · Innovation V/S Invention · What is Creativity? · How is creativity linked to innovative thinking and entrepreneurship? CLO 2.</span>`],
+    src:`Reading: Byers et al. (2019), Ch. 8. · Lubberink, R., Blok, V., van Ophem, J., van der Velde, G., &amp; Omta, O. (2017). Innovation for society: Towards a typology of developing innovations by social entrepreneurs. <em>Journal of Social Entrepreneurship</em>, 9(1), 52–78.`,
+    fig:{label:`Today's class · lecture and lab`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`Innovative thinking`,15,'l'],[`Innovation vs invention`,20,'l'],[`What is creativity?`,20,'l'],[`Creativity → entrepreneurship`,15,'l'],[`Idea burst`,30,'a'],[`Think about it`,15,'a']])} },
+
+  { nav:'Innovative thinking', title:'What is innovative thinking?', minutes:15,
+    narration:[`Innovative thinking looks for a new way to create value: a product, a process, a business model or a social change. Lubberink et al. (2017) study how social entrepreneurs develop innovations for society.`],
+    src:`Stanford GSB. Pure Harvest: a smarter greenhouse. · Dubai Industrial City (2019, March 20). Enviroserve plant launch. · Wamda (2021). Kitopi's journey. · UAE Cabinet (2017, January 4). Mohammed bin Rashid launches first UAE Food Bank.`,
+    fig:{label:`Four types · UAE examples`, build:el=>W.picker(el,TYPES,'Select a type.')} },
+
+  { nav:'Innovation vs invention', title:'Innovation V/S invention', minutes:20,
+    narration:[`An <b>invention</b> is a new idea or device; an <b>innovation</b> is one that people adopt and that creates value. Greenhouse climate control already worked in Arizona and Norway; Pure Harvest adapted it to the UAE, which imports nearly 80% of its food.`],
+    src:`Stanford Graduate School of Business. Pure Harvest: a smarter greenhouse brings fresh produce to the desert. gsb.stanford.edu`,
+    fig:{label:`Compare`, html:`<div class="cmp"><div><h4>Invention</h4><ul><li>A new idea, device or method</li><li>Proved to work</li><li>May never leave the lab</li><li>Climate-controlled hydroponic greenhouse</li></ul></div><div><h4>Innovation</h4><ul><li>An invention put to use</li><li>People adopt it and pay</li><li>Creates value</li><li>Pure Harvest tomatoes sold in UAE shops</li></ul></div></div>`} },
+
+  { nav:'What is creativity?', title:'What is creativity?', minutes:20,
+    narration:[`<b>Creativity</b> is producing ideas that are both <b>new</b> and <b>useful</b> (Byers et al., 2019, Ch. 8). It grows with practice and is easily lost when every idea is judged too early.`],
+    video:{id:'iG9CE55wbtY',title:'Do schools kill creativity?',by:'TED · Sir Ken Robinson',why:'Why fear of being wrong stops original ideas.'} },
+
+  { nav:'Creativity → entrepreneurship', title:'How is creativity linked to innovative thinking and entrepreneurship?', minutes:15,
+    narration:[`Creativity supplies the ideas, innovative thinking turns them into value, and entrepreneurship builds the venture that delivers it.`],
+    fig:{label:`The chain · click or play`, flow:[
+      {t:'Creativity',s:'new + useful ideas',d:'Many ideas, judged later.'},
+      {t:'Innovative thinking',s:'new value',d:'Which idea creates value, and for whom?'},
+      {t:'Innovation',s:'adopted',d:'People use it and pay for it, or it changes their lives.'},
+      {t:'Entrepreneurship',s:'a venture',d:'A team takes the risk to deliver and grow it.'}]} },
+
+  { nav:'Idea burst', title:'Activity · Idea burst on your social need', kind:'activity', minutes:30,
+    narration:[`As a team, list ideas for the social need you chose in Week 1. Quantity first, judgement later.`],
+    fig:{label:`8-minute idea burst · saves in your browser`, build:burst} },
+
+  { nav:'Think about it', title:'Think about it', kind:'activity', minutes:15,
+    narration:[`Discuss with your team, then reveal one view. There is no single right answer.`],
+    fig:{label:`Critical thinking · Pure Harvest`, build:el=>W.practice(el,[{q:'Pure Harvest adapted technology that already existed. Is that less innovative than inventing something new?',hint:'No: innovation is about value in use. Adapting a known invention to a new place is how most innovations happen.'},
+{q:'Its greenhouses use far less water but need energy for cooling. Is it sustainable? What would you need to know?',hint:'Where the energy comes from, cost per kilo, and food miles saved versus imports. Judge all three bottom lines.'},
+{q:'Think of your idea burst. Which idea is new but not useful, and which is useful but not new?',hint:'Creativity needs both. Combine them: a useful idea delivered in a new way.'}],{label:'One view',prefix:''})} },
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "OpenStax §4.2 · Creativity, Innovation, and Invention", "kw": [["Invention", "A truly new product or process.", "§4.2"], ["Innovation", "A change that adds value to something that exists.", "§4.2"], ["Creativity", "Producing ideas that are new and useful.", "§4.2"]], "lab": "lab.html#lab-02", "labName": "Innovation Discovery Skills Challenge", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

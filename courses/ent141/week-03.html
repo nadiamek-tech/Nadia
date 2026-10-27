@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 3 · Introduction to Sustainability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#15803D;--wk-soft:rgba(21,128,61,.10);--wk-d:#5BCB8E;--wk-soft-d:rgba(91,203,142,.14)}
+</style>
+</head>
+<body>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/ent141.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture; const {store,esc} = ENT141;
+const UAE=[['2015','UN Member States, including the UAE, adopt the 17 SDGs.'],['2017','UAE Food Bank launched to cut food waste.'],['2019','Enviroserve opens its e-waste recycling plant in Dubai.'],['2021','UAE announces Net Zero by 2050, the first MENA country to do so.'],['2023','UAE hosts COP28 at Expo City Dubai.']];
+
+Lecture.mount({
+  id:'ent141-w3', week:3, clo:'1, 2, 4', course:'ENT 141', short:'Week 3 · Introduction to Sustainability',
+  title:'Introduction to Sustainability', meta:'OpenStax Ch. 3 · Ethical and Social Responsibilities · Chabani et al. (2025) · 1-hour lecture + 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'Can a venture be good for people, planet and profit?', minutes:5,
+    narration:[`Sustainability asks a venture to stay viable without harming people or the planet. <span class="mono">Topics: The Triple Bottom-line Framework · United Nations Sustainable Development Goals · Understanding Sustainable Entrepreneurship · Sustainability in the UAE. CLO 1 · CLO 2 · CLO 4.</span>`],
+    src:`Reading: Ray, P., &amp; Shaw, R. (2022). <em>Technology entrepreneurship and sustainable development</em>, Ch. 1. Springer. · Krzymowski, A. (2020). Sustainable development goals in Arab region – United Arab Emirates’ case study. <em>Problemy Ekorozwoju</em>, 15(1), 211–220.`,
+    fig:{label:`Today's class · lecture and lab`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`Triple bottom line`,20,'l'],[`The SDGs`,15,'l'],[`Sustainable entrepreneurship`,20,'l'],[`Sustainability in the UAE`,15,'l'],[`Your SDG`,30,'a'],[`Think about it`,15,'a']])} },
+
+  { nav:'Triple bottom line', title:'The triple bottom-line framework', minutes:20,
+    narration:[`Elkington's <b>triple bottom line</b> (1994) judges a venture on three results: <b>people</b>, <b>planet</b> and <b>profit</b>. Score your team's first idea; each score needs something you can count.`],
+    src:`Elkington, J. (1994). Towards the sustainable corporation. <em>California Management Review</em>, 36(2), 90–100.`,
+    fig:{label:`Score your idea · drag the sliders`, build:el=>ENT141.tbl(el,'ent141-w3-tbl')} },
+
+  { nav:'The SDGs', title:'United Nations Sustainable Development Goals', minutes:15,
+    narration:[`In 2015 the UN adopted <b>17 goals and 169 targets</b> for 2030. A strong project links to a <b>target</b>, such as 4.4 on skills for jobs, not only to a goal.`],
+    src:`United Nations. <em>The 17 Goals</em>. sdgs.un.org/goals`,
+    fig:{label:`The 17 goals`, html:`<div class="sdg">${ENT141.SDGS.map((t,i)=>`<a class="g" href="https://sdgs.un.org/goals/goal${i+1}" target="_blank" rel="noopener"><b>${i+1}</b>${t}</a>`).join('')}</div>`, caption:`Click a goal to open its targets on sdgs.un.org.`} },
+
+  { nav:'Sustainable entrepreneurship', title:'Understanding sustainable entrepreneurship', minutes:20,
+    narration:[`A <b>sustainable entrepreneur</b> earns revenue by solving an environmental or social problem. Enviroserve's Dubai plant (2019) can process 100,000 tonnes of waste a year, including 39,000 tonnes of e-waste, with a 96% recovery rate.`],
+    src:`Dubai Industrial City (2019, March 20). Enviroserve launches world’s largest integrated e-waste and specialised recycling plant [Press release].`,
+    fig:{label:`Enviroserve in numbers · 2019`, html:`<div class="tiles"><div><div class="n">96%</div><div class="t">Recovery rate, with zero air and liquid emissions</div></div><div><div class="n">38,000 t</div><div class="t">E-waste kept out of landfill each year (estimate)</div></div><div><div class="n">100,000 t</div><div class="t">Waste the plant can process each year</div></div></div>`} },
+
+  { nav:'Sustainability in the UAE', title:'Sustainability in the UAE', minutes:15,
+    narration:[`The UAE links its national plans to the 2030 Agenda (Krzymowski, 2020). In October 2021 it became the first MENA country to commit to <b>net zero by 2050</b>.`],
+    src:`Krzymowski (2020). · Dubai Media Office (2021, October 7). UAE announces Net Zero by 2050 strategic initiative. · UAE Cabinet (2017). UAE Food Bank. · Dubai Industrial City (2019).`,
+    fig:{label:`Timeline · click in order, oldest first`, build:el=>W.order(el,UAE.map(([y,t])=>({y:+y,t})),'Click the events in the order they happened, oldest first.')} },
+
+  { nav:'Your SDG', title:'Activity · Link your social need to an SDG', kind:'activity', minutes:30,
+    narration:[`Choose the main SDG for your team's social need, then write the target in part 1 of <a href="poster.html#z1">your poster</a>. Not sure it fits? Use the <a href="toolkit.html#s3">SDG check</a>.`],
+    fig:{label:`Choose your SDGs · saves in your browser`, build:el=>ENT141.sdgPicker(el,'ent141-sdg')} },
+
+  { nav:'Think about it', title:'Think about it', kind:'activity', minutes:15,
+    narration:[`Discuss with your team, then reveal one view. There is no single right answer.`],
+    fig:{label:`Critical thinking · Enviroserve`, build:el=>W.practice(el,[{q:'Enviroserve makes a profit from recycling. Is it a sustainable entrepreneur or just a business?',hint:'Both can be true: it earns revenue by reducing landfill. Ask whether the planet result is part of the model or a side effect.'},
+{q:'Can a venture score high on profit and low on people and still call itself sustainable?',hint:'Under the triple bottom line, no: all three results must hold over time.'},
+{q:"Look at your team's triangle. Which side is weakest, and what one change would raise it?",hint:'Name a measurable change, such as people served or waste avoided per month.'}],{label:'One view',prefix:''})} },
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "OpenStax Ch. 3 · Ethical and Social Responsibilities · Chabani et al. (2025)", "kw": [["Triple bottom line", "People, planet, profit.", "Ch. 3"], ["SDG", "One of the 17 UN Sustainable Development Goals.", "UN"], ["Social entrepreneur", "Builds a venture to solve a social problem.", "Ch. 3"]], "lab": "lab.html#lab-03", "labName": "SDG Problem Hunt", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

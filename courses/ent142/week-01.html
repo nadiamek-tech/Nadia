@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 1 · Overview of the Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#6B4FB8;--wk-soft:rgba(107,79,184,.10);--wk-d:#B9A3F5;--wk-soft-d:rgba(185,163,245,.14)}
+.grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.grid4 .q{border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);display:grid;gap:6px;min-width:0}
+.grid4 .q b{font-family:var(--f-display);font-size:.9rem;color:var(--wk)}
+.grid4 textarea{width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--surface);color:var(--ink);font:inherit;font-size:.9rem}
+@media (max-width:560px){.grid4{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W,B} = Lecture;
+const KEY = html=>`<div class="box exam"><b class="lbl">Remember for your project</b>${html}</div>`;
+
+/* assessment weights, drawn to scale (syllabus section 8) */
+const ASSESS=[['A1 · MVP plan + build',25,'Week 4'],['A2 · Build–Measure–Learn',25,'Week 8'],['A3 · DFV evidence report',25,'Week 11'],['A4 · Pitch + founder reflection',25,'Week 15']];
+function weights(el){
+  let x=0; const cols=['var(--wk)','color-mix(in srgb,var(--wk) 60%,var(--bg))','color-mix(in srgb,var(--wk) 35%,var(--bg))','var(--muted)','color-mix(in srgb,var(--muted) 55%,var(--bg))'];
+  el.innerHTML=`<svg viewBox="0 0 600 70" style="width:100%;height:auto" role="img" aria-label="Assessment weights">${ASSESS.map(([t,w],i)=>{ const r=`<rect x="${x*6}" y="10" width="${w*6-2}" height="40" rx="4" fill="${cols[i]}"/><text x="${x*6+w*3}" y="36" text-anchor="middle" font-family="Schibsted Grotesk,Arial" font-weight="700" font-size="14" fill="${i<1?'var(--on-wk)':'var(--ink)'}">${w}%</text>`; x+=w; return r; }).join('')}</svg>
+  <table class="tbl" style="margin-top:8px"><thead><tr><th>Assessment</th><th>Weight</th><th>Due</th></tr></thead><tbody>${ASSESS.map(a=>`<tr><td>${a[0]}</td><td>${a[1]}%</td><td>${a[2]}</td></tr>`).join('')}</tbody></table>`;
+}
+
+/* feedback capture grid */
+function grid(el){
+  const key='ent142-w1-grid'; let s={}; try{s=JSON.parse(localStorage.getItem(key)||'{}')}catch(e){}
+  const Q=[['like','I like…','What worked for the user?'],['wish','I wish…','What confused or annoyed them?'],['q','Questions','What did they ask?'],['what','What if…','New ideas from the test']];
+  el.innerHTML=`<div class="grid4">${Q.map(([k,t,h])=>`<div class="q"><b>${t}</b><label class="mono" for="g-${k}" style="color:var(--muted)">${h}</label><textarea id="g-${k}" rows="4">${(s[k]||'').replace(/</g,'&lt;')}</textarea></div>`).join('')}</div><p class="mono" style="color:var(--muted)">Saves in this browser. Copy it into your evidence notes for Project 1.</p>`;
+  Q.forEach(([k])=>{ const t=el.querySelector('#g-'+k); t.addEventListener('input',()=>{ s[k]=t.value; try{localStorage.setItem(key,JSON.stringify(s))}catch(e){} }); });
+}
+
+Lecture.mount({
+  id:'ent142-w1', week:1, clo:'1, 3', course:'ENT 142', short:'Week 1 · Overview of the Course',
+  title:'Overview of the Course', meta:'OpenStax §10.1 · Lean Startup · 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'How do we turn a social problem into a venture people use?', minutes:5,
+    narration:[`Your team turns one real social problem, linked to an SDG, into a social venture with evidence. <span class="mono">Topics: Overview of the Course · Course Material · Course Assessment · Revisiting the Design Thinking Process · Recap of the DTP · Step 4: Prototyping · Step 5: Testing. CLO 1 · CLO 3.</span>`],
+    src:`Reading: Liedtka, J., Salzman, R., &amp; Azer, D. (2017). <em>Design thinking for the greater good: Innovation in the social sector</em>. Columbia University Press.`,
+    fig:{label:`Today's lab · 120 minutes`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`Course map`,15,'l'],[`Design thinking recap`,15,'l'],[`Define your problem`,20,'a'],[`Step 4 · Prototyping`,10,'l'],[`Step 5 · Testing`,10,'l'],[`Test exchange`,45,'a']])} },
+
+  { nav:'Design thinking recap', cert:{name:'Enterprise Design Thinking Practitioner',by:'IBM SkillsBuild',what:'free digital badge (Credly) · quizzes ≥ 80%',url:'https://www.credly.com/org/ibm/badge/enterprise-design-thinking-practitioner'}, title:'Recap of the design thinking process', minutes:15,
+    narration:[`Design thinking has five steps used in loops: <b>empathize, define, ideate, prototype, test</b>. UAE example: InstaShop's founder found ordering groceries by phone slow, built a mobile-first app in Dubai (2015), and Delivery Hero acquired it in 2020, valued at $360 million.`],
+    src:`Delivery Hero (2020). Delivery Hero acquires InstaShop, a leading online grocery marketplace in MENA. · Tech.eu (2020). Delivery Hero buys InstaShop.`,
+    fig:{label:`The five steps · click or play`, flow:[
+      {t:'Empathize',s:'understand',d:'Observe and listen to the people who have the problem. Write down what they do, say and feel.'},
+      {t:'Define',s:'the real problem',d:'Write one point-of-view statement: [user] needs [need] because [insight].'},
+      {t:'Ideate',s:'many ideas',d:'Generate many ideas before judging any. Quantity first.'},
+      {t:'Prototype',s:'make it real',d:'Build the cheapest version a user can experience (Week 5).'},
+      {t:'Test',s:'learn',d:'Let users try it, observe, and loop back to any earlier step.'}]} },
+
+  { nav:'Define your problem', title:'Activity · Define your problem', kind:'activity', minutes:20,
+    narration:[`Write your problem as <b>[user] needs [need] because [insight]</b>, then turn it into a “How might we…?” question.`],
+    fig:{label:`Problem definition · saves in your browser`, build:el=>W.worksheet(el,{id:'ent142-w1-pov',title:'ENT 142 · Week 1 · Problem definition',fields:[
+      {l:'User: who has the problem?',rows:1},{l:'Need: what do they need (a verb)?',rows:1},{l:'Insight: why? What did you notice?',rows:2},
+      {l:'Our point-of-view statement',ph:'[user] needs [need] because [insight]',rows:2},{l:'Our “How might we…” question',rows:2},{l:'Which SDG does it relate to?',rows:1}]})} },
+
+  { nav:'Step 4 · Prototyping', title:'Step 4 · Prototyping (preview)', minutes:10,
+    narration:[`A prototype is the cheapest thing that lets a user experience your idea. Start low fidelity; Week 5 goes deeper.`],
+    src:`Computer History Museum. <em>The PalmPilot</em>.`,
+    fig:{label:`Low → high fidelity`, html:`<table class="tbl"><thead><tr><th>Fidelity</th><th>Example</th><th>Time</th></tr></thead><tbody><tr><td>Low</td><td>Sketch, paper screens, role-play</td><td>Minutes</td></tr><tr><td>Medium</td><td>Canva mock-up, cardboard model, storyboard</td><td>Hours</td></tr><tr><td>High</td><td>Clickable app, working demo</td><td>Days to weeks</td></tr></tbody></table>`} },
+
+  { nav:'Step 5 · Testing', title:'Step 5 · Testing', minutes:10,
+    narration:[`Give one task, stay silent, watch, then ask open questions. Never defend the idea.`],
+    fig:{label:`Test in four steps`, flow:[
+      {t:'Task',s:'give one',d:'“Please reserve a meal for 7 pm.” One clear task.'},
+      {t:'Watch',s:'stay silent',d:'Observe where they hesitate or get stuck. Do not help.'},
+      {t:'Ask',s:'open questions',d:'“What did you expect to happen?” “What was confusing?”'},
+      {t:'Capture',s:'feedback grid',d:'I like · I wish · Questions · What if.'}]} },
+
+  { nav:'Test exchange', title:'Activity · Test exchange', kind:'activity', minutes:45,
+    narration:[`<b>Next week:</b> read Byers et al (2019). Ch. 1; each member brings 3 ideas linked to an SDG.`,`Swap prototypes with the team on your left, test for 8 minutes each, and fill in the feedback grid.`],
+    fig:{label:`Feedback capture grid`, build:grid} },
+
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "OpenStax §10.1 · Lean Startup", "kw": [["Prototype", "A first model of the solution.", "§10.1"], ["Core value", "The one thing users must get.", "Ch. 19"], ["MVP", "A very early prototype of a product (OpenStax §10.1).", "§10.1"]], "lab": "lab.html#lab-01", "labName": "Prototype Exhibition", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

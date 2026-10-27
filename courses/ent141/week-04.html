@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 4 · DTP Step 1: Empathy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#B4521E;--wk-soft:rgba(180,82,30,.10);--wk-d:#F2A06B;--wk-soft-d:rgba(242,160,107,.14)}
+</style>
+</head>
+<body>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/ent141.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture; const {store,esc} = ENT141;
+const EX_EMP={who:'Illustrative: Omar, a food-delivery rider in Dubai in July',says:'“The app shows 20 minutes, but the building has no shade to wait in.”',thinks:'If I take a break, I lose orders.',does:'Waits under a bridge between orders; refills water at petrol stations.',feels:'Tired, rushed, worried about heat.'};
+const EX_JM={stages:[{s:'Accept order',a:'Taps accept on the app',f:1,p:'“Good, a short trip.”'},{s:'Pick up',a:'Waits at the restaurant door',f:-1,p:'No shaded place to wait'},{s:'Ride',a:'Drives 15 minutes at noon',f:-2,p:'Heat; no water left'},{s:'Find building',a:'Calls the customer twice',f:-1,p:'Unclear entrance'},{s:'Deliver',a:'Hands over the order',f:1,p:'“A tip makes my day.”'}]};
+const FIXQ=[
+  {q:'“Don’t you think the bus is too slow?”',type:'leading',hint:'“Tell me about the last time you took the bus to campus.”'},
+  {q:'“Do you like studying in the library?”',type:'yes/no',hint:'“Walk me through where you studied last week, and why there.”'},
+  {q:'“Would you use an app that books tutors?”',type:'selling your idea',hint:'“How did you get help the last time you were stuck on an assignment?”'},
+  {q:'“What problems do students have?”',type:'too general',hint:'“What was the hardest part of your first week here?” Then ask: “Why?”'}];
+
+Lecture.mount({
+  id:'ent141-w5', week:4, clo:'3', course:'ENT 141', short:'Week 4 · Empathy',
+  title:'DTP Step 1: Empathy', meta:'OpenStax Ch. 6 · Problem Solving and Need Recognition · 1-hour lecture + 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'What does your user really do, think and feel?', minutes:5,
+    narration:[`Empathy is the base of the poster: interviews, an empathy map and a journey map. <span class="mono">Topics: Empathy Map · Journey Map. CLO 3.</span>`],
+    src:`Reading: Hasso Plattner Institute of Design at Stanford. <em>An introduction to design thinking: Process guide</em>, Empathize mode. · Byers et al. (2019), Ch. 2.`,
+    fig:{label:`Today's class · lecture and lab`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`What is empathy?`,10,'l'],[`Interview for empathy`,20,'l'],[`Empathy map`,20,'l'],[`Journey map`,20,'l'],[`Plan your interviews`,30,'a'],[`Think about it`,15,'a']])} },
+
+  { nav:'What is empathy?', title:'What is empathy?', minutes:10,
+    narration:[`Empathy is understanding a person's experience from their point of view. The d.school asks you to <b>observe</b>, <b>engage</b> and <b>immerse</b>: watch, talk and try it yourself.`],
+    video:{id:'1Evwgu369Jw',title:'Brené Brown on Empathy',by:'Royal Society of Arts',why:'Three minutes on the difference between empathy and sympathy.'} },
+
+  { nav:'Interview for empathy', title:'Interview for empathy', minutes:20,
+    narration:[`Ask about real past events, then ask <b>why</b>. Avoid questions that lead, sell your idea or end with yes or no. Fix each question below.`],
+    src:`Hasso Plattner Institute of Design at Stanford. <em>Process guide</em>: Interview for empathy.`,
+    fig:{label:`Fix the question · reveal a better one`, build:el=>W.practice(el,FIXQ,{label:'Better question',prefix:'<b>Try:</b> '})} },
+
+  { nav:'Empathy map', title:'Empathy map', minutes:20, wide:true,
+    narration:[`An <b>empathy map</b> sorts what you learned into four parts: what the user <b>says</b>, <b>thinks</b>, <b>does</b> and <b>feels</b>. Gaps between says and does are where insights hide.`],
+    src:`Gray, D. (2017). Updated empathy map canvas. XPLANE. · d.school Process guide.`,
+    fig:{label:`Illustrative example · edit to practise`, build:el=>ENT141.empathyMap(el,{key:'ent141-w5-emp-demo',init:EX_EMP}), caption:`Illustrative only. Your team's real map goes in part 3 of your poster.`} },
+
+  { nav:'Journey map', title:'Journey map', minutes:20, full:true,
+    narration:[`A <b>journey map</b> follows the user step by step and tracks how they feel at each stage. The lowest point is usually the pain point worth solving.`],
+    fig:{label:`Illustrative journey · drag the feelings`, build:el=>ENT141.journeyMap(el,{key:'ent141-w5-jm-demo',init:EX_JM}), caption:`Illustrative only. Your team's real map goes in part 4 of your poster.`} },
+
+  { nav:'Plan your interviews', title:'Activity · Plan your interviews', kind:'activity', minutes:30,
+    narration:[`The poster rubric rewards <b>many</b> interviews with <b>deep</b> answers. Plan at least five, then add the best quotes to part 2 of <a href="poster.html#z2">your poster</a>. Need questions? Use the <a href="toolkit.html#s5">question designer</a>.`],
+    fig:{label:`Interview plan · saves in your browser`, build:el=>W.worksheet(el,{id:'ent141-w5-plan',title:'ENT 141 · Interview plan',fields:[
+      {l:'Who will we interview? (5+ people who have the problem)',rows:3},{l:'Where and when will we meet them?',rows:2},
+      {l:'Opening question: “Tell me about the last time…”',rows:2},{l:'Four follow-up questions (no yes/no, no selling)',rows:4},{l:'Who asks, who writes, who observes?',rows:2}]})} },
+
+  { nav:'Think about it', title:'Think about it', kind:'activity', minutes:15,
+    narration:[`Discuss with your team, then reveal one view. There is no single right answer.`],
+    fig:{label:`Critical thinking · Empathy`, build:el=>W.practice(el,[{q:'Your interviewee says they exercise often, but you see them take the lift every day. Which do you trust? Why?',hint:'What people do usually tells you more than what they say. The gap itself is an insight.'},
+{q:'Is an empathy map of one person enough for your poster?',hint:'No: the rubric rewards many interviews. Look for patterns across people.'},
+{q:'You already know the problem because you have it yourself. Do you still need interviews?',hint:'Yes: your experience is one case. Others may have different reasons and needs.'}],{label:'One view',prefix:''})} },
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "OpenStax Ch. 6 · Problem Solving and Need Recognition", "kw": [["Empathy", "Understanding what users do, think and feel.", "Ch. 6"], ["Open question", "A question that cannot be answered yes or no.", "Ch. 6"], ["Leading question", "A question that suggests the answer. Avoid it.", "Ch. 6"]], "lab": "lab.html#lab-04", "labName": "Good Interview / Bad Interview", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

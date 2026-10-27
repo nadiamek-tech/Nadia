@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 9 · Design Thinking Process for Sustainable Innovation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#6B4FB8;--wk-soft:rgba(107,79,184,.10);--wk-d:#B9A3F5;--wk-soft-d:rgba(185,163,245,.14)}
+</style>
+</head>
+<body>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/ent141.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture; const {store,esc} = ENT141;
+const MIND={'d.school mindsets':[
+  ['Focus on human values','Build empathy for the people you design for; their feedback decides, not your opinion.'],
+  ['Show, don’t tell','Share ideas through sketches, stories and objects, not long explanations.'],
+  ['Craft clarity','Turn a messy problem into one clear statement others can act on.'],
+  ['Embrace experimentation','Build to think and learn, not only to prove you were right.'],
+  ['Be mindful of process','Know which step you are in and which method fits it.'],
+  ['Bias toward action','Do and make, rather than talk and plan.'],
+  ['Radical collaboration','Mix people with different backgrounds; better ideas come from differences.']]};
+const PITCH=[['Hook',5,'A question or a number about the problem.'],['Problem',10,'Who has it and why it matters.'],['Your idea',15,'What you propose, in one sentence.'],['Why it matters',10,'The SDG or the change it creates.'],['Close',5,'One line they will remember.']];
+
+Lecture.mount({
+  id:'ent141-w4', week:9, clo:'1, 3', course:'ENT 141', short:'Week 9 · Design Thinking Process',
+  title:'Design Thinking Process (DTP) for Sustainable Innovation', meta:'Stanford d.school guide · 1-hour lecture + 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'How do you solve a problem you do not have yourself?', minutes:5,
+    narration:[`Design thinking starts with the people who have the problem, not with your idea. <span class="mono">Topics: Introduction to Design Thinking Process · Building an Innovative Mindset · Activity 1. CLO 1 · CLO 3.</span>`],
+    src:`Reading: Kummitha, R. K. R. (2019). Design thinking in social organizations: Understanding the role of user engagement. <em>Creativity and Innovation Management</em>, 28(1), 101–112.`,
+    fig:{label:`Today's class · lecture and lab`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`What is design thinking?`,15,'l'],[`The five steps`,15,'l'],[`Case: Embrace`,10,'l'],[`Innovative mindset`,20,'l'],[`Think about it`,15,'a']])} },
+
+  { nav:'What is design thinking?', title:'Introduction to the design thinking process', minutes:15,
+    narration:[`<b>Design thinking</b> is a human-centred way to solve problems by understanding users, trying many ideas and testing them early. Kummitha (2019) shows the role of engaging users when social organisations innovate.`],
+    video:{id:'M66ZU2PCIcM',title:'ABC Nightline: IDEO Shopping Cart',by:'ABC Nightline (uploaded by Alfonso Neri)',why:'A team redesigns a shopping cart in days: observe users, many ideas, quick models.'} },
+
+  { nav:'The five steps', title:'The five steps of the DTP', minutes:15,
+    narration:[`The Stanford d.school uses five steps, repeated in loops. Weeks 5 to 9 take one step at a time.`],
+    src:`Hasso Plattner Institute of Design at Stanford. <em>An introduction to design thinking: Process guide</em>.`,
+    fig:{label:`Five steps · click or play`, flow:[
+      {t:'Empathize',s:'Week 5',d:'Observe, interview and immerse to understand users.'},
+      {t:'Define',s:'Week 6',d:'Turn what you learned into one clear problem and “How might we…” questions.'},
+      {t:'Ideate',s:'Week 7',d:'Generate many ideas before judging any.'},
+      {t:'Prototype',s:'Weeks 7–8',d:'Make a quick, cheap version people can see or try.'},
+      {t:'Test',s:'Weeks 8–9',d:'Show it to users, learn, and loop back.'}]} },
+
+  { nav:'Case: Embrace', title:'Case · Embrace infant warmer', minutes:10,
+    narration:[`Stanford students designed a low-cost infant warmer (2007). Watching rural families in Nepal changed the design: they added a model for use at home.`],
+    src:`Stanford Biodesign. <em>Embrace</em> (Global Health Innovation Insight Series). · Stanford Daily (2010, November 18). At-risk babies kept warm by Stanford innovation.`,
+    fig:{label:`Embrace in numbers`, html:`<div class="tiles"><div><div class="n">2007</div><div class="t">Started as a student project at Stanford</div></div><div><div class="n">$200</div><div class="t">Target cost, vs up to $20,000 for an incubator</div></div><div><div class="n">2</div><div class="t">Models after field observation: clinic and home</div></div></div>`} },
+
+  { nav:'Innovative mindset', title:'Building an innovative mindset', minutes:20,
+    narration:[`The d.school names seven mindsets behind design thinking. Pick the one your team needs most this term.`],
+    src:`Hasso Plattner Institute of Design at Stanford. <em>Bootcamp bootleg</em>: d.school mindsets.`,
+    fig:{label:`Seven mindsets · click to read`, build:el=>W.picker(el,MIND,'Select a mindset.')} },
+
+  { nav:'Think about it', title:'Think about it', kind:'activity', minutes:15,
+    narration:[`Discuss with your team, then reveal one view. There is no single right answer.`],
+    fig:{label:`Critical thinking · Embrace`, build:el=>W.practice(el,[{q:"Embrace's team changed the design after visiting families in Nepal. What would have happened if they had stayed in the lab?",hint:'They would have built a better hospital incubator for clinics that families could not reach.'},
+{q:'Which d.school mindset is hardest for your team? Why?',hint:'Be honest: “bias toward action” is hard for planners; “radical collaboration” is hard when friends think alike.'},
+{q:'Is design thinking only for designers?',hint:'No: it is a process anyone can use. Kummitha (2019) studies it in social organisations.'}],{label:'One view',prefix:''})} },
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "Stanford d.school guide", "kw": [["Design thinking", "Empathize, define, ideate, prototype, test.", "d.school"], ["Ideate", "Generate many ideas before choosing.", "d.school"], ["Prototype", "A quick, cheap model to test an idea.", "§10.1"]], "lab": "lab.html#lab-09", "labName": "Real Brainstorming Session", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

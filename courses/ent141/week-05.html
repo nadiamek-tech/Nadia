@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 5 · DTP Step 2: Defining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#B42318;--wk-soft:rgba(180,35,24,.09);--wk-d:#F59E94;--wk-soft-d:rgba(245,158,148,.14)}
+</style>
+</head>
+<body>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/ent141.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script>
+const {W} = Lecture; const {store,esc} = ENT141;
+const METHODS={'Primary data collection methods':[
+  ['Interview','One person, open questions, about 20 minutes. Best for: why people act as they do. Risk: leading questions.'],
+  ['Observation','Watch people in the real setting without interrupting. Best for: what people actually do, not what they say. Risk: you see only one moment.'],
+  ['Survey','Same short questions to many people. Best for: how common a problem is, after interviews. Risk: shallow answers.'],
+  ['Focus group','Six to eight people discuss together. Best for: reactions and language people use. Risk: one loud voice leads the group.']]};
+const INSIGHT=[
+  {t:'Observation',d:'“Three riders in a row waited outside in the sun, not in the lobby.”'},
+  {t:'Quote',d:'“Security tells us to wait outside.”'},
+  {t:'Insight',d:'Riders are not avoiding shade by choice; building rules push them out.'},
+  {t:'Need',d:'Riders need a safe, shaded place to wait that buildings accept.'}];
+const SOLWORDS=/\b(app|website|platform|chatbot|ai|machine|device|kiosk|robot)\b/i;
+
+function hmw(el){
+  const key='ent141-w6-hmw'; let st; try{st=JSON.parse(store.get(key)||'null')}catch(e){} if(!st) st={user:'',need:'',insight:'',list:''};
+  el.innerHTML=`<div class="ins">
+    <label for="h-u">User</label><input type="text" id="h-u" data-k="user" value="${esc(st.user)}" placeholder="first-year students who commute by bus">
+    <label for="h-n">Need (a verb)</label><input type="text" id="h-n" data-k="need" value="${esc(st.need)}" placeholder="to arrive on time for 8 am classes">
+    <label for="h-i">Insight (from your interviews)</label><textarea id="h-i" data-k="insight" rows="2" placeholder="the first bus reaches campus at 8:10">${esc(st.insight)}</textarea>
+    <div class="box exam" id="h-pov"></div>
+    <label for="h-l">Your “How might we…” questions, one per line (aim for 3)</label><textarea id="h-l" data-k="list" rows="4">${esc(st.list)}</textarea>
+    <div class="feedback" id="h-o"></div></div>`;
+  const upd=()=>{ store.set(key,JSON.stringify(st));
+    el.querySelector('#h-pov').innerHTML=`<b class="lbl">Point of view</b>${st.user&&st.need&&st.insight?`<b>${esc(st.user)}</b> need${/s$/i.test(st.user.trim())?'':'s'} <b>${esc(st.need)}</b> because <b>${esc(st.insight)}</b>.`:'Fill in user, need and insight.'}`;
+    const lines=st.list.split('\n').map(x=>x.trim()).filter(Boolean);
+    el.querySelector('#h-o').innerHTML=lines.length?lines.map(l=>{ const p=[]; if(!/^how might we\b/i.test(l)) p.push('start with “How might we…”'); if(SOLWORDS.test(l)) p.push('too narrow: it already names a solution'); if(l.split(/\s+/).length<7) p.push('too broad: add the user or the need'); return `${p.length?'!':'✓'} ${esc(l)}${p.length?` <small>(${p.join('; ')})</small>`:''}`; }).join('<br>')+(lines.length<3?`<br><b>Add ${3-lines.length} more.</b> Try: amplify the good, remove the bad, or question an assumption.`:''):'Example: <i>How might we help first-year students reach 8 am classes on time without a car?</i>'; };
+  el.querySelectorAll('[data-k]').forEach(i=>i.addEventListener('input',()=>{ st[i.dataset.k]=i.value; upd(); }));
+  upd();
+}
+
+Lecture.mount({
+  id:'ent141-w6', week:5, clo:'1, 3', course:'ENT 141', short:'Week 5 · Defining',
+  title:'DTP Step 2: Defining', meta:'OpenStax Ch. 6 · 1-hour lecture + 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'What exactly are we solving, and for whom?', minutes:5,
+    narration:[`Defining turns interview notes into one clear problem and a few “How might we…” questions. <span class="mono">Topics: Primary Data Collection Methods · How Might We (HMW) Questions · Problem Definition &amp; Sustainability. CLO 1 · CLO 3.</span>`],
+    src:`Reading: Byers et al. (2019), Ch. 2. · Hasso Plattner Institute of Design at Stanford. <em>An introduction to design thinking: Process guide</em>, Define mode.`,
+    fig:{label:`Today's class · lecture and lab`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`Primary data`,20,'l'],[`From notes to insight`,15,'l'],[`How might we`,15,'l'],[`Problem and sustainability`,15,'l'],[`Define your problem`,40,'a'],[`Think about it`,10,'a']])} },
+
+  { nav:'Primary data', title:'Primary data collection methods', minutes:20,
+    narration:[`<b>Primary data</b> is what your team collects first-hand; <b>secondary data</b> already exists, such as UN or government statistics. For the poster, interviews and observation come first; for secondary data, use the <a href="toolkit.html#s4">open data finder</a>.`],
+    src:`Byers et al. (2019), Ch. 2. · d.school Process guide.`,
+    fig:{label:`Four methods · click to compare`, build:el=>W.picker(el,METHODS,'Select a method.')} },
+
+  { nav:'From notes to insight', title:'From notes to insight', minutes:15,
+    narration:[`An <b>insight</b> is a surprising reason behind what users do. Move from what you saw and heard to what it means.`],
+    fig:{label:`Illustrative example · click or play`, flow:INSIGHT} },
+
+  { nav:'How might we', title:'How Might We (HMW) questions', minutes:15,
+    narration:[`A <b>point of view</b> joins user, need and insight. A <b>“How might we…”</b> question turns it into an open challenge: not so broad that anything fits, not so narrow that it names the solution.`],
+    src:`d.school Process guide: Point of view; “How might we” questions.`,
+    fig:{label:`Too broad · just right · too narrow`, html:`<div class="cmp c3"><div><h4>Too broad</h4>How might we fix transport in Dubai?</div><div><h4>Just right</h4>How might we help first-year students reach 8 am classes on time without a car?</div><div><h4>Too narrow</h4>How might we build a carpool app for students?</div></div>`} },
+
+  { nav:'Problem and sustainability', title:'Problem definition &amp; sustainability', minutes:15,
+    narration:[`Check your problem against the triple bottom line from Week 3: who suffers (people), what is wasted or harmed (planet), and what it costs (profit).`],
+    fig:{label:`Score your problem · drag the sliders`, build:el=>ENT141.tbl(el,'ent141-w6-tbl',{people:{v:3,t:'People: who suffers, and how many?'},planet:{v:2,t:'Planet: what is wasted or harmed?'},profit:{v:2,t:'Profit: what does the problem cost, and to whom?'}})} },
+
+  { nav:'Define your problem', title:'Activity · Define your problem', kind:'activity', minutes:40,
+    narration:[`Use your interview notes. Write the point of view, then three HMW questions; the checks flag the common mistakes. Copy the best into part 5 of <a href="poster.html#z5">your poster</a>.`],
+    fig:{label:`POV and HMW builder · saves in your browser`, build:hmw} },
+
+  { nav:'Think about it', title:'Think about it', kind:'activity', minutes:15,
+    narration:[`Discuss with your team, then reveal one view. There is no single right answer.`],
+    fig:{label:`Critical thinking · Defining`, build:el=>W.practice(el,[{q:'Is a survey of 200 people better than 5 deep interviews?',hint:'For understanding why, no. For showing how common a problem is, yes. Use them in that order.'},
+{q:'Your HMW question names an app. What do you lose?',hint:'Every non-app solution: a service, a rule change, a campaign. Keep the solution open.'},
+{q:'Your problem matters to you. How do you show it matters to others?',hint:'Quotes from several users plus one number from a trusted open data source.'}],{label:'One view',prefix:''})} },
+  ]
+});
+</script>
+<link rel="stylesheet" href="assets/extras.css">
+<script>window.EXTRA={"book": "OpenStax Ch. 6", "kw": [["Primary data", "Data you collect yourself: interviews, observation.", "Ch. 6"], ["Insight", "A pattern in the evidence that explains behaviour.", "Ch. 6"], ["HMW question", "How might we [action] for [who] so that [need]?", "d.school"]], "lab": "lab.html#lab-05", "labName": "Get Out of the Classroom Challenge", "url": "https://openstax.org/details/books/entrepreneurship"};</script>
+<script src="assets/professor.js"></script>
+<script src="assets/extras.js"></script>
+</body>
+</html>

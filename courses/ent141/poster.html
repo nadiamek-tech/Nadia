@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Poster Template · ENT 141</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/poster.css">
+<style>
+:root{--wk:#B4521E;--wk-soft:rgba(180,82,30,.09);--wk-d:#F2A06B;--wk-soft-d:rgba(242,160,107,.14)}
+body{font-family:var(--f-display);background:var(--bg);color:var(--ink);margin:0}
+.pw{max-width:1040px;margin:0 auto;padding:0 16px 60px}
+.pw h1{font-size:clamp(1.7rem,4vw,2.4rem);margin:22px 0 4px;letter-spacing:-.01em}
+.pw .lead{color:var(--muted);margin:0 0 14px}
+.bar{position:sticky;top:58px;z-index:30;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(6px);margin-bottom:12px}
+.seg{display:inline-flex;border:1.5px solid var(--wk);border-radius:999px;overflow:hidden}
+.seg button{font:700 .95rem var(--f-display);border:none;background:transparent;color:var(--ink);padding:8px 16px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--wk);color:var(--on-wk,#fff)}
+.bbtn{font:700 .9rem var(--f-display);border:1.5px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.bbtn:hover{border-color:var(--wk)}
+.bbtn.pri{background:var(--wk);border-color:var(--wk);color:var(--on-wk,#fff)}
+.prog{font:600 .85rem var(--f-mono);color:var(--muted);margin-left:auto}
+.exnote{display:none;background:var(--wk-soft);border-left:4px solid var(--wk);border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:.95rem}
+.exmode .exnote{display:block}
+#print-root{display:none}
+.pz .no{cursor:pointer}
+@media (max-width:720px){.pw{padding:0 0 60px}.pw h1,.pw .lead,.bar,.exnote{margin-left:16px;margin-right:16px}.bar{top:50px}.prog{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div id="hub" data-cur="project"></div>
+<main class="pw" id="pw">
+  <h1>Your poster</h1>
+  <p class="lead">Type on each part. It saves in this browser. Stuck on a part? Click its number to see how to make it.</p>
+  <div class="bar">
+    <div class="seg" role="group" aria-label="Show"><button type="button" data-m="edit" aria-pressed="true">Our poster</button><button type="button" data-m="ex" aria-pressed="false">Example</button></div>
+    <a class="bbtn" href="project-1.html">Project guide</a>
+    <button type="button" class="bbtn pri" id="print">Print or save PDF</button>
+    <button type="button" class="bbtn" id="share" title="Save a file to send to your team">Save file</button>
+    <label class="bbtn" title="Open a file from your team">Open file<input type="file" id="open" accept=".json,application/json" hidden></label>
+    <span class="prog" id="prog"></span>
+  </div>
+  <p class="exnote"><b>Example:</b> a made-up team, to show what a finished poster looks like. Choose your own problem.</p>
+  <div id="poster"></div>
+</main>
+<div id="print-root"></div>
+<footer class="pt-foot">This website is interactive course support. It does not replace classes, attendance or class activities.<br> <b>Eng. Nadia Mek</b></footer>
+<script src="assets/site.js"></script>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script src="assets/professor.js"></script>
+<script src="assets/course-info.js"></script>
+<script src="assets/portal.js"></script>
+<script src="assets/poster.js"></script>
+<script>
+Portal.header('project');
+const P=Poster, el=document.getElementById('poster'), pw=document.getElementById('pw');
+let S=P.load(), mode='edit';
+const prog=()=>{ const n=P.ZONES.filter(z=>P.DONE[z.key](S)).length; document.getElementById('prog').textContent=mode==='edit'?`${n} of 8 parts filled`:''; };
+function draw(){
+  P.render(el,{mode:mode==='edit'?'edit':'view',data:mode==='edit'?S:P.EX,onchange:prog});
+  pw.classList.toggle('exmode',mode==='ex'); prog();
+  el.querySelectorAll('.pz .no').forEach(b=>{ b.title='How to make this part'; b.setAttribute('role','link'); b.addEventListener('click',()=>{ location.href='project-1.html#s'+(+b.textContent+2); }); });
+}
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{ mode=b.dataset.m; document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b)); draw(); }));
+document.getElementById('print').addEventListener('click',()=>{ P.render(document.getElementById('print-root'),{mode:'view',data:mode==='edit'?S:P.EX}); window.print(); draw(); });
+document.getElementById('share').addEventListener('click',()=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'})); a.download=(S.team||'our-team').replace(/[^\w-]+/g,'-')+'-poster.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),1000); });
+document.getElementById('open').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f) return; f.text().then(t=>{ try{ const d=JSON.parse(t); if(!d||!d.sol) throw 0; S=Object.assign(P.blank(),d); P.save(S); mode='edit'; document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m==='edit')); draw(); }catch(x){ alert('This is not a poster file.'); } }); });
+draw();
+function hl(){ const m=location.hash.match(/^#z([1-8])$/); if(!m) return; const z=document.getElementById('z'+m[1]); if(!z) return; z.classList.add('hl'); z.scrollIntoView({block:'center'}); const f=z.querySelector('.pf'); if(f) setTimeout(()=>f.focus({preventScroll:true}),300); setTimeout(()=>z.classList.remove('hl'),2600); }
+window.addEventListener('hashchange',hl); hl();
+</script>
+<link rel="stylesheet" href="assets/extras.css"><div class="sugbar" style="position:fixed;bottom:0;left:0;right:0;z-index:5">Suggested course preview · <a href="index.html">course home</a></div></body>
+</html>

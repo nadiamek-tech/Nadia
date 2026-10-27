@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Week 3 · Prototyping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css">
+<style>
+:root{--wk:#0F7B6C;--wk-soft:rgba(15,123,108,.10);--wk-d:#4FD1BA;--wk-soft-d:rgba(79,209,186,.14)}
+.chooser{display:grid;gap:6px}
+.chooser button{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:9px 12px;cursor:pointer;font-family:var(--f-display);font-size:.92rem}
+.chooser button[aria-pressed="true"]{border-color:var(--wk);background:var(--wk-soft);font-weight:600}
+.answer{margin-top:12px;border-left:4px solid var(--wk);padding:10px 14px;background:var(--surface);border-radius:0 8px 8px 0;font-family:var(--f-display);font-size:.95rem}
+.answer b.big{display:block;font-size:1.25rem;color:var(--wk);margin-bottom:4px}
+.ladder{width:100%;height:auto;display:block}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.tiles div{border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg)}
+.tiles .n{font-family:var(--f-display);font-weight:800;font-size:1.7rem;color:var(--wk);line-height:1}
+.tiles .t{font-family:var(--f-display);font-size:.84rem;margin-top:6px}
+@media (max-width:560px){.tiles{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<script src="assets/supports.js"></script>
+<script src="assets/course.js"></script>
+<script src="assets/onepage.js"></script>
+<script src="assets/kb.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/assistant.js"></script>
+<script src="assets/proto-bot.js"></script>
+<script>
+const {W,B} = Lecture;
+const KEY = html=>`<div class="box exam"><b class="lbl">Remember for your project</b>${html}</div>`;
+
+/* ---------- Scene 3: six techniques ---------- */
+const TECH={
+ 'Show the idea':[
+  ['Sketch','A quick drawing of the solution on paper or a whiteboard. Ten minutes, zero cost.<br><br><b>Example:</b> a team draws the front of a refill station for reusable water bottles at CUD, with arrows showing where students tap their card.'],
+  ['Physical model','A rough object you can hold: cardboard, foam, 3D print, LEGO.<br><br><b>Real case:</b> before the PalmPilot launched, Jeff Hawkins carried a wooden model of it. He used a chopstick as the stylus, took pretend notes in meetings, and counted the steps needed for common tasks. (Computer History Museum)']],
+ 'Show the journey':[
+  ['Storyboard','4–6 comic-style frames showing a user before, during and after using your solution. Best for services.<br><br><b>Example:</b> frame 1, a student throws away half a lunch; frame 2, she opens an app; frame 3, a café lists surplus meals at 6 pm; frame 4, another student collects one for 5 AED.'],
+  ['Role-play','Team members act out the service with a real user. One plays the customer, one plays the service.<br><br><b>Real case:</b> Zappos founder Nick Swinmurn tested online shoe selling by photographing shoes in local stores and posting them online. When someone ordered, he bought the pair in the store and shipped it. The service was simulated by hand before any system existed. (Ries, 2011)']],
+ 'Simulate interaction':[
+  ['Paper prototype','Screens drawn on paper or sticky notes. A user “taps” with a finger; a teammate swaps the paper screen.<br><br><b>Example:</b> three paper screens of a volunteering app, tested with five classmates in 15 minutes.'],
+  ['Digital mock-up','Clickable screens made in Canva, PowerPoint/Slides or Figma (free plan). Looks real, does nothing behind the scenes.<br><br><b>Real case:</b> Dropbox founder Drew Houston made a short demo video showing how the product was meant to work. He said the beta waiting list went from 5,000 to 75,000 people overnight, which showed demand before the product was finished. (TechCrunch, 2011)']]
+};
+
+/* ---------- Scene 4: chooser (slide 4) ---------- */
+const NEEDS=[
+ ['I need to show how it looks','Sketch / mock-up','Quick drawing, then a cleaner mock-up in Canva.'],
+ ['I need to test interaction','Paper / digital','Paper screens first; move to a clickable digital version once the flow works.'],
+ ['I need to show a physical product','Physical model','Cardboard, foam or a 3D print at roughly real size.'],
+ ['I need to show a service','Storyboard / role-play','Draw the steps, then act them out with a real user.'],
+ ['I need to demonstrate technology','Functional demo','The smallest version that really works, even if only one feature.'],
+ ['I need to explain the user journey','Storyboard','Before → during → after, from the user\'s point of view.']];
+function chooser(el){
+  el.innerHTML=`<div class="chooser ui">${NEEDS.map((n,i)=>`<button type="button" data-i="${i}" aria-pressed="false">${n[0]}</button>`).join('')}</div><div class="answer" id="ch-out">Choose what your team needs to do.</div>`;
+  const bs=el.querySelectorAll('button'), out=el.querySelector('#ch-out');
+  bs.forEach(b=>b.addEventListener('click',()=>{ bs.forEach(x=>x.setAttribute('aria-pressed',x===b)); const n=NEEDS[+b.dataset.i]; out.innerHTML=`<b class="big">→ ${n[1]}</b>${n[2]}<br><span class="mono" style="color:var(--muted)">Then ask: what is the biggest assumption this prototype will test?</span>`; }));
+}
+
+/* ---------- Scene 2: fidelity ladder (SVG) ---------- */
+const LADDER=`<svg class="ladder" viewBox="0 0 640 230" role="img" aria-label="Fidelity ladder: sketch, paper, storyboard, mock-up, physical model, functional demo. Cost and time increase to the right.">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+<line x1="20" y1="205" x2="620" y2="205" stroke="var(--muted)" stroke-width="1.5" marker-end="url(#ar)"/>
+<text x="20" y="225" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--muted)">low fidelity · minutes · free</text>
+<text x="620" y="225" text-anchor="end" font-family="JetBrains Mono,monospace" font-size="11" fill="var(--muted)">high fidelity · days · costly</text>
+${[['Sketch',30],['Paper',55],['Storyboard',80],['Mock-up',110],['Model',140],['Working demo',175]].map(([t,h],i)=>{const x=30+i*98;return `<rect x="${x}" y="${195-h}" width="82" height="${h}" rx="6" fill="var(--wk)" opacity="${.35+i*.12}"/><text x="${x+41}" y="${187-h}" text-anchor="middle" font-family="Schibsted Grotesk,Arial,sans-serif" font-size="13" font-weight="600" fill="var(--ink)">${t}</text>`}).join('')}
+</svg>`;
+
+Lecture.mount({
+  id:'ent142-w5', week:3, clo:1, course:'ENT 142', short:'Week 3 · Prototyping',
+  title:'Prototyping',
+  meta:'Bland & Osterwalder (2019) · 2-hour lab',
+  scenes:[
+  { nav:'Start here', title:'How do we turn an idea into something people can experience?', minutes:5,
+    narration:[`Make your idea visible, testable and easy to explain. <span class="mono">Topics: Prototyping · Prototype Generation Techniques · Initial Prototype Development. CLO 1.</span>`],
+    src:`Reading: Byers et al (2019). Ch. 8, Pradeep &amp; Rajib (2022). Byers, T., Dorf, R. C., &amp; Nelson, A. J. (2019). <em>Technology ventures: From idea to enterprise</em> (5th ed.). McGraw-Hill Education.`,
+    fig:{label:`Today's lab · 120 minutes`, build:el=>W.agenda(el,[[`Start here`,5,'l'],[`What is a prototype?`,10,'l'],[`Six techniques`,10,'l'],[`Prototype Helper`,20,'a'],[`Real prototypes`,10,'l'],[`3D with Meshy AI`,5,'a'],[`Case: Embrace`,5,'l'],[`Build v1`,50,'a']])} },
+
+  { nav:'What is a prototype?', cert:{name:'Enterprise Design Thinking Practitioner',by:'IBM SkillsBuild',what:'free badge · prototyping is part of it (see Week 1)',url:'https://www.credly.com/org/ibm/badge/enterprise-design-thinking-practitioner'}, title:'A prototype makes an idea visible', minutes:10,
+    narration:[`A <b>prototype</b> is a simple representation of your solution to see, explain and test it before full development. Jeff Hawkins tested the PalmPilot with a wooden block and a chopstick.`],
+    src:`Computer History Museum. <em>The PalmPilot</em>. computerhistory.org/revolution/mobile-computing/18/321`,
+    fig:{label:`Idea → prototype → test → learn`, flow:[
+      {t:'Idea',s:'problem + solution',d:'Your team\'s idea, linked to a social problem and an SDG.'},
+      {t:'Prototype',s:'simplest version',d:'Build the cheapest thing that lets a user experience the idea.'},
+      {t:'Test',s:'real users',d:'Watch 5 or more real users try it. Do not explain or defend; observe.'},
+      {t:'Learn',s:'keep · change · drop',d:'Write down what surprised you. Decide what to keep, change or drop.'},
+      {t:'Iterate',s:'version 2',d:'Build version 2. Each loop should be faster and cheaper than the last.'}],
+      html:LADDER, caption:`Fidelity ladder (illustrative). Higher fidelity costs more time and money; climb only when needed.`} },
+
+  { nav:'Six techniques', title:'Prototype generation techniques', minutes:10,
+    narration:[`Six techniques: sketch, storyboard, paper, digital, physical, role-play. Click each for an example.`],
+    src:`Ries, E. (2011). <em>The lean startup</em>. Crown Business (Zappos). · Kincaid, J. (2011, October 19). Dropbox minimal viable product. <em>TechCrunch</em>.`,
+    fig:{label:`Six techniques · click for an example`, build:el=>W.picker(el,TECH,'Select a technique.')} },
+
+  { nav:'Prototype Helper', title:'Choose your prototype · Prototype Helper', kind:'activity', minutes:20, wide:true,
+    narration:[`There is no single right prototype. Choose the <b>fastest, cheapest, easiest</b> one that tests your biggest assumption. Load an example idea, edit it, press <b>Send</b>.`],
+    fig:{label:`Prototype Helper · type your idea`, build:el=>ProtoBot(el)} },
+
+  { nav:'Real prototypes', title:'How real teams prototype and show it', minutes:10, wide:true,
+    narration:[`Watch one video: notice how rough the first prototypes are. Startups demo first: prototype → problem → evidence → next test.`],
+    video:[{id:'M66ZU2PCIcM',title:'ABC Nightline: IDEO Shopping Cart',by:'ABC Nightline (uploaded by Alfonso Neri)',why:'IDEO redesigns a shopping cart in days: rough models, real users, fast changes.'},
+           {id:'H0_yKBitO8M',title:'Build a tower, build a team',by:'TED · Tom Wujec',why:'Why children beat business students: they prototype early and often.'}],
+    src:`Zawya (2022). Business incubator in5 to showcase 7 innovative Dubai-based start-ups at GITEX 2022. · More: Jane Chen, <a href="https://www.ted.com/talks/jane_chen_a_warm_embrace_that_saves_lives" target="_blank" rel="noopener">A warm embrace that saves lives</a> (TED).`,
+    fig:{label:`Demo like a startup`, flow:[
+      {t:'Demo',s:'hand it over',d:'Let the audience see or try the prototype first.'},
+      {t:'Problem',s:'one sentence',d:'Who has the problem and why it matters (your SDG).'},
+      {t:'Evidence',s:'what testers did',d:'“7 of 12 could not find the pickup time; after the change, 11 of 12 did.”'},
+      {t:'Next test',s:'what you learn next',d:'The next assumption and the cheapest way to test it.'}]} },
+
+  { nav:'3D with Meshy AI', title:'A quick 3D prototype with Meshy AI', kind:'activity', minutes:5, wide:true,
+    narration:[`For a physical product, Meshy AI turns a sketch or a sentence into a 3D model (free plan: 100 credits a month). Press ▶ Play. A model shows the look; only users show if it works.`],
+    src:`Meshy (2026). Web app: getting started; Pricing. docs.meshy.ai · meshy.ai/pricing`,
+    fig:{label:`Meshy AI in 6 steps · press Play`, flow:[
+      {t:'Sign up',s:'free',d:'meshy.ai → sign up with Google or email. No credit card.'},
+      {t:'Choose',s:'Image or Text to 3D',d:'Image to 3D: upload a clear photo of your sketch or cardboard model. Text to 3D: describe it, e.g. “a reusable lunch box made of date-palm fibre with a bamboo clip”.'},
+      {t:'Generate',s:'see the cost',d:'Click Generate. The panel shows time and credit cost first.'},
+      {t:'Check',s:'3D viewer',d:'Rotate and zoom. Wait for “Complete”. Regenerate if the shape is wrong.'},
+      {t:'Export',s:'GLB · STL',d:'Download GLB (web, AR) or STL (3D printing), or take screenshots for your report.'},
+      {t:'Test',s:'with users',d:'Show it to 5 people. Ask what it is, how they would use it, what they would change.'}],
+      html:`<table class="tbl"><thead><tr><th>Need</th><th>Free tool</th></tr></thead><tbody><tr><td>Screens, posters, storyboards</td><td>Canva</td></tr><tr><td>Clickable app screens</td><td>Figma (free plan)</td></tr><tr><td>Simple 3D shapes</td><td>Tinkercad (browser)</td></tr><tr><td>3D from a sketch or text</td><td>Meshy AI (free plan)</td></tr><tr><td>Prototyping guides</td><td><a href="https://dschool.stanford.edu/resources" target="_blank" rel="noopener">Stanford d.school tools</a></td></tr></tbody></table>`} },
+
+  { nav:'Case: Embrace', title:'Case · Embrace infant warmer', minutes:5,
+    narration:[`Stanford students built a low-cost infant warmer (2007). Observing rural families in Nepal changed the design: they added a home model.`],
+    src:`Stanford Biodesign. <em>Embrace</em> (Global Health Innovation Insight Series). · Stanford Daily (2010, November 18). At-risk babies kept warm by Stanford innovation.`,
+    fig:{label:`Embrace in numbers`, html:`<div class="tiles"><div><div class="n">2007</div><div class="t">Started as a student project at Stanford</div></div><div><div class="n">$200</div><div class="t">Target cost, vs up to $20,000 for an incubator</div></div><div><div class="n">2</div><div class="t">Models after field observation: clinic and home</div></div></div>`} },
+
+  { nav:'Build v1', title:'Lab · Build your initial prototype', kind:'activity', minutes:50, wide:true,
+    narration:[`Answer the four questions, build the simplest version today, test it with another team. Keep photos.`],
+    fig:{label:`Prototype canvas · saves in your browser`, build:el=>W.worksheet(el,{id:'ent142-w5-proto',title:'ENT 142 · Week 5 · Initial prototype',fields:[
+      {l:'01 · Our solution: what exactly are we proposing?',rows:2},
+      {l:'02 · Our user: who will experience it?',rows:2},
+      {l:'03 · Our assumption: what must be true for it to work?',hint:'Choose the riskiest one.',rows:2},
+      {l:'04 · Our prototype: what is the simplest version we can build today?',hint:'Technique + materials.',rows:2},
+      {l:'Test notes: what did the testers do, and what confused them?',rows:3},
+      {l:'One change for version 2',rows:2}]})} },
+
