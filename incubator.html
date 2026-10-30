@@ -220,7 +220,7 @@ ol.steps li::before{content:counter(s);font-family:var(--mono);font-weight:700;b
 @media (max-width:900px){.sv-hero,.sv-dh{grid-template-columns:minmax(0,1fr)}.sv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.sv-tl,.prizes,.join{grid-template-columns:minmax(0,1fr)}.sv-cta .prz{text-align:left}}
 @media (max-width:600px){.sv-grid{grid-template-columns:minmax(0,1fr)}.sv-cats{grid-template-columns:repeat(3,minmax(0,1fr))}.sv-stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style><title>CUD Incubator Demo</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"><style>
-/* Layout: a single reading column; the course journey runs left to right as four year columns; reviews are two-up (current | proposed). */
+/* Layout: a single reading column; the course journey runs left to right as four semester columns; reviews are two-up (current | proposed). */
 :root{
   --paper:#f4f4f2; --card:#ffffff; --ink:#16171a; --muted:#5b5e66; --line:#dcdcd7;
   --red:#b0141f; --red-soft:#f8e4e5; --green:#1c6a50; --green-soft:#e1f1e9; --amber:#8a5a00; --amber-soft:#f8ecd6;
@@ -438,8 +438,8 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 @media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
 </style></head><body><header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="stamp">Updated · 27 Oct 2026</span></header>
 <main class="wrap">
- <div class="dhero" style="padding-bottom:0"><a class="eyebrow" href="index.html">← 4 Years From Now</a></div>
- <div class="tabs" role="tablist"><button role="tab" data-v="solve" aria-selected="false">Solve It challenges</button><button role="tab" data-v="day" aria-selected="false">4 Years From Now Day</button></div>
+ <div class="dhero" style="padding-bottom:0"><a class="eyebrow" href="index.html">← 4 Semesters From Now</a></div>
+ <div class="tabs" role="tablist"><button role="tab" data-v="solve" aria-selected="false">Solve It challenges</button><button role="tab" data-v="day" aria-selected="false">4SFN Day</button></div>
  
 <section class="view" id="solve">
  <div class="sv-hero"><div><div class="eyebrow">CUD Incubator · Solve It · <span class="demo-flag" style="vertical-align:1px">DEMO · fictional partners</span></div>
@@ -533,22 +533,22 @@ dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;borde
 </section>
  <section class="view" id="day" hidden>
   <div class="ev"><div class="eyebrow">CUD Innovation Festival · Spring 2027 · date to be set</div>
-   <h2>4 Years <span>From Now</span> Day</h2>
-   <p>One day, four stages: every ENT year shows its work. First-year posters, second-year pitches, third-year launches, final-year ventures.</p>
+   <h2>4 Semesters <span>From Now</span> Day</h2>
+   <p>One day, four stages: every ENT semester shows its work. Semester 1 posters, Semester 2 pitches, Semester 3 launches, Semester 4 ventures.</p>
    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px"><a class="btn" href="#reg" style="background:var(--red);border-color:var(--red);color:#fff">Register interest</a><a class="btn ghost" href="courses/ent142/sheet-15.html" style="color:var(--paper);border-color:var(--paper)">Try the investor scorecard</a></div>
   </div>
   <div class="stages">
-   <div class="stage"><span class="yr">YEAR 1 · ENT 141</span><h3>Innovation Challenge</h3><p>Prototype posters, Gallery Walk and the Innovation Challenge Final.</p></div>
-   <div class="stage"><span class="yr">YEAR 2 · ENT 142</span><h3>Innovation Exhibition</h3><p>Live MVP tests with real users, then pitches to a panel and peer investors.</p></div>
-   <div class="stage"><span class="yr">YEAR 3 · ENT 241</span><h3>Business-Plan Clinic</h3><p>Analyze &amp; Plan: business models, IP and investor readiness. (proposed)</p></div>
-   <div class="stage"><span class="yr">YEAR 4 · ENT 242</span><h3>Demo Day</h3><p>Validate &amp; Launch: an external investor panel decides who is incubated. (proposed)</p></div>
+   <div class="stage"><span class="yr">SEMESTER 1 · ENT 141</span><h3>Innovation Challenge</h3><p>Prototype posters, Gallery Walk and the Innovation Challenge Final.</p></div>
+   <div class="stage"><span class="yr">SEMESTER 2 · ENT 142</span><h3>Innovation Exhibition</h3><p>Live MVP tests with real users, then pitches to a panel and peer investors.</p></div>
+   <div class="stage"><span class="yr">SEMESTER 3 · ENT 241</span><h3>Business-Plan Clinic</h3><p>Analyze &amp; Plan: business models, IP and investor readiness. (proposed)</p></div>
+   <div class="stage"><span class="yr">SEMESTER 4 · ENT 242</span><h3>Demo Day</h3><p>Validate &amp; Launch: an external investor panel decides who is incubated. (proposed)</p></div>
   </div>
   <div class="blk"><h2>Programme (draft)</h2><div class="tw"><table class="agenda"><tbody>
    <tr><td class="t">09:00</td><td>Opening · CUD Incubator and partners</td></tr>
    <tr><td class="t">09:30</td><td>Research talk · a CUD author on sustainable innovation in MENA</td></tr>
-   <tr><td class="t">10:30</td><td>Year 1 Innovation Challenge · Year 3 Business-Plan Clinic (in parallel)</td></tr>
-   <tr><td class="t">12:30</td><td>Year 2 Innovation Exhibition and Pitch Event · peer investor board</td></tr>
-   <tr><td class="t">15:00</td><td>Year 4 Demo Day · external investor panel</td></tr>
+   <tr><td class="t">10:30</td><td>Semester 1 Innovation Challenge · Semester 3 Business-Plan Clinic (in parallel)</td></tr>
+   <tr><td class="t">12:30</td><td>Semester 2 Innovation Exhibition and Pitch Event · peer investor board</td></tr>
+   <tr><td class="t">15:00</td><td>Semester 4 Demo Day · external investor panel</td></tr>
    <tr><td class="t">16:30</td><td>Awards · new Solve It challenges announced</td></tr></tbody></table></div></div>
   <div class="blk" id="reg"><h2>Register interest</h2>
    <form id="rform" class="formrow"><div class="field"><label for="r-name">Name</label><input id="r-name" required></div>

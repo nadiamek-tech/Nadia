@@ -2,7 +2,7 @@
    Empty strings show "to be announced" on the site. */
 window.SITE={
   code:'ENT 141', title:'Innovation & Entrepreneurship 1', subtitle:'from a real problem to an idea backed by evidence',
-  meta:'1-2-2 · 1-hour lecture + 2-hour lab · Year 1', logo:false,
+  meta:'1-2-2 · 1-hour lecture + 2-hour lab · Semester 1', logo:false,
   instructor:'Eng. Nadia Mek',
   contact:{email:'', hours:'', room:'', booking:''},
   portal:'',            /* student portal link (grades) */
