@@ -1,0 +1,345 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}img{max-width:100%}</style><title>ENT 241 Syllabus Review</title><meta name="claude:viewport-fit-sides" content="cover"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap"><style>
+/* Layout: a single reading column; the course journey runs left to right as four semester columns; reviews are two-up (current | proposed). */
+:root{
+  --paper:#f4f4f2; --card:#ffffff; --ink:#16171a; --muted:#5b5e66; --line:#dcdcd7;
+  --red:#b0141f; --red-soft:#f8e4e5; --green:#1c6a50; --green-soft:#e1f1e9; --amber:#8a5a00; --amber-soft:#f8ecd6;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111214; --card:#1a1b1f; --ink:#ececea; --muted:#a2a5ad; --line:#2d2f35;
+  --red:#f0666f; --red-soft:#3a1a1d; --green:#5fcaa0; --green-soft:#132d25; --amber:#e8b45a; --amber-soft:#33270f; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:18px;border-bottom:1px solid var(--line)}
+.top a{text-decoration:none}
+.by{font-size:14px;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-stretch:110%;text-decoration:none;border-radius:6px;padding:14px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-size:17px}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{color:var(--paper)}
+.stamp{display:inline-block;font:800 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--green);border:3px double var(--green);border-radius:6px;padding:6px 10px;transform:rotate(-4deg);background:var(--card);white-space:nowrap}
+.stamp.big{font-size:14px;padding:10px 14px;transform:rotate(-6deg)}
+.cmt{margin-top:56px;border:2px solid var(--ink);border-radius:12px;background:var(--card);padding:clamp(18px,3vw,30px);position:relative}
+.cmt .stamp.big{position:absolute;top:-16px;right:18px}
+.cmt h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;font-stretch:112%}
+.fmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:16px 0}
+.fmt div{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--paper)}
+.fmt b{display:block;font-family:var(--display);font-size:18px;font-stretch:110%}
+.fmt span{font-size:13.5px;color:var(--muted)}
+.fmt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+table.jt td{font-size:14px}
+table.jt td:first-child{white-space:nowrap;font-weight:700}
+.sylbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+@media (max-width:900px){.fmt{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.fmt{grid-template-columns:minmax(0,1fr)}}
+footer .sig{display:block;margin-top:6px;font-size:11px;opacity:.7}
+footer{padding-block:40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);margin-top:64px}
+
+/* concept page */
+.hero{padding-block:56px 32px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:end}
+.big4{font-family:var(--display);font-weight:900;font-stretch:62%;font-size:clamp(150px,24vw,280px);line-height:.78;color:var(--red)}
+.hero h1{font-size:clamp(40px,6.4vw,84px);font-weight:800;font-stretch:125%;letter-spacing:-.01em}
+.hero p{max-width:58ch;color:var(--muted);margin:14px 0 0;font-size:19px}
+.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:0;margin-top:24px;border-top:2px solid var(--ink)}
+.yr{padding:18px 18px 22px 0;border-right:1px solid var(--line);position:relative;min-width:0}
+.yr+.yr{padding-left:18px}
+.yr::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--paper);border:2px solid var(--ink)}
+.yr+.yr::before{left:18px}
+.yr.on::before{background:var(--red);border-color:var(--red)}
+.yr .code{font-family:var(--mono);font-weight:700;font-size:15px;margin-top:10px}
+.yr h3{font-size:30px;font-weight:800;font-stretch:115%;margin-top:6px}
+.yr p{margin:6px 0 0;color:var(--muted);font-size:15px}
+.yr .tag{display:inline-block;margin-top:10px;font-size:12px;font-family:var(--mono);color:var(--amber);background:var(--amber-soft);padding:2px 8px;border-radius:4px}
+.grad{padding:18px 0 22px 18px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;max-width:170px}
+.grad b{font-family:var(--display);font-stretch:115%;font-size:22px;line-height:1.1}
+.grad span{color:var(--muted);font-size:14px;margin-top:6px}
+.sec{margin-top:72px}
+.sec h2{font-size:clamp(28px,3.6vw,40px);font-weight:800;font-stretch:112%}
+.sec .lead{color:var(--muted);max-width:62ch;margin:10px 0 0}
+.eco{margin-top:24px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
+.eco svg{display:block;width:100%;min-width:640px;height:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+.pill{border-left:4px solid var(--red);padding:4px 0 4px 16px}
+.pill h3{font-size:21px;font-stretch:110%}
+.pill p{margin:6px 0 0;color:var(--muted)}
+.courses{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:24px}
+.course{display:flex;flex-direction:column;gap:6px;text-decoration:none;border:2px solid var(--line);border-radius:8px;padding:20px;background:var(--card);min-height:180px}
+.course .code{font-family:var(--display);font-weight:900;font-stretch:90%;font-size:38px;line-height:1}
+.course .t{color:var(--muted);font-size:15px}
+.course .go{margin-top:auto;font-family:var(--mono);font-size:13px;font-weight:700}
+.course.live{border-color:var(--red)}
+.course.live .go{color:var(--red)}
+.course.live:hover{background:var(--red-soft)}
+.feature .course.live{min-height:210px;border-width:3px}
+.feature .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:520px){.feature .courses{grid-template-columns:minmax(0,1fr)}}
+.feature .course.live .code{font-size:46px}
+.smallbtn{display:inline-flex;font:700 14px var(--body);border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:8px 14px;border-radius:6px;text-decoration:none;cursor:pointer}
+.smallbtn:hover{border-color:var(--red);color:var(--red)}
+/* suggested syllabus, drawn in the CUD syllabus template */
+.doc{position:relative;background:#fff;color:#111;border:1px solid var(--line);border-radius:6px;padding:26px 18px 18px;font-family:Calibri,Carlito,"Segoe UI",Arial,sans-serif;font-size:14.5px;line-height:1.35}
+.doc .sticker{position:absolute;top:-13px;right:14px;transform:rotate(3deg);background:#1e8a4f;color:#fff;font:800 12px/1 var(--mono);letter-spacing:.12em;padding:7px 12px;border-radius:4px;box-shadow:0 2px 0 #145f36;border:2px dashed rgba(255,255,255,.55)}
+.doc .h{font-weight:700;text-transform:uppercase;margin:0 0 8px;display:flex;gap:18px}
+.doc .h2{font-weight:700;margin:10px 0 6px;display:flex;gap:18px}
+.doc p{margin:0 0 8px;text-align:justify}
+.doc .dt{overflow-x:auto}
+.doc table{border-collapse:collapse;width:100%;font-size:13.5px;margin:4px 0 8px}
+.doc th,.doc td{border:1px solid #111;padding:4px 6px;vertical-align:top;text-align:left;color:#111;background:#fff;text-transform:none;letter-spacing:0;font-family:inherit;font-size:13.5px}
+.doc th{background:#c00000;color:#fff;font-weight:700;text-align:center}
+.doc td.c{text-align:center}
+.doc td:first-child{white-space:nowrap}
+.doc td b{font-weight:700}
+.doc ul{margin:2px 0 0;padding-left:16px}
+.doc ol{margin:0 0 8px;padding-left:20px}
+.doc ol li{margin:3px 0}
+.doc .lbl{font-weight:700}
+.doc .fn{font-style:italic;font-size:12.5px}
+.course.soon{opacity:.62;cursor:default}
+.courses.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:900px){.courses.three{grid-template-columns:minmax(0,1fr)}}
+
+/* review page */
+.rhead{padding-block:40px 8px}
+.rhead h1{font-size:clamp(36px,5.4vw,64px);font-weight:800;font-stretch:120%}
+.rhead p{color:var(--muted);max-width:60ch;margin:10px 0 0}
+.upd{font-family:var(--mono);font-size:12px;font-weight:700;padding:3px 9px;border-radius:4px;letter-spacing:.06em;background:#1d4ed8;color:#fff;white-space:nowrap}
+.doc.updd{outline:3px solid #1d4ed8;outline-offset:-1px;margin-bottom:14px}
+.doc .updtag{position:absolute;bottom:-13px;right:14px;transform:rotate(-2deg);background:#1d4ed8;color:#fff;font:800 11px/1 var(--mono);letter-spacing:.08em;padding:7px 10px;border-radius:4px;box-shadow:0 2px 0 #1e3a8a}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:14px}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+nav.parts{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);margin-top:20px}
+nav.parts .wrap{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:thin}
+nav.parts a{flex:none;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:5px;border:1px solid var(--line);background:var(--card);white-space:nowrap}
+nav.parts a:hover{border-color:var(--ink)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.part{padding-top:48px;scroll-margin-top:60px}
+.ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.ph .n{font-family:var(--mono);font-weight:700;color:var(--muted)}
+.ph h2{font-size:clamp(24px,3vw,34px);font-weight:800;font-stretch:112%}
+.verdict{font-family:var(--mono);font-size:12px;font-weight:700;padding:3px 9px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em}
+.v-keep{color:var(--green);background:var(--green-soft)}
+.v-change{color:var(--red);background:var(--red-soft)}
+.v-move{color:var(--amber);background:var(--amber-soft)}
+.why{margin:10px 0 0;color:var(--muted);max-width:75ch}
+.whyrow{display:flex;gap:10px 18px;align-items:flex-start;flex-wrap:wrap}.whyrow .why{flex:1 1 420px}
+.srcs{display:flex;flex-direction:column;align-items:flex-start;gap:5px;margin-top:12px;flex:0 0 auto}
+.src{font:600 11px/1 var(--mono);letter-spacing:.04em;border-radius:999px;padding:5px 9px;white-space:nowrap;border:1.5px solid}
+.src.c{color:#6d28d9;border-color:#6d28d9;background:rgba(109,40,217,.07)}
+.src.p{color:#57534e;border-color:#a8a29e;background:rgba(120,113,108,.08)}
+.src.g{color:#047857;border-color:#047857;background:rgba(4,120,87,.07)}
+.src.s{color:#0f766e;border-color:#0f766e;background:rgba(15,118,110,.08)}
+.cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
+.side{min-width:0}
+.side .lab{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-top:3px solid}
+.old .lab{color:var(--red);border-color:var(--red)}
+.new .lab{color:var(--green);border-color:var(--green)}
+.shot{display:block;width:100%;padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;overflow:hidden}
+.shot img{display:block;width:100%;height:auto}
+.zoomhint{font-size:13px;color:var(--muted);margin-top:6px}
+.newbox{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:18px;min-width:0}
+.newbox p{margin:0 0 10px}
+.newbox p:last-child{margin-bottom:0}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td.w{font-family:var(--mono);font-weight:700;width:2.5em}
+td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+.chip{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:1px}
+.c-new{color:var(--green);background:var(--green-soft)}
+.c-due{color:var(--card);background:var(--red)}
+tr.due td{background:var(--red-soft)}
+.sub{font-size:13px;color:var(--muted);margin-top:2px}
+.note{font-size:14px!important;margin-top:10px!important;font-style:italic}
+.strip{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;margin-bottom:6px}
+.sc{border:1px solid var(--line);border-radius:4px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:4px 0;font-size:11px;min-width:0}
+.sc .sw{font-family:var(--mono);color:var(--muted)}
+.sc.due{background:var(--red);border-color:var(--red);color:var(--card)}
+.sc.due .sw{color:var(--card);opacity:.85}
+td.nw{white-space:nowrap}
+@media (max-width:520px){.sc .sp{display:none}.sc{min-height:44px}td.who{display:none}th.who{display:none}}
+.sc b{font-family:var(--mono);font-size:12px;margin-top:4px}
+.sc .sp{font-size:10.5px}
+.striplab{font-size:13px;color:var(--muted);margin-bottom:14px}
+.c-move{color:var(--amber);background:var(--amber-soft)}
+.studio{color:var(--muted)}
+.moved{margin-top:12px;font-size:15px;padding:10px 12px;border-radius:6px;background:var(--amber-soft);color:var(--ink)}
+.moved b{color:var(--amber)}
+ul.clean{margin:0;padding-left:18px}
+ul.clean li{margin:4px 0}
+.tick{color:var(--green);font-weight:700;text-align:center}
+.endcta{margin-top:72px;padding:36px;border-radius:10px;background:var(--ink);color:var(--paper);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.endcta h2{font-size:clamp(26px,3.4vw,40px);font-weight:800;font-stretch:115%}
+.endcta p{margin:8px 0 0;opacity:.75}
+.endcta .btn{background:var(--red);border-color:var(--red);color:#fff}
+.endcta .btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+dialog{border:none;padding:0;max-width:min(96vw,1000px);max-height:92vh;border-radius:8px;background:#fff}
+dialog img{display:block;width:100%;height:auto}
+dialog::backdrop{background:rgba(0,0,0,.72)}
+dialog form{position:sticky;top:0;display:flex;justify-content:flex-end;padding:8px;background:#fff;border-bottom:1px solid #ddd}
+dialog button{font:600 15px var(--body);padding:6px 14px;border-radius:5px;border:1px solid #333;background:#fff;color:#111;cursor:pointer}
+
+/* simulation placeholder */
+.simbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px}
+.simbtns div{border:2px solid var(--line);border-radius:8px;padding:22px;background:var(--card)}
+.simbtns b{font-family:var(--display);font-stretch:115%;font-size:24px;display:block}
+.simbtns span{color:var(--muted);font-size:14px}
+.weeks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.wk{border:1px solid var(--line);border-radius:6px;padding:12px;background:var(--card);min-width:0}
+.wk .w{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red)}
+.wk b{display:block;font-size:15px;margin-top:4px;line-height:1.25}
+.wk span{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.wk.key{border-color:var(--red)}
+
+@media (max-width:900px){
+  .track{grid-template-columns:1fr}
+  .yr{border-right:none;border-bottom:1px solid var(--line);padding-left:30px!important}
+  .yr::before,.yr+.yr::before{left:0;top:24px}
+  .grad{max-width:none;padding-left:30px}
+  .courses{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cmp,.pair{grid-template-columns:minmax(0,1fr)}
+  .weeks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .simbtns{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  .hero{grid-template-columns:1fr;gap:6px}
+  .courses{grid-template-columns:minmax(0,1fr)}
+  .endcta{padding:24px}
+}
+@media (prefers-reduced-motion:no-preference){.course,.btn{transition:background .15s,border-color .15s,color .15s}}
+</style></head><body>
+<header class="wrap top"><a href="index.html"><span class="eyebrow">CUD · Entrepreneurship pathway</span></a><span class="stamp">Updated · 30 Oct 2026</span></header>
+<div class="wrap rhead">
+ <a class="eyebrow" href="index.html">← 4 Semesters From Now</a>
+ <h1>ENT 241 · Semester 3: Analyze &amp; Plan</h1>
+ <p>Business Department course. Current syllabus on the left; suggested syllabus on the right, in the same CUD template. Weekly topics and in-class activities follow the committee's ENT 241/242 plan.</p>
+ <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:14px">
+  <a class="btn" href="ent241-syllabus.html">Open the full suggested syllabus →</a>
+  <div class="legend" style="margin:0"><span><i class="dot" style="background:var(--green)"></i>Keep</span><span><i class="dot" style="background:var(--red)"></i>Change</span><span class="upd" style="background:#0f766e">New review · 30/10/2026</span></div>
+  <div class="legend" style="margin:0;width:100%"><span>Source of each change:</span><span class="src c">Committee</span><span class="src p">Previous syllabus</span><span class="src s">4SFN suggestion</span></div>
+ </div>
+</div>
+<nav class="parts" aria-label="Syllabus parts"><div class="wrap"><a href="#info">Course info</a><a href="#description">Description</a><a href="#clos">CLOs</a><a href="#weeks1">Weeks 1–8</a><a href="#weeks2">Weeks 9–15</a><a href="#pedagogy">Pedagogy</a><a href="#textbook">Textbook</a><a href="#weights">Weights</a><a href="#tasks">Assignments</a><a href="#rubric">Rubrics</a></div></nav>
+<main class="wrap">
+
+<section class="part" id="info">
+ <div class="ph"><span class="n">01</span><h2>Course information</h2><span class="verdict v-keep">Keep</span></div>
+ <div class="whyrow"><p class="why">Credits and hours stay 2-0-2: one 2-hour class a week. The course gets its place in the journey: Analyze &amp; Plan.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 course information"><img src="img/e241-info.png" alt="Old ENT 241 course information"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>1.</span><span>Course Information</span></div><div class="dt"><table><tr><td><b>Course Title:</b></td><td>Entrepreneurship 1</td></tr><tr><td><b>Course Code:</b></td><td>ENT 241</td></tr><tr><td><b>Course Identity:</b></td><td>Analyze &amp; Plan · Semester 3 of the ENT journey</td></tr><tr><td><b>Course Credit:</b></td><td>2-0-2</td></tr><tr><td><b>Contact Hours:</b></td><td>Lec [30 Hrs], Lab/Non-Lec [0 Hrs] Total: 30 Hrs (one 2-hour class weekly: lecture + in-class challenge)</td></tr><tr><td><b>Course Pre-requisite(s):</b></td><td>ENT 142</td></tr><tr><td><b>Course Co-requisite(s):</b></td><td>None</td></tr><tr><td><b>Course Category:</b></td><td>Program Requirement</td></tr><tr><td><b>Course Type:</b></td><td>Compulsory</td></tr></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="description">
+ <div class="ph"><span class="n">02</span><h2>Course description</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Semester 3 becomes Analyze &amp; Plan, building on the ENT 142 MVP. Ideation and the reflective video leave; business models, IP and investor readiness come in.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 course description"><img src="img/e241-description.png" alt="Old ENT 241 course description"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>3.</span><span>Course Details</span></div><div class="h2"><span>3.1</span><span>Course Description</span></div><p>Entrepreneurship 1 is the third course of the CUD entrepreneurship pathway and the first of two Business courses (ENT 241–ENT 242). Building on the problem, evidence and tested MVP from ENT 141 and ENT 142, students analyse a commercial opportunity and plan a venture. They use the Value Proposition Canvas, PESTLE, Porter's Five Forces and SWOT to analyse the opportunity and its environment, compare business model types including franchising and licensing, build and redesign a Business Model Canvas, and plan marketing, capital, legal foundations, intellectual property, operations and risk. The course ends with a business plan reviewed at a Business Plan Clinic and an investor pitch. Each week is a 2-hour class that combines a short lecture with an in-class challenge.</p></div></div>
+ </div>
+</section>
+<section class="part" id="clos">
+ <div class="ph"><span class="n">03</span><h2>Learning outcomes</h2><span class="verdict v-keep">Keep</span></div>
+ <div class="whyrow"><p class="why">The CLOs stay word for word. Each CLO is assessed by at least two assignments.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 CLO table"><img src="img/e241-clos.png" alt="Old ENT 241 CLO table"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h2"><span>3.2</span><span>Course Learning Outcomes (CLOs) and Alignment to GE Learning Outcomes (GELOs)</span></div><p>On successful completion of this course, the student will be able to:</p><div class="dt"><table><tr><th colspan="2" style="text-align:left">Course Learning Outcomes (CLOs)</th><th>GELOs</th></tr><tr><td>CLO 1</td><td>Discuss Entrepreneurship issues related to Acquisition, Marketing, Strategic Growth, and Exit Strategies.</td><td class="c"><b>1,5</b></td></tr><tr><td>CLO 2</td><td>Demonstrate skills, or improvement on skills, that are needed to form effective (diverse) teams.</td><td class="c"><b>2,3</b></td></tr><tr><td>CLO 3</td><td>Develop a business proposition in a feasibility study using strategic tools.</td><td class="c"><b>5,6,7</b></td></tr></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="weeks1">
+ <div class="ph"><span class="n">04</span><h2>Schedule · weeks 1–8</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Each class pairs a short lecture with one in-class challenge from the committee's plan. The old Week 5 squeezed the Business Model Canvas and the business plan into one class; they now have their own weeks.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 schedule weeks 1 to 8"><img src="img/e241-weeks1.png" alt="Old ENT 241 schedule weeks 1 to 8"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>4.</span><span>Teaching Schedule</span></div><div class="h2"><span>4.1</span><span>Lectures Schedule</span></div><div class="dt"><table><tr><th>Week No.</th><th>Topic Covered in Class</th><th>CLOs</th><th>Reference/ Course Material</th><th>Course Assessment</th></tr><tr><td class="c"><b>1</b></td><td><b>Commercial Entrepreneurship &amp; Opportunity</b><ul><li>In-class challenge: <b>Commercial Opportunity Hunt</b>: identify changes, problems and trends that could generate commercial opportunities; compare commercial and social ventures.</li></ul></td><td class="c">1</td><td>Burns (2022) Ch. 1 &amp; 3; Okasha (2020)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>2</b></td><td><b>Opportunity Recognition &amp; Idea Evaluation</b><ul><li>In-class challenge: <b>Recognition–Discovery–Creation Challenge</b>: analyse how opportunities emerge and apply prior idea-evaluation skills rather than reteaching them.</li></ul></td><td class="c">3</td><td>Burns (2022) Ch. 6; Ahmad et al. (2022)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>3</b></td><td><b>Value Proposition Canvas</b><ul><li>In-class challenge: <b>Customer Jobs Detective</b>: map Jobs–Pains–Gains and distinguish evidence from assumptions.</li></ul></td><td class="c">3</td><td>Osterwalder et al. (2014); Burns (2022) Ch. 7</td><td class="c"><b></b></td></tr><tr><td class="c"><b>4</b></td><td><b>PESTLE &amp; External Environment</b><ul><li>In-class challenge: <b>UAE PESTLE + Futures Thinking Challenge</b>: identify important trends, develop plausible future scenarios and identify entrepreneurial opportunities under each future.</li></ul></td><td class="c">3</td><td>Burns (2022) Ch. 5</td><td class="c"><b></b></td></tr><tr><td class="c"><b>5</b></td><td><b>Porter's Five Forces &amp; SWOT</b><ul><li>In-class challenge: <b>Five Forces War Room</b>: students represent customers, suppliers, competitors, substitutes and new entrants; translate findings into SWOT implications.</li></ul></td><td class="c">2, 3</td><td>Burns (2022) Ch. 5</td><td class="c"><b>A1 Opportunity & environment analysis</b></td></tr><tr><td class="c"><b>6</b></td><td><b>Business Model Types</b><ul><li>In-class challenge: <b>Business Model Innovation Workshop</b>: compare direct sales, subscription, freemium, marketplace/platform, peer-to-peer, franchising, licensing and other models; explore how the same opportunity can operate under different models.</li></ul></td><td class="c">1</td><td>Osterwalder &amp; Pigneur (2010)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>7</b></td><td><b>Franchising, Licensing &amp; Alternative Models</b><ul><li>In-class challenge: <b>Franchise Challenge</b>: analyse franchisor/franchisee roles, standardization, revenue/fees, resources, advantages and risks; compare franchising, licensing and independent growth.</li></ul></td><td class="c">1</td><td>Burns (2022) Ch. 7; instructor case pack</td><td class="c"><b></b></td></tr><tr><td class="c"><b>8</b></td><td><b>Business Model Canvas</b><ul><li>In-class challenge: <b>Human BMC Workshop</b>: nine BMC blocks around the classroom; teams physically move through them to construct and check their venture model.</li></ul></td><td class="c">2, 3</td><td>Osterwalder &amp; Pigneur (2010)</td><td class="c"><b></b></td></tr></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="weeks2">
+ <div class="ph"><span class="n">05</span><h2>Schedule · weeks 9–15</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Presentation technique was taught twice (Weeks 9 and 11), and the case study was introduced in Week 13, after it was due in Week 12. Now: IP, open innovation and risk, a Business Plan Clinic and an investor pitch.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 schedule weeks 9 to 15"><img src="img/e241-weeks2.png" alt="Old ENT 241 schedule weeks 9 to 15"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="dt"><table><tr><th>Week No.</th><th>Topic Covered in Class</th><th>CLOs</th><th>Reference/ Course Material</th><th>Course Assessment</th></tr><tr><td class="c"><b>9</b></td><td><b>Business Model Innovation &amp; BMC Application</b><ul><li>In-class challenge: <b>Business Model Remix</b>: redesign the same venture using a different model (e.g. ownership → subscription, or traditional business → P2P/platform) and compare value creation and capture.</li></ul></td><td class="c">1, 3</td><td>Osterwalder &amp; Pigneur (2010); Antonio et al. (2023)</td><td class="c"><b>A2 Business model pack</b></td></tr><tr><td class="c"><b>10</b></td><td><b>Product Development &amp; Marketing Strategy</b><ul><li>In-class challenge: <b>First 10 Customers Challenge</b>: create a realistic strategy for acquiring the venture's first 10 customers, including product, positioning, channel and promotion.</li></ul></td><td class="c">1, 3</td><td>Burns (2022) Ch. 9</td><td class="c"><b></b></td></tr><tr><td class="c"><b>11</b></td><td><b>Capital, Legal Foundations &amp; Intellectual Property</b><ul><li>In-class challenge: <b>Protect Your Venture Workshop</b>: identify applicable trademark, copyright, patent/design protection and trade-secret considerations; connect IP to competitive advantage and commercialization.</li></ul></td><td class="c">1, 3</td><td>Burns (2022) Ch. 11 &amp; 15</td><td class="c"><b></b></td></tr><tr><td class="c"><b>12</b></td><td><b>Open Innovation, Operations &amp; Risk</b><ul><li>In-class challenge: <b>Open vs. Closed Innovation Challenge</b>: decide when to develop internally or collaborate with customers, suppliers, universities, startups or partners. Startup Pre-Mortem: 'It is three years later and the venture failed. Why?'</li></ul></td><td class="c">1, 3</td><td>Burns (2022) Ch. 12 &amp; 13; Chesbrough (2003)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>13</b></td><td><b>Business Plan Development</b><ul><li>In-class challenge: <b>Business Plan Clinic</b>: peer and expert review stations for Market / Business Model / Marketing / Operations / Finance / Risk.</li></ul></td><td class="c">1, 2, 3</td><td>Burns (2022) Ch. 17</td><td class="c"><b>A3 Business plan</b></td></tr><tr><td class="c"><b>14</b></td><td><b>Investor Pitch Technique</b><ul><li>In-class challenge: <b>Investor Readiness Workshop + Question Roulette</b>: rehearse the pitch and answer unpredictable investor questions about assumptions, market, model and finance.</li></ul></td><td class="c">2</td><td>van Werven et al. (2019)</td><td class="c"><b></b></td></tr><tr><td class="c"><b>15</b></td><td><b>Investor Pitch</b><ul><li>In-class challenge: <b>Business Model / Investor Challenge</b>: pitch to external entrepreneurs or investors where possible. Panel response: Invest / Need More Evidence / Pass, followed by developmental feedback.</li></ul></td><td class="c">2, 3</td><td>van Werven et al. (2019)</td><td class="c"><b>A4 Investor pitch</b></td></tr></table></div><div class="h2"><span>4.2</span><span>Lab/ Non-Lecture Schedule</span></div><p>Not Applicable</p></div></div>
+ </div>
+</section>
+<section class="part" id="pedagogy">
+ <div class="ph"><span class="n">06</span><h2>Teaching pedagogy</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Lectures only becomes a short lecture plus an in-class challenge every week. Entrepreneurs and investors join inside class hours only.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 teaching pedagogy"><img src="img/e241-pedagogy.png" alt="Old ENT 241 teaching pedagogy"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>5.</span><span>Teaching Pedagogy</span></div><p>The course is taught as one 2-hour class each week (2-0-2). The class opens with a short lecture on one concept from the textbook, with UAE examples, and continues with one in-class challenge (Section 4.1) in which teams apply the tool to their own venture. Teams of 4–5 keep one venture from Week 1 to the investor pitch and carry it into ENT 242.</p><p>Some classes may include a short contribution from a practising entrepreneur, an investor or a CUD Incubator partner, within the scheduled class time; this does not add contact hours and does not replace the lecture or the in-class challenge.</p><p>Students are encouraged to take part in business-plan competitions, hackathons and incubator programmes at CUD and UAE level.</p><p><b>Inclusive learning: </b>Materials follow Universal Design for Learning: templates, short steps and sentence starters for every in-class challenge, and students may show their learning in writing, speaking or visuals. Individual adjustments follow CUD's student-support process.</p></div></div>
+ </div>
+</section>
+<section class="part" id="textbook">
+ <div class="ph"><span class="n">07</span><h2>Textbook and readings</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Burns (2022) stays as the core text; its ISBN was missing the last digit. Business-model and value-proposition books are added, and each reading is used in a named week.</p><div class="srcs" aria-label="Source"><span class="src p">Previous syllabus</span><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 textbook list"><img src="img/e241-textbook.png" alt="Old ENT 241 textbook list"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>6.</span><span>Textbook/Reference Book/Course Material</span></div><p class="lbl"><b>Textbooks (TB):</b></p><ol type="a"><li>Burns, P. (2022). <i>Entrepreneurship and Small Business: Start-up, Growth and Maturity</i> (5th ed.). Red Globe Press. ISBN 978-1-352-01249-1.</li></ol><p class="lbl"><b>Reference Books (RB):</b></p><ol type="a"><li>Osterwalder, A., &amp; Pigneur, Y. (2010). <i>Business Model Generation</i>. Wiley.</li><li>Osterwalder, A., Pigneur, Y., Bernarda, G., &amp; Smith, A. (2014). <i>Value Proposition Design: How to Create Products and Services Customers Want</i>. Wiley.</li></ol><p class="lbl"><b>Suggested Readings (SR):</b></p><ol type="a"><li>Ahmad, N. A., Rasul, M. S., Othman, N., &amp; Jalaludin, N. A. (2022). Generating entrepreneurial ideas for business development. <i>Sustainability, 14</i>, 4905. https://doi.org/10.3390/su14094905</li><li>Antonio, J. L., Schmidt, A. L., Kanbach, D. K., &amp; Meyer, N. (2023). Enacting disruption: How entrepreneurial ventures innovate value propositions to increase the attractiveness of their technologies. <i>International Journal of Entrepreneurial Behavior &amp; Research</i>.</li><li>Chesbrough, H. (2003). <i>Open Innovation: The New Imperative for Creating and Profiting from Technology</i>. Harvard Business School Press.</li><li>Okasha, A. A. (2020). Entrepreneurship in the United Arab Emirates. In <i>Entrepreneurial innovation and economic development in Dubai and comparisons to its sister cities</i> (pp. 158–182). IGI Global.</li><li>van Werven, R., Bouwmeester, O., &amp; Cornelissen, J. P. (2019). Pitching a business idea to investors: How new venture founders use micro-level rhetoric to achieve narrative plausibility and resonance. <i>International Small Business Journal, 37</i>(3), 193–214.</li></ol></div></div>
+ </div>
+</section>
+<section class="part" id="weights">
+ <div class="ph"><span class="n">08</span><h2>Assessment weights</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">Now: 80% on two projects, with 50% due in Weeks 9–11. Suggested: four equal assignments, due in Weeks 5, 9, 13 and 15.</p><div class="srcs" aria-label="Source"><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 assessment weights"><img src="img/e241-weights.png" alt="Old ENT 241 assessment weights"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>8.</span><span>Course Assessment and Evaluation</span></div><p>The information concerning the appropriate distribution of grade weight amongst various assessment items and their corresponding linkage with the stated CLOs is provided in the following table.</p><div class="dt"><table><tr><th colspan="2" rowspan="2">Assessment Items</th><th rowspan="2">Grade Weight (%)</th><th colspan="3">Course Learning Outcomes (CLOs)</th></tr><tr><th>1</th><th>2</th><th>3</th></tr><tr><td>A1</td><td>Opportunity &amp; environment analysis (Week 5)</td><td class="c">25</td><td class="c"></td><td class="c"></td><td class="c">✓</td></tr><tr><td>A2</td><td>Business model pack (Week 9)</td><td class="c">25</td><td class="c">✓</td><td class="c"></td><td class="c">✓</td></tr><tr><td>A3</td><td>Business plan (Week 13)</td><td class="c">25</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td></tr><tr><td>A4</td><td>Investor pitch (Week 15)</td><td class="c">25</td><td class="c"></td><td class="c">✓</td><td class="c">✓</td></tr><tr><td colspan="2"><b>Total</b></td><td class="c"><b>100</b></td><td colspan="3"></td></tr></table></div></div></div>
+ </div>
+</section>
+<section class="part" id="tasks">
+ <div class="ph"><span class="n">09</span><h2>Assignments</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">The 1-minute video and the separate case-study activity are dropped. Each assignment is built in the in-class challenges.</p><div class="srcs" aria-label="Source"><span class="src c">Committee</span><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 assessment methodology"><img src="img/e241-methodology.png" alt="Old ENT 241 assessment methodology"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>9.</span><span>Assessment Methodology</span></div><p>Four assignments of 25%, one after each block of study. Each one is built in the in-class challenges, so students work on it with the instructor present. Teams of 4–5 keep the same venture across ENT 241 and ENT 242; individual marks come from individual questions and peer evaluation.</p><p><span class="lbl">A1 – Opportunity &amp; environment analysis (Team, Week 5, 25%):</span> For one commercial opportunity: a Value Proposition Canvas built from evidence, a UAE PESTLE with one future scenario, Porter's Five Forces and the SWOT implications. Built in the Week 1–5 challenges; up to 1500 words with the canvases.</p><p><span class="lbl">A2 – Business model pack (Team, Week 9, 25%):</span> A Business Model Canvas for the venture and one redesigned alternative (for example subscription, platform, franchise or licensing), comparing how each creates and captures value. Built in the Human BMC Workshop and the Business Model Remix.</p><p><span class="lbl">A3 – Business plan (Team, Week 13, 25%):</span> A business plan of up to 3000 words: opportunity and value proposition, market and industry analysis, business model, marketing and the first 10 customers, capital and funding, legal foundations and IP, operations, risks and pre-mortem, growth and exit options, milestones. Reviewed at the Business Plan Clinic before submission; each member submits a peer evaluation.</p><p><span class="lbl">A4 – Investor pitch (Team pitch, individual Q&amp;A, Week 15, 25%):</span> A pitch of up to 8 minutes to a panel (the instructor, with external entrepreneurs or investors where possible), followed by individual questions on assumptions, market, model and finance. Panel response: Invest / Need More Evidence / Pass, with feedback that carries into ENT 242.</p></div></div>
+ </div>
+</section>
+<section class="part" id="rubric">
+ <div class="ph"><span class="n">10</span><h2>Rubrics</h2><span class="verdict v-change">Change</span></div>
+ <div class="whyrow"><p class="why">The old rubrics use up to seven levels, and two levels of the Project 1 rubric repeat the same text. Each assignment now has one rubric out of 25, in the template's three levels.</p><div class="srcs" aria-label="Source"><span class="src s">4SFN suggestion</span></div></div>
+ <div class="cmp">
+  <div class="side old"><div class="lab">Current syllabus</div>
+   <button class="shot" type="button" aria-label="Enlarge: Old ENT 241 rubric"><img src="img/e241-rubric.png" alt="Old ENT 241 rubric"></button>
+   <div class="zoomhint">Tap to enlarge</div></div>
+  <div class="side new"><div class="lab">Suggested syllabus</div><div class="doc"><span class="sticker">SUGGESTED</span><div class="h"><span>12.</span><span>Grading Rubrics for Assessed Elements</span></div><p style="text-align:center"><b>Grading Rubric for A1: Opportunity &amp; environment analysis (25 marks)</b></p><div class="dt"><table><tr><th>Criteria</th><th>Poor Level</th><th>Acceptable Level</th><th>Excellent Level</th></tr><tr><td><b>Value Proposition Canvas from evidence</b> (7 marks)</td><td>Incomplete or guessed.</td><td>Canvas complete; little evidence.</td><td>Jobs, pains and gains backed by evidence; assumptions marked.</td></tr><tr><td><b>UAE PESTLE and future scenario</b> (6 marks)</td><td>Generic or missing.</td><td>Trends listed; scenario weak.</td><td>Relevant UAE trends and one plausible scenario with its opportunity.</td></tr><tr><td><b>Five Forces and SWOT</b> (7 marks)</td><td>Tools not applied.</td><td>Forces listed; implications thin.</td><td>Each force rated and turned into SWOT implications.</td></tr><tr><td><b>Clarity and sources</b> (5 marks)</td><td>Unclear; no sources.</td><td>Mostly clear; few sources.</td><td>Clear, concise, APA references.</td></tr></table></div><p style="text-align:center"><b>Grading Rubric for A2: Business model pack (25 marks)</b></p><div class="dt"><table><tr><th>Criteria</th><th>Poor Level</th><th>Acceptable Level</th><th>Excellent Level</th></tr><tr><td><b>Business Model Canvas</b> (8 marks)</td><td>Blocks missing or contradictory.</td><td>Blocks complete; some do not fit.</td><td>All nine blocks consistent with each other and the evidence.</td></tr><tr><td><b>Alternative model</b> (7 marks)</td><td>No alternative.</td><td>Alternative described superficially.</td><td>A real redesign (e.g. platform, franchise) that works.</td></tr><tr><td><b>Value creation and capture</b> (6 marks)</td><td>No comparison.</td><td>Comparison partly made.</td><td>Clear comparison of value, costs and revenue in both.</td></tr><tr><td><b>Choice and justification</b> (4 marks)</td><td>No choice.</td><td>Choice stated, weak reason.</td><td>Chosen model justified with evidence.</td></tr></table></div><p style="text-align:center"><b>Grading Rubric for A3: Business plan (25 marks)</b></p><div class="dt"><table><tr><th>Criteria</th><th>Poor Level</th><th>Acceptable Level</th><th>Excellent Level</th></tr><tr><td><b>Market and industry analysis</b> (6 marks)</td><td>Assumed or missing.</td><td>Analysis present; few sources.</td><td>Size, customers and competitors with sources.</td></tr><tr><td><b>Business model, marketing and first 10 customers</b> (6 marks)</td><td>Unrealistic or missing.</td><td>Plan generic in places.</td><td>Realistic plan linked to the model.</td></tr><tr><td><b>Capital, legal and IP</b> (5 marks)</td><td>Not covered.</td><td>Partly covered.</td><td>Funding needs, legal route and IP protection explained.</td></tr><tr><td><b>Operations, risk, growth and exit</b> (5 marks)</td><td>Not covered.</td><td>Some risks; little mitigation.</td><td>Pre-mortem risks with mitigation; growth and exit options.</td></tr><tr><td><b>Writing and teamwork (peer evaluation)</b> (3 marks)</td><td>Poor writing or no contribution.</td><td>Some errors; uneven contribution.</td><td>Professional, referenced; fair contribution.</td></tr></table></div><p style="text-align:center"><b>Grading Rubric for A4: Investor pitch (25 marks)</b></p><div class="dt"><table><tr><th>Criteria</th><th>Poor Level</th><th>Acceptable Level</th><th>Excellent Level</th></tr><tr><td><b>Problem, solution and market</b> (7 marks)</td><td>Unclear.</td><td>Clear but thin on evidence.</td><td>Clear, evidence-based, investor-focused.</td></tr><tr><td><b>Business model and finance</b> (6 marks)</td><td>Not shown.</td><td>Model shown; numbers vague.</td><td>How the venture makes money, with key numbers.</td></tr><tr><td><b>Delivery and visuals</b> (5 marks)</td><td>Unprepared.</td><td>Over time or unclear in places.</td><td>On time, confident, clear slides.</td></tr><tr><td><b>Individual Q&amp;A</b> (7 marks)</td><td>Cannot answer.</td><td>Partial answers.</td><td>Precise answers on assumptions, market, model and finance.</td></tr></table></div></div></div>
+ </div>
+</section>
+ <section class="endcta">
+  <div><h2>The suggested ENT 241 syllabus</h2><p>The same text in the official CUD template, as a page, a Word file and a PDF.</p></div>
+  <a class="btn" href="ent241-syllabus.html">Open the syllabus →</a>
+ </section>
+</main>
+<footer class="wrap">Proposal for discussion · Canadian University Dubai · ENT 141–142: General Education · ENT 241–242: Business<span class="sig">Eng. Nadia Mek</span></footer>
+<dialog id="zoom"><form method="dialog"><button>Close</button></form><img id="zoomimg" alt=""></dialog>
+<script>
+(function(){var d=document.getElementById('zoom'),im=document.getElementById('zoomimg');
+document.querySelectorAll('.shot').forEach(function(b){b.addEventListener('click',function(){var i=b.querySelector('img');im.src=i.src;im.alt=i.alt;if(d.showModal)d.showModal();});});
+d.addEventListener('click',function(e){if(e.target===d)d.close();});})();
+</script></body></html>
