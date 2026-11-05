@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Midterm Revision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/lesson.css?v=202611021159">
+<style>
+:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,0.09);--wk-d:#FF7A7F;--wk-soft-d:rgba(255,122,127,0.14)}
+</style>
+</head>
+<body>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/concept.js?v=202611021159"></script>
+<script src="assets/decode.js?v=202611021159"></script>
+<script src="assets/lesson.js?v=202611021159"></script>
+<script src="assets/pad.js?v=20261103p"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script src="assets/casio.js?v=202611021159"></script>
+<script src="assets/board.js?v=202611021159"></script>
+<script src="assets/board-answers.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script>
+const {W} = Lecture; Lecture.__noLogo=true; const esc = W.esc;
+const {T, fr, sq, SG, XB, PH, v} = F;
+const goScene = i => { const b=document.querySelectorAll('.toc ol li button')[i]; if(b) b.click(); };
+const practice = (items, label) => el => W.practice(el, items, {label: label||'Show answer', prefix: ''});
+const FT='font-family="Schibsted Grotesk,Arial"', MONO='font-family="JetBrains Mono,monospace"';
+const HOW='Method: as covered in class and in last Wednesday’s lab revision.';
+/* Mind the Gap model answer: rule → formula → decode → substitute → calculator → answer */
+const MG=o=>`<div class="mg">${o.r?`<div><span>Which rule</span><span>${o.r}</span></div>`:''}${o.f?`<div><span>Formula</span><span>${o.f}</span></div>`:''}${o.d?`<div><span>Decode</span><span>${o.d}</span></div>`:''}${o.s?`<div><span>Substitute</span><span>${o.s}</span></div>`:''}${o.k?`<div><span>Calculator</span>${F.keys(o.k)}</div>`:''}<div class="fin"><span>Answer</span><span>${o.a}</span></div>${o.how===false?'':`<div class="how"><span>${HOW}</span></div>`}</div>`;
+const steps=a=>`<div class="mg">${a.map(([l,t])=>`<div${l==='Answer'?' class="fin"':''}><span>${l}</span><span>${t}</span></div>`).join('')}<div class="how"><span>${HOW}</span></div></div>`;
+const tbl=(h,rows)=>`<table class="tbl" style="margin:6px 0"><tr>${h.map(x=>`<th>${x}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</table>`;
+function bars(vals,labels,xl){ const Wd=440,Hd=170,bw=(Wd-60)/vals.length; return `<svg viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Bar chart">${[0,2,4,6,8].map(g=>`<line x1="34" x2="${Wd-10}" y1="${140-g*14}" y2="${140-g*14}" stroke="var(--line)"/><text x="28" y="${144-g*14}" text-anchor="end" ${MONO} font-size="10" fill="var(--muted)">${g}</text>`).join('')}${vals.map((v,i)=>`<rect x="${44+i*bw+bw*.2}" y="${140-v*14}" width="${bw*.6}" height="${v*14}" fill="var(--wk)" opacity=".75"/><text x="${44+i*bw+bw/2}" y="156" text-anchor="middle" ${MONO} font-size="11" fill="var(--ink)">${labels[i]}</text>`).join('')}<line x1="34" x2="${Wd-10}" y1="140" y2="140" stroke="var(--ink)"/><text x="${Wd/2}" y="${Hd-1}" text-anchor="middle" ${FT} font-size="11" fill="var(--muted)">${xl}</text></svg>`; }
+function ogive(b,c,xl){ const Wd=440,Hd=190,L=34,R=12,T=10,B=34,n=c[c.length-1],X=i=>L+(Wd-L-R)*i/(b.length-1),Y=v=>T+(Hd-T-B)*(1-v/n); return `<svg viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Ogive">${[0,10,20,30,40].map(g=>`<line x1="${L}" x2="${Wd-R}" y1="${Y(g)}" y2="${Y(g)}" stroke="var(--line)"/><text x="${L-5}" y="${Y(g)+4}" text-anchor="end" ${MONO} font-size="10" fill="var(--muted)">${g}</text>`).join('')}<polyline points="${c.map((v,i)=>`${X(i)},${Y(v)}`).join(' ')}" fill="none" stroke="var(--c3)" stroke-width="2.4"/>${c.map((v,i)=>`<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="var(--c3)"/><text x="${X(i)}" y="${Y(v)-8}" text-anchor="middle" ${MONO} font-size="10" fill="var(--ink)">${v}</text><text x="${X(i)}" y="${Hd-B+16}" text-anchor="middle" ${MONO} font-size="10" fill="var(--muted)">${b[i]}</text>`).join('')}<text x="${(L+Wd-R)/2}" y="${Hd-3}" text-anchor="middle" ${FT} font-size="11" fill="var(--muted)">${xl}</text></svg>`; }
+function venn(a,ab,b,ne,A,Bn){ return `<svg viewBox="0 0 300 150" style="max-width:300px" role="img" aria-label="Diagram"><rect x="2" y="2" width="296" height="146" rx="8" fill="none" stroke="var(--ink)"/><circle cx="118" cy="78" r="56" fill="var(--wk-soft)" stroke="var(--wk)" stroke-width="2"/><circle cx="182" cy="78" r="56" fill="rgba(31,99,181,.08)" stroke="var(--c2)" stroke-width="2"/><text x="78" y="20" ${FT} font-weight="700" font-size="12" fill="var(--wk)">${A}</text><text x="198" y="20" ${FT} font-weight="700" font-size="12" fill="var(--c2)">${Bn}</text>${[[92,a],[150,ab],[208,b],[272,ne]].map(([x,v],i)=>`<text x="${x}" y="${i===3?136:84}" text-anchor="middle" ${FT} font-weight="800" font-size="16" fill="var(--ink)">${v}</text>`).join('')}</svg>`; }
+const blank=(A,Bn)=>venn('?','?','?','?',A,Bn);
+const fill=a=>`<div class="fillin">${a.map(x=>`<span>${x} = ______</span>`).join('')}</div>`;
+const box=(f,lo,hi,st,xl,out)=>ST.boxSVG(f,lo,hi,st,{labels:true,out:out||[],xlabel:xl});
+
+/* ---------- Board answers: written like the professor's board, numbers computed here so they always match ---------- */
+const B=Board, XBb='<span class="xb">x</span>';
+const num=x=>String(parseFloat((+x).toFixed(4))).replace('-','−');
+const lcd=x=>String(parseFloat((+x).toPrecision(10))).replace('-','−');
+const r2=x=>num(Math.round(x*100)/100), r1=x=>num(Math.round(x*10)/10);
+const sum=a=>a.reduce((s,x)=>s+x,0);
+const sq2='<sup>2</sup>';
+/* mean of a list */
+function gMean(xs,o={}){ const n=xs.length, S=sum(xs), m=S/n;
+  return {t:o.t,lines:[B.line(`x<sub>i</sub> = ${xs.map(num).join(', ')}`),
+    B.fr(XBb,'Σx<sub>i</sub>','n',{n:'list above',d:String(n)}),
+    B.fr(XBb,xs.map(num).join(' + '),String(n),{plain:true}),
+    B.line(`${XBb} = ${B.frac(num(S),String(n))} = <b>${num(m)}</b>${o.unit?' '+o.unit:''}`,'ans')],
+    calc:[`(${xs.map(num).join('+')})÷${n}`,lcd(m)]}; }
+/* names used in class: Var = s², SD = s, CV */
+const NM=(h)=>B.line(`<span class="nm">${h}</span>`);
+/* sample variance, bracket method: every (x − x̄)² in brackets, same entry on the calculator */
+function gVar(xs,o={}){ const n=xs.length, m=sum(xs)/n, S=sum(xs.map(x=>(x-m)**2)), M=num(m);
+  return {t:o.t,lines:[NM(`Var = s${sq2} (s${sq2} is the maths symbol, Var is what we use)`),
+    B.fr('Var',`Σ(x − ${XBb})${sq2}`,'n − 1',{n:`${XBb} = ${M}`,d:`n = ${n}`}),
+    B.line(`Var = [ ${xs.map(x=>`<span class="nw">(${num(x)} − ${M})${sq2}</span>`).join(' + ')} ] ÷ <span class="nw">(${n} − 1)</span>`),
+    B.line(`Var = ${B.frac(num(S),String(n-1))} = <b>${num(S/(n-1))}</b>`,'ans')],
+    calc:[`(${xs.map(x=>`(${num(x)}−${M})²`).join('+')})÷(${n}−1)`,lcd(S/(n-1))]}; }
+/* standard deviation from a variance */
+function gSD(v,o={}){ const s=Math.sqrt(v), inner=o.inner||'Var', exact=Number.isInteger(s);
+  return {t:o.t,lines:(o.inner?[]:[NM('SD = s (s is the maths symbol, SD is what we use)')]).concat([B.line(`SD = √<span class="g">${inner}</span> <span class="g">&nbsp;⟶ ${num(v)}</span>`),B.line(`SD = √${num(v)} ${exact?'=':'≈'} <b>${exact?num(s):r2(s)}</b>`,'ans')]),calc:[`√(${num(v)})`,lcd(s)]}; }
+/* coefficient of variation */
+function gCV(s,m,o={}){ const cv=s/m*100, sTxt=o.sTxt||r2(s), L=o.lhs||'CV';
+  return {t:o.t,lines:[B.fr(L,'SD',XBb,{n:sTxt,d:num(m),after:'× 100%'}),
+    B.line(`${L} = ${B.frac(sTxt,num(m))} × 100% ${Number.isInteger(cv)?'=':'≈'} <b>${Number.isInteger(cv)?num(cv):r1(cv)}%</b>`,'ans')],
+    calc:[`${o.entry||num(s)}÷${num(m)}×100`,lcd(cv)]}; }
+/* discrete: E(X) */
+function gE(xs,ps,o={}){ const e=sum(xs.map((x,i)=>x*ps[i]));
+  return {t:o.t,lines:[B.line(`E(X) = Σ <span class="g">x</span> · <span class="r">P(x)</span>`),B.dec([['x',xs.join(', ')],['P(x)',ps.join(', ')]]),
+    B.line(`E(X) = ${xs.map((x,i)=>`${x}(${ps[i]})`).join(' + ')}`),B.line(`E(X) = <b>${num(e)}</b>`,'ans')],
+    calc:[xs.map((x,i)=>`${x}×${ps[i]}`).join('+'),lcd(e)]}; }
+/* discrete: Var(X), bracket method */
+function gVarX(xs,ps,o={}){ const mu=sum(xs.map((x,i)=>x*ps[i])), V=sum(xs.map((x,i)=>(x-mu)**2*ps[i])), M=num(mu);
+  return {t:o.t,lines:[B.line(`Var(X) = Σ(<span class="g">x</span> − <span class="r">μ</span>)${sq2} · P(x)`),B.dec([['x',xs.join(', ')],['μ = E(X)',M],['P(x)',ps.join(', ')]]),
+    B.line(`Var(X) = ${xs.map((x,i)=>`<span class="nw">(${x} − ${M})${sq2}(${ps[i]})</span>`).join(' + ')}`),
+    B.line(`Var(X) = <b>${num(V)}</b>`,'ans')],
+    calc:[xs.map((x,i)=>`(${x}−${M})²×${ps[i]}`).join('+'),lcd(V)]}; }
+const board=(groups)=>B.make(groups,HOW);
+const stepsNH=a=>`<div class="mg">${a.map(([l,t])=>`<div${l==='Answer'?' class="fin"':''}><span>${l}</span><span>${t}</span></div>`).join('')}</div>`;
+
+/* LEFT and RIGHT signs under every graph: the ends of the x-axis */
+const LR=`<div class="lr" aria-label="Left is small values, right is large values"><span class="l">← LEFT<small>small values</small></span><span class="r">RIGHT →<small>large values</small></span></div>`;
+const G=svg=>`<div class="g">${svg}${LR}</div>`;
+function skewPic(k){
+  const P={right:'M14,120 C40,120 50,30 78,30 C112,30 128,100 226,116',
+           sym:'M14,120 C70,120 80,30 120,30 C160,30 170,120 226,120',
+           left:'M226,120 C200,120 190,30 162,30 C128,30 112,100 14,116'}[k];
+  const T={right:'Right-skewed',sym:'Symmetric',left:'Left-skewed'}[k], S={right:'positive',sym:'no skew',left:'negative'}[k];
+  const tail={right:`<path d="M140,76 L206,104" stroke="var(--c3)" stroke-width="2.4" marker-end="url(#ah-${k})"/><text x="176" y="72" text-anchor="middle" ${FT} font-weight="700" font-size="12" fill="var(--c3)">long tail</text>`,
+              left:`<path d="M100,76 L34,104" stroke="var(--c2)" stroke-width="2.4" marker-end="url(#ah-${k})"/><text x="64" y="72" text-anchor="middle" ${FT} font-weight="700" font-size="12" fill="var(--c2)">long tail</text>`,
+              sym:`<text x="120" y="20" text-anchor="middle" ${FT} font-size="11" fill="var(--muted)">two equal sides</text>`}[k];
+  const ord={right:'mode &lt; median &lt; mean',sym:'mean ≈ median',left:'mean &lt; median &lt; mode'}[k];
+  const col={right:'var(--c3)',sym:'var(--muted)',left:'var(--c2)'}[k];
+  return `<figure class="sk"><figcaption><b>${T}</b><span>${S}</span></figcaption><svg viewBox="0 0 240 150" role="img" aria-label="${T} curve"><defs><marker id="ah-${k}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="${col}"/></marker></defs>
+    <path d="${P} L226,120 L14,120 Z" fill="var(--wk-soft)"/><path d="${P}" fill="none" stroke="var(--wk)" stroke-width="2.6"/>${tail}
+    <line x1="10" x2="230" y1="120" y2="120" stroke="var(--ink)" stroke-width="1.4"/>
+    <text x="12" y="140" ${FT} font-weight="800" font-size="12" fill="var(--c2)">← LEFT</text><text x="228" y="140" text-anchor="end" ${FT} font-weight="800" font-size="12" fill="var(--c3)">RIGHT →</text></svg>
+    <p class="ord">${ord}</p></figure>`;
+}
+const SKEW=`<div class="skew"><div class="sk-pics">${skewPic('right')}${skewPic('sym')}${skewPic('left')}</div>
+  <div class="sk-rule"><p class="say"><b>Follow the long tail.</b> The tail is the side where the graph goes down <b>slowly</b> and stretches out far. The tail gives the name.</p>
+  <ol><li>Find the peak: the highest bar or point.</li><li>Find the side where the graph goes down slowly into a long tail.</li><li>Tail on the <b class="rt">RIGHT</b> → <b>right-skewed</b> (positive). Tail on the <b class="lt">LEFT</b> → <b>left-skewed</b> (negative). No tail, both sides the same → <b>symmetric</b>.</li></ol>
+  <p><b>Check with the numbers.</b> The mean is pulled toward the tail. Right-skewed: mean &gt; median. Left-skewed: mean &lt; median. Symmetric: mean ≈ median.</p>
+  <p class="careful"><b>Careful.</b> “It drops toward the right” is right-skewed only when the graph goes down <b>slowly</b> and keeps going on the right. If the graph climbs slowly from the left and then drops <b>suddenly</b> on the right, the long tail is on the left: that is <b>left-skewed</b>.</p>
+  <p><b>Which side is which?</b> Use the x-axis, not your hands: <b class="lt">LEFT</b> = small values, <b class="rt">RIGHT</b> = large values. Every graph on this page shows the two signs.</p></div></div>`;
+
+/* ---------------- Part 1 · Graphs and skewness ---------------- */
+const P1S=[
+ {revise:'Skew: follow the long tail. The bars go down slowly to the RIGHT (large values) → right-skewed, and the mean is pulled toward the tail: mean &gt; median. Usual mistake: naming the skew after the peak, not the tail.',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'Shape',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Right-skewed'},{l:'Bigger',opts:['Mean','Median'],v:'Mean'}],type:'Histogram',q:`Hours on social media per week (50 students):${G(ST.hist([18,14,9,6,3],['0','5','10','15','20','25'],{ymax:20,xlabel:'Hours per week'}))}What is the shape? Which is bigger, the mean or the median?`,
+  hint:steps([['Peak','Highest bar: 0–5 hours, on the <b>left</b>.'],['Tail','The bars go down slowly toward the <b>right</b> (18, 14, 9, 6, 3): a long tail on the right.'],['Answer','<b>Right-skewed</b> (positive). The mean is pulled toward the tail: <b>mean &gt; median</b>.']])},
+ {revise:'Follow the long tail, not the peak. The line climbs slowly from the LEFT (small values) and drops suddenly on the right → left-skewed, so mean &lt; median. Usual mistake: calling it right-skewed because it drops on the right.',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'Shape',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Left-skewed'},{l:'Bigger',opts:['Mean','Median'],v:'Median'}],type:'Polygon',q:`Exam scores (21 students):${G(ST.hist([1,2,4,8,6],['50','60','70','80','90','100'],{pad:true,poly:true,hideBars:true,ymax:9,xlabel:'Score'}))}What is the shape? Which is bigger, the mean or the median?`,
+  hint:steps([['Peak','Highest point: 80–90, on the <b>right</b>.'],['Tail','From the peak the line drops <b>suddenly</b> on the right. On the left it climbs <b>slowly</b> (1, 2, 4, 8): the long tail is on the <b>left</b>.'],['Answer','<b>Left-skewed</b> (negative): <b>mean &lt; median</b>.']])},
+ {revise:'No long tail and both sides the same → symmetric, mean ≈ median. Usual mistake: looking for a skew when the frequencies mirror each other (2, 5 | 8 | 5, 2).',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'Shape',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Symmetric'}],type:'Histogram',q:`Heights of 22 students (cm):${G(ST.hist([2,5,8,5,2],['150','155','160','165','170','175'],{ymax:9,xlabel:'Height (cm)'}))}What is the shape?`,
+  hint:steps([['Peak','Highest bar: 160–165, in the <b>middle</b>.'],['Tail','Both sides go down the same way: 2, 5 | 8 | 5, 2. No long tail.'],['Answer','<b>Symmetric</b>: mean ≈ median.']])},
+ {revise:'The mean is pulled toward the long tail. Mean &lt; median → tail on the LEFT (small values) → left-skewed. Usual mistake: reversing the rule.',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'Shape',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Left-skewed'}],type:'Numbers',q:'A class has mean score 72 and median score 78. Is the distribution symmetric, right-skewed or left-skewed?',
+  hint:steps([['Compare','Mean 72 &lt; median 78.'],['Why','A few very low scores pull the mean down, toward the <b>left</b>.'],['Answer','<b>Left-skewed</b> (negative).']])},
+ {revise:'LEFT = small values, RIGHT = large values. A few very large values → tail on the right (right-skewed); a few very small values → tail on the left (left-skewed). Usual mistake: following where most of the data is, not the few extreme values.',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'(a) Salaries',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Right-skewed'},{l:'(b) Easy quiz',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Left-skewed'}],type:'Words',q:'Without a graph, which way is each skewed? (a) Monthly salaries in a large company: most staff earn a normal salary and a few managers earn a lot. (b) An easy quiz: most students score high and a few score very low.',
+  hint:steps([['(a)','The few very high salaries make a long tail of <b>large values</b>: on the <b>right</b> → <b>right-skewed</b>.'],['(b)','The few very low scores make a long tail of <b>small values</b>: on the <b>left</b> → <b>left-skewed</b>.'],['Answer','(a) <b>right-skewed</b> · (b) <b>left-skewed</b>. Small values are always on the left, large values on the right.']])}];
+const P1B=[
+ {revise:'Read the five numbers: min, Q1, median, Q3, max. Range = max − min, IQR = Q3 − Q1; each part of the boxplot holds 25% of the data. Usual mistake: counting the values above Q3 as 50%.',see:{t:'Revise: Week 4 · Range, IQR and the boxplot',href:'week-04.html#range-iqr'},check:[{l:'Median',v:11},{l:'Range',v:14},{l:'IQR',v:5},{l:'Phones over 14 h',v:30}],type:'Read a boxplot',q:`Battery life of 120 phones (hours):${G(box([6,9,11,14,20],4,22,2,'Hours'))}Find min, max, range, Q1, median, Q3, IQR. How many phones last more than 14 hours?`,
+  hint:steps([['Read','Min <b>6</b> · Q1 <b>9</b> · Median <b>11</b> · Q3 <b>14</b> · Max <b>20</b>'],['Calculate','Range = 20 − 6 = <b>14</b>. IQR = 14 − 9 = <b>5</b>.'],['Answer','Above Q3 = 25% → 0.25 × 120 = <b>30 phones</b>.']])},
+ {revise:'n = sum of the frequencies. The median is at position (n + 1) ÷ 2: find it with the cumulative frequencies. Usual mistake: taking the tallest bar as the median class (that is the modal class).',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'Students (n)',v:25},{l:'Modal class',opts:['50–59','60–69','70–79','80–89','90–99'],v:'70–79'},{l:'Median class',opts:['50–59','60–69','70–79','80–89','90–99'],v:'70–79'},{l:'80 or more',v:36,u:'%',pct:true}],type:'Read a histogram',q:`Exam scores of a class:${G(ST.hist([2,5,9,6,3],['49.5','59.5','69.5','79.5','89.5','99.5'],{ymax:10,xlabel:'Score'}))}How many students? Modal class? In which class is the median? What % scored 80 or more?`,
+  hint:steps([['Read','f = 2, 5, 9, 6, 3 → n = <b>25</b>.'],['Modal class','Tallest bar: <b>70–79</b>.'],['Median','Position (25 + 1) ÷ 2 = 13th. Cumulative: 2, 7, 16 → the 13th is in <b>70–79</b>.'],['Answer','80 or more: 6 + 3 = 9 → 9 ÷ 25 = <b>36%</b>.']])},
+ {revise:'Each bar is the count of one value: use the cumulative counts (3, 10, 16, 19, 20) to place the median and the quartiles. Mean = Σ(x × f) ÷ n. Usual mistake: using the bar heights as the data values.',see:{t:'Revise: Week 3 · Median and mode',href:'week-03.html#median'},check:[{l:'Mode',v:1},{l:'Median',v:1.5},{l:'IQR',v:1},{l:'Range',v:4},{l:'Mean',v:1.6}],type:'Read a bar chart',q:`Number of siblings of 20 students:${G(bars([3,7,6,3,1],['0','1','2','3','4'],'Siblings'))}Find the mode, median, Q1, Q3, IQR, range and mean.`,
+  hint:steps([['Read','0: 3 · 1: 7 · 2: 6 · 3: 3 · 4: 1 → n = 20. Cumulative 3, 10, 16, 19, 20.'],['Mode','Tallest bar: <b>1</b>.'],['Median','10th and 11th values: 1 and 2 → <b>1.5</b>.'],['Quartiles','Q1 = (5th + 6th) ÷ 2 = <b>1</b>. Q3 = (15th + 16th) ÷ 2 = <b>2</b>. IQR = <b>1</b>.'],['Answer','Range = 4 − 0 = <b>4</b>. Mean = (0 + 7 + 12 + 9 + 4) ÷ 20 = 32 ÷ 20 = <b>1.6</b>.']])},
+ {revise:'An ogive shows cumulative frequency: the value at a point = “less than”. More than = total − cumulative; one class = difference of two cumulative values. Usual mistake: reading a cumulative value as a class frequency.',see:{t:'Revise: Week 2 · Frequency polygon and ogive',href:'week-02.html#polygon'},check:[{l:'Students',v:40},{l:'Less than 30 min',v:30},{l:'More than 40 min',v:10,u:'%',pct:true},{l:'10–20 min',v:12}],type:'Read an ogive',q:`Commute times of students:${G(ogive([0,10,20,30,40,50],[0,6,18,30,36,40],'Minutes · cumulative frequency'))}How many students? How many take less than 30 min? What % take more than 40 min? How many take 10–20 min?`,
+  hint:steps([['Read','Last point = <b>40</b> students.'],['Less than 30','Cumulative at 30 = <b>30</b> students (75%).'],['More than 40','40 − 36 = 4 → 4 ÷ 40 = <b>10%</b>.'],['Answer','10–20 min: 18 − 6 = <b>12</b> students.']])},
+ {revise:'The line inside the box is the median. Spread: range = max − min, IQR = Q3 − Q1 (the length of the box). Usual mistake: comparing where the boxes sit instead of how long they are.',see:{t:'Revise: Week 4 · Range, IQR and the boxplot',href:'week-04.html#range-iqr'},check:[{l:'Higher median',opts:['Section A','Section B'],v:'Section B'},{l:'More spread',opts:['Section A','Section B'],v:'Section A'},{l:'IQR of A',v:20},{l:'IQR of B',v:12}],type:'Compare boxplots',q:`Quiz scores of two sections:<p class="mono" style="margin:4px 0">Section A</p>${box([40,55,65,75,90],35,95,5,'')}<p class="mono" style="margin:4px 0">Section B</p>${G(box([50,60,70,72,85],35,95,5,'Score'))}Which section has the higher median? Which has more spread (range and IQR)?`,
+  hint:steps([['Read A','40, 55, 65, 75, 90'],['Read B','50, 60, 70, 72, 85'],['Median','A = 65, B = 70 → <b>B</b> is higher.'],['Answer','Range: A = 50, B = 35. IQR: A = 20, B = 12. <b>A</b> has more spread.']])},
+ {revise:'In a frequency polygon each point is the frequency of one class, drawn at the class midpoint. Modal class = highest point. Usual mistake: adding the points as if they were cumulative.',see:{t:'Revise: Week 2 · Frequency polygon and ogive',href:'week-02.html#polygon'},check:[{l:'Modal class',opts:['20–29','30–39','40–49','50–59','60–69'],v:'30–39'},{l:'50 or older',v:9},{l:'Under 40',v:50,u:'%',pct:true}],type:'Read a polygon',q:`Ages of 40 marathon runners. The points are at the class midpoints.${G(ST.hist([6,14,11,7,2],['19.5','29.5','39.5','49.5','59.5','69.5'],{pad:true,poly:true,hideBars:true,ymax:15,xlabel:'Age (years)'}))}How many runners are in each class? Which is the modal class? How many are 50 or older? What % are under 40?`,
+  hint:steps([['Read','20–29: <b>6</b> · 30–39: <b>14</b> · 40–49: <b>11</b> · 50–59: <b>7</b> · 60–69: <b>2</b> (total 40)'],['Modal class','Highest point: <b>30–39</b>.'],['50 or older','7 + 2 = <b>9</b> runners.'],['Answer','Under 40: 6 + 14 = 20 → 20 ÷ 40 = <b>50%</b>.']])},
+ {revise:'IQR = Q3 − Q1. Fences: Q1 − 1.5 × IQR and Q3 + 1.5 × IQR; a value beyond a fence is an outlier. The box holds the middle 50%. Usual mistake: adding the IQR without multiplying it by 1.5.',see:{t:'Revise: Week 4 · Range, IQR and the boxplot',href:'week-04.html#range-iqr'},check:[{l:'IQR',v:8},{l:'Upper fence',v:38},{l:'42 an outlier?',opts:['Yes','No'],v:'Yes'},{l:'Between 18 and 26',v:50,u:'%',pct:true}],type:'Read a boxplot',q:`Quiz scores of a class. The dot is a single student.${G(box([12,18,22,26,30],10,45,5,'Score',[42]))}Find Q1, the median, Q3 and the IQR. Find the upper fence Q3 + 1.5 × IQR. Is 42 an outlier? What % of students scored between 18 and 26?`,
+  hint:steps([['Read','Q1 <b>18</b> · Median <b>22</b> · Q3 <b>26</b>'],['IQR','26 − 18 = <b>8</b>'],['Fence','26 + 1.5 × 8 = 26 + 12 = <b>38</b>. 42 &gt; 38 → <b>42 is an outlier</b> (that is why it is drawn as a dot).'],['Answer','Between Q1 and Q3 (the box) = <b>50%</b> of the students.']])},
+ {revise:'Class width = difference of two consecutive lower limits. Percentage = class frequency ÷ n × 100%. Median class: position (n + 1) ÷ 2 with the cumulative frequencies. Usual mistake: taking the tallest bar for the median.',see:{t:'Revise: Week 2 · Grouping numbers into classes',href:'week-02.html#classes'},check:[{l:'Class width',v:4},{l:'8 hours or more',v:16},{l:'Less than 4 hours',v:50/3,u:'%',pct:true,tol:0.04},{l:'Median class',opts:['0–4','4–8','8–12','12–16','16–20'],v:'8–12'}],type:'Read a histogram',q:`Weekly study hours of 30 students:${G(ST.hist([5,9,8,6,2],['0','4','8','12','16','20'],{ymax:10,xlabel:'Hours per week'}))}What is the class width? How many students study 8 hours or more? What % study less than 4 hours? Which class contains the median?`,
+  hint:steps([['Width','4 − 0 = <b>4</b> hours.'],['8 or more','8 + 6 + 2 = <b>16</b> students.'],['Less than 4','5 ÷ 30 ≈ <b>16.7%</b>.'],['Answer','n = 30 → median between the 15th and 16th values. Cumulative 5, 14, <b>22</b> → class <b>8–12</b>.']])},
+ {revise:'For categorical data (words) only the mode makes sense: no mean, no median. Percentage = frequency ÷ n × 100%. Usual mistake: trying to average categories.',see:{t:'Revise: Week 2 · Frequency and relative frequency',href:'week-02.html#frequency'},check:[{l:'Mode',opts:['Metro','Car','Bus','Walk'],v:'Car'},{l:'Metro',v:28,u:'%',pct:true},{l:'Bus or walk',v:40,u:'%',pct:true},{l:'Mean?',opts:['Yes, it can be found','No mean: categorical'],v:'No mean: categorical'}],type:'Read a bar chart',q:`How 25 students come to campus:${G(bars([7,8,6,4],['Metro','Car','Bus','Walk'],'Transport'))}What is the mode? What % use the Metro? What % take the bus or walk? Can you find the mean?`,
+  hint:steps([['Read','Metro 7 · Car 8 · Bus 6 · Walk 4 → 25'],['Mode','Tallest bar: <b>Car</b>.'],['Percent','Metro 7 ÷ 25 = <b>28%</b>. Bus or walk (6 + 4) ÷ 25 = <b>40%</b>.'],['Answer','<b>No mean</b>: transport is categorical (words, not numbers). Only the mode makes sense.']])}];
+const BIG1={revise:'Read the frequencies first and check n. Modal class = tallest bar; median class = position (n + 1) ÷ 2 with the cumulative frequencies; percentage = count ÷ n × 100%. Skew: follow the long tail, here to the RIGHT (large values) → right-skewed, so mean &gt; median.',see:{t:'Revise: Week 2 · Histograms and shape',href:'week-02.html#histogram'},check:[{l:'(b) Modal class',opts:['0–10','10–20','20–30','30–40'],v:'10–20'},{l:'(c) Median class',opts:['0–10','10–20','20–30','30–40'],v:'20–30'},{l:'(d) Less than 30 min',v:26},{l:'(d) Percentage',v:65,u:'%',pct:true},{l:'(e) 40 min or more',v:17.5,u:'%',pct:true},{l:'(f) Skew',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Right-skewed'}],type:'Scenario',q:`<b>A bookshop</b> records how long 40 customers stay in the shop. Each class means “from … up to, not including …” (0–10 = 0 to under 10 minutes).${G(ST.hist([4,12,10,7,4,3],['0','10','20','30','40','50','60'],{ymax:13,xlabel:'Minutes in the shop'}))}
+  <ol class="parts" type="a"><li>Write the frequency of each class and check that n = 40.</li><li>What is the modal class?</li><li>Which class contains the median?</li><li>How many customers stayed less than 30 minutes? What percentage is that?</li><li>What percentage stayed 40 minutes or more?</li><li>Describe the shape. Where is the long tail: left or right? Name the skew.</li><li>The mean is 26 minutes. Is the median smaller or larger than 26? Which centre best describes a typical customer?</li></ol>`,
+  hint:steps([['(a)','4, 12, 10, 7, 4, 3 → 4 + 12 + 10 + 7 + 4 + 3 = <b>40</b>.'],['(b)','Tallest bar: <b>10–20</b> minutes.'],['(c)','n = 40 → the median is between the 20th and 21st values. Cumulative: 4, 16, <b>26</b> → both are in <b>20–30</b>.'],['(d)','4 + 12 + 10 = <b>26</b> customers → 26 ÷ 40 = <b>65%</b>.'],['(e)','4 + 3 = 7 → 7 ÷ 40 = <b>17.5%</b>.'],['(f)','Peak at 10–20 on the left. The bars go down slowly to 60 on the right: long tail on the <b>RIGHT</b> → <b>right-skewed</b> (positive).'],['Answer','(g) Right-skewed → mean &gt; median, so the median is <b>smaller than 26</b>. The <b>median</b> is the better typical value, because the few long visits pull the mean up.']])};
+
+/* ---------------- Part 2 · Calculations ---------------- */
+const P2A=[
+ {revise:'x̄ = Σx ÷ n: add all the values, then divide by how many there are. Usual mistake: no brackets on the calculator; enter (6 + 8 + 9 + 10 + 12) ÷ 5.',see:{t:'Revise: Week 3 · The mean',href:'week-03.html#mean'},check:[{l:'Mean',v:9}],type:'Mean',q:'Daily steps (thousands) of 5 students: 6, 8, 9, 10, 12. Find the mean.',
+  hint:board([gMean([6,8,9,10,12],{unit:'thousand steps'})])},
+ {revise:'Sort the data first; the median is at position (n + 1) ÷ 2. Usual mistake: taking the middle of the unsorted list.',see:{t:'Revise: Week 3 · Median and mode',href:'week-03.html#median'},check:[{l:'Median',v:14}],type:'Median (odd n)',q:'Minutes spent on homework: 14, 9, 21, 17, 12, 25, 11. Find the median.',
+  hint:MG({f:'Median position = (n + 1) ÷ 2',d:'Sort first. n = 7',s:'Sorted: 9, 11, 12, <b>14</b>, 17, 21, 25 · position (7 + 1) ÷ 2 = 4',a:'Median = <b>14 minutes</b>'})},
+ {revise:'n even: the median is the mean of the two middle values of the sorted data. Mean = Σx ÷ n. Usual mistake: not sorting before finding the middle values.',see:{t:'Revise: Week 3 · Median and mode',href:'week-03.html#median'},check:[{l:'Median',v:3.75},{l:'Mean',v:3.75}],type:'Median (even n)',q:'Hours of exercise per week: 3.5, 4.0, 2.5, 5.0, 4.5, 3.0. Find the median and the mean.',
+  hint:stepsNH([['Median','n = 6 (even). Sorted: 2.5, 3.0, <b>3.5, 4.0</b>, 4.5, 5.0 → (3.5 + 4.0) ÷ 2 = <b>3.75</b> h']])+board([gMean([3.5,4.0,2.5,5.0,4.5,3.0],{t:'Mean',unit:'h'})])},
+ {revise:'Mode = the most frequent value; two values with the same highest count are both modes (bimodal). The mode also works for words. Usual mistake: giving only one mode.',see:{t:'Revise: Week 3 · Median and mode',href:'week-03.html#median'},check:[{l:'(a) Mode',opts:['3','5','3 and 5','4'],v:'3 and 5'},{l:'(b) Mode',opts:['Metro','Car','Bus'],v:'Car'}],type:'Mode',q:'(a) Number of pets: 2, 3, 3, 4, 5, 5, 6. (b) Transport: Metro, Car, Car, Bus, Metro, Car. Find the mode of each.',
+  hint:MG({f:'Mode = most frequent value',d:'Count each value',s:'(a) 3 → twice, 5 → twice · (b) Car → 3 times',a:'(a) <b>3 and 5</b> (bimodal) · (b) <b>Car</b>'})},
+ {revise:'An extreme value pulls the mean toward the tail; the median is not affected. With outliers or skew, report the median. Usual mistake: choosing the mean because it uses all the values.',see:{t:'Revise: Week 3 · Which centre to use?',href:'week-03.html#which'},check:[{l:'Mean',v:14.5},{l:'Median',v:9.5},{l:'Mode',v:9},{l:'Best typical value',opts:['Mean','Median','Mode'],v:'Median'}],type:'Which centre?',q:'Monthly salaries (thousand AED) of 6 staff: 8, 9, 9, 10, 11, 40. Find mean, median and mode. Which is the best typical value?',
+  hint:B.make([gMean([8,9,9,10,11,40],{t:'Mean'})])+steps([['Median','n = 6 → (9 + 10) ÷ 2 = <b>9.5</b>'],['Mode','<b>9</b>'],['Answer','The large value 40 makes a long tail on the right and pulls the mean up (right-skewed) → use the <b>median</b>.']])}];
+const P2B=[
+ {revise:'Range = max − min, IQR = Q3 − Q1. n odd: leave the median out of both halves; Q1 and Q3 are the medians of the halves. Usual mistake: keeping the median inside the halves.',see:{t:'Revise: Week 4 · Range, IQR and the boxplot',href:'week-04.html#range-iqr'},check:[{l:'Range',v:19},{l:'Q1',v:16},{l:'Q3',v:26.5},{l:'IQR',v:10.5}],type:'Range and IQR',q:'Data: 12, 15, 17, 18, 20, 22, 25, 28, 31. Find the range, Q1, Q3 and IQR.',
+  hint:MG({f:'Range = max − min · IQR = Q3 − Q1',d:'n = 9 → median is the 5th value (20); leave it out of both halves',s:'Lower half 12, 15, 17, 18 → Q1 = (15 + 17) ÷ 2 · Upper half 22, 25, 28, 31 → Q3 = (25 + 28) ÷ 2',a:'Range = 31 − 12 = <b>19</b> · Q1 = <b>16</b> · Q3 = <b>26.5</b> · IQR = <b>10.5</b>'})},
+ {revise:'Bracket method: Var = [ (x − x̄)² + … ] ÷ (n − 1), each (x − x̄)² in brackets, the same on the calculator; SD = √Var. Usual mistake: dividing by n instead of n − 1.',see:{t:'Revise: Week 4 · Sample variance',href:'week-04.html#variance'},check:[{l:'Var',v:8.5},{l:'SD',v:Math.sqrt(8.5),tol:0.006}],type:'Var and SD',q:'Data: 4, 7, 8, 9, 12. Find the variance (Var) and the standard deviation (SD).',
+  hint:board([gMean([4,7,8,9,12],{t:'Mean first'}),gVar([4,7,8,9,12],{t:'Variance (Var)'}),gSD(8.5,{t:'Standard deviation (SD)'})])},
+ {revise:'Var with the bracket method ÷ (n − 1), then SD = √Var, then CV = SD ÷ x̄ × 100%. Usual mistake: using Var instead of SD in the CV.',see:{t:'Revise: Week 4 · Coefficient of variation',href:'week-04.html#cv'},check:[{l:'Var',v:10},{l:'SD',v:Math.sqrt(10),tol:0.006},{l:'CV',v:Math.sqrt(10)/14*100,u:'%',pct:true,tol:0.06}],type:'Var, SD, CV',q:'Data: 10, 12, 14, 16, 18. Find Var, SD and CV.',
+  hint:board([gMean([10,12,14,16,18],{t:'Mean first'}),gVar([10,12,14,16,18],{t:'Variance (Var)'}),gSD(10,{t:'Standard deviation (SD)'}),gCV(Math.sqrt(10),14,{t:'Coefficient of variation (CV)',entry:'√(10)'})])},
+ {revise:'CV = SD ÷ x̄ × 100%; the smaller CV is the more consistent. Usual mistake: comparing the SDs only, when the means are different.',see:{t:'Revise: Week 4 · Coefficient of variation',href:'week-04.html#cv'},check:[{l:'CV of A',v:20,u:'%',pct:true},{l:'CV of B',v:12,u:'%',pct:true},{l:'More consistent',opts:['Exam A','Exam B'],v:'Exam B'}],type:'Compare with CV',q:'Exam A: mean 60, s = 12. Exam B: mean 75, s = 9. Which exam has more consistent results?',
+  hint:board([gCV(12,60,{t:'Exam A',lhs:'CV<sub>A</sub>'}),gCV(9,75,{t:'Exam B',lhs:'CV<sub>B</sub>'}),{lines:[B.line('Smaller CV = more consistent ⟶ <b>Exam B</b>','ans')]}])},
+ {revise:'Range = max − min, IQR = Q3 − Q1; Var with the bracket method ÷ (n − 1); SD = √Var; CV = SD ÷ x̄ × 100%. Usual mistake: starting Var before finding the mean, or dividing by n.',see:{t:'Revise: Week 4 · Sample variance',href:'week-04.html#variance'},check:[{l:'Range',v:5},{l:'IQR',v:3.5},{l:'Var',v:4},{l:'SD',v:2},{l:'CV',v:25/3,u:'%',pct:true,tol:0.04}],type:'Full summary',q:'Daily maximum temperature (°C) for 5 days: 21, 23, 25, 25, 26. Find the range, IQR, Var, SD and CV.',
+  hint:stepsNH([['Range','26 − 21 = <b>5</b>'],['IQR','Median 25. Halves 21, 23 and 25, 26 → Q1 = 22, Q3 = 25.5 → IQR = <b>3.5</b>']])+board([gMean([21,23,25,25,26],{t:'Mean first'}),gVar([21,23,25,25,26],{t:'Variance (Var)'}),gSD(4,{t:'Standard deviation (SD)'}),gCV(2,24,{t:'Coefficient of variation (CV)'})])}];
+const SHUTTLE=[12,8,24,9,6,16,8,14,11];
+const BIG2={revise:'Sort first: median at (n + 1) ÷ 2, Q1 and Q3 from the two halves, fences Q1 − 1.5 × IQR and Q3 + 1.5 × IQR. Var with the bracket method ÷ (n − 1), SD = √Var, CV = SD ÷ x̄ × 100%. Mean &gt; median → right-skewed.',see:{t:'Revise: Week 4 · Sample variance',href:'week-04.html#variance'},check:[{l:'(a) Mean',v:12},{l:'(b) Median',v:11},{l:'(d) IQR',v:7},{l:'(e) Is 24 an outlier?',opts:['Yes','No'],v:'No'},{l:'(f) SD',v:5.5},{l:'(g) CV',v:5.5/12*100,u:'%',pct:true,tol:0.06}],type:'Scenario',q:`<b>The campus shuttle.</b> Nine students record how many minutes they waited for the shuttle this morning: <b>12, 8, 24, 9, 6, 16, 8, 14, 11</b>.
+  <ol class="parts" type="a"><li>Find the mean.</li><li>Sort the data and find the median.</li><li>Find the mode.</li><li>Find the range, Q1, Q3 and IQR.</li><li>Use the fences Q1 − 1.5 × IQR and Q3 + 1.5 × IQR. Is 24 an outlier?</li><li>Find the variance (Var = s²) and the standard deviation (SD = s).</li><li>Find the CV.</li><li>Compare the mean and the median. Which way is the data skewed? Which centre would you report?</li></ol>`,
+  hint:B.make([gMean(SHUTTLE,{t:'(a)',unit:'minutes'})])+stepsNH([['(b)','Sorted: 6, 8, 8, 9, <b>11</b>, 12, 14, 16, 24 → position (9 + 1) ÷ 2 = 5 → median = <b>11</b>.'],['(c)','8 appears twice → mode = <b>8</b>.'],['(d)','Range = 24 − 6 = <b>18</b>. Lower half 6, 8, 8, 9 → Q1 = (8 + 8) ÷ 2 = <b>8</b>. Upper half 12, 14, 16, 24 → Q3 = (14 + 16) ÷ 2 = <b>15</b>. IQR = <b>7</b>.'],['(e)','8 − 10.5 = −2.5 and 15 + 10.5 = <b>25.5</b>. 24 is inside the fences → <b>not an outlier</b>.']])
+   +B.make([gVar(SHUTTLE,{t:'(f) Variance (Var)'}),gSD(30.25,{t:'(f) Standard deviation (SD)'}),gCV(5.5,12,{t:'(g)'})])
+   +steps([['Answer','(h) Mean 12 &gt; median 11 → the long wait of 24 pulls the mean to the <b>right</b>: <b>right-skewed</b>. Report the <b>median</b>.']])};
+
+/* ---------------- Part 3 · Probability: rules, trees, sample space ---------------- */
+const RULES=`<table class="tbl"><tr><th>Key word</th><th>Rule</th><th>Formula</th></tr>
+ <tr><td>—</td><td>Simple</td><td>P(E) = favourable ÷ total</td></tr>
+ <tr><td><b>NOT</b></td><td>Complement</td><td>P(not A) = 1 − P(A)</td></tr>
+ <tr><td><b>OR</b></td><td>Addition</td><td>No overlap (mutually exclusive): P(A) + P(B)<br>Overlap (BOTH given): P(A) + P(B) − P(A and B)</td></tr>
+ <tr><td><b>AND</b></td><td>Multiplication</td><td>Independent: P(A) × P(B). Fair choice of 2 → each is 1/2</td></tr></table>`;
+const P3=[
+ {revise:'Basic rule: P(E) = favourable ÷ total. Usual mistake: dividing by the other colour (4 ÷ 6) instead of the total.',see:{t:'Revise: Week 5 · The basic rule',href:'week-05.html#basic-rule'},check:[{l:'P(green)',v:0.4}],q:'A bag has 4 green and 6 red marbles. One is picked at random. P(green)?',hint:MG({r:'One event, count it → <b>simple</b>',f:'P(E) = favourable ÷ total',s:'4 ÷ (4 + 6)',a:'P(green) = <b>0.4</b>'})},
+ {revise:'Key word NOT → complement: P(not A) = 1 − P(A). Usual mistake: subtracting from 100 instead of 1.',see:{t:'Revise: Week 5 · The complement rule',href:'week-05.html#complement'},check:[{l:'P(not late)',v:0.85}],q:'P(the bus is late) = 0.15. P(the bus is not late)?',hint:MG({r:'Key word <b>not</b> → complement',f:'P(not A) = 1 − P(A)',s:'1 − 0.15',a:'<b>0.85</b>'})},
+ {revise:'Key word OR; 1 and 6 cannot happen together (mutually exclusive) → P(A) + P(B). Usual mistake: multiplying instead of adding.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'P(1 or 6)',v:1/3}],q:'Roll a fair die. P(1 or 6)?',hint:MG({r:'Key word <b>or</b>; 1 and 6 cannot happen together → addition, no overlap',f:'P(A or B) = P(A) + P(B)',s:'1/6 + 1/6',a:'2/6 ≈ <b>0.333</b>'})},
+ {revise:'Key word AND, independent events → P(A) × P(B). Usual mistake: adding the probabilities.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'P(H and H)',v:0.25}],q:'Toss a fair coin twice. P(heads and heads)?',hint:MG({r:'Key word <b>and</b>, independent tosses → multiplication',f:'P(A and B) = P(A) × P(B)',d:'Fair coin → each side 1/2',s:'1/2 × 1/2',k:'0 . 5 × 0 . 5 =',a:'<b>1/4 = 0.25</b>'})},
+ {revise:'Fill the diagram from the middle: BOTH first, then “only” = total − both, then outside. OR with BOTH: P(A) + P(B) − P(A and B). Usual mistake: writing 30 in “coffee only”, so BOTH is counted twice.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'Coffee only',v:20},{l:'Both',v:10},{l:'Tea only',v:10},{l:'Neither',v:10},{l:'P(coffee or tea)',v:0.8}],q:`Of 50 people, 30 drink coffee, 20 drink tea and 10 drink both. Fill the numbers in the diagram, then find P(coffee or tea).${blank('Coffee','Tea')}`,hint:MG({r:'Key word <b>or</b> and BOTH is given → addition, subtract BOTH once',d:'Fill from the middle: both 10 · coffee only 30 − 10 = 20 · tea only 20 − 10 = 10 · outside 50 − 40 = 10',f:'P(C or T) = P(C) + P(T) − P(C and T)',s:'30/50 + 20/50 − 10/50 = 40/50',a:venn(20,10,10,10,'Coffee','Tea')+'P(C or T) = <b>0.8</b> · neither = 10/50 = 0.2'})},
+ {revise:'A circle = everything inside it, the middle included; the middle = BOTH; neither = outside. Divide by the total. Usual mistake: reading only the “only” part as P(Football).',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'P(Football)',v:0.5},{l:'P(Basketball)',v:0.45},{l:'P(F and B)',v:0.2},{l:'P(F or B)',v:0.75},{l:'P(neither)',v:0.25}],q:`40 students were asked if they play football and basketball. Read the numbers from the diagram and fill in below.${venn(12,8,10,10,'Football','Basketball')}${fill(['P(Football)','P(Basketball)','P(Football and Basketball)','P(Football or Basketball)','P(neither)'])}`,hint:MG({r:'Read the diagram: each circle = everything inside it, the middle = BOTH',d:'Football = 12 + 8 = 20 · Basketball = 8 + 10 = 18 · both = 8 · outside = 10',s:'P(F) = 20/40 · P(B) = 18/40 · P(F and B) = 8/40 · P(F or B) = (12 + 8 + 10)/40 · P(neither) = 10/40',a:'P(F) = <b>0.5</b> · P(B) = <b>0.45</b> · P(F and B) = <b>0.2</b> · P(F or B) = <b>0.75</b> (check: 0.5 + 0.45 − 0.2) · P(neither) = <b>0.25</b>'})},
+ {revise:'Basic rule: list the favourable outcomes, then favourable ÷ total. “Greater than 5” does not include 5. Usual mistake: counting the 5.',see:{t:'Revise: Week 5 · The basic rule',href:'week-05.html#basic-rule'},check:[{l:'P(greater than 5)',v:0.375}],q:'A spinner has 8 equal sections numbered 1 to 8. P(a number greater than 5)?',hint:MG({r:'Count the outcomes → <b>simple</b>',f:'P(E) = favourable ÷ total',d:'Greater than 5: {6, 7, 8} → 3 outcomes',s:'3 ÷ 8',a:'<b>0.375</b>'})},
+ {revise:'Key word NOT → P(not A) = 1 − P(A). Usual mistake: finding P(8) and stopping there.',see:{t:'Revise: Week 5 · The complement rule',href:'week-05.html#complement'},check:[{l:'P(not an 8)',v:0.875}],q:'Same spinner (1 to 8). P(not an 8)?',hint:MG({r:'Key word <b>not</b> → complement',f:'P(not A) = 1 − P(A)',s:'1 − 1/8',k:'1 − 1 ÷ 8 =',a:'<b>7/8 = 0.875</b>'})},
+ {revise:'Only one elective can be picked → mutually exclusive → just add. Usual mistake: subtracting an overlap that does not exist.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'P(Arabic or Chinese)',v:0.75}],q:'A student picks one elective: Arabic 0.35, French 0.25, Chinese 0.40. P(Arabic or Chinese)?',hint:MG({r:'Key word <b>or</b>; only one elective → no overlap',f:'P(A or B) = P(A) + P(B)',s:'0.35 + 0.40',a:'<b>0.75</b>'})},
+ {revise:'AND, independent → multiply: P(A) × P(B); a fair choice of two is 1/2. Usual mistake: adding 1/2 + 1/2.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'P(tails and blue)',v:0.25}],q:'Toss a fair coin and spin a spinner with two equal halves (red, blue). P(tails and blue)?',hint:MG({r:'Key word <b>and</b>, independent → multiplication',f:'P(A and B) = P(A) × P(B)',s:'1/2 × 1/2',a:'<b>0.25</b>'})},
+ {revise:'Fill the diagram from the middle (BOTH first). OR with BOTH: P(A) + P(B) − P(A and B); neither = 1 − P(A or B). Usual mistake: forgetting to subtract BOTH.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'Instagram only',v:25},{l:'Both',v:20},{l:'TikTok only',v:15},{l:'P(I or T)',v:0.75},{l:'P(neither)',v:0.25}],q:`Of 80 students, 45 use Instagram, 35 use TikTok and 20 use both. Fill the numbers in the diagram. P(Instagram or TikTok)? P(neither)?${blank('Instagram','TikTok')}`,hint:MG({r:'<b>or</b> with BOTH → addition minus BOTH; <b>neither</b> → complement',f:'P(I or T) = P(I) + P(T) − P(I and T)',s:'45/80 + 35/80 − 20/80 = 60/80',a:venn(25,20,15,20,'Instagram','TikTok')+'P(I or T) = <b>0.75</b> · P(neither) = 1 − 0.75 = <b>0.25</b>'})},
+ {revise:'AND for three independent events → multiply all three: 1/2 × 1/2 × 1/2. Usual mistake: 3 × 1/2.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'P(HHH)',v:0.125}],q:'Toss a fair coin three times. P(heads, heads, heads)?',hint:MG({r:'Three independent tosses, all must happen → multiplication',f:'P(A and B and C) = P(A) × P(B) × P(C)',s:'1/2 × 1/2 × 1/2',k:'0 . 5 ^ 3 =',a:'<b>1/8 = 0.125</b>'})},
+ {revise:'Fill from the middle: A only = P(A) − P(A and B). OR with BOTH: P(A) + P(B) − P(A and B); neither = 1 − P(A or B). Usual mistake: writing 0.5 in “A only”.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'A only',v:0.4},{l:'A and B',v:0.1},{l:'B only',v:0.2},{l:'P(A or B)',v:0.7},{l:'P(neither)',v:0.3}],q:`P(A) = 0.5, P(B) = 0.3, P(A and B) = 0.1. Fill the probabilities in the diagram, then find P(A or B) and P(neither).${blank('A','B')}`,hint:MG({r:'<b>or</b> with BOTH given, then <b>neither</b> = complement',f:'P(A or B) = P(A) + P(B) − P(A and B)',s:'0.5 + 0.3 − 0.1',a:venn('0.4','0.1','0.2','0.3','A','B')+'P(A or B) = <b>0.7</b> · P(neither) = <b>0.3</b>'})},
+ {revise:'A circle = everything inside it: P(A) = A only + middle. NOT → 1 − P(A). Usual mistake: reading 0.3 alone as P(A).',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'P(A)',v:0.45},{l:'P(B)',v:0.4},{l:'P(A and B)',v:0.15},{l:'P(A or B)',v:0.7},{l:'P(not A)',v:0.55}],q:`Read the probabilities from the diagram and fill in below.${venn('0.3','0.15','0.25','0.3','A','B')}${fill(['P(A)','P(B)','P(A and B)','P(A or B)','P(not A)'])}`,hint:MG({r:'Read the diagram: a circle = everything inside it · <b>not</b> = 1 − P',d:'A = 0.3 + 0.15 · B = 0.15 + 0.25 · middle = A and B',s:'P(A or B) = 0.3 + 0.15 + 0.25 · P(not A) = 1 − 0.45',a:'P(A) = <b>0.45</b> · P(B) = <b>0.4</b> · P(A and B) = <b>0.15</b> · P(A or B) = <b>0.7</b> · P(not A) = <b>0.55</b>'})}];
+const P4=[
+ {revise:'Each step splits into two branches of 1/2; outcomes = 2 × 2. AND → multiply along the path. Usual mistake: adding along the path.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'Outcomes',v:4},{l:'P(Female and Evening)',v:0.25}],type:'Draw',q:'A student is chosen at random: Male or Female. Then a lab session is assigned at random: Morning or Evening. Draw the tree, list the sample space and find P(Female and Evening).',
+  hint:steps([['Tree',ST.treeSVG([['Male','Female'],['Morning','Evening']],{hl:['Female, Evening']})],['Sample space','{(M, Mo), (M, Ev), (F, Mo), (F, Ev)} → 2 × 2 = <b>4</b> outcomes'],['Answer','AND → multiply along the path: 1/2 × 1/2 = <b>1/4</b>']])},
+ {revise:'AND → multiply along one path; P(red) → add all the paths that end in red. Usual mistake: giving one path (1/4) for P(red).',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'P(H and red)',v:0.25},{l:'P(red)',v:0.5}],type:'Draw',q:'Toss a coin (H or T), then spin a fair red/blue spinner. Draw the tree. Find P(H and red) and P(red).',
+  hint:steps([['Tree',ST.treeSVG([['H','T'],['Red','Blue']],{hl:['H, Red']})],['Sample space','{(H, R), (H, B), (T, R), (T, B)}'],['Answer','P(H and red) = <b>1/4</b> · P(red) = 1/4 + 1/4 = <b>1/2</b> (add the paths that end in red)']])},
+ {revise:'List every path: HH, HT, TH, TT. “Exactly one head” = HT and TH → add the paths. Usual mistake: treating HT and TH as the same outcome.',see:{t:'Revise: Week 5 · Sample space and events',href:'week-05.html#sample-space'},check:[{l:'Outcomes',v:4},{l:'P(exactly one head)',v:0.5}],type:'Read',q:`Two fair coins:${ST.treeSVG([['H','T'],['H','T']])}List the sample space. P(exactly one head)?`,
+  hint:steps([['Sample space','{HH, HT, TH, TT} → 4 outcomes'],['Paths','Exactly one head: HT and TH → 2 paths'],['Answer','1/4 + 1/4 = <b>1/2</b>']])},
+ {revise:'Outcomes = 2 × 2 × 2. At least one = 1 − P(none). Usual mistake: counting only the paths with exactly one head.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'Outcomes',v:8},{l:'P(exactly two heads)',v:0.375},{l:'P(at least one head)',v:0.875}],type:'Read',q:`Three fair coins:${ST.treeSVG([['H','T'],['H','T'],['H','T']])}How many outcomes? P(exactly two heads)? P(at least one head)?`,
+  hint:steps([['Sample space','2 × 2 × 2 = <b>8</b> outcomes, each 1/8'],['Exactly two','HHT, HTH, THH → <b>3/8</b>'],['Answer','At least one head = 1 − P(TTT) = 1 − 1/8 = <b>7/8</b>']])},
+ {revise:'AND → multiply along a path. OR with overlap → P(A) + P(B) − P(A and B), or count the paths. Usual mistake: 1/2 + 1/2 = 1 without subtracting the overlap.',see:{t:'Revise: Week 5 · The addition rule (OR)',href:'week-05.html#addition'},check:[{l:'P(Online and Quiz A)',v:0.25},{l:'P(On-campus)',v:0.5},{l:'P(Online or Quiz A)',v:0.75}],type:'Read',q:`Mode: Online or On-campus. Then a quiz version: A or B.${ST.treeSVG([['Online','Campus'],['Quiz A','Quiz B']])}Find P(Online and Quiz A), P(On-campus) and P(Online or Quiz A).`,
+  hint:steps([['AND','P(Online and A) = 1/2 × 1/2 = <b>1/4</b>'],['One step','P(On-campus) = <b>1/2</b>'],['Answer','OR: paths with Online or A: (On, A), (On, B), (Campus, A) = 3 paths → <b>3/4</b>. Check: 1/2 + 1/2 − 1/4 = 3/4.']])}];
+const BIG3={revise:'Tree: outcomes = 2 × 2 × 2; AND → multiply along a path, OR → add the paths or P(A) + P(B) − P(A and B), NOT → 1 − P. Diagram: fill BOTH first; events with a BOTH region are not mutually exclusive.',see:{t:'Revise: Week 5 · The multiplication rule (AND) and tree diagrams',href:'week-05.html#multiplication'},check:[{l:'(b) Outcomes',v:8},{l:'(c) P(Wrap, Juice, dessert)',v:0.125},{l:'(e) P(Burger or Water)',v:0.75},{l:'(i) P(coffee or cake)',v:0.75},{l:'(j) Mutually exclusive?',opts:['Yes','No'],v:'No'},{l:'(k) P(both buy coffee)',v:0.36}],type:'Scenario',q:`<b>The campus café meal deal.</b> A customer chooses at random a main (<b>Burger</b> or <b>Wrap</b>), then a drink (<b>Juice</b> or <b>Water</b>), then whether to add a dessert (<b>Yes</b> or <b>No</b>). Every choice is equally likely.
+  <ol class="parts" type="a"><li>Draw the tree diagram.</li><li>List the sample space. How many outcomes are there?</li><li>P(Wrap and Juice and dessert)?</li><li>P(Juice)?</li><li>P(Burger or Water)?</li><li>P(no dessert)?</li><li>P(not the meal Burger, Juice, Yes)?</li></ol>
+  Last week the café also counted 60 customers: 36 bought coffee, 24 bought cake and 15 bought both.
+  <ol class="parts" type="a" start="8"><li>Fill the numbers in the diagram below.${blank('Coffee','Cake')}</li><li>P(coffee or cake)? P(neither)?</li><li>Are “coffee” and “cake” mutually exclusive? Why?</li><li>Two customers buy independently, and P(coffee) = 0.6 for each. P(both buy coffee)?</li></ol>`,
+  hint:steps([['(a)',ST.treeSVG([['Burger','Wrap'],['Juice','Water'],['Yes','No']],{hl:['Wrap, Juice, Yes']})],['(b)','2 × 2 × 2 = <b>8</b> outcomes, each 1/8: {(Burger, Juice, Yes), (Burger, Juice, No), (Burger, Water, Yes), (Burger, Water, No), (Wrap, Juice, Yes), (Wrap, Juice, No), (Wrap, Water, Yes), (Wrap, Water, No)}.'],['(c)','AND → multiply along one path: 1/2 × 1/2 × 1/2 = <b>1/8</b>.'],['(d)','Paths with Juice: 4 of 8 → <b>1/2</b>.'],['(e)','OR with overlap: P(Burger) + P(Water) − P(Burger and Water) = 1/2 + 1/2 − 1/4 = <b>3/4</b>. Check: 6 of the 8 paths.'],['(f)','NOT: 1 − P(dessert) = 1 − 1/2 = <b>1/2</b>.'],['(g)','NOT: 1 − 1/8 = <b>7/8</b>.'],['(h)',venn(21,15,9,15,'Coffee','Cake')+'Coffee only 36 − 15 = 21 · cake only 24 − 15 = 9 · neither 60 − 45 = 15'],['(i)','P(coffee or cake) = 36/60 + 24/60 − 15/60 = 45/60 = <b>0.75</b> · P(neither) = 1 − 0.75 = <b>0.25</b>.'],['(j)','<b>No</b>: 15 customers bought both, so the two events can happen together.'],['Answer','(k) AND, independent: 0.6 × 0.6 = <b>0.36</b>.']])};
+
+/* ---------------- Part 4 · Discrete distributions ---------------- */
+const P5A=[
+ {revise:'Discrete = counted (0, 1, 2 …); continuous = measured (time, weight). Usual mistake: calling time discrete because it is written as a whole number.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'(a) Cars',opts:['Discrete','Continuous'],v:'Discrete'},{l:'(b) Time',opts:['Discrete','Continuous'],v:'Continuous'},{l:'(c) Correct answers',opts:['Discrete','Continuous'],v:'Discrete'},{l:'(d) Weight',opts:['Discrete','Continuous'],v:'Continuous'}],type:'Discrete?',q:'Which are discrete random variables? (a) cars in a car park (b) time to charge a phone (c) correct answers out of 10 (d) weight of a bag',hint:MG({f:'Discrete = counted (0, 1, 2 …). Continuous = measured.',a:'Discrete: <b>(a) and (c)</b>. Continuous: (b) and (d).',how:false})},
+ {revise:'Valid distribution: every 0 ≤ P(x) ≤ 1 and ΣP(x) = 1. Usual mistake: checking each value but not the sum.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'ΣP(x)',v:1.1},{l:'Distribution',opts:['Valid','Not valid'],v:'Not valid'}],type:'Valid?',q:'x: 0, 1, 2 with P(x): 0.5, 0.3, 0.3. Is this a valid probability distribution?',hint:MG({f:'Valid if 0 ≤ P(x) ≤ 1 and ΣP(x) = 1',s:'0.5 + 0.3 + 0.3 = 1.1',a:'<b>Not valid</b>: the sum is 1.1, not 1.'})},
+ {revise:'Check both conditions: every P(x) between 0 and 1, and ΣP(x) = 1. Usual mistake: checking only the sum; a negative probability is never valid.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'Distribution',opts:['Valid','Not valid'],v:'Not valid'}],type:'Valid?',q:'x: 1, 2, 3, 4 with P(x): 0.1, 0.4, −0.1, 0.6. Valid?',hint:MG({f:'Valid if 0 ≤ P(x) ≤ 1 and ΣP(x) = 1',d:'Check every value first',a:'<b>Not valid</b>: −0.1 is negative (even though the sum is 1).'})},
+ {revise:'Both conditions: each P(x) between 0 and 1, and ΣP(x) = 1. Usual mistake: adding the x values instead of the P(x) values.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'Distribution',opts:['Valid','Not valid'],v:'Valid'}],type:'Valid?',q:'x: 0, 1, 2, 3 with P(x): 0.25, 0.25, 0.25, 0.25. Valid?',hint:MG({f:'Valid if 0 ≤ P(x) ≤ 1 and ΣP(x) = 1',s:'0.25 × 4 = 1',a:'<b>Valid</b>.'})},
+ {revise:'ΣP(x) = 1 → k = 1 − (sum of the others), with brackets on the calculator. Usual mistake: 1 − 0.2 + 0.4 + 0.1 without brackets.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'k',v:0.3}],type:'Find k',q:'x: 0, 1, 2, 3 with P(x): 0.2, 0.4, k, 0.1. Find k.',hint:MG({f:'ΣP(x) = 1 → k = 1 − (others)',s:'k = 1 − (0.2 + 0.4 + 0.1)',k:'1 − ( 0 . 2 + 0 . 4 + 0 . 1 ) =',a:'<b>k = 0.3</b>'})},
+ {revise:'ΣP(x) = 1: collect the k terms (k + 2k = 3k), then solve. Usual mistake: reading 2k as k + 2.',see:{t:'Revise: Week 6 · Discrete random variables and valid distributions',href:'week-06.html#random-variable'},check:[{l:'k',v:0.2}],type:'Find k',q:'x: 0, 1, 2 with P(x): k, 2k, 0.4. Find k.',hint:MG({f:'ΣP(x) = 1',s:'k + 2k + 0.4 = 1 → 3k = 0.6',k:'0 . 6 ÷ 3 =',a:'<b>k = 0.2</b> → P(0) = 0.2, P(1) = 0.4'})}];
+const SDX=v=>gSD(v,{t:'Standard deviation (SD)',inner:'Var(X)'});
+const P5B=[
+ {revise:'E(X) = Σx · P(x): multiply each x by its P(x), then add. Usual mistake: adding the x values and dividing by 4.',see:{t:'Revise: Week 6 · Expected value E(X)',href:'week-06.html#expected-value'},check:[{l:'E(X)',v:2}],type:'E(X)',q:'Number of online orders a student makes per week: x: 0, 1, 2, 3 with P(x): 0.1, 0.2, 0.3, 0.4. Find E(X) and interpret.',
+  hint:board([gE([0,1,2,3],[0.1,0.2,0.3,0.4]),{lines:[B.line('On average, a student makes <b>2</b> online orders per week.')]}])},
+ {revise:'Bracket method: Var(X) = Σ(x − μ)² · P(x), each (x − μ)² in brackets; SD = √Var(X). Usual mistake: dividing by n − 1 (not used for a distribution).',see:{t:'Revise: Week 6 · Variance and standard deviation of X',href:'week-06.html#variance-x'},check:[{l:'Var(X)',v:1},{l:'SD',v:1}],type:'Var(X), SD',q:'Same table (E(X) = 2). Find Var(X) and SD, and interpret SD.',
+  hint:board([gVarX([0,1,2,3],[0.1,0.2,0.3,0.4],{t:'Variance (Var)'}),SDX(1),{lines:[B.line('Weekly orders typically vary by about <b>1</b> order from the mean of 2.')]}])},
+ {revise:'k from ΣP(x) = 1; E(X) = Σx · P(x); Var(X) = Σ(x − μ)² · P(x) with brackets; SD = √Var(X). Usual mistake: starting E(X) before finding k.',see:{t:'Revise: Week 6 · Variance and standard deviation of X',href:'week-06.html#variance-x'},check:[{l:'k',v:0.1},{l:'E(X)',v:0.4},{l:'Var(X)',v:0.44},{l:'SD',v:Math.sqrt(0.44),tol:0.004}],type:'Full',q:'Defective phones per box: x: 0, 1, 2 with P(x): 0.7, 0.2, k. Find k, E(X), Var(X), SD and interpret E(X).',
+  hint:stepsNH([['k','ΣP(x) = 1 → k = 1 − (0.7 + 0.2) = <b>0.1</b>']])+board([gE([0,1,2],[0.7,0.2,0.1],{t:'Expected value'}),gVarX([0,1,2],[0.7,0.2,0.1],{t:'Variance (Var)'}),SDX(0.44),{lines:[B.line('On average, a box has <b>0.4</b> defective phones.')]}])},
+ {revise:'E(X) = Σx · P(x), then Var(X) = Σ(x − μ)² · P(x) with the bracket method, SD = √Var(X). Usual mistake: not multiplying each squared bracket by its P(x).',see:{t:'Revise: Week 6 · Variance and standard deviation of X',href:'week-06.html#variance-x'},check:[{l:'E(X)',v:1},{l:'Var(X)',v:1},{l:'SD',v:1}],type:'Full',q:'Rainy days per week in a city (illustrative): x: 0, 1, 2, 3 with P(x): 0.4, 0.3, 0.2, 0.1. Find E(X), Var(X), SD and interpret.',
+  hint:board([gE([0,1,2,3],[0.4,0.3,0.2,0.1],{t:'Expected value'}),gVarX([0,1,2,3],[0.4,0.3,0.2,0.1],{t:'Variance (Var)'}),SDX(1),{lines:[B.line('On average <b>1</b> rainy day per week, typically varying by about 1 day.')]}])}];
+const BIG4={revise:'ΣP(x) = 1 gives k; “at least” and OR add the P(x) values, NOT → 1 − P. E(X) = Σx · P(x), Var(X) = Σ(x − μ)² · P(x) with brackets, SD = √Var(X); independent days → multiply.',see:{t:'Revise: Week 6 · Expected value E(X)',href:'week-06.html#expected-value'},check:[{l:'(b) k',v:0.4},{l:'(c) P(X ≥ 2)',v:0.5},{l:'(e) E(X)',v:1.4},{l:'(f) Var(X)',v:0.84},{l:'(f) SD',v:Math.sqrt(0.84),tol:0.006},{l:'(h) P(no late on both days)',v:0.04}],type:'Scenario',q:`<b>A food delivery app.</b> X = the number of late deliveries a rider has in one day.${tbl(['x','0','1','2','3'],[['P(x)','0.2','0.3','k','0.1']])}
+  <ol class="parts" type="a"><li>Is X discrete or continuous? Why?</li><li>Find k.</li><li>Find P(X ≥ 2) and P(at least one late delivery).</li><li>Find P(X = 0 or X = 3).</li><li>Find E(X) and interpret it.</li><li>Find Var(X) and SD.</li><li>About how many late deliveries should the rider expect in 30 days?</li><li>Days are independent. P(no late delivery on both of two days)?</li></ol>`,
+  hint:stepsNH([['(a)','<b>Discrete</b>: we count late deliveries (0, 1, 2, 3).'],['(b)','ΣP(x) = 1 → k = 1 − (0.2 + 0.3 + 0.1) = <b>0.4</b>.'],['(c)','P(X ≥ 2) = 0.4 + 0.1 = <b>0.5</b>. At least one = NOT zero = 1 − 0.2 = <b>0.8</b>.'],['(d)','OR, no overlap: 0.2 + 0.1 = <b>0.3</b>.']])
+   +B.make([gE([0,1,2,3],[0.2,0.3,0.4,0.1],{t:'(e)'}),{lines:[B.line('On average, <b>1.4</b> late deliveries per day.')]},gVarX([0,1,2,3],[0.2,0.3,0.4,0.1],{t:'(f) Variance (Var)'}),gSD(0.84,{t:'(f) Standard deviation (SD)',inner:'Var(X)'})])
+   +steps([['(g)','30 × 1.4 = <b>42</b> late deliveries.'],['Answer','(h) AND, independent: 0.2 × 0.2 = <b>0.04</b>.']])};
+
+/* ---------------- The paper ---------------- */
+const PARTS=[
+ {id:'part-1',t:'Graphs and skewness',s:'Read graphs, find the skew',intro:'Read the values from the graph first, then calculate. For the shape, follow the long tail.',
+  blocks:[{h:'Skewness: which way?',lead:SKEW,items:P1S},{h:'Read the graph',items:P1B}],big:BIG1},
+ {id:'part-2',t:'Calculations',s:'Centre and spread',intro:'Write the formula, then the numbers. Sort the data before the median and the quartiles.',
+  blocks:[{h:'Central tendency',items:P2A},{h:'Measures of variation',items:P2B}],big:BIG2},
+ {id:'part-3',t:'Probability',s:'Rules, tree diagrams, sample space',intro:'One set for all the rules. Find the key word first (and, or, not), then choose the rule from the table.',
+  blocks:[{h:'Probability rules: mixed',lead:RULES,items:P3},{h:'Tree diagrams and sample space',lead:'<p class="say">Every step splits into two equal branches of 1/2. Multiply along a path (AND). Add paths (OR).</p>',items:P4}],big:BIG3},
+ {id:'part-4',t:'Discrete distributions',s:'Valid, k, E(X), Var(X), SD',intro:'Every P(x) is between 0 and 1, and the sum is 1. E(X) = Σx·P(x). Var(X) = Σ(x − μ)²·P(x).',
+  blocks:[{h:'Valid distribution and k',items:P5A},{h:'E(X), Var(X) and SD',items:P5B}],big:BIG4}];
+const COUNT=PARTS.reduce((n,p)=>n+p.blocks.reduce((m,b)=>m+b.items.length,0)+1,0);
+
+(function(){
+  const LS=window.LearningSupports||{on:()=>false,get:()=>null};
+  const css=`
+body.mt{background:var(--bg)}
+.mt-main{padding:22px 12px 40px}
+.sheet{max-width:860px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.08);padding:48px 64px 40px}
+.sh-top{display:flex;justify-content:space-between;gap:12px;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sheet h1{font-family:var(--f-display);font-size:clamp(1.9rem,4.5vw,2.6rem);font-weight:800;letter-spacing:-.02em;text-align:center;margin:22px 0 4px}
+.sh-meta{text-align:center;font-family:var(--f-display);color:var(--muted);font-size:.92rem;margin:0 0 18px}
+.sh-name{display:none;gap:20px;font-family:var(--f-display);font-size:.9rem;margin:0 0 16px}
+.sh-name span{flex:1;border-bottom:1px solid var(--muted);padding-bottom:3px}
+.sh-inst{border:1px solid var(--line);border-radius:8px;padding:12px 16px;font-size:.98rem;margin:0 0 16px}
+.sh-inst ol{margin:6px 0;padding-left:22px}.sh-inst p{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.mt-tools{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;margin:0 0 18px;font-family:var(--f-display);font-size:.9rem}
+.mt-tools .btn{font-weight:700}
+.mt-tools small{color:var(--muted);flex-basis:100%;text-align:center}
+.sh-toc{list-style:none;padding:0;margin:0 0 6px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.sh-toc a{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-family:var(--f-display)}
+.sh-toc a b{display:block}.sh-toc a small{color:var(--muted)}
+.msec{border-top:2px solid var(--ink);margin-top:34px;padding-top:18px;scroll-margin-top:72px}
+.msec>h2{font-family:var(--f-display);font-size:1.6rem;font-weight:800;margin:0 0 4px;text-align:center}
+.msec>h2 small{display:block;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--wk);font-weight:600}
+.msec>.mi{text-align:center;color:var(--muted);margin:0 auto 14px;max-width:60ch}
+.mblk{margin:22px 0 0}
+.mblk>h3{font-family:var(--f-display);font-size:1.12rem;margin:0 0 10px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+.mblk>h3 span{font-family:var(--f-mono);color:var(--wk);margin-right:8px}
+.mlead{margin:0 0 12px}
+.g{margin:8px 0}.g svg{display:block;width:100%;height:auto;max-width:560px;margin:0 auto}
+.lr{display:flex;justify-content:space-between;max-width:560px;margin:2px auto 6px;font-family:var(--f-display);font-weight:800;font-size:.86rem;letter-spacing:.04em}
+.lr span{display:flex;flex-direction:column;line-height:1.1;border-radius:6px;padding:3px 8px}
+.lr small{font-weight:500;font-size:.68rem;letter-spacing:0;color:var(--muted)}
+.lr .l{color:var(--c2);background:rgba(31,99,181,.08)}.lr .r{color:var(--c3);text-align:right;align-items:flex-end;background:color-mix(in srgb,var(--c3) 10%,transparent)}
+.lt{color:var(--c2)}.rt{color:var(--c3)}
+.skew{border:1px solid var(--line);border-radius:10px;padding:14px;margin:0 0 14px}
+.sk-pics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.sk{margin:0;text-align:center}.sk figcaption{font-family:var(--f-display)}.sk figcaption span{display:block;font-size:.8rem;color:var(--muted)}
+.sk svg{width:100%;height:auto;display:block}.sk .ord{font-family:var(--f-mono);font-size:.78rem;margin:2px 0 0}
+.sk-rule{margin-top:10px;font-size:1rem}.sk-rule ol{padding-left:22px;margin:6px 0}.sk-rule p{margin:6px 0}
+.sk-rule .careful{font-weight:400;color:var(--ink);border-left:4px solid var(--wk);padding:6px 10px;background:var(--wk-soft);border-radius:0 6px 6px 0}
+.big{margin:26px 0 0;border:2px solid var(--ink);border-radius:10px;padding:14px 16px}
+.big>h3{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-family:var(--f-display);font-size:1.12rem;margin:0 0 6px}
+.big>h3 small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--wk)}
+.big ol.parts{margin:8px 0;padding-left:26px}.big ol.parts li{margin:3px 0}
+.fillin{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px 18px;margin:8px 0 4px;font-family:var(--f-mono);font-size:.88rem}
+.pspace{display:none}
+.mt-end{margin-top:34px;border-top:2px solid var(--ink);padding-top:18px}
+.mt-end h2{font-family:var(--f-display);text-align:center;margin:0 0 6px}
+.mt-end p{text-align:center;color:var(--muted);margin:0 0 12px}
+@media (max-width:700px){.sheet{padding:26px 16px 24px;border-radius:4px}.mt-main{padding:12px 6px 30px}.sh-toc{grid-template-columns:1fr}.sk-pics{grid-template-columns:1fr;max-width:300px;margin:0 auto}}
+@media print{
+  :root,:root[data-theme]{--bg:#fff!important;--surface:#fff!important;--ink:#111!important;--muted:#444!important;--line:#bbb!important;--wk:#C8102E!important;--wk-soft:rgba(200,16,46,.07)!important;--c2:#1F63B5!important;--c3:#B5651D!important;color-scheme:light!important}
+  @page{size:A4;margin:14mm 14mm 16mm}
+  body{background:#fff!important}
+  .lbar,.mt-tools,.sh-toc,.qb,.padbox,.support-note,.lpager,.ca-btn,.ca-panel,.calm-start,.pnav,.selfmon,.guide,.mt-end .mm-wrap{display:none!important}
+  .mt-main{padding:0}.sheet{box-shadow:none;border:0;padding:0;max-width:none}
+  .sh-name{display:flex}
+  .msec,.msec[hidden]{display:block!important}.msec{break-before:page;margin-top:0}
+  .prac .pq{display:block!important;break-inside:avoid}
+  .g,.skew,.big ol{break-inside:avoid}
+  .pspace{display:block;height:42mm;border:1px solid #bbb;border-radius:4px;margin:6px 0 12px;background-image:linear-gradient(transparent 7mm,#ddd 7mm);background-size:100% 7.25mm}
+  .big .pspace{height:110mm}
+  body.pr-ans .pspace{display:none}
+  body.pr-ans .hint{display:block!important}
+  body:not(.pr-ans) .hint{display:none!important}
+}`;
+  const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+  document.body.classList.add('lesson','mt');
+  const el=(t,a={},h='')=>{ const e=document.createElement(t); Object.entries(a).forEach(([k,v])=>e.setAttribute(k,v)); if(h) e.innerHTML=h; return e; };
+
+  const secs=PARTS.map((p,i)=>({id:p.id,t:`${i+1} · ${p.t}`})).concat([{id:'exam-day',t:'Exam day'}]);
+  const bar=el('header',{class:'lbar'});
+  bar.innerHTML=`<div class="lbar-in"><a class="brand" href="exams.html"><b>MTH 105</b><span>← Exams · Midterm revision</span></a>
+    <nav class="lchips" aria-label="Parts">${secs.map(s=>`<a href="#${s.id}" data-id="${s.id}">${esc(s.t)}</a>`).join('')}</nav>
+    <div class="lctl"><button type="button" class="pill" id="pr-top" title="Print or save as PDF">Print / PDF</button><button type="button" class="pill" id="theme" title="Light or dark">◐</button></div></div><div class="progress"><i></i></div>`;
+  document.body.appendChild(bar);
+  bar.querySelector('#theme').addEventListener('click',()=>GED102Theme.toggle());
+
+  const main=el('main',{class:'mt-main'}), sheet=el('article',{class:'sheet'});
+  sheet.innerHTML=`<div class="sh-top"><span>MTH 105 · Introduction to Statistics</span><span>Fall 2026 · Eng. Nadia Mek</span></div>
+    <h1>Midterm Revision</h1>
+    <p class="sh-meta">Monday 19 October 2026 · 9:30 AM · HUB-Yard Zones A, B, D<br>90 minutes · closed book · standard calculator</p>
+    <div class="sh-name"><span>Name:</span><span>Student ID:</span><span>Section:</span></div>
+    <div class="mt-tools"><button type="button" class="btn" id="pr">Print / Save as PDF</button><label><input type="checkbox" id="pra"> Include model answers</label><small>To get a PDF, choose “Save as PDF” as the printer. Without answers, each question gets space to write.</small></div>
+    <div class="sh-inst"><b>How to use this paper</b><ol><li>Answer on paper first: write the formula, then the numbers.</li><li>Open the model answer and compare it step by step.</li><li>Finish each part with its <b>scenario exercise</b>. It mixes everything in that part, like a real exam question.</li></ol><p>${HOW} ${COUNT} exercises. Data are illustrative.</p></div>
+    <ol class="sh-toc">${PARTS.map((p,i)=>`<li><a href="#${p.id}"><b>Part ${i+1} · ${p.t}</b><small>${p.s} · ${p.blocks.reduce((m,b)=>m+b.items.length,0)} exercises + 1 scenario</small></a></li>`).join('')}</ol>`;
+  const builds=[];
+  PARTS.forEach((p,i)=>{
+    const s=el('section',{class:'msec',id:p.id});
+    s.innerHTML=`<h2><small>Part ${i+1}</small>${p.t}</h2><p class="mi say">${p.intro}</p>`;
+    p.blocks.forEach((b,j)=>{ const d=el('div',{class:'mblk'}); d.innerHTML=`<h3><span>${i+1}${'ABC'[j]}</span>${b.h}</h3>${b.lead?`<div class="mlead">${b.lead}</div>`:''}`;
+      const box=el('div'); d.appendChild(box); s.appendChild(d); builds.push(()=>W.practice(box,b.items,{label:'Show model answer',prefix:'',key:`mt${i+1}${'ABC'[j]}`})); });
+    const g=el('div',{class:'big'}); g.innerHTML=`<h3>Scenario exercise<small>All of Part ${i+1}</small></h3>`;
+    const gb=el('div'); g.appendChild(gb); s.appendChild(g);
+    builds.push(()=>W.practice(gb,[{...p.big,type:''}],{label:'Show model answer',prefix:'',key:`mt${i+1}big`,numbered:false}));
+    sheet.appendChild(s);
+  });
+  const end=el('section',{class:'msec mt-end',id:'exam-day'});
+  end.innerHTML=`<h2>Exam day</h2><p>Monday 19 October 2026, 9:30 AM, HUB-Yard Zones A, B, D. Bring your student ID and a standard calculator. Phones are not allowed.</p><div class="mm-wrap"></div>`;
+  sheet.appendChild(end);
+  main.appendChild(sheet); document.body.appendChild(main);
+  document.body.appendChild(el('p',{class:'support-note'},'This website is interactive course support. It does not replace classes, attendance or class activities.'));
+  builds.forEach(b=>{ try{ b(); }catch(e){ console.error(e); } });
+  W.mindmap(end.querySelector('.mm-wrap'),{center:'Midterm', branches:[
+    {t:'Graphs',items:['Read the values first','Boxplot: 5 numbers','Skew: follow the long tail']},
+    {t:'Centre',items:['x̄ = Σx ÷ n','Median at (n + 1) ÷ 2','Mode: most frequent']},
+    {t:'Spread',items:['Range, IQR = Q3 − Q1','s² = Σ(x − x̄)² ÷ (n − 1)','CV = s ÷ x̄ × 100%']},
+    {t:'Rules',items:['AND × · OR +','OR with BOTH: − both','NOT: 1 − P']},
+    {t:'Trees',items:['Each branch 1/2','Multiply along, add across']},
+    {t:'Discrete',items:['ΣP = 1','E = Σx·P','Var = Σ(x − μ)²·P']}]});
+  /* working space for the printed paper */
+  sheet.querySelectorAll('.pq').forEach(pq=>pq.appendChild(el('div',{class:'pspace','aria-hidden':'true'})));
+
+  const doPrint=()=>{ document.body.classList.toggle('pr-ans',sheet.querySelector('#pra').checked); window.print(); };
+  sheet.querySelector('#pr').addEventListener('click',doPrint);
+  bar.querySelector('#pr-top').addEventListener('click',()=>{ sheet.querySelector('.mt-tools').scrollIntoView({block:'center',behavior:'smooth'}); sheet.querySelector('#pr').focus(); });
+
+  /* chips, progress, optional one-part-at-a-time view (Learning supports) */
+  const chips=[...bar.querySelectorAll('.lchips a')], sections=[...sheet.querySelectorAll('.msec')];
+  const mark=id=>chips.forEach(c=>{ const on=c.dataset.id===id; c.classList.toggle('on',on); if(on&&c.scrollIntoView) c.scrollIntoView({block:'nearest',inline:'nearest'}); });
+  const prog=f=>bar.querySelector('.progress i').style.width=(Math.max(0,Math.min(1,f))*100)+'%';
+  const view=LS.get('view')||'page';
+  const target=()=>{ const h=decodeURIComponent(location.hash.slice(1)); return h?document.getElementById(h):null; };
+  if(view!=='page'){
+    const pager=el('nav',{class:'lpager','aria-label':'Move through the parts'}); main.appendChild(pager); let cur=0;
+    const head=[...sheet.children].filter(x=>!x.classList.contains('msec'));
+    const show=(i,scroll=true)=>{ cur=Math.max(0,Math.min(sections.length-1,i)); sections.forEach((x,k)=>x.hidden=k!==cur); head.forEach(x=>x.hidden=cur!==0&&!x.classList.contains('sh-top'));
+      mark(sections[cur].id); prog(sections.length>1?cur/(sections.length-1):1);
+      const lab=k=>sections[k]?sections[k].querySelector('h2').innerText.replace(/\n/g,' · '):'';
+      pager.innerHTML=`<button type="button" class="prev" ${cur===0?'disabled':''}><small>← Previous</small>${esc(lab(cur-1)||'Start')}</button><span class="pc">${cur+1} of ${sections.length}</span><button type="button" class="next" ${cur===sections.length-1?'disabled':''}><small>Next →</small>${esc(lab(cur+1)||'End')}</button>`;
+      pager.querySelector('.prev').onclick=()=>show(cur-1); pager.querySelector('.next').onclick=()=>show(cur+1);
+      try{ history.replaceState(null,'','#'+sections[cur].id); }catch(e){}
+      if(scroll) window.scrollTo({top:0}); };
+    [...chips,...sheet.querySelectorAll('.sh-toc a')].forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); const id=(a.dataset.id||a.getAttribute('href').slice(1)); show(sections.findIndex(x=>x.id===id)); }));
+    addEventListener('beforeprint',()=>{ sections.forEach(x=>x.hidden=false); head.forEach(x=>x.hidden=false); });
+    addEventListener('afterprint',()=>show(cur,false));
+    const t=target(); show(t?Math.max(0,sections.findIndex(x=>x===t||x.contains(t))):0,false);
+  } else {
+    const t=target(); if(t) setTimeout(()=>t.scrollIntoView(),60);
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) mark(e.target.id); }),{rootMargin:'-30% 0px -60% 0px'});
+    sections.forEach(s=>io.observe(s));
+    const onScroll=()=>{ const d=document.documentElement; prog(d.scrollTop/((d.scrollHeight-d.clientHeight)||1)); };
+    addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  }
+})();
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

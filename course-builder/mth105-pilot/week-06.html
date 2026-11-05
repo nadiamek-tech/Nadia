@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Week 6 · Discrete Probability Distributions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/lesson.css?v=202611021159">
+<style>
+:root{--wk:#B4530A;--wk-soft:rgba(180,83,10,0.09);--wk-d:#FFA463;--wk-soft-d:rgba(255,164,99,0.14)}
+</style>
+</head>
+<body>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/concept.js?v=202611021159"></script>
+<script src="assets/decode.js?v=202611021159"></script>
+<script src="assets/professor.js?v=202611021159"></script>
+<script src="assets/keywords.js?v=202611021159"></script>
+<script src="assets/lesson.js?v=1793616787"></script>
+<script src="assets/pad.js?v=20261103p"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script src="assets/casio.js?v=202611021159"></script>
+<script src="assets/board.js?v=202611021159"></script>
+<script src="assets/board-answers.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script>
+const {W} = Lecture; Lecture.__noLogo=true; const esc = W.esc;
+const {T, fr, sq, SG, XB, PH, v} = F;
+const goScene = i => { const b=document.querySelectorAll('.toc ol li button')[i]; if(b) b.click(); };
+const practice = (items, label) => el => W.practice(el, items, {label: label||'Show answer', prefix: ''});
+const FT='font-family="Schibsted Grotesk,Arial"', MONO='font-family="JetBrains Mono,monospace"';
+/* board model answers for practice: BA / Board from assets/board-answers.js and assets/board.js */
+const Bd=Board, MA=(...p)=>{ const li=p.map(x=>!!x.b).lastIndexOf(true); return p.map((x,i)=>x.b?(i===li?BA.board(x.b):Bd.make(x.b)):BA.steps(x.s)).join(''); };
+function gK(known,o={}){ const k=1-BA.sum(known), L=known.map(BA.num).join(' + ');
+  return {t:o.t||'k',lines:[Bd.line(`k = 1 − Σ <span class="g">P(others)</span>`),Bd.dec([['P(others)',known.map(BA.num).join(', ')]]),
+    Bd.line(`k = 1 − (${L})`),Bd.line(`k = 1 − ${BA.num(BA.sum(known))} = <b>${BA.num(k)}</b>`,'ans')],calc:[`1−(${known.map(BA.num).join("+")})`,BA.lcd(k)]}; }
+const SDX=(v,o={})=>BA.sd(v,{t:'SD',inner:'Var(X)',...o});
+const W2='<a href="https://nadiamek-tech.github.io/MindTheGap/workshop-02.html" target="_blank" rel="noopener">E(X) and Var(X), step by step: Mind the Gap Workshop 2 ↗</a>';
+const bern=`<svg viewBox="0 0 520 170" role="img" aria-label="Bernoulli distribution"><line x1="80" x2="440" y1="140" y2="140" stroke="var(--ink)"/>
+  <rect x="140" y="${140-0.96*110}" width="80" height="${0.96*110}" fill="var(--c2)" opacity=".6"/><rect x="300" y="${140-0.04*110}" width="80" height="${0.04*110}" fill="var(--wk)"/>
+  <text x="180" y="160" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">x = 0 · failure</text><text x="340" y="160" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">x = 1 · success</text>
+  <text x="180" y="${130-0.96*110}" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">q = 0.96</text><text x="340" y="${130-0.04*110}" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">p = 0.04</text></svg>`;
+
+/* ---------- concept graphics (one per topic, beside the definition) ---------- */
+const G6=(()=>{ const {svg,card,text,tick,pill,brace}=CG;
+  /* valid distribution: every P(x) in [0, 1], all slices fill exactly 1, k is the missing slice */
+  const seg=[[0.1,'0.1'],[0.3,'0.3'],[0.4,'0.4']]; let x0=30;
+  const bars=seg.map(([p,l],i)=>{ const w=460*p, r=`<rect x="${x0+1}" y="74" width="${w-2}" height="50" rx="6" fill="var(--wk)" fill-opacity="${.35+i*.2}"/>`+text(x0+w/2,105,l,{a:'middle',s:14,w:700,mono:true})+text(x0+w/2,144,'x = '+i,{a:'middle',s:12,c:'var(--muted)'}); x0+=w; return r; }).join('')+
+    `<rect x="${x0+1}" y="74" width="${490-x0-2}" height="50" rx="6" fill="none" stroke="#C62828" stroke-width="2" stroke-dasharray="6 4"/>`+text((x0+490)/2,106,'k = ?',{a:'middle',s:15,w:800,mono:true,c:'#C62828'})+text((x0+490)/2,144,'x = 3',{a:'middle',s:12,c:'var(--muted)'});
+  const valid=svg(520,250,
+    text(260,34,'ΣP(x) = 1',{a:'middle',s:16,w:800,mono:true,c:'var(--wk)'})+brace(30,490,66,true)+bars+
+    card(30,166,220,64,'var(--c3)')+tick(56,198,13)+text(80,195,'0 ≤ P(x) ≤ 1',{s:15,w:700,mono:true})+text(80,215,'each value',{s:12,c:'var(--muted)'})+
+    card(270,166,220,64,'#C62828',{op:.06})+text(290,195,'k = 1 − Σ others',{s:15,w:700,mono:true})+text(290,215,'the missing slice',{s:12,c:'var(--muted)'}),
+    'The probabilities fill exactly 1; each is between 0 and 1; the missing slice k is 1 minus the others');
+  /* E(X): the balance point of the distribution */
+  const BX=v=>80+v*120, P=[.1,.3,.4,.2];
+  const ev=svg(520,250,
+    pill(20,12,200,32,'E(X) = Σ x · P(x)',undefined,{s:13})+
+    P.map((p,x)=>`<rect x="${BX(x)-28}" y="${170-p*300}" width="56" height="${p*300}" rx="4" fill="var(--wk)" fill-opacity=".8"/>`+text(BX(x),170-p*300+19,p,{a:'middle',s:12,w:700,mono:true,c:'var(--surface)'})+text(BX(x),196,x,{a:'middle',s:13,mono:true})).join('')+
+    `<rect x="40" y="170" width="440" height="6" rx="3" fill="var(--ink)"/>`+
+    `<line x1="${BX(1.7)}" x2="${BX(1.7)}" y1="44" y2="166" stroke="var(--ink)" stroke-dasharray="5 4" stroke-width="1.5"/>`+
+    text(BX(1.7),36,'balance point',{a:'middle',s:13,w:700,c:'var(--muted)'})+
+    `<path d="M${BX(1.7)},177 L${BX(1.7)-18},207 L${BX(1.7)+18},207 Z" fill="var(--c3)"/>`+
+    text(BX(1.7),232,'E(X) = 1.7',{a:'middle',s:15,w:800,mono:true,c:'var(--c3)'}),
+    'The bars for x = 0, 1, 2, 3 balance on a beam at E(X) = 1.7, the long-run average');
+  /* Var(X): squared distances from μ, weighted by P(x) */
+  const SX=v=>60+v*100, mu=1.7, base=190;
+  const sqr=(x,col,op)=>{ const d=Math.abs(x-mu)*100, l=Math.min(SX(x),SX(mu)); return `<rect x="${l}" y="${base-d}" width="${d}" height="${d}" fill="${col}" fill-opacity="${op}" stroke="${col}" stroke-width="1.5"/>`; };
+  const vx=svg(520,250,
+    sqr(0,'var(--wk)',.08)+sqr(1,'var(--wk)',.22)+sqr(3,'var(--c2)',.08)+sqr(2,'var(--c2)',.22)+
+    text(SX(0)+8,base-150,'(0 − 1.7)²',{s:12,mono:true,c:'var(--wk)'})+text(SX(3)-8,base-110,'(3 − 1.7)²',{a:'end',s:12,mono:true,c:'var(--c2)'})+
+    `<line x1="40" x2="380" y1="${base}" y2="${base}" stroke="var(--ink)" stroke-width="1.5"/>`+
+    [0,1,2,3].map(x=>text(SX(x),base+18,x,{a:'middle',s:13,mono:true})).join('')+
+    `<line x1="${SX(mu)}" x2="${SX(mu)}" y1="14" y2="${base+4}" stroke="var(--ink)" stroke-dasharray="5 4" stroke-width="1.5"/>`+
+    text(SX(mu),base+44,'μ = 1.7',{a:'middle',s:15,w:800,mono:true})+
+    text(400,64,'(x − μ)²',{s:16,w:800,mono:true,c:'var(--wk)'})+text(400,84,'squared distance',{s:12,c:'var(--muted)'})+
+    text(400,124,'× P(x)',{s:16,w:800,mono:true,c:'var(--wk)'})+text(400,144,'weight it',{s:12,c:'var(--muted)'})+
+    text(400,184,'add ⟶ Var(X)',{s:14,w:800}),
+    'Each value x is a squared distance from mu = 1.7, drawn as a square; weight each by P(x) and add to get Var(X)');
+  return {valid,ev,vx};
+})();
+
+Lesson.mount({
+  week:6, clo:'CLO 2', title:'Discrete Probability Distributions', chapter:'Ch 6: Modeling Random Events: The Normal and Binomial Models · Gould, Ryan & Wong (2020)',
+  intro:'A random variable turns outcomes into numbers. Its distribution lists every value with its probability.',
+  topics:[
+  { id:'random-variable', title:'Discrete random variables and valid distributions',
+    def:'A <b>random variable X</b> gives a number to each outcome. <b>Discrete</b>: countable values (0, 1, 2 …). A distribution is <b>valid</b> when every P(x) is between 0 and 1 and all P(x) add to 1.',
+    defFig:{label:'All P(x) fill exactly 1', html:G6.valid},
+    life:{text:'X = number of buses arriving at a stop in one hour. Data: illustrative.',
+      fig:{label:'Buses per hour', html:`<table class="tbl"><tr><th>x</th><td>0</td><td>1</td><td>2</td><td>3</td></tr><tr><th>P(x)</th><td>0.1</td><td>0.3</td><td>0.4</td><td>k</td></tr></table>`}},
+    formula:{f:`${T('k',v('k'))} = ${T('one','1')} − ${T('S',SG)}${T('o','(other P(x))')}`,
+      parts:[['k','<b>k</b>: the missing probability.'],['one','<b>1</b>: all probabilities add to 1.'],['S','<b>Σ</b>: add up.'],['o','The probabilities you already know.']],
+      sub:'k = 1 − (0.1 + 0.3 + 0.4)', keys:'1 − ( 0 . 1 + 0 . 3 + 0 . 4 ) =', ans:`<div class="m">k = <b>0.2</b></div>`, ansRaw:true, ansNote:'Check: 0 ≤ 0.2 ≤ 1 and the total is 1 → valid.'},
+    meaning:{text:'Edit the probabilities and the tool checks both conditions.', fig:{label:'Edit P(x) · check validity', build:ST.distTool}} },
+
+  { id:'expected-value', title:'Expected value E(X)',
+    def:'The <b>expected value</b> E(X), or μ, is the long-run average of X: multiply each value by its probability and add.',
+    defFig:{label:'The balance point', html:G6.ev},
+    life:{text:'Same bus stop: 0, 1, 2 or 3 buses with probabilities 0.1, 0.3, 0.4, 0.2.'},
+    formula:{f:`${T('e',v('E')+'('+v('X')+')')} = ${T('S',SG)} ${T('x',v('x'))} · ${T('p',v('P')+'('+v('x')+')')}`,
+      parts:[['e','<b>E(X)</b>: the expected value, also μ.'],['S','<b>Σ</b>: add over every value of x.'],['x','<b>x</b>: each possible value.'],['p','<b>P(x)</b>: its probability.']],
+      sub:'E(X) = 0(0.1) + 1(0.3) + 2(0.4) + 3(0.2)', keys:'0 × 0 . 1 + 1 × 0 . 3 + 2 × 0 . 4 + 3 × 0 . 2 =', ans:`<div class="m">E(X) = <b>1.7</b> buses</div>`, ansRaw:true},
+    meaning:{text:'Over many hours, the stop gets 1.7 buses per hour on average. E(X) need not be a possible value of X.'} },
+
+  { id:'variance-x', demo:'Your professor completes the E(X) and Var(X) table on the board.', title:'Variance and standard deviation of X',
+    def:'<b>Var(X)</b> measures how far X typically lands from E(X). <b>SD = √Var(X)</b>, in the units of X.',
+    defFig:{label:'Squared distances from the mean', html:G6.vx},
+    life:{text:'Same bus stop, with μ = 1.7.'},
+    formula:[{name:'Var(X)', f:`${T('v','Var('+v('X')+')')} = ${T('S',SG)} ${T('d','('+v('x')+' − μ)<sup>2</sup>')} · ${T('p',v('P')+'('+v('x')+')')}`,
+      parts:[['v','<b>Var(X)</b>: variance of X.'],['S','<b>Σ</b>: add over every x.'],['d','<b>(x − μ)²</b>: squared distance from E(X) = μ.'],['p','<b>P(x)</b>: weight each squared distance by its probability.']],
+      sub:'(0 − 1.7)²(0.1) + (1 − 1.7)²(0.3) + (2 − 1.7)²(0.4) + (3 − 1.7)²(0.2)', keys:'( 0 − 1 . 7 ) x² × 0 . 1 + ( 1 − 1 . 7 ) x² × 0 . 3 + ( 2 − 1 . 7 ) x² × 0 . 4 + ( 3 − 1 . 7 ) x² × 0 . 2 =', keyNote:'Always bracket the negative before squaring.',
+      ans:`<div class="m">0.289 + 0.147 + 0.036 + 0.338 = <b>0.81</b></div>`, ansRaw:true},
+     {name:'SD', f:`${T('sd','SD')} = ${sq(T('v','Var('+v('X')+')'))}`,
+      parts:[['sd','<b>SD</b>: standard deviation of X, in buses.'],['v','<b>Var(X)</b>: from box 1.']],
+      sub:`SD = ${sq('0.81')}`, keys:'√ 0 . 8 1 =', ans:`<div class="m">SD = <b>0.9</b> buses</div>`, ansRaw:true}],
+    meaning:{text:'In a typical hour, the number of buses is about 0.9 away from the average of 1.7. Bigger SD = less predictable.',
+      fig:{label:'Buses per hour · P(x)', html:`<svg viewBox="0 0 520 170" role="img" aria-label="Probability distribution of buses per hour"><line x1="60" x2="480" y1="140" y2="140" stroke="var(--ink)"/>${[[0,.1],[1,.3],[2,.4],[3,.2]].map(([x,p])=>`<rect x="${90+x*100}" y="${140-p*280}" width="60" height="${p*280}" fill="var(--wk)" opacity=".8"/><text x="${120+x*100}" y="${132-p*280}" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">${p}</text><text x="${120+x*100}" y="160" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">${x}</text>`).join('')}<line x1="${120+1.7*100}" x2="${120+1.7*100}" y1="20" y2="140" stroke="var(--ink)" stroke-dasharray="5 4"/><text x="${126+1.7*100}" y="30" ${MONO} font-size="12" fill="var(--ink)">μ = 1.7</text></svg>`}} }
+  ],
+  inClass:{intro:'We complete the table and draw the distribution together on the board.', items:[
+    {q:'X = number of phone notifications in 10 minutes. x: 0, 1, 2, 3, 4 with P(x): 0.10, 0.25, 0.30, k, 0.10. Find k, E(X), Var(X) and the SD. Interpret the SD in one sentence.', tips:['k = 1 − (sum of the others).','E(X): multiply each x by P(x) and add.','Var(X): (x − μ)² × P(x), then add.']},
+    {q:'Draw the probability histogram of X from Exercise 1 and mark μ on it.', draw:true, tips:['One bar per value of x.','Bar height = P(x).','Mark μ with a vertical line.']}]},
+  takeaways:{label:'Week 6 on one page', mindmap:{center:'Discrete X', branches:[
+    {t:'Discrete',items:['Countable values 0, 1, 2 …']},{t:'Valid',items:['0 ≤ P(x) ≤ 1','ΣP(x) = 1','k = 1 − others']},
+    {t:'Summaries',items:['E(X) = Σx·P(x)','Var(X) = Σ(x − μ)²·P(x)','SD = √Var(X)']}]}},
+  practice:[
+    {check:[{l:'ΣP(x)',v:1.1},{l:'Valid?',opts:['Yes','No'],v:'No'}],revise:'Valid distribution: each P(x) is between 0 and 1, and ΣP(x) = 1 exactly.',see:{t:'Revise: Discrete random variables and valid distributions',href:'#random-variable'},type:'Easy',q:'Is this valid? x: 0, 1, 2, 3 with P(x): 0.2, 0.3, 0.4, 0.2',hint:BA.steps([['Each P(x)','All between 0 and 1 ✓'],['ΣP(x)','0.2 + 0.3 + 0.4 + 0.2 = 1.1 ≠ 1 ✗'],['Answer','<b>No</b>, not valid: the probabilities must add to exactly 1.']])},
+    {check:[{l:'k',v:0.4}],revise:'ΣP(x) = 1, so k = 1 − (sum of the other probabilities).',see:{t:'Revise: Discrete random variables and valid distributions',href:'#random-variable'},type:'Easy',q:'P(x) for x = 0, 1, 2, 3 is 0.15, 0.25, k, 0.20. Find k.',hint:BA.board([gK([0.15,0.25,0.20])])},
+    {check:[{l:'E(X)',v:2.1}],revise:'E(X) = Σx·P(x): multiply each x by its P(x), then add. Do not divide by n.',see:{t:'Revise: Expected value E(X)',href:'#expected-value'},type:'Easy',q:'x: 1, 2, 3 with P(x): 0.2, 0.5, 0.3. Find E(X).',hint:BA.board([BA.e([1,2,3],[0.2,0.5,0.3],{t:'E(X)'})])},
+    {check:[{l:'E(X)',v:0.7},{l:'Var(X)',v:0.61},{l:'SD',v:0.781025}],revise:'Var(X) = Σ(x − μ)²·P(x) with μ = E(X), each (x − μ)² in brackets; SD = √Var(X). Do not divide by n.',see:{t:'Revise: Variance and standard deviation of X',href:'#variance-x'},type:'Medium',q:'x: 0, 1, 2 with P(x): 0.5, 0.3, 0.2. Find E(X), Var(X) and SD.',hint:BA.board([BA.e([0,1,2],[0.5,0.3,0.2],{t:'E(X)'}),BA.varX([0,1,2],[0.5,0.3,0.2],{t:'Var(X)'}),SDX(0.61)])},
+    {check:[{l:'k',v:0.25},{l:'E(X)',v:1.3}],revise:'Find k first from ΣP(x) = 1, then E(X) = Σx·P(x) using that k.',see:{t:'Revise: Expected value E(X)',href:'#expected-value'},type:'Medium',q:'Goals per match: P(0) = 0.25, P(1) = 0.35, P(2) = k, P(3) = 0.15. Find k and E(X).',hint:MA({b:[gK([0.25,0.35,0.15]),BA.e([0,1,2,3],[0.25,0.35,0.25,0.15],{t:'E(X)'})]},{s:[['Meaning','On average <b>1.3</b> goals per match.']]})},
+    {check:[{l:'Var(X)',v:1.01},{l:'SD',v:1.004988},{l:'Meaning',opts:['A typical match is about 1 goal from the average','Most matches have exactly 1 goal','The average is 1 goal'],v:'A typical match is about 1 goal from the average'}],revise:'Var(X) = Σ(x − μ)²·P(x) with μ = 1.3; SD = √Var(X). SD is the typical distance from E(X), not the most common value.',see:{t:'Revise: Variance and standard deviation of X',href:'#variance-x'},type:'Hard',q:'Same goals table: find Var(X) and SD, and interpret SD in one sentence.',hint:MA({b:[BA.varX([0,1,2,3],[0.25,0.35,0.25,0.15],{t:'Var(X)'}),(g=>(g.lines[1]=Bd.line('SD = √1.01 ≈ <b>1.005</b>','ans'),g))(SDX(1.01))]},{s:[['Meaning','A typical match is about <b>1 goal</b> away from the average of 1.3.']]})}],
+  next:'Next: Week 7, Bernoulli and binomial distributions. <a href="week-07.html">Open Week 7 →</a>'
+});
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

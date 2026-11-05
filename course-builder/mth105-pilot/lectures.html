@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/site.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/portal.css?v=202611021159">
+<style>.lc{cursor:pointer}.lc h3 a{color:var(--ink);text-decoration:none}.lc:hover{border-color:var(--wk)}.flags{display:flex;gap:6px;flex-wrap:wrap}.soonline{color:var(--muted);margin:14px 0 0}</style>
+<style>:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,.08);--wk-d:#FF7A7F;--wk-soft-d:rgba(255,122,127,.14)}</style>
+<title>Pilot · MTH 105 Lectures</title>
+</head>
+<body>
+<div id="hub" data-cur="lectures"></div>
+<main class="wrap">
+  <h1 class="pg">Lectures</h1>
+  <p class="lead">One page per lecture. Every topic: definition, an example around us, the formula step by step, and what it means.</p>
+  <div class="cards" id="lec"></div>
+  <p class="soonline">Week 9 onwards is in preparation. <a href="index.html#calendar">See the plan in the semester calendar →</a></p>
+  <h2 class="sec" id="tools">Tools</h2>
+  <div class="cards">
+    <a class="card" href="tools.html"><span class="no">Tools</span><h3>Calculator and statistics checkers</h3><p>Scientific calculator, mean and SD, boxplot, frequency table, Venn, tree, discrete distributions.</p></a>
+    <a class="card" href="https://nadiamek-tech.github.io/MindTheGap/" target="_blank" rel="noopener"><span class="no">Workshops</span><h3>Mind the Gap ↗</h3><p>Read the question, read the formula, use the calculator.</p></a>
+  </div>
+</main>
+<footer style="max-width:1100px;margin:0 auto;padding:18px 16px 30px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted);text-align:center">This website is interactive course support. It does not replace classes, attendance or class activities.<br> <b>Eng. Nadia Mek</b> · <a href="https://github.com/nadiamek-tech/MTH105">github.com/nadiamek-tech/MTH105</a></footer>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script>
+const esc=Lecture.W.esc;
+const WEEKS=[
+ ['week-01.html','Week 1','Introduction to Statistics',['Descriptive and inferential statistics','Definitions of representative samples and importance of sample size, and impact of outliers.','Illustrative practical examples of use of Statistics'],'CLO 1','Ch.1: Introduction to Data','',8],
+ ['week-02.html','Week 2','Describing and Organizing Data',['Frequency distributions','Histograms and frequency polygons','Cumulative frequency distributions:'],'CLO 1','Ch.2: Picturing Variation with Graphs','',7],
+ ['week-03.html','Week 3','Measures of Central Tendency, Position, & Dispersion',['Mean, median, and mode','Percentiles'],'CLO 1','Ch.3: Numerical Summaries of Center and Variation','',5],
+ ['week-04.html','Week 4','Measures of Central Tendency, Position, & Dispersion',['Variance and standard deviation','Coefficient of variation'],'CLO 1','Ch.3: Numerical Summaries of Center and Variation','',6],
+ ['week-05.html','Week 5','Probability Theory',['Definitions of events and sample space','Operations on probabilities'],'CLO 2','Ch 5: Modeling Variation with Probability','Quiz 1 · End of Week 5',8],
+ ['week-06.html','Week 6','Discrete Probability Distributions',['Definition of discrete random variables','Expected value, variance and standard deviation of discrete random variables'],'CLO 2','Ch 6: Modelling Random Events: The Normal and Binomial Models','',4],
+ ['week-07.html','Week 7','Bernoulli and Binomial Distributions',['The Bernoulli distribution','The binomial formula and its conditions','Mean and standard deviation of a binomial'],'CLO 2','Ch 6: Modeling Random Events: The Normal and Binomial Models','',8],
+ ['week-08.html','Week 8','The Normal Distribution',['From histogram to density curve','The normal distribution N(μ, σ)','The 68–95–99.7 rule'],'CLO 2','Ch 6: Modeling Random Events: The Normal and Binomial Models','Midterm · Week 8',8]];
+document.getElementById('lec').innerHTML=WEEKS.map(([f,wk,t,subs,clo,ch,as,pr])=>'<div class="card lc" data-href="'+f+'"><span class="no">'+wk+' · '+clo+'</span><h3><a href="'+f+'">'+esc(t)+'</a></h3><ul>'+subs.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><div class="meta"><span>'+esc(ch)+'</span></div><div class="flags"><a class="pt-flag" href="'+f+'#practice">Practice →</a></div></div>').join('');
+document.querySelectorAll('.lc').forEach(c=>c.addEventListener('click',e=>{ if(!e.target.closest('a')) location.href=c.dataset.href; }));
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

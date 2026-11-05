@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/site.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/portal.css?v=202611021159">
+<style>:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,.08);--wk-d:#FF7A7F;--wk-soft-d:rgba(255,122,127,.14)}</style>
+<title>Pilot · MTH 105 Calculator and Tools</title>
+</head>
+<body>
+<div id="hub" data-cur="lectures"></div>
+<main class="wrap">
+  <h1 class="pg" id="calc">Calculator and tools</h1>
+  <p class="lead">Use them to check your work, not to replace it. In the exam you have a standard calculator only.</p>
+  <h2 class="sec">Scientific calculator</h2>
+  <div class="panel" style="max-width:460px"><div id="calcbox"></div></div>
+  <h2 class="sec" id="stats">Statistics checkers</h2>
+  <div class="tabs" id="tabs"></div>
+  <div class="panel" id="tool"></div>
+</main>
+<footer style="max-width:1100px;margin:0 auto;padding:18px 16px 30px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted);text-align:center">This website is interactive course support. It does not replace classes, attendance or class activities.<br> <b>Eng. Nadia Mek</b> · <a href="https://github.com/nadiamek-tech/MTH105">github.com/nadiamek-tech/MTH105</a></footer>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script>
+CALC.mount(document.getElementById('calcbox'));
+const T=[['Mean and SD',el=>ST.spreadTool(el)],['Boxplot',ST.boxTool],['Frequency table',el=>ST.freqTool(el)],['Venn',ST.vennTool],['Tree',ST.treeTool],['Discrete X',ST.distTool]];
+const tabs=document.getElementById('tabs'), box=document.getElementById('tool');
+tabs.innerHTML=T.map((t,i)=>'<button type="button" aria-pressed="'+(i===0)+'">'+t[0]+'</button>').join('');
+const open=i=>{ tabs.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',i===j)); box.innerHTML=''; T[i][1](box); };
+tabs.querySelectorAll('button').forEach((b,i)=>b.addEventListener('click',()=>open(i))); open(0);
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

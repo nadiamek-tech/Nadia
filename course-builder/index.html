@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Course Builder · GED AI Education Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: a workshop sheet. Five-step pipeline across the top, courses already in the builder, then the intake form as numbered parts. */
+:root{
+  --paper:#f3f3f0;--card:#fff;--ink:#17181b;--muted:#5d6068;--line:#dadad4;--soft:#f0f0ec;
+  --red:#a8131e;--red-soft:#f7e3e4;--green:#1b6a4f;--green-soft:#e0f0e8;--blue:#1f4f8f;--blue-soft:#e3ebf7;--amber:#8a5a00;--amber-soft:#f7ebd4;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{--paper:#111214;--card:#1a1b1f;--ink:#ececea;--muted:#a3a6ae;--line:#2e3036;--soft:#202126;
+  --red:#f0666f;--red-soft:#3a1a1d;--green:#5fcaa0;--green-soft:#132d25;--blue:#8fb5ef;--blue-soft:#17243a;--amber:#e8b45a;--amber-soft:#33270f;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{border-bottom:1px solid var(--line);background:var(--card)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:54px;flex-wrap:wrap}
+.brand{font:700 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase}.brand b{color:var(--red)}
+.top a{font-weight:600;font-size:14px;color:var(--muted);text-decoration:none}
+.eyebrow{font:600 12px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{text-wrap:balance}
+.hero{padding-block:38px 18px}
+.hero h1{font:850 clamp(32px,5vw,50px)/1.02 var(--display);font-stretch:85%;margin:10px 0}
+.hero p{margin:0;color:var(--muted);max-width:60ch}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:22px;counter-reset:s}
+.pipe div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0;position:relative}
+.pipe div::before{counter-increment:s;content:counter(s);font:700 12px var(--mono);color:var(--muted)}
+.pipe b{display:block;font:750 16px/1.2 var(--display);margin-top:4px}
+.pipe small{color:var(--muted);font-size:13px;display:block;margin-top:2px}
+.pipe .rv{border-color:var(--blue)}.pipe .rv::before{color:var(--blue)}
+section{padding-block:22px}
+.sh h2{font:800 23px/1.1 var(--display);margin:4px 0 12px}
+/* course cards */
+.course{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center}
+.course h3{font:750 19px/1.2 var(--display);margin:2px 0}
+.course .code{font:700 12px var(--mono);color:var(--blue)}
+.course p{margin:0;color:var(--muted);font-size:14px}
+.track{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.st{font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.st.done{background:var(--green-soft);border-color:transparent;color:var(--green)}
+.st.now{background:var(--blue-soft);border-color:var(--blue);color:var(--blue)}
+.acts{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font:700 14px var(--body);text-decoration:none;padding:9px 13px;border-radius:9px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn.main{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.btn svg{width:17px;height:17px}
+.btn.mic.on{background:var(--red);border-color:var(--red);color:#fff}
+/* form */
+form{display:grid;gap:14px}
+fieldset{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:18px;margin:0;min-width:0}
+legend{font:800 18px/1.2 var(--display);padding:0 6px;display:flex;gap:10px;align-items:baseline}
+legend span{font:700 12px var(--mono);color:var(--red)}
+.hint{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+label.f{display:block;font:600 13.5px var(--body);color:var(--muted);margin-bottom:4px}
+input[type=text],input[type=email],input[type=url],input[type=number],textarea,select{width:100%;font:15.5px/1.45 var(--body);color:var(--ink);background:var(--soft);border:1.5px solid var(--line);border-radius:9px;padding:9px 11px}
+textarea{min-height:88px;resize:vertical}
+.drop{border:2px dashed var(--line);border-radius:12px;padding:16px;display:grid;gap:8px;justify-items:start;background:var(--soft)}
+.drop.over{border-color:var(--blue);background:var(--blue-soft)}
+.files{list-style:none;margin:0;padding:0;display:grid;gap:4px;width:100%}
+.files li{display:flex;justify-content:space-between;gap:10px;font-size:14px;border-top:1px dashed var(--line);padding-top:4px}
+.files li button{all:unset;cursor:pointer;color:var(--red);font-weight:700;font-size:13px}
+.q{display:grid;gap:6px;padding-top:12px;margin-top:12px;border-top:1px solid var(--line)}
+.q:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.q .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.q h3{margin:0;font:700 16px/1.3 var(--body)}
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.checks label{display:flex;gap:9px;align-items:flex-start;font-size:15px;background:var(--soft);border:1px solid var(--line);border-radius:9px;padding:9px 11px;cursor:pointer}
+.checks input{margin-top:4px}
+.msg{font-size:14px;color:var(--muted);min-height:1.3em}
+.msg.err{color:var(--red)}
+.sendbox{background:var(--card);border:1.5px solid var(--ink);border-radius:12px;padding:18px;display:grid;gap:10px}
+.sendbox ol{margin:0;padding-left:20px;line-height:1.7}
+details.how{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-top:10px}
+details.how summary{cursor:pointer;font-weight:700}
+details.how ol{margin:8px 0 0;padding-left:20px;line-height:1.7}
+footer{border-top:1px solid var(--line);padding-block:18px 36px;color:var(--muted);font-size:13px;margin-top:20px}
+@media (max-width:760px){.pipe{grid-template-columns:repeat(2,minmax(0,1fr))}.course{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="brand">GED <b>·</b> AI Education Pilot <b>·</b> Course Builder</div><a href="#new">Start a new course</a></div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Teaching · for faculty</div>
+    <h1>Course Builder</h1>
+    <p>Bring your syllabus, your materials and the way you teach. We build the course site, you review it page by page in two pilots, then it goes live. The site supports your classes; it does not replace them.</p>
+    <div class="pipe" aria-label="How it works">
+      <div><b>Bring</b><small>Syllabus, materials, teaching approach</small></div>
+      <div><b>Build</b><small>We build the full course site</small></div>
+      <div class="rv"><b>Pilot 1</b><small>You review every page</small></div>
+      <div class="rv"><b>Pilot 2</b><small>Check the changes</small></div>
+      <div><b>Final</b><small>One link for students</small></div>
+    </div>
+  </div>
+
+  <section id="courses">
+    <div class="sh"><div class="eyebrow">In the builder</div><h2>Courses</h2></div>
+    <article class="course">
+      <div>
+        <div class="code">MTH 105 · Eng. Nadia Mek</div>
+        <h3>Introduction to Statistics</h3>
+        <p>Weeks 1–8, labs, exams, live board, calculator.</p>
+        <div class="track"><span class="st done">Materials</span><span class="st done">Built</span><span class="st now">Pilot 1 · in review</span><span class="st">Pilot 2</span><span class="st">Final</span></div>
+      </div>
+      <div class="acts"><a class="btn main" href="mth105-pilot/">Open Pilot 1</a></div>
+    </article>
+    <details class="how"><summary>How a pilot review works</summary>
+      <ol>
+        <li>Open the pilot copy. A review box sits on the right of every page.</li>
+        <li>On each page, speak or type what should change. Use “Point to a part” to attach a comment to one box, graph or example.</li>
+        <li>Mark pages with no changes as “Looks good”. “All pages” shows what is left.</li>
+        <li>Press “Send my review”, save the file and email it to the course builder team.</li>
+      </ol>
+      <p class="hint" style="margin:8px 0 0">Comments stay on your own device until you send them. Use the same browser for the whole review.</p>
+    </details>
+  </section>
+
+  <section id="new">
+    <div class="sh"><div class="eyebrow">Bring</div><h2>Start a new course</h2></div>
+    <form id="f" novalidate>
+      <fieldset>
+        <legend><span>01</span>You and the course</legend>
+        <div class="grid">
+          <div><label class="f" for="name">Your name as students see it</label><input type="text" id="name" placeholder="Eng. Nadia Mek" required></div>
+          <div><label class="f" for="email">Email</label><input type="email" id="email" placeholder="name@cud.ac.ae" required></div>
+          <div><label class="f" for="dept">Department</label><input type="text" id="dept" placeholder="General Education"></div>
+          <div><label class="f" for="code">Course code</label><input type="text" id="code" placeholder="MTH 195" required></div>
+          <div><label class="f" for="title">Course title</label><input type="text" id="title" placeholder="Applied Statistics" required></div>
+          <div><label class="f" for="sem">Semester</label><input type="text" id="sem" placeholder="Spring 2027"></div>
+          <div><label class="f" for="type">Course type</label><select id="type"><option>Lecture</option><option>Lecture and lab</option><option>Lab</option><option>Project-based</option></select></div>
+          <div><label class="f" for="weeks">Weeks</label><input type="number" id="weeks" min="1" max="20" value="15"></div>
+          <div><label class="f" for="times">Class days and times</label><input type="text" id="times" placeholder="Mon & Wed 10:00–11:15"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>02</span>Syllabus</legend>
+        <p class="hint">The approved syllabus (Word or PDF). Weekly topics, CLOs and assessments come from it.</p>
+        <div class="drop" data-drop="syl"><input type="file" id="syl" accept=".doc,.docx,.pdf"><ul class="files" id="syl-list"></ul></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>03</span>Teaching materials</legend>
+        <p class="hint">Slides, notes, worked examples, handouts, Excel files, the textbook chapters you use. Do not include past exam papers or student work.</p>
+        <div class="drop" data-drop="mat"><input type="file" id="mat" multiple accept=".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx,.csv,.txt,.png,.jpg,.jpeg"><ul class="files" id="mat-list"></ul></div>
+        <div style="margin-top:12px"><label class="f" for="link">Files too large to attach? Paste a OneDrive or SharePoint link</label><input type="url" id="link" placeholder="https://"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>04</span>Your comments</legend>
+        <div class="q">
+          <h3>What do you want from the course site, and what must stay in class?</h3>
+          <textarea id="c-wish" placeholder="Speak or type."></textarea>
+          <div class="row"><button class="btn mic" type="button" data-mic="c-wish">Speak</button></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>05</span>Your teaching in the classroom</legend>
+        <p class="hint">Answer the way you would explain it to a new colleague. Short answers are fine.</p>
+        <div id="qs"></div>
+        <div class="q"><h3>Methods to include</h3>
+          <div class="checks" id="methods"></div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend><span>06</span>The course site</legend>
+        <div class="checks" id="parts"></div>
+        <div class="grid" style="margin-top:12px">
+          <div><label class="f" for="office">Office hours and place</label><input type="text" id="office" placeholder="Tue 1–3 PM · HUB Office"></div>
+          <div><label class="f" for="released">Weeks to release first</label><input type="text" id="released" placeholder="Weeks 1–4"></div>
+        </div>
+        <div style="margin-top:12px"><label class="f" for="moodle">Moodle submission links, one per line</label><textarea id="moodle" placeholder="Lab quiz 10% · https://my.cud.ac.ae/mod/assign/view.php?id=…"></textarea></div>
+      </fieldset>
+
+      <div class="sendbox">
+        <b style="font:800 18px var(--display)">Send to the course builder team</b>
+        <ol><li>Prepare your build package: one file with everything above.</li><li>Email it to <b id="to">Nadia.mekhfi@cud.ac.ae</b>.</li></ol>
+        <div class="acts"><button class="btn main" type="submit">Prepare my build package</button><button class="btn" type="button" id="copy">Copy the email address</button></div>
+        <div class="msg" id="msg" aria-live="polite"></div>
+      </div>
+    </form>
+  </section>
+</main>
+<footer><div class="wrap">GED AI Education Pilot · Course Builder · Eng. Nadia Mek · Canadian University Dubai</div></footer>
+
+<script>
+const TO='Nadia.mekhfi@cud.ac.ae';
+const QS=[
+ ['p-open','How do you open a class?'],
+ ['p-concept','How do you explain a new concept? (for example: definition, real examples, the formula or framework, step by step, what it means)'],
+ ['p-board','What do you do on the board, and what should the website show?'],
+ ['p-practice','How do students practise, in class and after class?'],
+ ['p-assess','How do you check understanding and assess?'],
+ ['p-support','What helps students who struggle or need extra support?'],
+ ['p-never','What should the course site never do?']];
+const METHODS=['One approach per topic: definition, real examples, formula or framework, step by step, meaning','Worked examples as written on the board','Practice first: the answer opens after the student tries','Model answers in the professor’s handwriting style','Calculator beside each exercise','Live board for class','Narrated lectures (audio)','A concept graphic for each new idea','Excel or lab workbooks with a demo sheet','Free micro-credentials linked to topics','Learning supports students can turn on'];
+const PARTS=['Lectures','Labs','Exams','Projects','FAQ and professor help','Semester calendar','CLOs','Student portal link for grades','Moodle submission buttons'];
+const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+$('#qs').innerHTML=QS.map(([id,q])=>`<div class="q"><h3>${esc(q)}</h3><textarea id="${id}" placeholder="Speak or type."></textarea><div class="row"><button class="btn mic" type="button" data-mic="${id}">Speak</button></div></div>`).join('');
+$('#methods').innerHTML=METHODS.map((m,i)=>`<label><input type="checkbox" name="method" value="${esc(m)}" ${i<3?'checked':''}><span>${esc(m)}</span></label>`).join('');
+$('#parts').innerHTML=PARTS.map((m,i)=>`<label><input type="checkbox" name="part" value="${esc(m)}" ${[0,2,4,5,6,7,8].includes(i)?'checked':''}><span>${esc(m)}</span></label>`).join('');
+
+/* ---------- voice typing ---------- */
+const MIC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>';
+let rec=null, recBtn=null;
+document.querySelectorAll('[data-mic]').forEach(b=>{ b.innerHTML=MIC+'<span>Speak</span>'; b.onclick=()=>mic(b); });
+function mic(b){ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ say('Voice typing works in Chrome, Edge and Safari. You can also use the microphone key on your keyboard.',true); return; }
+  if(rec){ const same=recBtn===b; try{rec.stop()}catch(e){} if(same) return; }
+  const ta=document.getElementById(b.dataset.mic), base=ta.value?ta.value.replace(/\s*$/,' '):''; let fin='';
+  rec=new SR(); recBtn=b; rec.lang='en-US'; rec.continuous=true; rec.interimResults=true;
+  rec.onresult=e=>{ let inter=''; for(let i=e.resultIndex;i<e.results.length;i++){ const r=e.results[i]; if(r.isFinal) fin+=r[0].transcript+' '; else inter+=r[0].transcript; } ta.value=base+fin+inter; keep(); };
+  rec.onstart=()=>{ b.classList.add('on'); b.querySelector('span').textContent='Stop'; };
+  rec.onend=()=>{ b.classList.remove('on'); b.querySelector('span').textContent='Speak'; rec=null; recBtn=null; };
+  rec.onerror=e=>say(e.error==='not-allowed'?'Allow the microphone for this page to speak your answers.':'Voice typing stopped. Press Speak again.',true);
+  try{ rec.start(); }catch(e){} }
+
+/* ---------- files ---------- */
+const FILES={syl:[],mat:[]};
+function showFiles(k){ $(`#${k}-list`).innerHTML=FILES[k].map((f,i)=>`<li><span>${esc(f.name)} · ${(f.size/1048576).toFixed(1)} MB</span><button type="button" data-k="${k}" data-i="${i}">Remove</button></li>`).join('');
+  document.querySelectorAll(`#${k}-list [data-i]`).forEach(x=>x.onclick=()=>{ FILES[k].splice(+x.dataset.i,1); showFiles(k); }); }
+function addFiles(k,list){ const arr=[...list]; FILES[k]=k==='syl'?arr.slice(0,1):FILES[k].concat(arr); showFiles(k); }
+['syl','mat'].forEach(k=>{ const inp=$('#'+k); inp.onchange=()=>{ addFiles(k,inp.files); inp.value=''; };
+  const d=document.querySelector(`[data-drop="${k}"]`); d.ondragover=e=>{ e.preventDefault(); d.classList.add('over'); }; d.ondragleave=()=>d.classList.remove('over');
+  d.ondrop=e=>{ e.preventDefault(); d.classList.remove('over'); addFiles(k,e.dataTransfer.files); }; });
+
+/* ---------- draft kept on this device ---------- */
+const FIELDS=['name','email','dept','code','title','sem','type','weeks','times','link','c-wish','office','released','moodle',...QS.map(q=>q[0])];
+function keep(){ const d={}; FIELDS.forEach(id=>d[id]=document.getElementById(id).value); d.method=[...document.querySelectorAll('[name=method]:checked')].map(x=>x.value); d.part=[...document.querySelectorAll('[name=part]:checked')].map(x=>x.value); try{ localStorage.setItem('course-builder-draft',JSON.stringify(d)); }catch(e){} }
+try{ const d=JSON.parse(localStorage.getItem('course-builder-draft')||'null'); if(d){ FIELDS.forEach(id=>{ if(d[id]!=null) document.getElementById(id).value=d[id]; });
+  if(d.method) document.querySelectorAll('[name=method]').forEach(x=>x.checked=d.method.includes(x.value)); if(d.part) document.querySelectorAll('[name=part]').forEach(x=>x.checked=d.part.includes(x.value)); } }catch(e){}
+$('#f').addEventListener('input',keep);
+
+/* ---------- build package ---------- */
+function say(t,err){ const m=$('#msg'); m.textContent=t; m.className='msg'+(err?' err':''); }
+$('#copy').onclick=()=>navigator.clipboard.writeText(TO).then(()=>say('Email address copied.')).catch(()=>say(TO));
+const b64=f=>new Promise((ok,no)=>{ const r=new FileReader(); r.onload=()=>ok(String(r.result).split(',')[1]); r.onerror=no; r.readAsDataURL(f); });
+$('#f').addEventListener('submit',async e=>{ e.preventDefault();
+  const need=[['name','your name'],['email','your email'],['code','the course code'],['title','the course title']].filter(([id])=>!document.getElementById(id).value.trim());
+  if(need.length){ say('Add '+need.map(x=>x[1]).join(', ')+'.',true); document.getElementById(need[0][0]).focus(); return; }
+  if(!FILES.syl.length){ say('Add the syllabus file.',true); return; }
+  const size=[...FILES.syl,...FILES.mat].reduce((a,f)=>a+f.size,0);
+  if(size>40*1048576){ say('The files add up to more than 40 MB. Remove the largest ones and paste a OneDrive link for them instead.',true); return; }
+  say('Preparing…');
+  const v=id=>document.getElementById(id).value.trim();
+  const data={kind:'course-builder-package',version:1,created:new Date().toISOString(),
+    professor:{name:v('name'),email:v('email'),department:v('dept')},
+    course:{code:v('code'),title:v('title'),semester:v('sem'),type:v('type'),weeks:+v('weeks')||15,times:v('times'),office:v('office'),released:v('released'),moodle:v('moodle').split('\n').map(s=>s.trim()).filter(Boolean)},
+    comments:v('c-wish'), teaching:QS.map(([id,q])=>({q,a:v(id)})),
+    methods:[...document.querySelectorAll('[name=method]:checked')].map(x=>x.value), parts:[...document.querySelectorAll('[name=part]:checked')].map(x=>x.value),
+    link:v('link'), files:[]};
+  for(const [k,role] of [['syl','syllabus'],['mat','material']]) for(const f of FILES[k]) data.files.push({role,name:f.name,type:f.type,size:f.size,data:await b64(f)});
+  const fileRows=data.files.map((f,i)=>`<li><a href="#" data-f="${i}">${esc(f.name)}</a> <span>${f.role} · ${(f.size/1048576).toFixed(1)} MB</span></li>`).join('');
+  const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(data.course.code)} build package · ${esc(data.professor.name)}</title>
+<style>:root{--bg:#f3f3f0;--card:#fff;--ink:#17181b;--mut:#5d6068;--line:#dadad4;--acc:#a8131e}@media (prefers-color-scheme:dark){:root{--bg:#111214;--card:#1a1b1f;--ink:#ececea;--mut:#a3a6ae;--line:#2e3036;--acc:#f0666f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",system-ui,sans-serif}main{max-width:860px;margin:0 auto;padding:28px 16px 48px}small{font:700 12px monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--acc)}h1{margin:6px 0 2px;font-size:28px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:12px}h2{margin:0 0 8px;font-size:17px}dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:0}dt{color:var(--mut)}dd{margin:0}
+.qa h3{margin:12px 0 2px;font-size:15px;color:var(--mut)}.qa p{margin:0;white-space:pre-wrap}ul{margin:0;padding-left:20px}li span{color:var(--mut);font-size:13px}</style></head>
+<body><main><small>Course Builder · build package</small><h1>${esc(data.course.code)} ${esc(data.course.title)}</h1><p style="margin:0;color:var(--mut)">${esc(data.professor.name)} · ${esc(data.professor.email)}${data.professor.department?' · '+esc(data.professor.department):''} · ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</p>
+<section><h2>Course</h2><dl><dt>Semester</dt><dd>${esc(data.course.semester)}</dd><dt>Type</dt><dd>${esc(data.course.type)}</dd><dt>Weeks</dt><dd>${data.course.weeks}</dd><dt>Class times</dt><dd>${esc(data.course.times)}</dd><dt>Office hours</dt><dd>${esc(data.course.office)}</dd><dt>Release first</dt><dd>${esc(data.course.released)}</dd></dl></section>
+<section><h2>Files</h2><ul>${fileRows||'<li>None</li>'}</ul>${data.link?`<p>Shared folder: <a href="${esc(data.link)}">${esc(data.link)}</a></p>`:''}</section>
+<section class="qa"><h2>Comments</h2><p>${esc(data.comments)||'—'}</p></section>
+<section class="qa"><h2>Teaching in the classroom</h2>${data.teaching.map(t=>`<h3>${esc(t.q)}</h3><p>${esc(t.a)||'—'}</p>`).join('')}</section>
+<section><h2>Methods to include</h2><ul>${data.methods.map(m=>`<li>${esc(m)}</li>`).join('')}</ul></section>
+<section><h2>Course site</h2><ul>${data.parts.map(m=>`<li>${esc(m)}</li>`).join('')}</ul>${data.course.moodle.length?`<h2 style="margin-top:12px">Moodle submissions</h2><ul>${data.course.moodle.map(m=>`<li>${esc(m)}</li>`).join('')}</ul>`:''}</section>
+</main><script type="application/json" id="build-data">${JSON.stringify(data).replace(/</g,'\\u003c')}<\/script>
+<script>document.addEventListener('click',e=>{const a=e.target.closest('[data-f]');if(!a)return;e.preventDefault();const D=JSON.parse(document.getElementById('build-data').textContent);const f=D.files[+a.dataset.f];const u=Uint8Array.from(atob(f.data),c=>c.charCodeAt(0));const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([u],{type:f.type||'application/octet-stream'}));l.download=f.name;document.body.appendChild(l);l.click();l.remove();});<\/script></body></html>`;
+  const name=`${data.course.code.replace(/\s+/g,'')}_Build_Package_${data.professor.name.replace(/[^A-Za-z0-9]+/g,'-')}.html`;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([html],{type:'text/html'})); a.download=name; document.body.appendChild(a); a.click(); a.remove();
+  say(`Saved as ${name}. Now email it to ${TO}.`);
+});
+</script>
+</body>
+</html>

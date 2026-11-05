@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/site.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<style>:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,.08);--wk-d:#FF7A7F;--wk-soft-d:rgba(255,122,127,.14)}</style>
+<title>Pilot · MTH 105 Lab</title>
+<link rel="stylesheet" href="assets/portal.css?v=202611021159">
+</head>
+<body>
+<div id="hub" data-cur="lab"></div>
+<main class="wrap">
+  <h1 class="pg">Labs · Excel</h1>
+  <p class="lead">One workbook per session. Open it, follow the steps, answer in the yellow cells, then upload it on Moodle.</p>
+  <p><a class="pt-flag" href="index.html#submissions">Submit the Lab Project and Lab Quiz on Moodle →</a></p>
+  <a class="rv-card" href="lab-revision.html"><b>Lab Quiz 1 · Revision lab</b><span>Labs 1–4 · formula sheet · how to enter formulas in Excel · revision workbook</span><i>Open →</i></a>
+  <a class="rv-card" href="lab-quiz-1-101.html" style="background:linear-gradient(135deg,#8a0d20,#C8102E)"><b>🔒 Lab Quiz 1 · Section 101</b><span>Thu 5 Nov · 10:00–11:00 AM · password given in the lab</span><i style="color:#C8102E">Open →</i></a>
+  <a class="rv-card" href="lab-quiz-1-102.html" style="background:linear-gradient(135deg,#5c6670,#8a949e)"><b>Lab Quiz 1 · Section 102</b><span>Archived · Wed 4 Nov</span><i style="color:#5c6670">Open →</i></a>
+  <style>.rv-card{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0 18px;padding:14px 18px;border-radius:14px;background:linear-gradient(135deg,#217346,#2e8b57);color:#fff;text-decoration:none}.rv-card b{font-size:1.05rem}.rv-card span{flex:1;opacity:.9;font-size:.9rem}.rv-card i{font-style:normal;font-weight:700;background:#fff;color:#217346;border-radius:9px;padding:5px 12px}</style>
+  <h2 class="sec">Lab / Non-Lecture Schedule</h2>
+  <div id="labs"></div>
+  <h2 class="sec">Before you start</h2>
+  <div class="tblwrap"><table class="tbl">
+    <tr><th>Turn on the Analysis ToolPak (once)</th><td>Windows: File → Options → Add-ins → Manage Excel Add-ins → Go → tick <b>Analysis ToolPak</b>. Mac: Tools → Excel Add-ins → tick <b>Analysis ToolPak</b>. It appears as <b>Data → Data Analysis</b>.</td></tr>
+    <tr><th>File name</th><td>LabWeek_YourName.xlsx</td></tr>
+    <tr><th>Data</th><td>All data sets are illustrative.</td></tr></table></div>
+</main>
+<footer style="max-width:1100px;margin:0 auto;padding:18px 16px 30px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted);text-align:center">This website is interactive course support. It does not replace classes, attendance or class activities.<br> <b>Eng. Nadia Mek</b> · <a href="https://github.com/nadiamek-tech/MTH105">github.com/nadiamek-tech/MTH105</a></footer>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/lab-data.js?v=202611021159"></script>
+<script>
+const esc=Lecture.W.esc;
+const grid=g=>{ const cols=['','A','B','C','D'].slice(0,g.cells[0].length+1); return '<div class="xlwrap"><div class="xl"><div class="bar"><span class="nm">'+String.fromCharCode(65+g.sel[1])+(g.sel[0]+1)+'</span><i>fx</i><span>'+esc(g.f)+'</span></div><table><tr>'+cols.map(c=>'<th>'+c+'</th>').join('')+'</tr>'+g.cells.map((r,i)=>'<tr><th>'+(i+1)+'</th>'+r.map((c,j)=>'<td class="'+(i===g.sel[0]&&j===g.sel[1]?'sel':'')+'">'+esc(c)+'</td>').join('')+'</tr>').join('')+'</table></div></div>'; };
+document.getElementById('labs').innerHTML=MTH105_LABS.map((L,i)=>'<details class="lab" id="'+L.id+'"'+(i===0?' open':'')+'><summary><span class="wk">Week '+esc(L.week)+'</span><span class="tt"><b>'+esc(L.title)+'</b><small>'+esc(L.subs)+(L.clo?' · '+esc(L.clo):'')+'</small></span><span class="chev">▶</span></summary>'
+  +'<div class="lab-body"><div><p><b>Goal:</b> '+esc(L.goal)+'</p><div class="fx">'+L.fx.map(f=>'<code>'+esc(f)+'</code>').join('')+'</div><ol>'+L.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol></div>'
+  +'<div><p class="eyebrow" style="margin:0 0 6px">What it looks like</p>'+grid(L.grid)+'<p style="margin:14px 0 0"><a class="dl" href="lab/'+L.id+'.xlsx" download>⬇ '+L.id+'.xlsx</a>'+(L.csv?' <a href="lab/lab-01-students.csv" download style="margin-left:8px">CSV version</a>':'')+'</p><p class="sub">Upload the completed file on Moodle.</p></div></div></details>').join('');
+if(location.hash){ const d=document.querySelector(location.hash); if(d&&d.tagName==='DETAILS'){ d.open=true; d.scrollIntoView(); } }
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

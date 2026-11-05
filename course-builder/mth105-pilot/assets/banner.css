@@ -1,0 +1,5 @@
+/* midterm banner (all pages) */
+.mbanner{font-family:var(--f-display);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;justify-content:center;background:var(--wk);color:#fff;text-decoration:none;padding:8px 16px;font-size:.92rem;text-align:center}
+.mbanner b{text-transform:uppercase;letter-spacing:.06em;font-size:.8rem}
+.mbanner span{font-family:var(--f-mono);font-size:.8rem;opacity:.9}
+.toc .mbanner{border-radius:10px;margin:8px 0;justify-content:flex-start;text-align:left;font-size:.82rem;padding:8px 10px}

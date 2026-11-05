@@ -1,0 +1,41 @@
+Student ID,Gender,Major,Year,Emirate,Commute mode,Commute (min),Sleep (h),Study (h/week),GPA,Satisfaction
+S01,F,Design,3,Dubai,Car,36,7.1,14.3,3.01,Medium
+S02,M,Media,4,Sharjah,Bus,56,7.3,8.6,2.95,Medium
+S03,M,Business,3,Ajman,Car,14,5.9,10.2,2.71,Medium
+S04,M,Media,4,Ajman,Bus,31,6.4,17.3,4.0,High
+S05,F,Media,4,Sharjah,Metro,36,6.5,1,2.0,Low
+S06,M,Media,1,Abu Dhabi,Car,16,6.2,4.8,2.0,Medium
+S07,M,IT,2,Dubai,Car,14,6.7,20.4,3.81,High
+S08,M,IT,3,Dubai,Car,12,6.7,9.1,2.98,Low
+S09,M,Business,2,Dubai,Metro,44,7.3,8.0,2.71,Low
+S10,F,Media,3,Dubai,Car,90,6.4,8.5,2.84,High
+S11,M,Business,2,Dubai,Car,21,6.5,17.0,2.86,High
+S12,M,Design,3,Dubai,Car,32,5.4,10.3,3.16,Medium
+S13,F,Engineering,3,Dubai,Metro,37,8.0,8.2,2.54,Medium
+S14,F,Design,1,Sharjah,Bus,28,6.7,14.0,3.21,High
+S15,F,Engineering,3,Sharjah,Car,19,7.1,5.4,2.56,Low
+S16,F,IT,1,Abu Dhabi,Bus,24,7.5,14.5,3.03,High
+S17,M,Media,4,Abu Dhabi,Walk,9,5.6,2.2,2.24,Medium
+S18,F,Business,4,Sharjah,Metro,21,6.4,2.6,2.26,High
+S19,F,IT,2,Abu Dhabi,Metro,19,6.5,15.0,3.21,Medium
+S20,M,Design,4,Sharjah,Bus,12,8.5,6.4,2.3,High
+S21,F,Engineering,1,Dubai,Metro,9,5.5,1,2.1,Medium
+S22,M,Media,1,Dubai,Bus,25,5.4,17.9,3.31,Low
+S23,M,Engineering,3,Sharjah,Metro,19,7.2,12.3,2.45,Medium
+S24,F,Media,2,Abu Dhabi,Car,30,6.7,16.8,3.54,High
+S25,F,Design,4,Sharjah,Car,8,6.5,18.9,3.89,Medium
+S26,M,IT,3,Dubai,Metro,41,8.2,15.3,3.43,High
+S27,M,Engineering,4,Sharjah,Bus,13,6.4,19.4,3.31,High
+S28,F,IT,3,Sharjah,Metro,15,5.1,14.6,3.17,High
+S29,M,Design,1,Dubai,Metro,15,7.2,15.5,3.65,Medium
+S30,F,Engineering,3,Abu Dhabi,Car,29,7.6,15.5,2.86,Low
+S31,M,Design,1,Dubai,Car,37,6.3,11.1,2.54,Low
+S32,F,Engineering,4,Dubai,Walk,19,5.2,17.1,2.65,High
+S33,M,Business,2,Dubai,Car,11,7.3,11.2,2.62,Medium
+S34,F,Engineering,3,Ajman,Walk,12,7.2,20.1,3.35,High
+S35,M,Media,1,Sharjah,Car,8,8.3,7.9,2.56,High
+S36,M,Engineering,2,Abu Dhabi,Metro,28,7.2,16.1,3.23,High
+S37,F,Media,2,Dubai,Bus,11,6.5,2.4,2.3,Medium
+S38,M,Engineering,4,Sharjah,Metro,16,6.8,15.5,3.43,Medium
+S39,F,Media,2,Sharjah,Bus,16,6.1,12.1,2.85,High
+S40,F,Business,2,Sharjah,Car,17,6.4,4.5,2.3,Medium

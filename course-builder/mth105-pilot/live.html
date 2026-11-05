@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Live board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202610231305">
+<style>
+:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,.09)}
+html,body{height:100%}
+body.live{margin:0;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:var(--f-display)}
+.lv-bar{display:flex;align-items:center;gap:12px;padding:8px 16px;border-bottom:1px solid var(--line);background:var(--surface);flex-wrap:wrap}
+.lv-bar a.brand{display:flex;flex-direction:column;text-decoration:none;color:var(--ink);line-height:1.15}
+.lv-bar a.brand span{font-size:.78rem;color:var(--muted)}
+.lv-st{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.04em;padding:4px 10px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.lv-st.on{background:#1E7F4F;color:#fff}
+.lv-st.on::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#fff;margin-right:6px;vertical-align:1px;animation:lvp 1.6s infinite}
+@keyframes lvp{50%{opacity:.25}}
+.lv-sp{flex:1}
+.lv-prof{font-size:.75rem;color:var(--muted);text-decoration:none}
+body.teach .lv-prof{display:none}
+.lv-ctl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.lv-ctl button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:7px 11px;font:600 .88rem var(--f-display);cursor:pointer}
+.lv-ctl button[aria-pressed="true"]{outline:2.5px solid var(--wk);outline-offset:1px}
+.lv-ctl .pen{width:34px;height:34px;padding:0;border-radius:50%}
+.lv-ctl .sep{width:1px;height:26px;background:var(--line);margin:0 4px}
+.lv-main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px;position:relative}
+.lv-stage{position:relative;background:#fbfaf5;border:1px solid #d6d2c6;border-radius:12px;box-shadow:inset 0 0 60px rgba(0,0,0,.04),0 6px 24px rgba(0,0,0,.08);overflow:hidden;touch-action:none}
+.lv-stage canvas{display:block;width:100%;height:100%;touch-action:none}
+.lv-wait{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#5a6675;font-size:1.1rem;padding:20px;pointer-events:none}
+.lv-wait[hidden]{display:none}
+.lv-wait b{display:block;color:#1c3a9c;font-size:1.4rem;margin-bottom:6px}
+.lv-card{max-width:440px;margin:40px auto;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px}
+.lv-card h1{font-size:1.5rem;margin:0 0 6px}
+.lv-card p{color:var(--muted);margin:0 0 14px;font-family:var(--f-body)}
+.lv-card input{width:100%;box-sizing:border-box;font:600 1.3rem var(--f-mono);letter-spacing:.2em;padding:10px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);text-align:center}
+.lv-card .row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.lv-card .btn{border:0;background:var(--wk);color:#fff;border-radius:10px;padding:10px 16px;font:700 1rem var(--f-display);cursor:pointer}
+.lv-card .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.lv-card .err{color:#C62828;font-size:.9rem;min-height:1.2em;margin-top:8px}
+dialog.lv-share{border:1px solid var(--line);border-radius:16px;padding:20px;background:var(--surface);color:var(--ink);max-width:420px;width:calc(100% - 40px)}
+dialog.lv-share::backdrop{background:rgba(0,0,0,.45)}
+.lv-share .qr{background:#fff;padding:10px;border-radius:10px;display:grid;place-items:center;margin:10px 0}
+.lv-share .qr svg{width:220px;height:220px}
+.lv-share code{display:block;word-break:break-all;font-size:.8rem;background:var(--sunk);padding:8px;border-radius:8px}
+.lv-share .row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+body.full .lv-bar,body.full .support-note{display:none}
+body.full .lv-main{padding:0}
+body.full .lv-stage{border-radius:0;border:0}
+.support-note{margin:0;padding:6px 16px 10px;text-align:center;font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body class="live">
+<header class="lv-bar">
+  <a class="brand" href="index.html"><b>MTH 105</b><span>Live board · Eng. Nadia Mek</span></a>
+  <span class="lv-st" id="st">Connecting…</span>
+  <span class="lv-sp"></span>
+  <div class="lv-ctl" id="ctl"></div>
+  <a class="lv-prof" href="live.html#teach" title="Professor">Professor</a>
+</header>
+<main class="lv-main" id="main"></main>
+<dialog class="lv-share" id="share">
+  <b>Class link</b>
+  <p style="margin:6px 0 0;color:var(--muted);font-size:.9rem">Open it on the projector. Students can scan the code to follow on their phones. They can only watch.</p>
+  <div class="qr" id="qr"></div>
+  <code id="link"></code>
+  <div class="row"><button type="button" class="btn" id="copy">Copy link</button><button type="button" class="btn ghost" id="closeShare">Close</button></div>
+</dialog>
+<p class="support-note">This website is interactive course support. It does not replace classes, attendance or class activities.</p>
+<script src="assets/supports.js?v=202610231305"></script>
+<script src="assets/vendor/mqtt.min.js?v=202610231305"></script>
+<script src="assets/vendor/qrcode.js?v=202610231305"></script>
+<script>
+/* MTH 105 live board.
+   Projector and students: live.html shows the board live, view only.
+   Professor: live.html#teach, then the professor code. Only the right code unlocks the signing key, so only her strokes are shown.
+   The strokes travel through free public relay servers (MQTT over secure WebSocket), several at once in case one is blocked. No accounts. */
+(function(){
+  const $=s=>document.querySelector(s), main=$('#main'), ctl=$('#ctl'), st=$('#st');
+  const KEY={"pub":{"kty":"EC","crv":"P-256","x":"FyuKP4PVpKzt5SloBTSVC6q8LT-_uMs5KAfCOvcloq8","y":"sABGZMCJcKVuWRuSlIlpl8id4S3NcokA8l_fr8CeSn8"},"enc":{"salt":"uWcOeNWcIUibzHk4PwOCig==","iv":"Z2ZsqWWNJEVB8JQC","ct":"bcC558eYtVvgelqdV2Y1CIDXLgvGSFzZ/ckhrZkfLHIoBpV+3iO4dIaf8Z2mrsa8BUhDcIZMqdXAMu4j2nYv3T3hWsBm5AqIMcFpk9a5kAteyNUNPQjQu5Ak/FwbIDFYb9HVWfiYwIhXKsz5R6rMRoNLNWfL8Qh6vc6AI0M+EngqmM5mA8vLUW+1LAj3PAi6t33TlJfSr5NtbCj3GgAtKnyWWPnb7LcBz6ECJtL9TUc7Jb9WstPxfnG4p0u8i2WrDvdvieTexVANIuM9ccqYshCnU0t29CVdZlNcQwlI"}}, ROOM='e97bdd23525dbc60c0a9b41c', TOPIC='mth105pilot/live/'+ROOM;
+  const q=new URLSearchParams(location.search), srv=q.get('srv');
+  const RELAYS=srv?[{url:'ws://'+srv}]:[{url:'wss://broker.emqx.io:8084/mqtt'},{url:'wss://broker.hivemq.com:8884/mqtt'},{url:'wss://public.cloud.shiftr.io',username:'public',password:'public'}];
+  const hash=location.hash.slice(1);
+  const status=(t,on)=>{ st.textContent=t; st.classList.toggle('on',!!on); };
+  const B64=b=>btoa(String.fromCharCode(...new Uint8Array(b))), U8=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+  const soft=!!(window.LearningSupports&&LearningSupports.on('glare'));
+  const BOARD=soft?'#e9e6dd':'#fbfaf5'; const INKS=[['Blue','#1c3a9c'],['Red','#c62828'],['Green','#15803d'],['Black','#16202b']];
+  /* connect to every relay; returns {clients, publish(topic,msg)} */
+  function relays(onMsg,onUp,subs){
+    const cs=RELAYS.map(r=>{ const c=mqtt.connect(r.url,{username:r.username,password:r.password,clientId:'mth105_'+Math.random().toString(16).slice(2,12),reconnectPeriod:3000,connectTimeout:8000,clean:true});
+      c.on('connect',()=>{ subs.forEach(t=>c.subscribe(t,{qos:0})); onUp&&onUp(c); });
+      c.on('message',(t,m)=>onMsg(t,m.toString())); c.on('error',()=>{}); return c; });
+    return {cs,up:()=>cs.filter(c=>c.connected).length,pub:(t,m)=>cs.forEach(c=>{ if(c.connected) c.publish(t,m,{qos:0}); })};
+  }
+
+  /* ---------- the board surface (same drawing for professor and viewers) ---------- */
+  function Surface(){
+    const stage=document.createElement('div'); stage.className='lv-stage'; const cv=document.createElement('canvas'); stage.appendChild(cv); main.innerHTML=''; main.appendChild(stage);
+    const ctx=cv.getContext('2d'); let strokes=[], grid=false;
+    const fit=()=>{ const r=main.getBoundingClientRect(), pad=document.body.classList.contains('full')?0:24; let w=r.width-pad, h=w*9/16; if(h>r.height-pad){ h=r.height-pad; w=h*16/9; }
+      stage.style.width=w+'px'; stage.style.height=h+'px'; const d=devicePixelRatio||1; cv.width=Math.round(w*d); cv.height=Math.round(h*d); redraw(); };
+    /* draw points i0..end of a stroke as one path (no dots where pieces meet) */
+    const run=(s,i0)=>{ const W=cv.width, H=cv.height, p=s.p; if(p.length<2) return; i0=Math.max(1,i0); ctx.strokeStyle=s.e?BOARD:s.c; ctx.lineCap='round'; ctx.lineJoin='round';
+      for(let i=i0;i<p.length;i++){ const a=p[i-1], b=p[i]; ctx.lineWidth=(s.e?s.w*6:s.w*(0.55+0.9*(b[2]??.5)))*W/1000; ctx.beginPath(); ctx.moveTo(a[0]*W,a[1]*H); if(i+1<p.length){ const c=p[i+1]; ctx.quadraticCurveTo(b[0]*W,b[1]*H,(b[0]+c[0])/2*W,(b[1]+c[1])/2*H); } else ctx.lineTo(b[0]*W,b[1]*H); ctx.stroke(); } };
+    const dot=s=>{ const W=cv.width,H=cv.height,p=s.p[0]; ctx.fillStyle=s.e?BOARD:s.c; ctx.beginPath(); ctx.arc(p[0]*W,p[1]*H,(s.e?s.w*3:s.w*.6)*W/1000,0,7); ctx.fill(); };
+    const paper=()=>{ ctx.fillStyle=BOARD; ctx.fillRect(0,0,cv.width,cv.height); if(grid){ ctx.strokeStyle='#e4e0d4'; ctx.lineWidth=1; const g=cv.width/32; ctx.beginPath(); for(let x=g;x<cv.width;x+=g){ ctx.moveTo(x,0); ctx.lineTo(x,cv.height); } for(let y=g;y<cv.height;y+=g){ ctx.moveTo(0,y); ctx.lineTo(cv.width,y); } ctx.stroke(); } };
+    function redraw(){ paper(); strokes.forEach(s=>{ if(s.p.length===1) dot(s); else run(s,1); }); }
+    addEventListener('resize',()=>{ clearTimeout(fit._t); fit._t=setTimeout(fit,80); });
+    requestAnimationFrame(fit);
+    return {stage,cv,fit,redraw,
+      get strokes(){ return strokes; }, set strokes(v){ strokes=v; redraw(); },
+      get grid(){ return grid; }, set grid(v){ grid=v; redraw(); },
+      add(s){ strokes.push(s); if(s.p.length===1) dot(s); else run(s,1); },
+      extend(id,pts){ const s=strokes.find(x=>x.id===id); if(!s) return; const from=s.p.length; s.p.push(...pts); run(s,from-1); },
+      save(){ const a=document.createElement('a'); a.download='mth105-board-'+new Date().toISOString().slice(0,16).replace(/[:T]/g,'-')+'.png'; a.href=cv.toDataURL('image/png'); a.click(); }};
+  }
+  const fullBtn=()=>{ const b=document.createElement('button'); b.type='button'; b.textContent='Full screen'; b.onclick=()=>{ const on=!document.body.classList.contains('full'); document.body.classList.toggle('full',on); if(on&&document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(()=>{}); else if(!on&&document.fullscreenElement) document.exitFullscreen(); setTimeout(()=>window.dispatchEvent(new Event('resize')),150); }; document.addEventListener('fullscreenchange',()=>{ if(!document.fullscreenElement){ document.body.classList.remove('full'); setTimeout(()=>window.dispatchEvent(new Event('resize')),150); } }); return b; };
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&document.body.classList.contains('full')){ document.body.classList.remove('full'); window.dispatchEvent(new Event('resize')); } });
+
+  /* ---------- viewer: projector and students ---------- */
+  async function viewer(){
+    const S=Surface(); const wait=document.createElement('div'); wait.className='lv-wait'; wait.innerHTML='<div><b>Waiting for your professor</b>The board appears here as soon as she starts writing.</div>'; S.stage.appendChild(wait);
+    ctl.innerHTML=''; S.stage.style.background=BOARD; ctl.appendChild(fullBtn()); const sv=document.createElement('button'); sv.type='button'; sv.textContent='Save image'; sv.onclick=()=>S.save(); ctl.appendChild(sv);
+    const pk=await crypto.subtle.importKey('jwk',{...KEY.pub,ext:true},{name:'ECDSA',namedCurve:'P-256'},false,['verify']);
+    const me=Math.random().toString(36).slice(2,10), seen=new Set(); let chain=Promise.resolve(), last=0;
+    const apply=m=>{ last=Date.now(); wait.hidden=true; status('Live',true);
+      if(m.t==='reset'){ S.grid=!!m.grid; S.strokes=[]; }
+      else if(m.t==='add'){ m.strokes.forEach(x=>{ if(!S.strokes.some(y=>y.id===x.id)) S.strokes.push(x); }); S.redraw(); }
+      else if(m.t==='begin') S.add({id:m.id,c:m.c,w:m.w,e:m.e,p:m.p});
+      else if(m.t==='pts') S.extend(m.id,m.p);
+      else if(m.t==='end') S.redraw();
+      else if(m.t==='undo') S.strokes=S.strokes.filter(s=>s.id!==m.id);
+      else if(m.t==='clear') S.strokes=[];
+      else if(m.t==='grid') S.grid=!!m.v; };
+    const onMsg=(t,raw)=>{ let o,m; try{ o=JSON.parse(raw); m=JSON.parse(o.d); }catch(e){ return; } const k=m.sid+':'+m.q; if(seen.has(k)) return;
+      chain=chain.then(async()=>{ if(seen.has(k)) return; let ok=false; try{ ok=await crypto.subtle.verify({name:'ECDSA',hash:'SHA-256'},pk,U8(o.s),new TextEncoder().encode(o.d)); }catch(e){} if(!ok) return; seen.add(k); if(seen.size>8000) seen.clear(); apply(m); }); };
+    const hello=first=>R.pub(TOPIC+'/h',JSON.stringify({v:me,first}));
+    status('Connecting…');
+    const R=relays(onMsg,()=>{ hello(true); if(!last) status('Connected · waiting'); },[TOPIC+'/d']);
+    setInterval(()=>{ hello(false); if(!R.up()) status('No connection, retrying…'); else if(last&&Date.now()-last>15000){ status('Paused'); } },10000);
+  }
+
+  /* ---------- professor: code, then write ---------- */
+  async function unlock(code){
+    const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(code.trim().toUpperCase()),'PBKDF2',false,['deriveKey']);
+    const k=await crypto.subtle.deriveKey({name:'PBKDF2',salt:U8(KEY.enc.salt),iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    const jwk=new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:U8(KEY.enc.iv)},k,U8(KEY.enc.ct)));  /* throws on a wrong code */
+    return jwk;
+  }
+  const importPriv=jwk=>crypto.subtle.importKey('jwk',JSON.parse(jwk),{name:'ECDSA',namedCurve:'P-256'},false,['sign']);
+  function lock(){
+    let saved=null; try{ saved=sessionStorage.getItem('live-key'); }catch(e){}
+    if(saved){ importPriv(saved).then(teach).catch(()=>{ try{ sessionStorage.removeItem('live-key'); }catch(e){} lock(); }); return; }
+    ctl.innerHTML=''; status('Locked');
+    main.innerHTML=`<div class="lv-card"><h1>Professor board</h1><p>Type the professor code to write on the board.</p>
+      <input id="code" type="password" autocomplete="off" spellcheck="false" placeholder="Password" aria-label="Professor password"><div class="err" id="err"></div>
+      <div class="row"><button type="button" class="btn" id="go">Unlock the board</button><a class="btn ghost" href="live.html" style="text-decoration:none">Back to the board</a></div></div>`;
+    const go=async()=>{ const c=$('#code').value; $('#err').textContent=''; $('#go').disabled=true; $('#go').textContent='Checking…';
+      try{ const jwk=await unlock(c); try{ sessionStorage.setItem('live-key',jwk); }catch(e){} teach(await importPriv(jwk)); }
+      catch(e){ $('#err').textContent='Wrong code. Try again.'; $('#go').disabled=false; $('#go').textContent='Unlock the board'; $('#code').select(); } };
+    $('#go').onclick=go; $('#code').addEventListener('keydown',e=>{ if(e.key==='Enter') go(); }); $('#code').focus();
+  }
+  function teach(sk){
+    const S=Surface(); const key='live-board:'+ROOM; let cur=null, buf=[], col=INKS[0][1], width=5, eraser=false;
+    try{ const saved=JSON.parse(localStorage.getItem(key)||'null'); if(saved){ S.strokes=saved.strokes||[]; S.grid=!!saved.grid; } }catch(e){}
+    const persist=()=>{ try{ localStorage.setItem(key,JSON.stringify({strokes:S.strokes.slice(-1500),grid:S.grid})); }catch(e){} };
+    /* every message is signed in order, then sent through all relays */
+    const SID=Math.random().toString(36).slice(2,9); let seq=0, chain=Promise.resolve();
+    const send=m=>{ m.sid=SID; m.q=++seq; const d=JSON.stringify(m);
+      chain=chain.then(async()=>{ const sg=await crypto.subtle.sign({name:'ECDSA',hash:'SHA-256'},sk,new TextEncoder().encode(d)); R.pub(TOPIC+'/d',JSON.stringify({d,s:B64(sg)})); }).catch(()=>{}); };
+    const sendState=()=>{ send({t:'reset',grid:S.grid}); let pack=[], size=0;
+      S.strokes.forEach(x=>{ const n=JSON.stringify(x).length; if(size+n>40000&&pack.length){ send({t:'add',strokes:pack}); pack=[]; size=0; } pack.push(x); size+=n; });
+      if(pack.length) send({t:'add',strokes:pack}); };
+    let stT=0; const stateSoon=()=>{ if(stT) return; stT=setTimeout(()=>{ stT=0; sendState(); },700); };
+    const viewers=new Map();
+    const count=()=>{ const now=Date.now(); viewers.forEach((t,v)=>{ if(now-t>35000) viewers.delete(v); });
+      status(R.up()?`Live · ${viewers.size} watching`:'No connection, retrying…',!!R.up()); };
+    const R=relays((t,raw)=>{ if(!t.endsWith('/h')) return; let h; try{ h=JSON.parse(raw); }catch(e){ return; } if(!h||typeof h.v!=='string') return; const isNew=!viewers.has(h.v); viewers.set(h.v,Date.now()); if(h.first||isNew) stateSoon(); count(); },
+      ()=>{ stateSoon(); count(); },[TOPIC+'/h']);
+    setInterval(()=>{ send({t:'hb'}); count(); },5000);
+    /* toolbar */
+    ctl.innerHTML=INKS.map(([n,c],i)=>`<button type="button" class="pen" data-c="${c}" title="${n} marker" aria-label="${n} marker" aria-pressed="${i===0}" style="background:${c}"></button>`).join('')+
+      `<span class="sep"></span><button type="button" data-w="3" aria-pressed="false">Thin</button><button type="button" data-w="5" aria-pressed="true">Normal</button><button type="button" data-w="9" aria-pressed="false">Thick</button>
+       <span class="sep"></span><button type="button" id="er" aria-pressed="false">Eraser</button><button type="button" id="un">Undo</button><button type="button" id="cl">Clear</button><button type="button" id="gr" aria-pressed="${S.grid}">Grid</button>
+       <span class="sep"></span><button type="button" id="sh">Class link</button><button type="button" id="lo">Lock</button>`;
+    ctl.appendChild(fullBtn());
+    const pens=[...ctl.querySelectorAll('.pen')], sizes=[...ctl.querySelectorAll('[data-w]')];
+    pens.forEach(b=>b.onclick=()=>{ col=b.dataset.c; eraser=false; $('#er').setAttribute('aria-pressed','false'); pens.forEach(x=>x.setAttribute('aria-pressed',x===b)); });
+    sizes.forEach(b=>b.onclick=()=>{ width=+b.dataset.w; sizes.forEach(x=>x.setAttribute('aria-pressed',x===b)); });
+    $('#er').onclick=()=>{ eraser=!eraser; $('#er').setAttribute('aria-pressed',eraser); };
+    $('#un').onclick=()=>{ const s=S.strokes[S.strokes.length-1]; if(!s) return; S.strokes=S.strokes.slice(0,-1); send({t:'undo',id:s.id}); persist(); };
+    $('#cl').onclick=()=>{ if(!S.strokes.length||!confirm('Clear the board for everyone?')) return; S.strokes=[]; send({t:'clear'}); persist(); };
+    $('#gr').onclick=()=>{ S.grid=!S.grid; $('#gr').setAttribute('aria-pressed',S.grid); send({t:'grid',v:S.grid}); persist(); };
+    $('#lo').onclick=()=>{ try{ sessionStorage.removeItem('live-key'); }catch(e){} location.href='live.html'+(srv?'?srv='+srv:''); };
+    const url=location.href.split('#')[0];
+    $('#sh').onclick=()=>{ const qr=qrcode(0,'M'); qr.addData(url); qr.make(); $('#qr').innerHTML=qr.createSvgTag({scalable:true,margin:2}); $('#link').textContent=url; $('#share').showModal(); };
+    $('#copy').onclick=()=>{ navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>{ $('#copy').textContent='Copied'; setTimeout(()=>$('#copy').textContent='Copy link',1500); }); };
+    $('#closeShare').onclick=()=>$('#share').close();
+    /* drawing: points are sent every 60 ms while the pen moves */
+    const pos=e=>{ const b=S.cv.getBoundingClientRect(); return [+((e.clientX-b.left)/b.width).toFixed(4),+((e.clientY-b.top)/b.height).toFixed(4),e.pointerType==='mouse'||!e.pressure?.5:+e.pressure.toFixed(2)]; };
+    const flush=()=>{ if(cur&&buf.length){ send({t:'pts',id:cur.id,p:buf}); buf=[]; } };
+    setInterval(flush,60);
+    S.cv.addEventListener('pointerdown',e=>{ e.preventDefault(); S.cv.setPointerCapture(e.pointerId); const p=pos(e); cur={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),c:col,w:width,e:eraser,p:[p]}; S.add({...cur,p:[p]}); send({t:'begin',id:cur.id,c:cur.c,w:cur.w,e:cur.e,p:[p]}); });
+    S.cv.addEventListener('pointermove',e=>{ if(!cur) return; e.preventDefault(); const evs=e.getCoalescedEvents?e.getCoalescedEvents():[e]; const s=S.strokes.find(x=>x.id===cur.id); let lp=s.p[s.p.length-1];
+      const pts=evs.map(pos).filter(p=>{ if(Math.hypot(p[0]-lp[0],p[1]-lp[1])<0.0012) return false; lp=p; return true; }); if(!pts.length) return; S.extend(cur.id,pts); buf.push(...pts); });
+    const end=()=>{ if(!cur) return; flush(); send({t:'end'}); cur=null; S.redraw(); persist(); };
+    S.cv.addEventListener('pointerup',end); S.cv.addEventListener('pointercancel',end); S.cv.addEventListener('pointerleave',end);
+    status('Connecting…');
+  }
+
+  /* ---------- entry ---------- */
+  if(hash==='teach'){ document.body.classList.add('teach'); lock(); } else viewer();
+  addEventListener('hashchange',()=>location.reload());
+})();
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

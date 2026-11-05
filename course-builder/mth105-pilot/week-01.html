@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Week 1 · Introduction to Statistics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/lesson.css?v=202611021159">
+<style>
+:root{--wk:#C8102E;--wk-soft:rgba(200,16,46,0.09);--wk-d:#FF7A7F;--wk-soft-d:rgba(255,122,127,0.14)}
+</style>
+</head>
+<body>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/concept.js?v=202611021159"></script>
+<script src="assets/decode.js?v=202611021159"></script>
+<script src="assets/professor.js?v=202611021159"></script>
+<script src="assets/keywords.js?v=202611021159"></script>
+<script src="assets/lesson.js?v=1793616787"></script>
+<script src="assets/pad.js?v=20261103p"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script src="assets/casio.js?v=202611021159"></script>
+<script src="assets/board.js?v=202611021159"></script>
+<script src="assets/board-answers.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script>
+const {W} = Lecture; Lecture.__noLogo=true; const esc = W.esc;
+const {T, fr, sq, SG, XB, PH, v} = F;
+const goScene = i => { const b=document.querySelectorAll('.toc ol li button')[i]; if(b) b.click(); };
+const practice = (items, label) => el => W.practice(el, items, {label: label||'Show answer', prefix: ''});
+const FT='font-family="Schibsted Grotesk,Arial"', MONO='font-family="JetBrains Mono,monospace"';
+/* practice board answers: the calculator result is computed from the typed entry, so board and calculator always agree */
+const BB=Board, KC=e=>[e,BA.lcd(Function('return '+e.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/√\(/g,'Math.sqrt(').replace(/²/g,'**2'))())];
+
+function sampleTool(el){
+  el.innerHTML=`<div class="tool"><div class="sl"><label for="sm-n">Sample size n</label><input type="range" id="sm-n" min="5" max="200" step="5" value="10"><b class="mono" id="sm-nv"></b></div><div class="pic"></div><div class="feedback"></div><p class="mono" style="margin:0;color:var(--muted)">Population: 1,000 students, 60% prefer evening classes (illustrative). 20 random samples.</p></div>`;
+  const run=()=>{ const n=+el.querySelector('#sm-n').value; el.querySelector('#sm-nv').textContent=n; let seed=11; const rnd=()=>{ seed=(seed*16807)%2147483647; return seed/2147483647; };
+    const ps=[...Array(20)].map(()=>{ let k=0; for(let i=0;i<n;i++) if(rnd()<.6) k++; return k/n; });
+    const Wd=520,Hd=120,L=20,R=20,X=p=>L+(Wd-L-R)*p;
+    el.querySelector('.pic').innerHTML=`<svg viewBox="0 0 ${Wd} ${Hd}" role="img" aria-label="Sample percentages"><line x1="${L}" x2="${Wd-R}" y1="80" y2="80" stroke="var(--ink)"/>${[0,.2,.4,.6,.8,1].map(p=>`<line x1="${X(p)}" x2="${X(p)}" y1="80" y2="86" stroke="var(--muted)"/><text x="${X(p)}" y="100" text-anchor="middle" ${MONO} font-size="11" fill="var(--muted)">${p*100}%</text>`).join('')}
+      <line x1="${X(.6)}" x2="${X(.6)}" y1="10" y2="80" stroke="var(--wk)" stroke-width="2" stroke-dasharray="5 4"/><text x="${X(.6)+6}" y="20" ${FT} font-size="12" font-weight="700" fill="var(--wk)">true 60%</text>
+      ${ps.map((p,i)=>`<circle cx="${X(p)}" cy="${70-(i%6)*9}" r="5" fill="var(--c2)" opacity=".75"/>`).join('')}</svg>`;
+    const lo=Math.min(...ps), hi=Math.max(...ps);
+    el.querySelector('.feedback').innerHTML=`Samples gave between <b>${Math.round(lo*100)}%</b> and <b>${Math.round(hi*100)}%</b>. ${n<40?'Small samples swing a lot.':'Larger samples land closer to 60%.'}`; };
+  el.querySelector('input').addEventListener('input',run); run();
+}
+function outlierTool(el){
+  const base=[14,16,15,17,15];
+  el.innerHTML=`<div class="tool"><div class="seg2"><button type="button" aria-pressed="false">Without 90</button><button type="button" aria-pressed="true">With 90</button></div><div class="pic"></div><div class="out"></div></div>`;
+  const draw=on=>{ const a=on?[...base,90]:base, m=a.reduce((p,q)=>p+q,0)/a.length, md=ST.median(a), X=v=>20+480*(v-10)/85;
+    el.querySelector('.pic').innerHTML=`<svg viewBox="0 0 520 110" role="img" aria-label="Delivery times dot plot"><line x1="20" x2="500" y1="70" y2="70" stroke="var(--ink)"/>${[10,30,50,70,90].map(t=>`<text x="${X(t)}" y="92" text-anchor="middle" ${MONO} font-size="11" fill="var(--muted)">${t}</text>`).join('')}
+      ${a.map((v,i)=>`<circle cx="${X(v)}" cy="${60-(a.slice(0,i).filter(w=>w===v).length)*12}" r="6" fill="${v===90?'var(--wk)':'var(--c2)'}"/>`).join('')}
+      <line x1="${X(m)}" x2="${X(m)}" y1="10" y2="70" stroke="var(--wk)" stroke-width="2"/><text x="${X(m)+5}" y="16" ${FT} font-size="12" font-weight="700" fill="var(--wk)">mean</text>
+      <line x1="${X(md)}" x2="${X(md)}" y1="30" y2="70" stroke="var(--c3)" stroke-width="2" stroke-dasharray="5 4"/><text x="${X(md)+5}" y="44" text-anchor="start" ${FT} font-size="12" font-weight="700" fill="var(--c3)">median</text></svg>`;
+    el.querySelector('.out').innerHTML=`<div><small>Mean</small><b>${ST.r2(m)} min</b></div><div><small>Median</small><b>${ST.r2(md)} min</b></div>`; };
+  el.querySelectorAll('.seg2 button').forEach((b,i)=>b.addEventListener('click',()=>{ el.querySelectorAll('.seg2 button').forEach(x=>x.setAttribute('aria-pressed',x===b)); draw(i===1); }));
+  draw(true);
+}
+const popSVG=`<svg viewBox="0 0 520 220" role="img" aria-label="Population and sample">
+  <ellipse cx="200" cy="110" rx="180" ry="95" fill="var(--wk-soft)" stroke="var(--wk)" stroke-width="2"/>
+  <text x="70" y="40" ${FT} font-weight="800" font-size="16" fill="var(--wk)">Population · N</text>
+  <text x="70" y="62" ${FT} font-size="13" fill="var(--ink)">Parameters: μ, σ, p</text>
+  ${[...Array(36)].map((_,i)=>`<circle cx="${80+(i%9)*26}" cy="${88+Math.floor(i/9)*26}" r="6" fill="var(--muted)" opacity=".45"/>`).join('')}
+  <ellipse cx="245" cy="140" rx="62" ry="36" fill="none" stroke="var(--c2)" stroke-width="2.5"/>
+  ${[[214,140],[240,140],[266,140],[227,114],[253,166]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6" fill="var(--c2)"/>`).join('')}
+  <path d="M310 140 C350 140 360 150 390 150" fill="none" stroke="var(--c2)" stroke-width="2"/>
+  <text x="396" y="146" ${FT} font-weight="800" font-size="16" fill="var(--c2)">Sample · n</text>
+  <text x="396" y="168" ${FT} font-size="13" fill="var(--ink)">Statistics: x̄, s, p̂</text></svg>`;
+const typesSVG=`<svg viewBox="0 0 520 210" role="img" aria-label="Types of data">
+  <rect x="200" y="10" width="120" height="34" rx="8" fill="var(--wk)"/><text x="260" y="32" text-anchor="middle" ${FT} font-weight="700" font-size="14" fill="#fff">Data</text>
+  ${[[130,'Qualitative','categories','var(--wk)',[[60,'Nominal','no order'],[200,'Ordinal','ordered']]],[390,'Quantitative','numbers','var(--c2)',[[320,'Discrete','counted'],[460,'Continuous','measured']]]].map(([x,t,s,c,kids])=>`<line x1="260" y1="44" x2="${x}" y2="76" stroke="var(--line)" stroke-width="2"/><rect x="${x-70}" y="76" width="140" height="40" rx="8" fill="var(--surface)" stroke="${c}" stroke-width="2"/><text x="${x}" y="94" text-anchor="middle" ${FT} font-weight="700" font-size="14" fill="${c}">${t}</text><text x="${x}" y="109" text-anchor="middle" ${FT} font-size="11" fill="var(--muted)">${s}</text>
+    ${kids.map(([kx,kt,ks])=>`<line x1="${x}" y1="116" x2="${kx}" y2="150" stroke="var(--line)" stroke-width="2"/><rect x="${kx-55}" y="150" width="110" height="44" rx="8" fill="var(--bg)" stroke="var(--line)"/><text x="${kx}" y="170" text-anchor="middle" ${FT} font-weight="700" font-size="13" fill="var(--ink)">${kt}</text><text x="${kx}" y="186" text-anchor="middle" ${FT} font-size="11" fill="var(--muted)">${ks}</text>`).join('')}`).join('')}</svg>`;
+
+/* ---------- concept graphics (one per topic, beside the definition) ---------- */
+const RED='#C62828';
+const G1=(()=>{ const {svg,card,text,arrow,tick,cross,pill}=CG;
+  const stat=svg(520,230,
+    card(14,30,146,170)+text(87,58,'DATA',{a:'middle',s:12,w:700,mono:true,c:'var(--wk)'})+
+    [['12  7  30',96],['18  4  25',122],['9  21  16',148]].map(([s,y])=>text(87,y,s,{a:'middle',s:14,mono:true,c:'var(--muted)'})).join('')+text(87,182,'raw numbers',{a:'middle',s:12.5,c:'var(--muted)'})+
+    arrow(166,115,200,115)+
+    card(206,30,146,170,'var(--c2)')+text(279,58,'STATISTICS',{a:'middle',s:12,w:700,mono:true,c:'var(--c2)'})+
+    [40,64,28,52].map((h,i)=>`<rect x="${234+i*24}" y="${160-h}" width="18" height="${h}" rx="3" fill="var(--c2)" fill-opacity=".6"/>`).join('')+`<line x1="226" x2="332" y1="160" y2="160" stroke="var(--ink)" stroke-width="1.5"/>`+text(279,182,'a clear pattern',{a:'middle',s:12.5,c:'var(--muted)'})+
+    arrow(358,115,392,115)+
+    card(398,30,108,170,'var(--c3)')+text(452,58,'DECISION',{a:'middle',s:12,w:700,mono:true,c:'var(--c3)'})+tick(452,112,24)+text(452,182,'act on it',{a:'middle',s:12.5,c:'var(--muted)'}),
+    'Statistics turns raw data into a clear pattern and then into a decision');
+  const dots=(x,y,c,r=6)=>[...Array(12)].map((_,i)=>`<circle cx="${x+(i%4)*20}" cy="${y+Math.floor(i/4)*20}" r="${r}" fill="${c}" fill-opacity=".75"/>`).join('');
+  const desc=svg(520,240,
+    card(14,14,238,212)+text(133,44,'Descriptive',{a:'middle',s:18,w:700})+
+    `<rect x="93" y="62" width="80" height="62" rx="8" fill="none" stroke="var(--wk)" stroke-dasharray="4 4"/>`+dots(103,73,'var(--wk)')+
+    pill(78,142,110,32,'x̄ = 7.2','var(--wk)',{mono:true})+text(133,206,'only the data we have',{a:'middle',s:12.5,c:'var(--muted)'})+
+    card(268,14,238,212,'var(--c2)')+text(387,44,'Inferential',{a:'middle',s:18,w:700})+
+    `<rect x="282" y="94" width="80" height="62" rx="8" fill="none" stroke="var(--c2)" stroke-dasharray="4 4"/>`+dots(292,105,'var(--c2)')+
+    arrow(368,125,398,125,'var(--c2)')+`<ellipse cx="448" cy="125" rx="46" ry="52" fill="var(--c2)" fill-opacity=".12" stroke="var(--c2)" stroke-width="1.5"/>`+text(448,136,'?',{a:'middle',s:32,w:800,c:'var(--c2)'})+
+    text(322,84,'sample',{a:'middle',s:12,c:'var(--muted)'})+text(448,64,'population',{a:'middle',s:12,c:'var(--muted)'})+
+    text(387,206,'goes beyond the data',{a:'middle',s:12.5,c:'var(--muted)'}),
+    'Descriptive statistics stay with the data we have; inferential statistics use a sample to say something about the population');
+  const P=(c,w)=>`<tspan fill="${c}" font-weight="800">${w[0]}</tspan>${w.slice(1)}`;
+  const pop=svg(520,250,
+    card(14,20,206,84)+text(32,54,P('var(--wk)','Population'),{s:19,w:700})+text(32,82,'the whole group · N',{s:13,c:'var(--muted)'})+
+    arrow(226,62,292,62,'var(--wk)')+
+    card(300,20,206,84)+text(318,54,P('var(--wk)','Parameter'),{s:19,w:700})+text(318,84,'μ   σ   p',{s:15,mono:true})+
+    card(14,122,206,84,'var(--c2)')+text(32,156,P('var(--c2)','Sample'),{s:19,w:700})+text(32,184,'the part measured · n',{s:13,c:'var(--muted)'})+
+    arrow(226,164,292,164,'var(--c2)')+
+    card(300,122,206,84,'var(--c2)')+text(318,156,P('var(--c2)','Statistic'),{s:19,w:700})+text(318,186,'x̄   s   p̂',{s:15,mono:true})+
+    text(260,236,'P goes with P · S goes with S',{a:'middle',s:13,w:700,c:'var(--muted)'}),
+    'A population is described by parameters; a sample is described by statistics');
+  const tile=(x,y,title,col,icon,sub)=>card(x,y,240,112,col,{op:.06,sop:.35})+text(x+16,y+28,title,{s:16,w:700,c:col})+icon+text(x+16,y+100,sub,{s:12.5,c:'var(--muted)'});
+  const types=svg(520,250,
+    tile(12,10,'Nominal','var(--wk)',[['A','var(--wk)'],['B','var(--c2)'],['O','var(--c4)']].map(([t,c],i)=>`<circle cx="${12+40+i*52}" cy="62" r="16" fill="${c}" fill-opacity=".2" stroke="${c}"/>`+text(12+40+i*52,67,t,{a:'middle',s:14,w:700,c})).join(''),'names, no order')+
+    tile(268,10,'Ordinal','var(--wk)',['★','★★','★★★'].map((s,i)=>text(268+30+i*62,68,s,{s:17,c:'var(--wk)'})).join('')+arrow(268+30,80,268+214,80,'var(--muted)',1.5),'categories in order')+
+    tile(12,128,'Discrete','var(--c2)',`<line x1="${12+24}" x2="${12+216}" y1="${128+70}" y2="${128+70}" stroke="var(--ink)" stroke-width="1.5"/>`+[0,1,2,3,4].map(i=>`<line x1="${12+36+i*44}" x2="${12+36+i*44}" y1="${128+66}" y2="${128+74}" stroke="var(--ink)"/>`+`<circle cx="${12+36+i*44}" cy="${128+56}" r="6" fill="var(--c2)"/>`+text(12+36+i*44,128+46,i,{a:'middle',s:11,mono:true,c:'var(--muted)'})).join(''),'counted: 0, 1, 2 …')+
+    tile(268,128,'Continuous','var(--c2)',`<rect x="${268+24}" y="${128+52}" width="192" height="14" rx="7" fill="var(--c2)" fill-opacity=".35"/>`+`<line x1="${268+138}" x2="${268+138}" y1="${128+44}" y2="${128+74}" stroke="var(--c2)" stroke-width="2.5"/>`+text(268+146,128+44,'165.3',{s:12,mono:true,w:700,c:'var(--c2)'}),'measured: any value'),
+    'Nominal: names with no order. Ordinal: ordered categories. Discrete: counted. Continuous: measured');
+  const grid=(x,y,pick,col)=>[...Array(40)].map((_,i)=>{ const on=pick.includes(i); return `<circle cx="${x+(i%8)*24}" cy="${y+Math.floor(i/8)*22}" r="7" fill="${on?col:'var(--muted)'}" fill-opacity="${on?1:.25}"/>`; }).join('');
+  const samples=svg(520,240,
+    card(14,14,238,212,RED,{op:.06,sop:.4})+cross(42,46,13)+text(64,52,'Convenience',{s:17,w:700})+grid(49,80,[0,1,2,8,9,10],RED)+text(133,206,'one corner only',{a:'middle',s:12.5,c:'var(--muted)'})+
+    card(268,14,238,212,'var(--c3)',{op:.06,sop:.4})+tick(296,46,13)+text(318,52,'Random',{s:17,w:700})+grid(303,80,[2,13,15,20,30,37],'var(--c3)')+text(387,206,'spread across everyone',{a:'middle',s:12.5,c:'var(--muted)'}),
+    'A convenience sample takes people from one corner; a random sample is spread across the whole population');
+  const Y=v=>200-v*3.5;
+  const outl=svg(520,250,
+    [12,14,13,15].map((v,i)=>`<rect x="${50+i*70}" y="${Y(v)}" width="48" height="${v*3.5}" rx="4" fill="var(--c2)" fill-opacity=".55"/>`+text(74+i*70,220,v,{a:'middle',s:13,mono:true})).join('')+
+    `<rect x="400" y="${Y(46)}" width="48" height="${46*3.5}" rx="4" fill="var(--wk)"/>`+text(424,220,'46',{a:'middle',s:13,mono:true,w:700,c:'var(--wk)'})+
+    `<line x1="40" x2="470" y1="200" y2="200" stroke="var(--ink)" stroke-width="1.5"/><line x1="40" x2="330" y1="${Y(15)}" y2="${Y(15)}" stroke="var(--muted)" stroke-dasharray="5 4"/>`+
+    text(179,134,'the rest: 12 to 15',{a:'middle',s:13,c:'var(--muted)'})+
+    text(424,30,'outlier',{a:'middle',s:15,w:800,c:'var(--wk)'})+
+    arrow(365,Y(15)-6,365,48,'var(--wk)')+text(356,96,'far from',{a:'end',s:13,w:700,c:'var(--wk)'})+text(356,114,'the rest',{a:'end',s:13,w:700,c:'var(--wk)'})+
+    text(260,244,'delivery time (min)',{a:'middle',s:12,c:'var(--muted)'}),
+    'Four deliveries take 12 to 15 minutes; one takes 46 minutes, far from the rest: an outlier');
+  return {stat,desc,pop,types,samples,outl};
+})();
+
+const P1=T('ph',PH);
+Lesson.mount({
+  week:1, clo:'CLO 1', title:'Introduction to Statistics', chapter:'Ch.1: Introduction to Data · Gould, Ryan & Wong (2020)',
+  intro:'Statistics turns data into decisions: we collect, organize, analyze, interpret and communicate.',
+  topics:[
+  { id:'statistics', title:'What is statistics?',
+    def:'<b>Statistics</b> is the science of collecting, organizing, analyzing, interpreting and communicating data to support decisions.',
+    defFig:{label:'Data to decision', html:G1.stat},
+    life:{text:'A transport authority wants to know whether a new Metro feeder bus is worth running. It counts riders (collect), puts them in a table (organize), draws a chart (analyze), reads it (interpret) and reports a decision (communicate). Data: illustrative.'},
+    meaning:{text:'Every statistics question follows the same five steps. This course teaches each one.',
+      fig:{label:'The statistical workflow', flow:[{t:'Collect',s:'get data',d:'Survey, experiment or records.'},{t:'Organize',s:'tables',d:'Frequency tables and lists.'},{t:'Analyze',s:'graphs, numbers',d:'Charts, mean, spread.'},{t:'Interpret',s:'what it means',d:'In the context of the question.'},{t:'Communicate',s:'decide',d:'Report the finding and its uncertainty.'}]}} },
+
+  { id:'descriptive', title:'Descriptive and inferential statistics',
+    def:'<b>Descriptive</b> statistics describe the data we have: tables, graphs, averages. <b>Inferential</b> statistics use a sample to say something about the whole population.',
+    defFig:{label:'Stay or go beyond', html:G1.desc},
+    life:{text:'Sort each statement. Ask: does it stay with the data we have, or go beyond it?',
+      fig:{label:'Sort each statement', build:el=>W.sort(el,{buckets:['Descriptive','Inferential'],items:[
+        {t:'The mean of our 25 quiz scores was 7.2.',a:0,why:'It only describes the 25 scores we have.'},
+        {t:'Based on 500 residents surveyed, about 55% of all Dubai residents use the Metro weekly.',a:1,why:'It generalises from a sample to the population.'},
+        {t:'A bar chart shows how our class travels to campus.',a:0,why:'A graph of the data we collected.'},
+        {t:'A trial of 200 patients suggests the new drug lowers blood pressure for adults in general.',a:1,why:'It draws a conclusion beyond the 200 patients.'}]})}},
+    meaning:{text:'Weeks 1–6 are mostly descriptive. From Week 10, we use samples to estimate the population: inferential statistics.'} },
+
+  { id:'population', title:'Population and sample',
+    def:'The <b>population</b> is the whole group we study (size N). A <b>sample</b> is the part we measure (size n). A number describing the population is a <b>parameter</b>; a number from a sample is a <b>statistic</b>.',
+    defFig:{label:'P with P, S with S', html:G1.pop},
+    life:{text:'A survey of 250 Dubai residents finds that 85 use the Metro. The 250 are the sample; all Dubai residents are the population. Data: illustrative.'},
+    formula:{f:`${P1} = ${fr(T('x',v('x')),T('n',v('n')))}`,
+      parts:[['ph','<b>p̂</b> (“p-hat”): the sample proportion, a statistic.'],['x','<b>x</b>: how many in the sample have the feature.'],['n','<b>n</b>: the sample size.']],
+      sub:`p̂ = ${fr('85','250')}`, subNote:'85 of 250 residents use the Metro.', keys:'8 5 ÷ 2 5 0 =',
+      ans:`<div class="m">p̂ = <b>0.34</b> = 34%</div>`, ansRaw:true, ansNote:'A statistic: it comes from the sample, not from all residents.'},
+    meaning:{text:'We use the statistic (p̂ = 34%) to estimate the unknown parameter p: the true share of all residents.', fig:{label:'Parameter vs statistic', html:popSVG}} },
+
+  { id:'types', title:'Types of data',
+    def:'<b>Qualitative</b> data are categories: <b>nominal</b> (no order) or <b>ordinal</b> (ordered). <b>Quantitative</b> data are numbers: <b>discrete</b> (counted) or <b>continuous</b> (measured).',
+    defFig:{label:'Four types of data', html:G1.types},
+    life:{text:'Classify these everyday variables.',
+      fig:{label:'8 variables', build:el=>W.sort(el,{buckets:['Nominal','Ordinal','Discrete','Continuous'],items:[
+        {t:'Emirate of residence',a:0,why:'Names, no order.'},{t:'Hotel star rating (1★ to 5★)',a:1,why:'Ordered categories; gaps between stars are not equal.'},
+        {t:'Number of siblings',a:2,why:'Counted: 0, 1, 2 …'},{t:'Daily maximum temperature (°C)',a:3,why:'Measured; can take decimals.'},
+        {t:'Student ID number',a:0,why:'A label: the digits are not quantities.'},{t:'Satisfaction: low, medium, high',a:1,why:'Ordered categories.'},
+        {t:'Number of cars passing a toll gate in an hour',a:2,why:'Counted.'},{t:'Time to finish a 5 km run',a:3,why:'Measured.'}]})}},
+    meaning:{text:'The type decides the tools: categories → counts, bar and pie charts, mode. Numbers → histograms, mean, spread.', fig:{label:'The building blocks', html:typesSVG}} },
+
+  { id:'samples', title:'Representative samples and sample size',
+    def:'A <b>representative</b> sample looks like the population. Choose it <b>at random</b>, not by convenience. Larger random samples give estimates closer to the truth.',
+    defFig:{label:'Random, not convenient', html:G1.samples},
+    life:{text:'A newsletter asks 30 students in the library at 9 PM; 21 say they prefer studying at night. Headline: “70% of students prefer night study.” The sample is biased: students in the library at night already study at night.'},
+    meaning:{text:'Drag the sample size. With small n, sample results swing widely; with large n, they cluster near the true value.', fig:{label:'Drag the sample size', build:sampleTool}} },
+
+  { id:'outliers', title:'The impact of outliers',
+    def:'An <b>outlier</b> is a value far from the rest of the data.',
+    defFig:{label:'Far from the rest', html:G1.outl},
+    life:{text:'Pizza delivery times (min): 12, 14, 13, 15, 46. One late delivery (46) is far from the others.'},
+    formula:{f:`${T('xb',XB)} = ${fr(`${T('S',SG)}${T('x',v('x'))}`,T('n',v('n')))}`,
+      parts:[['xb','<b>x̄</b>: the mean.'],['S','<b>Σ</b>: add up.'],['x','<b>x</b>: each value.'],['n','<b>n</b>: how many values.']],
+      sub:`x̄ = ${fr('12 + 14 + 13 + 15 + 46','5')}`, keys:'( 1 2 + 1 4 + 1 3 + 1 5 + 4 6 ) ÷ 5 =',
+      ans:`<div class="m">x̄ = <b>20</b> min</div>`, ansRaw:true, ansNote:'The median is 14 min. Four of five deliveries took 15 min or less.'},
+    meaning:{text:'The outlier pulls the mean up to 20; the median stays at 14. With outliers, report the median.', fig:{label:'Add or remove the outlier', build:outlierTool}} }
+  ],
+  inClass:{intro:'Two exercises we solve together. Work on paper first; the writing box is for practice at home.', items:[
+    {q:'A researcher wants to know the average daily screen time of CUD students. Name (a) the population, (b) a good sample, (c) the variable and its type, (d) one possible source of bias.', tips:['Population = everyone the question is about.','A good sample is chosen at random from the whole population.','Screen time is measured: decide discrete or continuous.','Bias: who might be left out, or answer differently?']},
+    {q:'Daily water intake (litres) of 7 students: 1.5, 2.0, 1.8, 2.2, 1.6, 2.1, 6.0. Find the mean and the median. Which describes a typical student better, and why?', tips:['Add all seven values, divide by 7.','Sort the values before finding the middle.','Look for a value far from the others.']}]},
+  takeaways:{label:'Week 1 on one page', mindmap:{center:'Week 1', branches:[
+    {t:'Statistics',items:['Collect, organize, analyze, interpret, communicate','Descriptive vs inferential']},
+    {t:'Population and sample',items:['N → parameters μ, σ, p','n → statistics x̄, s, p̂']},
+    {t:'Types of data',items:['Nominal, ordinal','Discrete, continuous']},
+    {t:'Good samples',items:['Random, representative','Larger n → closer estimates']},
+    {t:'Outliers',items:['Pull the mean','Median resists them']}]}},
+  practice:[
+    {check:[{l:'Sample',opts:['All adults in Dubai','The 400 surveyed','28%'],v:'The 400 surveyed'},{l:'28% is a',opts:['Statistic','Parameter'],v:'Statistic'}],revise:'The <b>population</b> is the whole group the question is about; the <b>sample</b> is the part measured. A value from the sample (28%) is a <b>statistic</b>, not a parameter.',see:{t:'Revise: Population and sample',href:'#population'},type:'Easy',q:'A health survey asks 400 adults in Dubai and finds 28% exercise daily. Name the population, sample, parameter and statistic.',hint:'Population: all adults in Dubai. Sample: the 400 surveyed. Statistic: <b>28%</b>. Parameter: the true % of <b>all</b> Dubai adults who exercise daily (unknown).'},
+    {check:[{l:'(a)',opts:['Nominal','Ordinal','Discrete','Continuous'],v:'Nominal'},{l:'(b)',opts:['Nominal','Ordinal','Discrete','Continuous'],v:'Discrete'},{l:'(c)',opts:['Nominal','Ordinal','Discrete','Continuous'],v:'Continuous'},{l:'(d)',opts:['Nominal','Ordinal','Discrete','Continuous'],v:'Ordinal'}],revise:'Ask first: category or number? Categories are nominal (no order) or ordinal (ordered); numbers are discrete (counted) or continuous (measured).',see:{t:'Revise: Types of data',href:'#types'},type:'Easy',q:'Classify: (a) blood type (b) number of emails received today (c) height in cm (d) class rank (1st, 2nd, 3rd).',hint:BA.steps([['(a)','<b>Nominal</b>: categories with no order. Not ordinal (no ranking), not a number.'],['(b)','<b>Discrete</b>: counted 0, 1, 2 … Not continuous (no 2.5 emails), not a category.'],['(c)','<b>Continuous</b>: measured, any value (165.3 cm). Not discrete: it is not counted.'],['(d)','<b>Ordinal</b>: categories with an order. Not nominal (order matters), not a measured number.']])},
+    {check:[{l:'p̂',v:34,u:'%',pct:true}],revise:'p̂ = x ÷ n, then × 100 for a percentage. Divide the count with the feature by the sample size, not the other way round.',see:{t:'Revise: Population and sample',href:'#population'},type:'Easy',q:'In a sample of 250 residents, 85 use the Metro. Find p̂ as a percentage.',hint:BA.board([{lines:[BB.fr('p̂','x','n',{n:'85 use the Metro',d:'250 residents'}),BB.line(`p̂ = ${BB.frac('85','250')} = 0.34 = <b>34%</b>`,'ans')],calc:KC('85÷250')}])},
+    {check:[{l:'Type',opts:['Descriptive','Inferential'],v:'Inferential'}],revise:'If the statement goes beyond the data collected to a whole population, it is <b>inferential</b>.',see:{t:'Revise: Descriptive and inferential statistics',href:'#descriptive'},type:'Medium',q:'Descriptive or inferential? “From 1,200 shoppers surveyed, we estimate 35% of UAE shoppers buy groceries online.”',hint:BA.steps([['Why','It uses 1,200 shoppers to estimate a value for <b>all</b> UAE shoppers.'],['Not descriptive','Descriptive would only summarise the 1,200 surveyed.'],['Answer','<b>Inferential</b>.']])},
+    {check:[{l:'Problem',opts:['Biased sample','Sample too small','No problem'],v:'Biased sample'},{l:'Fix',opts:['Random sample of all students','Ask more gym users','Ask only one class'],v:'Random sample of all students'}],revise:'A sample must be chosen <b>at random</b> from the whole population. Asking only people who already have the feature gives a biased sample.',see:{t:'Revise: Representative samples and sample size',href:'#samples'},type:'Medium',q:'To estimate gym use at CUD, a researcher asks students as they leave the gym. What is wrong, and how would you fix it?',hint:'Every person asked already uses the gym: the sample is <b>biased</b>. Take a <b>random</b> sample of all students.'},
+    {check:[{l:'Mean',v:34.8333,u:'min',tol:0.006},{l:'Median',v:23.5,u:'min'},{l:'Better',opts:['Mean','Median'],v:'Median'}],revise:'x̄ = Σx ÷ n. Sort the data before finding the median; with n even, take the mean of the two middle values.',see:{t:'Revise: The impact of outliers',href:'#outliers'},type:'Hard',q:'Commute times (min): 20, 22, 25, 24, 23, 95. Find the mean and the median. Which is the better typical value?',hint:BA.board([BA.mean([20,22,25,24,23,95],{t:'Mean',unit:'min'})])+BA.steps([['Median','Sorted: 20, 22, <b>23, 24</b>, 25, 95 → (23 + 24) ÷ 2 = <b>23.5</b> min'],['Answer','The <b>median</b>: the outlier 95 pulls the mean up.']])},
+    {check:[{l:'New mean',v:22.8,u:'min'},{l:'New median',v:23,u:'min'},{l:'Changed more',opts:['Mean','Median'],v:'Mean'}],revise:'Recalculate with n = 5 after removing 95, and sort again for the median. An outlier moves the mean much more than the median.',see:{t:'Revise: The impact of outliers',href:'#outliers'},type:'Hard',q:'Remove 95 from the commute data. Find the new mean and median. Which measure changed more?',hint:BA.board([BA.mean([20,22,25,24,23],{t:'New mean',unit:'min'})])+BA.steps([['New median','Sorted: 20, 22, <b>23</b>, 24, 25 → <b>23</b> min'],['Answer','The <b>mean</b> changed more (34.83 → 22.8). The median only moved from 23.5 to 23.']])}],
+  next:'Next: Week 2, Ch.2 Picturing Variation with Graphs. <a href="week-02.html">Open Week 2 →</a>'
+});
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

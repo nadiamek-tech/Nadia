@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Week 2 · Describing and Organizing Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/lesson.css?v=202611021159">
+<style>
+:root{--wk:#1F63B5;--wk-soft:rgba(31,99,181,0.09);--wk-d:#7FB2FF;--wk-soft-d:rgba(127,178,255,0.14)}
+</style>
+</head>
+<body>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/concept.js?v=202611021159"></script>
+<script src="assets/decode.js?v=202611021159"></script>
+<script src="assets/professor.js?v=202611021159"></script>
+<script src="assets/keywords.js?v=202611021159"></script>
+<script src="assets/lesson.js?v=1793616787"></script>
+<script src="assets/pad.js?v=20261103p"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script src="assets/casio.js?v=202611021159"></script>
+<script src="assets/board.js?v=202611021159"></script>
+<script src="assets/board-answers.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script>
+const {W} = Lecture; Lecture.__noLogo=true; const esc = W.esc;
+const {T, fr, sq, SG, XB, PH, v} = F;
+const goScene = i => { const b=document.querySelectorAll('.toc ol li button')[i]; if(b) b.click(); };
+const practice = (items, label) => el => W.practice(el, items, {label: label||'Show answer', prefix: ''});
+const FT='font-family="Schibsted Grotesk,Arial"', MONO='font-family="JetBrains Mono,monospace"';
+/* practice board answers: the calculator result is computed from the typed entry, so board and calculator always agree */
+const BB=Board, KC=e=>[e,BA.lcd(Function('return '+e.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/√\(/g,'Math.sqrt(').replace(/²/g,'**2'))())];
+const COM=[['Car',16],['Metro',12],['Bus',8],['Walk',4]];
+function barPie(el){
+  el.innerHTML=`<div class="tool"><div class="seg2"><button type="button" aria-pressed="true">Bar chart</button><button type="button" aria-pressed="false">Pie chart</button></div><div class="pic"></div>
+   <div class="tblwrap"><table class="tbl"><tr><th>Mode</th>${COM.map(c=>`<td>${c[0]}</td>`).join('')}<th>Total</th></tr><tr><th>f</th>${COM.map(c=>`<td>${c[1]}</td>`).join('')}<td>40</td></tr><tr><th>rf = f ÷ n</th>${COM.map(c=>`<td>${c[1]/40}</td>`).join('')}<td>1</td></tr></table></div></div>`;
+  const cols=['var(--wk)','var(--c3)','var(--c4)','var(--muted)'];
+  const draw=m=>{ let s='';
+    if(m===0){ s=`<svg viewBox="0 0 520 200" role="img" aria-label="Bar chart">${COM.map(([t,f],i)=>{ const h=f*9; return `<rect x="${50+i*115}" y="${170-h}" width="70" height="${h}" fill="${cols[i]}"/><text x="${85+i*115}" y="${163-h}" text-anchor="middle" ${MONO} font-size="12" fill="var(--ink)">${f}</text><text x="${85+i*115}" y="190" text-anchor="middle" ${FT} font-size="13" fill="var(--ink)">${t}</text>`; }).join('')}<line x1="40" x2="500" y1="170" y2="170" stroke="var(--ink)"/></svg>`; }
+    else { let a0=-Math.PI/2; s=`<svg viewBox="0 0 520 200" role="img" aria-label="Pie chart">`+COM.map(([t,f],i)=>{ const a1=a0+2*Math.PI*f/40, large=a1-a0>Math.PI?1:0, cx=180,cy=100,r=85; const p=`M${cx},${cy} L${cx+r*Math.cos(a0)},${cy+r*Math.sin(a0)} A${r},${r} 0 ${large} 1 ${cx+r*Math.cos(a1)},${cy+r*Math.sin(a1)} Z`; a0=a1; return `<path d="${p}" fill="${cols[i]}" stroke="var(--surface)" stroke-width="2"/><rect x="320" y="${40+i*30}" width="14" height="14" fill="${cols[i]}"/><text x="342" y="${52+i*30}" ${FT} font-size="13" fill="var(--ink)">${t} · ${f/40*100}%</text>`; }).join('')+'</svg>'; }
+    el.querySelector('.pic').innerHTML=s; };
+  el.querySelectorAll('.seg2 button').forEach((b,i)=>b.addEventListener('click',()=>{ el.querySelectorAll('.seg2 button').forEach(x=>x.setAttribute('aria-pressed',x===b)); draw(i); })); draw(0);
+}
+const H_AGE = ST.hist([4,9,8,5,3,1],['9.5','19.5','29.5','39.5','49.5','59.5','69.5'],{xlabel:'Age (years)',aria:'Histogram of visitor ages',ymax:10});
+
+/* ---------- concept graphics (one per topic, beside the definition) ---------- */
+const G2=(()=>{ const {svg,card,text,arrow,curveArrow,pill,brace}=CG;
+  const tally=(x,y)=>[0,1,2].map(g=>[0,1,2,3].map(i=>`<line x1="${x+g*48+i*8}" x2="${x+g*48+i*8}" y1="${y}" y2="${y+40}" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>`).join('')+`<line x1="${x+g*48-4}" x2="${x+g*48+28}" y1="${y+32}" y2="${y+8}" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>`).join('')+`<line x1="${x+150}" x2="${x+150}" y1="${y}" y2="${y+40}" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>`;
+  const segs=[[16,'var(--wk)',1],[12,'var(--muted)',.35],[8,'var(--muted)',.25],[4,'var(--muted)',.15]]; let sx=296;
+  const strip=segs.map(([f,c,o])=>{ const w=190*f/40, r=`<rect x="${sx}" y="88" width="${w}" height="36" fill="${c}" fill-opacity="${o}" stroke="var(--surface)" stroke-width="2"/>`; sx+=w; return r; }).join('');
+  const freq=svg(520,250,
+    card(14,20,236,170)+text(32,50,'Frequency f',{s:17,w:700})+tally(40,70)+text(32,148,'Car: f = 16',{s:16,w:700,mono:true})+text(32,174,'how many times',{s:12.5,c:'var(--muted)'})+
+    card(270,20,236,170,'var(--c3)')+text(288,50,'Relative frequency rf',{s:17,w:700})+text(334,80,'0.40',{a:'middle',s:13,w:700,mono:true,c:'var(--wk)'})+strip+
+    brace(296,486,132,false,'var(--c3)')+text(391,164,'all rf add up to 1',{a:'middle',s:13,c:'var(--muted)'})+
+    pill(160,204,200,36,'rf = f ÷ n'),'Frequency counts how many; relative frequency is the share of the total, f divided by n');
+  const X=v=>30+(v-37)*28.75;
+  const cls=svg(520,240,
+    text(40,28,'limits',{s:13,w:700})+text(150,28,'boundaries ± 0.5',{s:13,w:700,c:'var(--c4)'})+text(330,28,'midpoint',{s:13,w:700,c:'var(--c3)'})+
+    text((X(39.5)+X(49.5))/2,62,'width = 10',{a:'middle',s:14,w:700,c:'var(--wk)'})+brace(X(39.5),X(49.5),84,true,'var(--wk)')+
+    `<rect x="${X(39.5)}" y="96" width="${X(49.5)-X(39.5)}" height="54" fill="var(--wk)" fill-opacity=".14" stroke="var(--wk)" stroke-width="1.5"/>`+text((X(39.5)+X(49.5))/2,129,'class 40–49',{a:'middle',s:16,w:700})+
+    `<line x1="30" x2="490" y1="150" y2="150" stroke="var(--ink)" stroke-width="1.5"/>`+
+    [39.5,49.5].map(b=>`<line x1="${X(b)}" x2="${X(b)}" y1="90" y2="180" stroke="var(--c4)" stroke-width="2" stroke-dasharray="5 4"/>`+text(X(b),198,b,{a:'middle',s:13,mono:true,w:700,c:'var(--c4)'})).join('')+
+    [40,49].map(l=>`<line x1="${X(l)}" x2="${X(l)}" y1="143" y2="157" stroke="var(--ink)" stroke-width="2.4"/>`+text(l===40?X(l)+6:X(l)-6,174,l,{a:l===40?'start':'end',s:13,mono:true,w:700})).join('')+
+    `<circle cx="${X(44.5)}" cy="150" r="6" fill="var(--c3)"/>`+text(X(44.5),174,'44.5',{a:'middle',s:13,mono:true,w:700,c:'var(--c3)'}),
+    'One class: limits 40 and 49, boundaries 39.5 and 49.5, midpoint 44.5, width 10');
+  const F=[4,9,8,5], C=['10–19','20–29','30–39','40–49'];
+  const hist=svg(520,250,
+    card(14,40,170,176)+text(36,70,'Class',{s:13,w:700,c:'var(--muted)'})+text(150,70,'f',{a:'middle',s:13,w:700,c:'var(--muted)',it:true})+
+    C.map((c,i)=>text(36,100+i*28,c,{s:14,mono:true})+text(150,100+i*28,F[i],{a:'middle',s:14,mono:true,w:700})).join('')+
+    arrow(192,128,228,128)+
+    F.map((f,i)=>`<rect x="${244+i*60}" y="${206-f*16}" width="60" height="${f*16}" fill="var(--wk)" fill-opacity="${.45+i%2*.25}" stroke="var(--surface)" stroke-width="1"/>`+text(274+i*60,226,C[i],{a:'middle',s:11,mono:true,c:'var(--muted)'})).join('')+
+    `<line x1="236" x2="492" y1="206" y2="206" stroke="var(--ink)" stroke-width="1.5"/>`+
+    text(364,30,'bars touch: no gaps',{a:'middle',s:14,w:700,c:'var(--wk)'})+arrow(364,38,364,70,'var(--wk)'),
+    'A frequency table becomes a histogram: one touching bar per class, height = frequency');
+  const poly=svg(520,240,
+    `<rect x="170" y="130" width="170" height="70" fill="var(--wk)" fill-opacity=".2" stroke="var(--wk)" stroke-width="1.5"/>`+text(255,172,'40–49',{a:'middle',s:14,w:700})+
+    `<line x1="40" x2="490" y1="200" y2="200" stroke="var(--ink)" stroke-width="1.5"/>`+
+    `<circle cx="255" cy="130" r="7" fill="var(--c3)"/>`+
+    `<line x1="340" x2="340" y1="200" y2="54" stroke="var(--c4)" stroke-width="2" stroke-dasharray="5 4"/><circle cx="340" cy="54" r="7" fill="var(--c4)"/>`+
+    text(30,96,'Polygon',{s:16,w:700,c:'var(--c3)'})+text(30,116,'midpoint, height f',{s:12.5})+curveArrow(120,124,200,150,246,134,'var(--c3)')+
+    text(356,50,'Ogive',{s:16,w:700,c:'var(--c4)'})+text(356,70,'upper boundary,',{s:12.5})+text(356,88,'height cum f',{s:12.5})+
+    text(170,220,'39.5',{a:'middle',s:12,mono:true,c:'var(--muted)'})+text(255,220,'44.5',{a:'middle',s:12,mono:true,w:700,c:'var(--c3)'})+text(340,220,'49.5',{a:'middle',s:12,mono:true,w:700,c:'var(--c4)'}),
+    'Polygon points sit at the class midpoint with height f; ogive points sit at the upper boundary with height cumulative f');
+  return {freq,cls,hist,poly};
+})();
+
+Lesson.mount({
+  week:2, clo:'CLO 1', title:'Describing and Organizing Data', chapter:'Ch.2: Picturing Variation with Graphs · Gould, Ryan & Wong (2020)',
+  intro:'Raw data are hard to read. Tables and graphs show the pattern.',
+  topics:[
+  { id:'frequency', title:'Frequency and relative frequency',
+    def:'The <b>frequency</b> f is how many times a category occurs. The <b>relative frequency</b> rf is its share of the total: f ÷ n.',
+    defFig:{label:'Count and share', html:G2.freq},
+    life:{text:'40 students record how they get to campus: car 16, Metro 12, bus 8, walk 4. Data: illustrative.'},
+    formula:{f:`${T('rf',v('rf'))} = ${fr(T('f',v('f')),T('n',v('n')))}`,
+      parts:[['rf','<b>rf</b>: relative frequency, the share of the total (0 to 1).'],['f','<b>f</b>: frequency, how many in this category.'],['n','<b>n</b>: total number of observations.']],
+      sub:`${v('rf')}<sub>Car</sub> = ${fr('16','40')}`, subNote:'16 of 40 students come by car.', keys:'1 6 ÷ 4 0 =',
+      ans:`<div class="m">rf = <b>0.40</b> = 40%</div>`, ansRaw:true, ansNote:'All the rf values add up to 1.'},
+    meaning:{text:'For categories, a <b>bar chart</b> compares sizes; a <b>pie chart</b> shows parts of a whole (100%).', fig:{label:'Same data, two charts', build:barPie}} },
+
+  { id:'classes', demo:'Your professor builds a frequency table on the board from raw data.', title:'Grouping numbers into classes',
+    def:'Many numbers are grouped into <b>classes</b> of equal width. Each class has limits, boundaries (± 0.5) and a midpoint.',
+    defFig:{label:'One class, up close', html:G2.cls},
+    life:{text:'25 test scores range from 42 to 98. Listing all 25 shows little; six classes show the pattern.'},
+    formula:{f:`${T('w','Width')} = ${fr(T('r','Max − Min'),T('k','k'))}`,
+      parts:[['w','<b>Width</b>: the size of each class.'],['r','<b>Max − Min</b>: the range of the data.'],['k','<b>k</b>: the number of classes you choose (usually 5 to 10).']],
+      sub:`Width = ${fr('98 − 42','6')}`, subNote:'Lowest 42, highest 98, 6 classes.', keys:'( 9 8 − 4 2 ) ÷ 6 =',
+      ans:`<div class="m">9.33 → round up → <b>10</b></div><p class="calcnote">Classes: 40–49, 50–59, 60–69, 70–79, 80–89, 90–99</p>`, ansRaw:true, ansNote:'Always round the width up.'},
+    meaning:{text:'Build the frequency table: class, boundaries, midpoint, f, rf and cumulative frequency. Type your own data.', fig:{label:'Build your own table', build:el=>ST.freqTool(el)}} },
+
+  { id:'histogram', demo:'Your professor draws a histogram on the board, bar by bar.', title:'Histograms and shape',
+    def:'A <b>histogram</b> draws a frequency table as touching bars, one per class. Its <b>shape</b> is symmetric, right-skewed or left-skewed.',
+    defFig:{label:'Table to touching bars', html:G2.hist},
+    life:{text:'Ages of 30 visitors to a science museum: most are 10–39, a few are older. Data: illustrative.', fig:{label:'Visitor ages', html:H_AGE}},
+    meaning:{text:'Follow the tail. Tail to the right: <b>positively skewed</b>. Tail to the left: <b>negatively skewed</b>. No long tail: <b>symmetric</b>.', fig:{label:'Switch the shape', build:ST.shapeTool}} },
+
+  { id:'polygon', demo:'Your professor draws the polygon and the ogive on the board.', title:'Frequency polygon and ogive',
+    def:'A <b>frequency polygon</b> joins the class midpoints. An <b>ogive</b> plots cumulative frequency at each upper boundary.',
+    defFig:{label:'Where the points go', html:G2.poly},
+    life:{text:'From the museum data: how many visitors were younger than 49.5? The ogive answers directly: 26 of 30.'},
+    formula:{f:`${T('m','Midpoint')} = ${fr(`${T('l','lower')} + ${T('u','upper')}`,'2')}`,
+      parts:[['m','<b>Midpoint</b>: the centre of a class, used for the polygon.'],['l','<b>lower</b>: the lower class limit.'],['u','<b>upper</b>: the upper class limit.']],
+      sub:`Midpoint = ${fr('40 + 49','2')}`, keys:'( 4 0 + 4 9 ) ÷ 2 =', ans:`<div class="m">Midpoint = <b>44.5</b></div>`, ansRaw:true, ansNote:'Boundaries of 40–49: 39.5 and 49.5.'},
+    meaning:{text:'The polygon shows the shape. The ogive answers “how many below a value?”.', fig:{label:'Same data, two graphs', build:ST.polyTool}} }
+  ],
+  inClass:{intro:'Your professor builds the table and draws the histogram on the board. Draw it with them on graph paper.', items:[
+    {q:'Commute times (min) of 20 students: 12, 25, 18, 33, 41, 22, 15, 28, 36, 19, 24, 30, 45, 27, 16, 21, 38, 26, 29, 23. Build a frequency table with classes 10–19, 20–29, 30–39, 40–49, then draw the histogram.', draw:true, tips:['Tally each value into its class.','Check the frequencies add up to 20.','Use the class boundaries (9.5, 19.5, …) on the horizontal axis.','Bars touch: no gaps in a histogram.']},
+    {q:'From your table: add the midpoints and cumulative frequencies, then draw the ogive. How many students commute less than 29.5 minutes?', draw:true, tips:['Midpoint = (lower + upper) ÷ 2.','Cumulative frequency: keep adding.','Plot each cumulative frequency at the upper boundary.']}]},
+  takeaways:{label:'Week 2 on one page', mindmap:{center:'Week 2', branches:[
+    {t:'Categories',items:['rf = f ÷ n','Bar: compare','Pie: part of 100%']},
+    {t:'Classes',items:['Width = range ÷ k, round up','Midpoint = (lower + upper) ÷ 2','Boundaries: ± 0.5']},
+    {t:'Graphs for numbers',items:['Histogram: touching bars','Polygon: midpoints','Ogive: cumulative, upper boundaries']},
+    {t:'Shape',items:['Symmetric','Right tail → positive skew','Left tail → negative skew']}]}},
+  practice:[
+    {check:[{l:'rf',v:0.25}],revise:'rf = f ÷ n. Divide the frequency by the total n.',see:{t:'Revise: Frequency and relative frequency',href:'#frequency'},type:'Easy',q:'12 of 48 students walk to campus. Find the relative frequency.',hint:BA.board([{lines:[BB.fr('rf','f','n',{n:'12 walk',d:'48 students'}),BB.line(`rf = ${BB.frac('12','48')} = <b>0.25</b> (25%)`,'ans')],calc:KC('12÷48')}])},
+    {check:[{l:'rf (O)',v:0.44},{l:'rf (A)',v:0.28},{l:'rf (B)',v:0.2},{l:'rf (AB)',v:0.08},{l:'Mode',opts:['O','A','B','AB'],v:'O'}],revise:'rf = f ÷ n for each type, with n = 50; the rf values must add to 1. The mode is the category with the largest frequency.',see:{t:'Revise: Frequency and relative frequency',href:'#frequency'},type:'Easy',q:'Blood types of 50 donors: O 22, A 14, B 10, AB 4. Find each relative frequency and the mode.',hint:BA.board([['O',22],['A',14],['B',10],['AB',4]].map(([t,f],i)=>({t,lines:(i?[]:[BB.fr('rf','f','n',{n:'donors of the type',d:'50 donors'})]).concat([BB.line(`rf = ${BB.frac(f,50)} = <b>${BA.num(f/50)}</b>`,'ans')]),calc:KC(`${f}÷50`)})))+BA.steps([['Check','0.44 + 0.28 + 0.2 + 0.08 = 1'],['Mode','Largest frequency (22): <b>O</b>.']])},
+    {check:[{l:'Midpoint',v:44.5},{l:'Lower boundary',v:39.5},{l:'Upper boundary',v:49.5}],revise:'Midpoint = (lower + upper) ÷ 2. Boundaries: lower limit − 0.5 and upper limit + 0.5.',see:{t:'Revise: Grouping numbers into classes',href:'#classes'},type:'Easy',q:'For the class 40–49, find the midpoint and the class boundaries.',hint:BA.board([{t:'Midpoint',lines:[BB.fr('Midpoint','lower + upper','2',{n:'40, 49'}),BB.line('Midpoint = (40 + 49) ÷ 2 = <b>44.5</b>','ans')],calc:KC('(40+49)÷2')}])+BA.steps([['Boundaries','40 − 0.5 and 49 + 0.5 → <b>39.5 – 49.5</b>']])},
+    {check:[{l:'Width',v:10},{l:'First class',opts:['31–40','31–41','30–39'],v:'31–40'},{l:'Last class',opts:['81–90','80–89','86–95'],v:'81–90'}],revise:'Width = (max − min) ÷ k, always rounded <b>up</b>. Start the first class at the minimum.',see:{t:'Revise: Grouping numbers into classes',href:'#classes'},type:'Medium',q:'Daily PM10 readings range from 31 to 88. Make 6 classes. What is the width and what are the classes?',hint:BA.board([{t:'Class width',lines:[BB.fr('Width','max − min','classes',{n:'88 and 31',d:'6 classes'}),BB.line('Width = (88 − 31) ÷ 6 = 9.5'),BB.line('Always round <b>up</b> ⟶ Width = <b>10</b>','ans')],calc:KC('(88−31)÷6')}])+BA.steps([['Classes','Start at 31, add 10: 31–40, 41–50, 51–60, 61–70, 71–80, 81–90']])},
+    {check:[{l:'cum f (1)',v:3},{l:'cum f (2)',v:11},{l:'cum f (3)',v:23},{l:'cum f (4)',v:28}],revise:'cum f = f + the cum f before it. The last cum f must equal n.',see:{t:'Revise: Grouping numbers into classes',href:'#classes'},type:'Medium',q:'Frequencies: 3, 8, 12, 5. Find the cumulative frequencies.',hint:BA.board([{t:'Cumulative frequency',lines:[BB.line('cum f = f + the cum f before it'),BB.tb(['f','cum f'],[['3','3'],['8','3 + 8 = 11'],['12','11 + 12 = 23'],['5','23 + 5 = 28']]),BB.line('<b>3, 11, 23, 28</b>. Last = n = 28','ans')],calc:KC('3+8+12+5')}])},
+    {check:[{l:'First midpoint',v:14.5},{l:'Last midpoint',v:64.5},{l:'cum f at 30–39',v:21},{l:'Last cum f',v:30},{l:'Shape',opts:['Right-skewed','Left-skewed','Symmetric'],v:'Right-skewed'}],revise:'Midpoints go up by the class width; cum f adds each f to the total so far. A long tail to the right means right-skewed.',see:{t:'Revise: Histograms and shape',href:'#histogram'},type:'Medium',q:`Ages of 30 visitors:${H_AGE}Find the midpoints, the cumulative frequencies and the shape.`,hint:BA.board([{t:'Midpoints',lines:[BB.fr('Midpoint','lower + upper','2',{n:'10, 19'}),BB.line('First class: (10 + 19) ÷ 2 = 14.5'),BB.line('Then + 10 (the width) each time'),BB.line('<b>14.5, 24.5, 34.5, 44.5, 54.5, 64.5</b>','ans')],calc:KC('(10+19)÷2')},{t:'Cumulative frequency',lines:[BB.tb(['Class','f','cum f'],[['10–19','4','4'],['20–29','9','4 + 9 = 13'],['30–39','8','13 + 8 = 21'],['40–49','5','21 + 5 = 26'],['50–59','3','26 + 3 = 29'],['60–69','1','29 + 1 = 30']]),BB.line('Last = n = <b>30</b>','ans')],calc:KC('4+9+8+5+3+1')}])+BA.steps([['Shape','Peak at 20–29 on the left, long tail on the <b>right</b> → <b>right-skewed</b>.']])},
+    {check:[{l:'%',v:86.6667,u:'%',pct:true,tol:0.05},{l:'Graph',opts:['Ogive','Histogram','Frequency polygon'],v:'Ogive'}],revise:'% below a boundary = cum f ÷ n × 100. Use the cum f at 49.5, not the frequency of one class.',see:{t:'Revise: Frequency polygon and ogive',href:'#polygon'},type:'Hard',q:'Same data: what percentage of visitors were younger than 49.5? Which graph shows this directly?',hint:BA.board([{lines:[BB.fr('%','cum f','n',{n:'26 at 49.5',d:'30 visitors',after:'× 100'}),BB.line(`% = ${BB.frac('26','30')} × 100 ≈ <b>86.7%</b>`,'ans')],calc:KC('26÷30×100')}])+BA.steps([['Graph','The <b>ogive</b>: it plots cumulative frequency, so 26 is read at 49.5.']])}],
+  next:'Next: Week 3, Ch.3 Numerical Summaries of Center and Variation. <a href="week-03.html">Open Week 3 →</a>'
+});
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>

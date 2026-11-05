@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pilot · MTH 105 Week 3 · Central Tendency and Position</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Schibsted+Grotesk:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/course.css?v=202611021159">
+<link rel="stylesheet" href="assets/stats.css?v=202611021159">
+<link rel="stylesheet" href="assets/banner.css?v=202611021159">
+<link rel="stylesheet" href="assets/lesson.css?v=202611021159">
+<style>
+:root{--wk:#0E7C66;--wk-soft:rgba(14,124,102,0.09);--wk-d:#5FD3B5;--wk-soft-d:rgba(95,211,181,0.14)}
+</style>
+</head>
+<body>
+<script src="assets/supports.js?v=202611021159"></script>
+<script src="assets/course.js?v=20261103p"></script>
+<script src="assets/stats.js?v=202611021159"></script>
+<script src="assets/concept.js?v=202611021159"></script>
+<script src="assets/decode.js?v=202611021159"></script>
+<script src="assets/professor.js?v=202611021159"></script>
+<script src="assets/keywords.js?v=202611021159"></script>
+<script src="assets/lesson.js?v=1793616787"></script>
+<script src="assets/pad.js?v=20261103p"></script>
+<script src="assets/calc.js?v=202611021159"></script>
+<script src="assets/casio.js?v=202611021159"></script>
+<script src="assets/board.js?v=202611021159"></script>
+<script src="assets/board-answers.js?v=202611021159"></script>
+<script src="assets/kb.js?v=202611021159"></script>
+<script src="assets/search-index.js?v=202611021159"></script>
+<script src="assets/assistant.js?v=202611021159"></script>
+<script src="assets/site.js?v=202611021159"></script>
+<script>
+const {W} = Lecture; Lecture.__noLogo=true; const esc = W.esc;
+const {T, fr, sq, SG, XB, PH, v} = F;
+const goScene = i => { const b=document.querySelectorAll('.toc ol li button')[i]; if(b) b.click(); };
+const practice = (items, label) => el => W.practice(el, items, {label: label||'Show answer', prefix: ''});
+const FT='font-family="Schibsted Grotesk,Arial"', MONO='font-family="JetBrains Mono,monospace"';
+/* practice board answers: the calculator result is computed from the typed entry, so board and calculator always agree */
+const BB=Board, KC=e=>[e,BA.lcd(Function('return '+e.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/√\(/g,'Math.sqrt(').replace(/²/g,'**2'))())];
+const W2='<a href="https://nadiamek-tech.github.io/MindTheGap/workshop-02.html" target="_blank" rel="noopener">Every symbol, step by step: Mind the Gap Workshop 2 ↗</a>';
+const CASES=[['Exam scores (difficult exam)','30, 45, 50, 82, 85, 87, 88, 90, 91, 92, 93, 95, 95','78.69','88','95','Mean < median < mode → <b>left-skewed</b>'],
+             ['Coffee cups sold per day','45, 47, 48, 49, 50, 50, 50, 51, 52, 53, 55','50','50','50','Mean = median = mode → <b>symmetric</b>'],
+             ['Salaries (thousand $)','42, 45, 48, 50, 52, 55, 58, 60, 62, 150, 180, 200','83.5','56.5','none','Median < mean → <b>right-skewed</b>']];
+function threeCases(el){
+  el.innerHTML=`<div class="tool"><div class="seg2">${CASES.map((c,i)=>`<button type="button" aria-pressed="${i===0}">${c[0].split(' (')[0]}</button>`).join('')}</div><div class="pic"></div></div>`;
+  const draw=i=>{ const [t,d,m,md,mo,c]=CASES[i]; el.querySelector('.pic').innerHTML=`<p class="mono" style="margin:0 0 6px">${t}: ${d}</p><div class="out"><div><small>Mean</small><b>${m}</b></div><div><small>Median</small><b>${md}</b></div><div><small>Mode</small><b>${mo}</b></div></div><div class="feedback" style="margin-top:8px">${c}</div>`; };
+  el.querySelectorAll('.seg2 button').forEach((b,i)=>b.addEventListener('click',()=>{ el.querySelectorAll('.seg2 button').forEach(x=>x.setAttribute('aria-pressed',x===b)); draw(i); })); draw(0);
+}
+function medianFinder(el){
+  el.innerHTML=`<div class="tool"><label for="md-in">Data</label><textarea id="md-in" rows="2">7 3 9 5 20 6</textarea><div class="pic"></div><div class="feedback"></div></div>`;
+  const run=()=>{ const a=ST.nums(el.querySelector('#md-in').value); if(a.length<1) return; const s=[...a].sort((p,q)=>p-q), n=s.length, pos=(n+1)/2;
+    const mid=n%2?[(n-1)/2]:[n/2-1,n/2]; const cnt={}; s.forEach(x=>cnt[x]=(cnt[x]||0)+1); const mx=Math.max(...Object.values(cnt)); const modes=mx>1?Object.keys(cnt).filter(k=>cnt[k]===mx):[];
+    el.querySelector('.pic').innerHTML=`<div class="keys">${s.map((x,i)=>`<kbd class="${mid.includes(i)?'eq':''}">${x}</kbd>`).join('')}</div>`;
+    el.querySelector('.feedback').innerHTML=`n = ${n} → position (n + 1) ÷ 2 = <b>${pos}</b> → median = <b>${ST.r2(ST.median(s))}</b>${n%2?'':' (mean of the two middle values)'} · mode = <b>${modes.length?modes.join(', '):'none'}</b>`; };
+  el.querySelector('textarea').addEventListener('input',run); run();
+}
+
+/* ---------- concept graphics (one per topic, beside the definition) ---------- */
+const G3=(()=>{ const {svg,card,text,arrow,pill,bell}=CG;
+  const X=v=>40+(v-7)*62.86;
+  const mean=svg(520,240,
+    pill(150,18,220,36,'x̄ = Σx ÷ n')+
+    [8,9,10,12,13].map(v=>`<circle cx="${X(v)}" cy="130" r="13" fill="var(--c2)" fill-opacity=".75"/>`+text(X(v),104,v,{a:'middle',s:13,mono:true,w:700})).join('')+
+    `<rect x="30" y="145" width="460" height="7" rx="3.5" fill="var(--ink)" fill-opacity=".8"/>`+
+    `<path d="M${X(10.4)},153 L${X(10.4)-22},192 L${X(10.4)+22},192 Z" fill="var(--wk)"/>`+
+    text(X(10.4),216,'x̄ = 10.4',{a:'middle',s:16,w:800,mono:true,c:'var(--wk)'})+text(X(10.4)+40,186,'balance point',{s:13,c:'var(--muted)'}),
+    'The mean is the balance point of the data: 8, 9, 10, 12 and 13 balance at 10.4');
+  const mBox=[3,5,6,8,9].map((v,i)=>`<rect x="${34+i*42}" y="92" width="36" height="40" rx="7" fill="var(--wk)" fill-opacity="${i===2?1:.12}" stroke="var(--wk)"/>`+text(52+i*42,118,v,{a:'middle',s:16,w:700,mono:true,c:i===2?'var(--surface)':'var(--ink)'})).join('');
+  const cnt={2:1,3:3,4:1,5:0,6:1};
+  const modeDots=Object.entries(cnt).map(([v,c],i)=>[...Array(c)].map((_,j)=>`<circle cx="${304+i*42}" cy="${146-j*24}" r="10" fill="var(--c2)" fill-opacity="${c===3?1:.3}"/>`).join('')+text(304+i*42,184,v,{a:'middle',s:13,mono:true})).join('');
+  const med=svg(520,240,
+    card(14,20,238,200)+text(32,52,'Median',{s:18,w:700})+text(32,74,'sort, then the middle',{s:12.5,c:'var(--muted)'})+mBox+
+    arrow(118,174,118,140,'var(--wk)')+text(118,194,'middle',{a:'middle',s:13,w:700,c:'var(--wk)'})+
+    card(268,20,238,200,'var(--c2)')+text(286,52,'Mode',{s:18,w:700})+text(286,74,'the most frequent',{s:12.5,c:'var(--muted)'})+modeDots+
+    `<line x1="284" x2="490" y1="160" y2="160" stroke="var(--ink)" stroke-width="1.5"/>`+text(400,206,'3 appears most',{a:'middle',s:13,w:700,c:'var(--c2)'}),
+    'Median: sort the data and take the middle value. Mode: the value that appears most often');
+  const sk=[]; for(let i=0;i<=100;i++){ const u=i/100, t=u/0.18; sk.push(`${236+250*u},${160-100*t*Math.exp(1-t)}`); }
+  const which=svg(520,240,
+    card(14,20,192,208)+text(110,48,'Symmetric',{a:'middle',s:17,w:700})+bell(24,196,170,92)+
+    `<line x1="110" x2="110" y1="72" y2="170" stroke="var(--wk)" stroke-width="2.4"/><line x1="24" x2="196" y1="170" y2="170" stroke="var(--ink)" stroke-width="1.5"/>`+
+    text(110,204,'mean ≈ median',{a:'middle',s:13,w:700,c:'var(--wk)'})+
+    card(222,20,284,208,'var(--c2)',{op:.06,sop:.4})+text(240,48,'Right-skewed',{s:17,w:700})+
+    `<path d="M${sk.join(' L')}" fill="none" stroke="var(--c2)" stroke-width="2.6"/><line x1="232" x2="494" y1="160" y2="160" stroke="var(--ink)" stroke-width="1.5"/>`+
+    `<line x1="311" x2="311" y1="78" y2="160" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="5 4"/><line x1="346" x2="346" y1="78" y2="160" stroke="var(--wk)" stroke-width="2.4"/>`+
+    text(306,178,'median',{a:'end',s:12,w:700,c:'var(--muted)'})+text(351,178,'mean',{s:12,w:700,c:'var(--wk)'})+
+    arrow(346,194,486,194,'var(--wk)')+text(346,216,'pulled to the tail',{s:13,w:700,c:'var(--wk)'}),
+    'In symmetric data the mean and median sit together; skew pulls the mean towards the long tail');
+  const Q=['Q1','Median','Q3'], P=['P25','P50','P75'];
+  const quart=svg(520,200,'<g transform="translate(0,-40)">'+
+    [0,1,2,3].map(i=>`<rect x="${40+i*110}" y="96" width="110" height="44" fill="var(--wk)" fill-opacity="${i%2?.3:.15}"/>`+text(95+i*110,124,'25%',{a:'middle',s:15,w:700})).join('')+
+    `<rect x="40" y="96" width="440" height="44" fill="none" stroke="var(--wk)" stroke-width="1.5"/>`+
+    [1,2,3].map(k=>`<line x1="${40+k*110}" x2="${40+k*110}" y1="84" y2="152" stroke="var(--wk)" stroke-width="3"/>`+text(40+k*110,74,Q[k-1],{a:'middle',s:15,w:800,c:'var(--wk)'})+text(40+k*110,172,P[k-1],{a:'middle',s:13,mono:true,w:700})).join('')+
+    text(40,172,'lowest',{a:'start',s:12,c:'var(--muted)'})+text(480,172,'highest',{a:'end',s:12,c:'var(--muted)'})+
+    arrow(150,206,370,206,'var(--muted)',1.5)+text(260,226,'sorted data',{a:'middle',s:12.5,c:'var(--muted)'})+'</g>',
+    'Q1, the median and Q3 cut the sorted data into four parts of 25% each: P25, P50 and P75');
+  return {mean,med,which,quart};
+})();
+
+Lesson.mount({
+  week:3, clo:'CLO 1', title:'Measures of Central Tendency and Position', chapter:'Ch.3: Numerical Summaries of Center and Variation · Gould, Ryan & Wong (2020)',
+  intro:'One number for the middle of the data, and a way to say where a value sits.',
+  topics:[
+  { id:'mean', title:'The mean',
+    def:'The <b>mean</b> x̄ is the balance point of the data: add all values and divide by how many there are.',
+    defFig:{label:'The balance point', html:G3.mean},
+    life:{text:'Five friends sleep 8, 9, 10, 12 and 13 hours over a weekend. What is the typical amount? Data: illustrative.'},
+    formula:{f:`${T('xb',XB)} = ${fr(`${T('S',SG)}${T('x',v('x'))}`,T('n',v('n')))}`,
+      parts:[['xb','<b>x̄</b> (“x-bar”): the sample mean.'],['S','<b>Σ</b>: add up everything after it.'],['x','<b>x</b>: each data value.'],['n','<b>n</b>: how many values.']],
+      sub:`${XB} = ${fr('8 + 9 + 10 + 12 + 13','5')}`, keys:'( 8 + 9 + 1 0 + 1 2 + 1 3 ) ÷ 5 =', ans:`<div class="m">${XB} = 52 ÷ 5 = <b>10.4</b> hours</div>`, ansRaw:true},
+    meaning:{text:'If all five slept the same amount, each would sleep 10.4 hours. The mean uses every value, so one extreme value moves it.'} },
+
+  { id:'median', title:'Median and mode',
+    def:'The <b>median</b> is the middle value after sorting. The <b>mode</b> is the most frequent value; it is the only centre for nominal data.',
+    defFig:{label:'The middle and the most frequent', html:G3.med},
+    life:{text:'Delivery times (min): 7, 3, 9, 5, 20, 6. Sort first: 3, 5, 6, 7, 9, 20.'},
+    formula:[{name:'Position', f:`${T('pos','Position')} = ${fr(`${T('n',v('n'))} + 1`,'2')}`,
+      parts:[['pos','<b>Position</b>: where the median sits in the sorted list.'],['n','<b>n</b>: how many values.']],
+      sub:`Position = ${fr('6 + 1','2')}`, keys:'( 6 + 1 ) ÷ 2 =',
+      ans:`<div class="m">Position = <b>3.5</b></div>`, ansRaw:true, ansNote:'Halfway between the 3rd and 4th values.'},
+     {name:'Median', f:`${T('md','Median')} = ${fr(`${T('a','3rd')} + ${T('b','4th')}`,'2')}`,
+      parts:[['md','<b>Median</b>: n even → mean of the two middle values.'],['a','<b>3rd</b>: the 3rd sorted value, 6.'],['b','<b>4th</b>: the 4th sorted value, 7.']],
+      sub:`Median = ${fr('6 + 7','2')}`, keys:'( 6 + 7 ) ÷ 2 =',
+      ans:`<div class="m">Median = <b>6.5</b> min</div>`, ansRaw:true, ansNote:'n odd → the middle value. n even → mean of the two middle values.'}],
+    meaning:{text:'Type any data to see the middle and the mode.', fig:{label:'Type data, see the middle', build:medianFinder}} },
+
+  { id:'which', title:'Which centre to use?',
+    def:'In <b>symmetric</b> data, mean ≈ median ≈ mode. <b>Skew</b> pulls the mean towards the tail.',
+    defFig:{label:'Skew pulls the mean', html:G3.which},
+    life:{text:'Salaries in a small company: most earn 42–62 thousand, three managers earn 150–200 thousand. Data: Week 1–2 slides.'},
+    meaning:{text:'For skewed data or outliers, report the <b>median</b>. For symmetric data, the mean.', fig:{label:'Three data sets', build:threeCases}} },
+
+  { id:'quartiles', demo:'Your professor finds Q1, the median and Q3 on the board.', title:'Percentiles and quartiles',
+    def:'A <b>percentile</b> gives the position of a value: P25 = Q1, P50 = median, P75 = Q3.',
+    defFig:{label:'Four quarters of 25%', html:G3.quart},
+    life:{text:'“Your score is at the 75th percentile” means 75% of the class scored at or below you.'},
+    meaning:{text:'Sort, find the median, then the median of each half. When n is odd, leave the median out of both halves.',
+      fig:{label:'Data: 3, 5, 7, 8, 9, 11, 13, 15, 18 (n = 9)', html:`<div class="keys">${[3,5,7,8,9,11,13,15,18].map((x,i)=>`<kbd class="${i===4?'eq':''}">${x}</kbd>`).join('')}</div><div class="steps" style="margin-top:10px">Median: position (9 + 1) ÷ 2 = 5 → <b>9</b><br>Lower half 3, 5, 7, 8 → Q1 = (5 + 7) ÷ 2 = <b>6</b><br>Upper half 11, 13, 15, 18 → Q3 = (13 + 15) ÷ 2 = <b>14</b></div>`}} }
+  ],
+  inClass:{intro:'We find the centre and the quartiles together, step by step on the board.', items:[
+    {q:'Exam scores of 10 students: 55, 62, 68, 70, 71, 74, 78, 81, 85, 96. Find the mean, the median, Q1 and Q3.', tips:['The data are already sorted.','n = 10 is even: the median is the mean of the two middle values.','Split into a lower half and an upper half of 5 values each.']},
+    {q:'Hours of sleep of 20 students: 4–5 h: 3 students, 6–7 h: 10 students, 8–9 h: 7 students. Estimate the mean using midpoints.', tips:['Midpoints: 4.5, 6.5, 8.5.','Multiply each midpoint by its frequency.','Divide the total by 20.']}]},
+  takeaways:{label:'Week 3 on one page', mindmap:{center:'Week 3', branches:[
+    {t:'Mean',items:['x̄ = Σx ÷ n']},{t:'Median',items:['Sort first','Position (n + 1) ÷ 2']},{t:'Mode',items:['Most frequent','Only centre for nominal data']},
+    {t:'Skew',items:['Mean pulled to the tail','Skewed data → median']},{t:'Position',items:['Q1 = P25, median = P50, Q3 = P75']}]}},
+  practice:[
+    {check:[{l:'Mean',v:7}],revise:'x̄ = Σx ÷ n. Add all values in brackets first, then divide by n.',see:{t:'Revise: The mean',href:'#mean'},type:'Easy',q:'Find the mean of 4, 8, 6, 10, 7.',hint:BA.board([BA.mean([4,8,6,10,7])])},
+    {check:[{l:'Median',v:10.5}],revise:'Sort the data before finding the median. With n even, the median is the mean of the two middle values.',see:{t:'Revise: Median and mode',href:'#median'},type:'Easy',q:'Find the median of 15, 3, 9, 12, 6, 18.',hint:BA.steps([['Sort','3, 6, <b>9, 12</b>, 15, 18'],['Answer','n = 6 (even) → (9 + 12) ÷ 2 = <b>10.5</b>']])},
+    {check:[{l:'Centre',opts:['Mean','Median','Mode'],v:'Mode'},{l:'Answer',opts:['A','B','C'],v:'A'}],revise:'Mean and median need numbers. For nominal data (categories), only the mode works.',see:{t:'Revise: Which centre to use?',href:'#which'},type:'Easy',q:'Favourite campus café of 10 students: A, B, A, C, A, B, A, C, B, A. Which centre can you use, and what is it?',hint:BA.steps([['Data','Café names are <b>nominal</b>: categories, not numbers.'],['Not mean / median','You cannot add or order café names.'],['Answer','Only the <b>mode</b>: <b>A</b> (5 times).']])},
+    {check:[{l:'Mean',v:6.875,u:'h'},{l:'Median',v:7,u:'h'},{l:'Mode',v:7,u:'h'}],revise:'x̄ = Σx ÷ n; for the median, sort first (n = 8 is even); the mode is the value that appears most.',see:{t:'Revise: Median and mode',href:'#median'},type:'Medium',q:'Hours of sleep of 8 students: 6, 7, 5, 8, 7, 9, 7, 6. Find the mean, median and mode.',hint:BA.board([BA.mean([6,7,5,8,7,9,7,6],{t:'Mean',unit:'h'})])+BA.steps([['Median','Sorted: 5, 6, 6, <b>7, 7</b>, 7, 8, 9 → (7 + 7) ÷ 2 = <b>7</b>'],['Mode','7 appears 3 times → <b>7</b>']])},
+    {check:[{l:'Q1',v:3.5},{l:'Q3',v:10}],revise:'Split the sorted data at the median. Q1 is the median of the lower half, Q3 the median of the upper half.',see:{t:'Revise: Percentiles and quartiles',href:'#quartiles'},type:'Medium',q:'Find Q1 and Q3 of 1, 3, 4, 6, 8, 9, 11, 14.',hint:'Lower half 1, 3, 4, 6 → Q1 = (3 + 4) ÷ 2 = <b>3.5</b>. Upper half 8, 9, 11, 14 → Q3 = (9 + 11) ÷ 2 = <b>10</b>.'},
+    {check:[{l:'Mean',v:9.65,u:'hours'}],revise:'Grouped mean: x̄ = Σ(f × m) ÷ n, with m the class midpoint. Divide by n = Σf = 40, not by the number of classes.',see:{t:'Revise: The mean',href:'#mean'},type:'Hard',q:'Weekly study hours of 40 students: 0–5: 8, 6–10: 15, 11–15: 12, 16–20: 5. Estimate the mean using midpoints.',hint:BA.board([{t:'Grouped mean',lines:[BB.line('m = (lower + upper) ÷ 2'),BB.tb(['Class','f','m','f × m'],[['0–5','8','2.5','20'],['6–10','15','8','120'],['11–15','12','13','156'],['16–20','5','18','90']],['Σ','40','','386']),BB.fr(BA.XB,'Σ(f × m)','n',{n:'386',d:'40'}),BB.line(`${BA.XB} = [ <span class="nw">(8 × 2.5)</span> + <span class="nw">(15 × 8)</span> + <span class="nw">(12 × 13)</span> + <span class="nw">(5 × 18)</span> ] ÷ 40`),BB.line(`${BA.XB} = ${BB.frac('386','40')} = <b>9.65</b> hours`,'ans')],calc:KC('((8×2.5)+(15×8)+(12×13)+(5×18))÷40')}])},
+    {check:[{l:'Mean',v:14.5},{l:'Median',v:9.5},{l:'Mode',v:9},{l:'Best',opts:['Mean','Median','Mode'],v:'Median'}],revise:'Sort first for the median. An outlier (40) pulls the mean; for skewed data report the median.',see:{t:'Revise: Which centre to use?',href:'#which'},type:'Hard',q:'Monthly salaries (thousand AED) of 6 staff: 8, 9, 9, 10, 11, 40. Find the mean, median and mode. Which is the best typical value?',hint:BA.board([BA.mean([8,9,9,10,11,40],{t:'Mean',unit:'thousand AED'})])+BA.steps([['Median','8, 9, <b>9, 10</b>, 11, 40 → (9 + 10) ÷ 2 = <b>9.5</b>'],['Mode','9 appears twice → <b>9</b>'],['Answer','The <b>median</b>: 40 pulls the mean up.']])}],
+  next:'Next: Week 4, measures of dispersion. <a href="week-04.html">Open Week 4 →</a>'
+});
+</script>
+<script src="pilot.js"></script><script src="../review/review.js"></script>
+</body>
+</html>
